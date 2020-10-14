@@ -45,6 +45,8 @@ Produire une représentation sous forme de suite de charactères d'une structure
 Déserialiser::
 Produire une représentation sous forme de structure de donnée, présente en mémoire vive et facilement utilisable à partir de données sérialisées.
 
+MVP::Minimum Viable Product, Produit Minimum Viable, en production logicielle, produit assurant l'ensemble des fonctionnalités centrales, et dont l'utilisation apporte une plus value à l'utilisateur.
+
 <dt>benchemarksgame-team</dt>
 <dd>
 https://benchmarksgame-team.pages.debian.net/benchmarksgame/
