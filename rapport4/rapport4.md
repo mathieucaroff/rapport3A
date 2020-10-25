@@ -81,7 +81,7 @@ AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensembl
 
 AJV et JSON Schema répondaient bien au besoin de ToP, cependant Deux problèmes se dégageaient de leur utilisation:
 
-- AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peux connaître les numéros de ligne d'ou provienne les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
+- AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peux **connaître les numéros de ligne** d'ou provienne les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
 - AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitais en faire ToP, comme un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais ils s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rends l'utilisation des JSON Schema désagréable et lourde.
 
 En l'absence d'outils similair aux JSON Schema pour répondre à ces deux besoins, l'association Ditrit a décidé de créer son propre outils: Lidy.
@@ -96,23 +96,106 @@ Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript).
 
 #### Reprise du travail sur Lidy
 
-Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrété, les discussions et retours que reçoivent les membres de l'association Ditrit au sujet des besoins des entreprises indique un besoin pour un orchestrateur de déploiement de systèmes cloud et multi-machines. En d'autre termes, il apparait que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association Ditrit, Xavier Talon me propose de ré-ouvrir le travaille sur le sujet Leto, en entament la traduction de Lidy en Golang. En effet, depuis l'été 2019, l'association Ditrit fait la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permetterais d'apporter une forme d'uniformité dans les projets Ditrit, facilitant aussi la réutilisation de code au sein de l'association.
+Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrété, les discussions et retours que reçoivent les membres de l'association Ditrit au sujet des besoins des entreprises indique un besoin pour un orchestrateur de déploiement de systèmes cloud et multi-machines. En d'autre termes, il apparait que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association Ditrit, Xavier Talon me propose de ré-ouvrir le travaille sur le sujet Leto, en **entament la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association Ditrit fait la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permetterais d'apporter une forme d'uniformité dans les projets Ditrit, facilitant aussi la réutilisation de code au sein de l'association.
 
 La proposition de travailler sur Lidy a provoqué chez moi des opinions contrastées:
 
-- D'un côté, le type de programe qu'est Lidy, et le type de besoin auquel il réponds m'intéressent car ils relèvent de la programmation pure. Lidy manipule principalement des structures de données et des données des types habituels de programmation, tels que les nombres et les chaînes de caractères, et assure que ces structures ont la forme demandée.
-- De l'autre côté, j'identifie que Lidy réponds à un besoin qui est déjà traité par les JSON Schema et qu'il doit exister d'autres produits qui répondent à ce besoin. Je remarque aussi l'absence de spécification et de documentation pour Lidy.
+- D'un côté, le type de programme qu'est Lidy et le type de besoins auquel il réponds m'intéressent car ils relèvent de la programmation pure. Lidy manipule principalement des structures de données et des données des types habituels de programmation, tels que les nombres et les chaînes de caractères, et assure que ces structures ont la forme demandée.
+- D'un autre côté, j'identifie que Lidy réponds à un besoin qui est déjà traité par les JSON Schema et qu'il doit exister d'autres produits qui répondent à ce besoin. Je remarque aussi l'absence de spécification et de documentation pour Lidy.
 
-Ces considératiosn prises en compte, je choisi d'affirmer mon intéret pour le sujet Lidy. Je continue de creuser le sujet et j'identifie des faiblesses suplémentaires:
+Ces considérations prises en compte, je choisi d'affirmer mon intéret pour le sujet Lidy. Je continue de creuser le sujet et j'identifie des faiblesses supplémentaires:
 
 - Le projet Lidy n'a que très peu de tests unitaires. La pluspart des tests qui assurent le bon fonctionnement de Lidy sont en faites les tests de unitaires du projet Leto. Dans une entreprise de traduction de Lidy, les testes de Leto ne seront pas disponibles.
-- L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment ou Lidy cherchera à utiliser le code de validation invalide. L'absence de validation des grammaires Lidy
+- L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment ou Lidy cherchera à utiliser le code de validation invalide.
+- L'implémentation ne spécifie par conséquent pas comment les erreurs faites dans le schéma Lidy doivent être rapportées à l'utilisateur.
 
-J'identifie aussi un grand nombre de faiblesses dans l'implémentation actuelle de lidy
+La nature purement programmation du problème, et l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
 
-- Fait pour Leto v
-- Pas de spécification
-- Très peu de tests dans Lidy
-  - Le code Lidy est validé grâce aux tests dans Leto.
-- Pas de vérification de la validité du schema de dialecte
-- Arret du développement "dès que ça fonctionne"
+### Note sur Go
+
+- Je ne connaissais pas Go avant d'en faire.
+- Au fur et a mesure de mon utilisation de Go et de mes lectures à son sujet, j'ai appris que Go avait été pensé par les ingénieurs de Google pour ressembler au langage C. Il a aussi des ressemblances avec Python, un autre langage apprécié chez Google. Dans l'ensemble, Go est un langage avec un fort engagement pour la programmation impérative, et pour le minimalisme des fonctionnalités.
+
+### Approches initiales, difficultés et exploration des stratégies
+
+- Idée de traduire le code en Typescript
+- Blocage car:
+
+  - Typescript est encore trop permissif
+  - JS supporte de nombreuses fonctionnalités absentes de Golang au niveau langage
+  - ... Il est claire que JS et Go sont des langages avec des paradigmes différents
+
+- Décision de re-développer sans tenir compte de l'implémentation existante
+- Problème majeur: absence de spécification, ni même de documentation, et les tests unitaires de Lidy sont trops peux nombreux. Ils ne peuvent garantir le bon fonctionnement que d'une partie réduite du code.
+  - En effet, Lidy est développé dans le cadre de Leto, et la specification est donc à trouver du côté de Leto.
+- Décision de produires moi même les éléments de spécification dont j'ai besoin pour pouvoir travailler.
+
+### Spécification et tests
+
+- Production des-dits éléments de spécification orientées donnée, sous forme de jeu de donnée qui doivent être correctement détectés comme valide ou comme invalide.
+  - Décision de retirer des mots-clés inutils
+- Création d'un outils pour rendre testables ces éléments de spécification
+  - Utilisation d'une framework de test existant
+  - Avantage / inconvénients de la méthode de chargement des tests
+  - Améliorations possibles
+    - Recherche et utilisation d'une librarie dédiée aux tests orientés donné
+
+### Recherche d'une librarie de parsing YAML en Go qui supporte les numéros de ligne
+
+- Une seul librairie existante
+- Le support des numéros de lignes [est une issue dans le bug tracker](https://github.com/go-yaml/yaml/issues/108)
+- Des contributeurs de la librarie ont indiqué que cela était supporté dans la version de la librarie, mais n'ont pas donné d'exemple. Par ailleur, la documentation est extrèmenent limitée sur le sujet.
+- Mes recheches m'ont permise de trouver cette manière de faire. J'ai [publié l'information dans l'issue concernée](https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147).
+
+### Conception de l'API de la librarie Lidy
+
+- Difficulté: La manière de Golang de faire des interfaces est unique, et il n'est pas facile de trouver un bon guide qui explique comment faire, ni des listes de bonne pratique suffisement complètes. Je suis amené de faire des arbitrage et des paris.
+- Le manque d'une spécification complète se fait à nouveau sentir
+  - Sans connaître les besoins exacts de Leto, il est difficile d'y répondre complètement:
+    - La première version de l'API ne donnait les numéros de ligne que lorsqu'une erreur était renvoyée. Ceci s'est révélé insuffisant pour les besoins de Leto.
+- Décision de ne pas prendre en charge l'ouverture des fichiers pour assurer la protabilité de Lidy vers les autres langages, par l'intermédière de WASM. Problème: Pouvoir indiquer dans les rapports d'erreur le chemin du fichiers d'ou provient l'erreur. Solution: Fournir à l'utilisateur une structure de donnée représentant un fichier.
+
+### Conception du fonctionnement de l'API Lidy
+
+- 2 phases d'analyse
+- Difficulté: Quel format de donné pour la représentation intermédiare du schéma? Quel calculs peuvent être anticipés?
+- Solution: Afin d'être capable de fournir les numéros de lignes des noeuds du schéma dans l'étape de validation, il est préférable que le format de donné de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des noeuds YAML.
+
+### Analyse et validation du schema
+
+Difficulté: comment gérer construction de l'arbre d'expression avec les types Go. En effet, en Go, il n'y a pas de syntax pour déclarer qu'un type implément une interface. Solution: utilisation d'une astuce, tels que proposé dans l'issue tracker de Go.
+
+### Validation des données
+
+- Même problème d'interface Go pour supporter les appèles récursifs
+- Question de la description des erreurs -> Interface spécifique pour permettre à un noeuds du schéma de décrire la vérification qu'il opère
+- Difficulté sur les types extensions
+
+### Rapporter les erreurs
+
+Fait:
+
+- Faire une fonction dédiée.
+- Lui passer les informations nécéssaires.
+- La fonction produit une erreurs descriptive, avec le numéro de ligne
+- Lors qu'une fonction détècte une erreur, l'analyse se poursuit, de façon à ce que toutes les erreurs puissent être levées. Les fonctions renvoient aussi une liste d'erreurs, plutôt que une seul erreur.
+
+À faire:
+
+- Rendre les numéros de ligne et de column accessibles comme donnée présente sur l'erreur
+- Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
+- Les erreurs sont écrites directement dans l'objet de context, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreur de fonction en fonction. Exception: la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cet hypothèses doivent être abandonnées.
+- Permettre à l'utilisateur de paramétrer le comportement en cas d'erreur.
+
+### Schéma de fonctionnement du projet
+
+<!--
+TODO: create schema
+
+- [v] Input type / output type for the (schema loading+validation)
+- [v] Schema loading+validation overall process
+- Passes to load the schema
+- Communication model for the recursive exploration while (loading the schema, validating the data)
+-->
+
+### Retour sur l'écriture de Lidy en Go
