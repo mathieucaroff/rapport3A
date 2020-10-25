@@ -111,10 +111,15 @@ Ces considérations prises en compte, je choisi d'affirmer mon intéret pour le 
 
 La nature purement programmation du problème, et l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
 
-### Note sur Go
+### Recherche, travail et impression sur Golang
 
-- Je ne connaissais pas Go avant d'en faire.
-- Au fur et a mesure de mon utilisation de Go et de mes lectures à son sujet, j'ai appris que Go avait été pensé par les ingénieurs de Google pour ressembler au langage C. Il a aussi des ressemblances avec Python, un autre langage apprécié chez Google. Dans l'ensemble, Go est un langage avec un fort engagement pour la programmation impérative, et pour le minimalisme des fonctionnalités.
+L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différents de tout les autres langages avec lesquels j'ai travaillés. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntax de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de controle (if/while/for) ; de même Go autorise certaines instructions goto, support l'usage de labels et les signature de méthodes utilisent quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourds. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relative à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés][tiobe] de ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
+
+En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outils Golang cherche simultanement à fournir l'ensemble des outils nécéssaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à founir aussi peut d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a aussi que deux structures de donnée: le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes couvrir tout les besoins pratiques d'un développeur, mais leur nombre extrèmement limité signifie que le développeur ne peux pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation. Ceci détonne avec lanages de programmation plus communs tels que Java et C++, qui offrent une librarie standards avec plusieurs dizaines de structure de données différentes, chacune répondant à un usage précis.
+
+Ainsi, le minimalisme pragmatique de Golang force les développeurs à décrire de manière plus explicite et plus impérative certaines opérations standards de programmation. Golang les contraint aussi à trouver de nouvelles manières d'exprimer leur intention de programmation. Cette tâche est difficile et peux donner l'impression de devoir tout ré-apprendre. Voila pourquoi selon moi Golang produit l'impression d'être un langage étrange.
+
+Au fur et a mesure de mon utilisation de Go et de mes lectures à son sujet, j'ai appris que Go avait été pensé par les ingénieurs de Google pour ressembler au langage C ; une ressemblance qui est en effet fort perceptible. Après plusieurs semaines d'utilisation de Go, je trouve aussi à Go des ressemblances avec Python, un autre langage apprécié chez Google. Go, en tant que langage avec un fort engagement pour la programmation impérative et le minimalisme des fonctionnalités est un bon langage pour découvrir et apprendre la programmation.
 
 ### Approches initiales, difficultés et exploration des stratégies
 
@@ -199,3 +204,5 @@ TODO: create schema
 -->
 
 ### Retour sur l'écriture de Lidy en Go
+
+[tiobe]: https://www.tiobe.com/tiobe-index/
