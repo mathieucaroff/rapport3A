@@ -17,7 +17,6 @@
 - Présentation du projet pendant la période Juin-Juillet: Lidy
   - Context
   - Analyse
-  - Objectifs
   - Réalisation
 - Présentation du projet pendant la période Aout-Novembre: Webdba
   - Utilité
