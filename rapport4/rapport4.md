@@ -109,7 +109,7 @@ Ces considérations prises en compte, je choisi d'affirmer mon intéret pour le 
 
 - Le projet Lidy n'a que très peu de tests unitaires. La pluspart des tests qui assurent le bon fonctionnement de Lidy sont en faites les tests de unitaires du projet Leto. Dans une entreprise de traduction de Lidy, les testes de Leto ne seront pas disponibles.
 - L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment ou Lidy cherchera à utiliser le code de validation invalide.
-- L'implémentation ne spécifie par conséquent pas comment les erreurs faites dans le schéma Lidy doivent être rapportées à l'utilisateur.
+- L'implémentation ne spécifie par conséquent pas comment les erreurs faites par le développeur du schéma Lidy doivent être rapportées. L'implémentation présuppose simplement que ces erreurs ne peuvent pas exister.
 
 La nature purement programmation du problème, et l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
 
@@ -127,19 +127,16 @@ Au fur et a mesure de mon utilisation de Go et de mes lectures à son sujet, j'a
 
 ### Approches initiales, difficultés et exploration des stratégies
 
-- Besoin d'aller d'un langage permissif, dynamiquement typé, vers un langage moins permissif, statiquement typé. Golang étant nouveau, étant un langage que je ne connais pas, passer par Typescript permet de réduire la taille du saut
+L'idée initiale pour réaliser la ré-écriture de Lidy en Golang a été la traduction du code JS de Lidy en code Golang. Immédiatement, des difficultés se posent:
 
-- Idée de traduire le code en Typescript
-- Blocage car:
+- JS est un langage permissif, dynamiquement typé, tandis que Golang est strict et statiquement typé.
+- Mes connaissances en Golang sont très limité, je n'ai jamais créé de projet en Golang.
 
-  - Typescript est encore trop permissif
-  - JS supporte de nombreuses fonctionnalités absentes de Golang au niveau langage
-  - ... Il est claire que JS et Go sont des langages avec des paradigmes différents
+Afin de surmonté cette double difficulté, j'ai l'idée de passer par un langage intermédiaire: TypeScript. TypeScript est une extension du langage JS pour supporter l'utilisation de valeurs statiquement typées. J'ai appris ce langage durant mon stage du pritemps 2019, chez Deskpro. Il m'apparait que ce langage permettrait de surmonter la difficulté de duretée des types en Golang de manière plus progressive. Je commence donc une traduction de Lidy en TypeScript.
 
-- Décision de re-développer sans tenir compte de l'implémentation existante
-- Problème majeur: absence de spécification, ni même de documentation, et les tests unitaires de Lidy sont trops peux nombreux. Ils ne peuvent garantir le bon fonctionnement que d'une partie réduite du code.
-  - En effet, Lidy est développé dans le cadre de Leto, et la specification est donc à trouver du côté de Leto.
-- Décision de produires moi même les éléments de spécification dont j'ai besoin pour pouvoir travailler.
+La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, et quelles informations elles reçoivent et contiennt. Je réalise donc ce travail d'ajout des types au code. Je rencontrce cependant assez vite un certain nombre de limitations. En effet, JS permet d'assigner facilement une propriété avec n'importe quel nom à une valeur, avec pour seul contrainte que ladite valeur soit un objet. Ceci rends la modélisation des types de l'implémentation en JS de Lidy difficle, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, tel que les différences de niveau de fonctionnalités offert d'un langage à un autre: JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'execution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](.#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuier sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'as presque aucun tests unitaires.
+
+À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initiallement développé. En effet, Lidy a été développée dans le context de Leto, afin de permettre l'analyse de fichier YAML afin de vérifier que leur structure est conforme au schéma TOSCA spécifié en YAML par un fichier de grammaire Lidy au sein du projet Leto. Cependant, je n'ai pas les compétences pour travailler sur Leto. Je ne connais pas la grammaire TOSCA, ni même les conceptes d'orchestration associés et je juge que je n'aurais pas assez de temps pour acquérir ces conaissances et compétences dans le temps qui m'était imparti: entre 4 et 8 semaines. Lidy avait était développée sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteller moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
 
 ### Spécification et tests
 
