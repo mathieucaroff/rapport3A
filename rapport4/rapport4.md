@@ -32,7 +32,7 @@ Rapport de stage de Mathieu CAROFF
 
 ## Orness
 
-Orness est une entreprise de services numérique (ESN), opérant à Paris, avec ses bureaux dans le 9ème arrondissment. Elle a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui co-président l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux aussi membres fondateurs et co-directeurs techniques. [(1)][o.histoire].
+Orness est une entreprise de services du numérique (ESN), opérant à Paris, avec ses bureaux dans le 9ème arrondissment. Elle a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui co-président l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux aussi membres fondateurs et co-directeurs techniques. [(1)][o.histoire].
 
 Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaire de 12 millions d'euro, elle affiche le modeste résultat de 650 mille euros. [(2)][o.societe.com]
 
@@ -90,7 +90,7 @@ En l'absence d'outils similair aux JSON Schema pour répondre à ces deux besoin
 
 ### Lidy
 
-Lidy est un validateur de syntax de deuxième niveau et déserialiseur pour YAML. A l'instare des validateurs JSON Schema, Lidy n'opère pas pour un dialect unique: il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateur_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règle: il s'agit de la syntax YAML. Ainsi, le système de règle Lidy est lui-même un dialecte YAML.
+Lidy est un validateur de syntax de deuxième niveau et déserialiseur pour YAML. A l'instare des validateurs JSON Schema, Lidy n'opère pas pour un dialect unique: il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateur_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règle: il s'agit de la syntax YAML. Ainsi, le système de règle Lidy est lui-même un dialecte YAML. Plus de détail sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu du fonctionnement de Lidy](#aperçu-du-fonctionnement-de-lidy)
 
 #### Développement initial de Lidy
 
@@ -113,13 +113,96 @@ Ces considérations prises en compte, je choisi d'affirmer mon intéret pour le 
 
 La nature purement programmation du problème, et l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
 
-#### Aperçu du fonctionnement de Lidy
+#### YAML
 
-- Lidy à pour but d'être un vérificateur de données structurées générique pour YAML.
-- [YAML][yaml]:
-  - boolean, integer, float, string, null
-  - seq / sequence []
-  - map {}
+Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les développeurs, humains, par opposition aux machines. Notons que YAML a été pensé comme une extension de JSON dans au sens que tout document JSON valide est aussi un document YAML valide. La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux format de donnée composite et de un format de donné scalaire (élémentaire, atomique), voire [Failsafe Schema][yaml-recommended-schema] dans la spécification. Il s'agit des formats suivants:
+
+- "Generic Mapping" (map): Un format générique pour les associations nom-valeur. Ce format est caractérisé par l'utilisation du caractère deux-points ":", entre le nom et la valeur.
+- "Generic Sequence" (seq): Un format générique pour les listes de valeurs. Ce format est caractérisé par l'utilisation de tiret en début de ligne, pour chaque valeur ou bien caractérisés par des crochets autour d'une liste de valeur séparée par des virgules.
+- "Generic String" (str): Un format pour toutes les valeurs scalaires.
+
+Cependant, la pluspart des implémentations de YAML supporte aussi les quatres autres format de donné scalaire du JSON. Ces formats sont spécifiés dans le [chapitre 10.2 de la spécification YAML][yaml-json-schema]. Il s'agit des types de donné suivants:
+
+- Null: Ce type n'a qu'une valeur possible: "null"
+- Boolean: "true" ou "false"
+- Integer: un entier positive ou negatif
+- Floating Point: un nombre à virgule
+
+Par ailleur, une bonne parti des implémentations de YAML supportent aussi le type [Timestamp][yaml-timestamp], spécifié dans la version 1.1 de YAML. Ce type de donné sert à spécifier des dates et ils n'ont pas de limite de précision temporelle.
+
+#### Aperçu de l'utilisation de Lidy
+
+Lidy permet à un développeur de spécifier des règles que Lidy interprète et utilise pour vérifier la validité d'un document YAML. Ces règles permette de vérifier que les valeurs qui sont fournies par l'utilisateur correspondent bien aux types attendus.
+
+Voici par exemple, un schéma Lidy spécifiant une règle pour décrire des chimères:
+
+```yaml
+main: chimera
+
+chimera:
+  _map:
+    headType: animalFamily
+    trunkType: animalFamily
+    legCount: int
+    legType: animalFamily
+    tailType: animalFamily
+    wingCount: int
+    wingType: animalFamily
+
+animalFamily:
+  _in: [bird, canine, feline, leonine, prey]
+```
+
+La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fourni soit parmis les valeurs listées. La règle `int` est une règle par défaut de Lidy qui n'accèpte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accèpte que les Mappings YAML dont les nom-valeurs sont spécifiés par une pair liant un nom verbatime, à une expression Lidy.
+
+Lidy supporte aussi des types définis de manière recursive. Voici par exemple un schéma Lidy spécifiant un arbre avec des chaínes de caractères aux feuilles:
+
+```yaml
+main: tree
+
+tree:
+  _oneOf:
+    - node
+    - leaf
+
+node:
+  - listOf: tree
+
+leaf: string
+```
+
+Le spécifieur `_oneOf` reçoie une liste d'expression Lidy et n'accèpe que les valeur YAML qui valide au moins une de ces expressions. Le mot-clé `_listOf` reçois une expression Lidy et constitue un spécifieur de qui accèpte les séquences YAML dont chaque élément valide l'expression Lidy reçue. Ainsi, le document YAML suivant est un arbre valide:
+
+```yaml
+- - - a
+  - - b
+  - c
+  - d
+  - - e
+    - f
+- g
+```
+
+Tandis que le document YAML suivant n'est pas un arbre valide:
+
+```yaml
+- - a
+  - b: c
+    d: e
+  - {}
+- 3
+- null
+```
+
+Il n'est pas valide car il contient des données qui ne sont pas explicitement autorisées par le schéma Lidy (mapping, entier, valeur null).
+
+### Aperçu du fonctionnement de Lidy
+
+Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAML pour convertir le schéma Lidy, ainsi que le document à valider, d'une chaine de caractères YAML en une structure de donnée JS. Le document à valider est parcouru concourrament aux expressions du schéma Lidy, avec des appèls récursif de fonction.
+
+- Lorsqu'un validateur produit une erreur, la validation est interrompue et l'erreur est rapportée à l'utilisateur, avec une description de l'erreur et le numéro de ligne du document à valider.
+- La résolution des noms de règle est possible à tout moment car le schéma Lidy est passé en paramètre de toutes les fonctions recursives, dans une valeur de context global.
+
 - Lidy:
   - boolean, integer, float, string, null
   - containers:
@@ -130,6 +213,8 @@ La nature purement programmation du problème, et l'autonomie dont je dispose su
     - \_mapFacultative / \_listFacultative
   - definining rules, using rules
   - [lidy-short-reference][lidy-short-reference]
+
+_règles_, définies avec des _spécificateur_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_
 
 ### [Analyse et réalisation]
 
@@ -158,6 +243,11 @@ La traduction de code JS en Typescript signifie souvent le simple ajout de types
 
 ### Spécification et tests
 
+Conscient que je ne disposais que de peu de temps, j'ai choisi de concentrer mon travail de spécification sur les parties de Lidy qui en avaient le plus besoin. J'était notemment géné par une poignée de mot-clés Lidy, pour lequels le comportement attendu étais obscure ou problématique. Il s'agissait
+
+Lidy est un outils de vérification de données structurées.
+Lorsque j
+
 - Production des-dits éléments de spécification orientées donnée, sous forme de jeu de donnée qui doivent être correctement détectés comme valide ou comme invalide.
   - Décision de retirer des mots-clés inutils
 - Création d'un outils pour rendre testables ces éléments de spécification
@@ -182,22 +272,22 @@ La traduction de code JS en Typescript signifie souvent le simple ajout de types
 - Le manque d'une spécification complète se fait à nouveau sentir
   - Sans connaître les besoins exacts de Leto, il est difficile d'y répondre complètement:
     - La première version de l'API ne donnait les numéros de ligne que lorsqu'une erreur était renvoyée. Ceci s'est révélé insuffisant pour les besoins de Leto.
-- Décision de ne pas prendre en charge l'ouverture des fichiers pour assurer la protabilité de Lidy vers les autres langages, par l'intermédière de WASM. Problème: Pouvoir indiquer dans les rapports d'erreur le chemin du fichiers d'ou provient l'erreur. Solution: Fournir à l'utilisateur une structure de donnée représentant un fichier.
+- Décision de ne pas prendre en charge l'ouverture des fichiers pour assurer la protabilité de Lidy vers les autres langages, par l'intermédière de WASM. Problème: Pouvoir indiquer dans les rapports d'erreur le chemin du fichiers d'où provient l'erreur. Solution: Fournir à l'utilisateur une structure de donnée représentant un fichier.
 
 ### Conception du fonctionnement de l'API Lidy
 
 - 2 phases d'analyse
-- Difficulté: Quel format de donné pour la représentation intermédiare du schéma? Quel calculs peuvent être anticipés?
+- Difficulté: Quel format de donnée pour la représentation intermédiare du schéma? Quel calculs peuvent être anticipés?
 - Solution: Afin d'être capable de fournir les numéros de lignes des noeuds du schéma dans l'étape de validation, il est préférable que le format de donné de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des noeuds YAML.
 
 ### Analyse et validation du schema
 
-Difficulté: comment gérer construction de l'arbre d'expression avec les types Go. En effet, en Go, il n'y a pas de syntax pour déclarer qu'un type implément une interface. Solution: utilisation d'une astuce, tels que proposé dans l'issue tracker de Go.
+Difficulté: comment gérer construction de l'arbre d'expression avec les types Go. En effet, en Go, il n'y a pas de syntaxe pour déclarer qu'un type implément une interface. Solution: utilisation d'une astuce, tels que proposé dans l'issue tracker de Go.
 
 ### Validation des données
 
 - Même problème d'interface Go pour supporter les appèles récursifs
-- Question de la description des erreurs -> Interface spécifique pour permettre à un noeuds du schéma de décrire la vérification qu'il opère
+- Question de la description des erreurs -> Interface spécifique pour permettre à un noeud du schéma de décrire la vérification qu'il opère
 - Difficulté sur les types extensions
 
 ### Rapporter les erreurs
@@ -232,5 +322,8 @@ TODO: create schema
 [lidy-short-reference]: https://github.com/ditrit/lidy#short-reference
 [tiobe]: https://www.tiobe.com/tiobe-index/
 [yaml]: https://yaml.org/
+[yaml-json-schema]: https://yaml.org/spec/1.2/spec.html#id2803231
+[yaml-recommended-schema]: https://yaml.org/spec/1.2/spec.html#Schema
+[yaml-timestamp]: https://yaml.org/type/timestamp.html
 
 ## WebDba
