@@ -113,6 +113,24 @@ Ces considérations prises en compte, je choisi d'affirmer mon intéret pour le 
 
 La nature purement programmation du problème, et l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
 
+#### Aperçu du fonctionnement de Lidy
+
+- Lidy à pour but d'être un vérificateur de données structurées générique pour YAML.
+- [YAML][yaml]:
+  - boolean, integer, float, string, null
+  - seq / sequence []
+  - map {}
+- Lidy:
+  - boolean, integer, float, string, null
+  - containers:
+    - \_mapOf / \_listOf
+  - structured types:
+    - \_map / \_list
+  - optional part of structured types:
+    - \_mapFacultative / \_listFacultative
+  - definining rules, using rules
+  - [lidy-short-reference][lidy-short-reference]
+
 ### [Analyse et réalisation]
 
 ### Recherche, travail et impression sur Golang
@@ -143,10 +161,13 @@ La traduction de code JS en Typescript signifie souvent le simple ajout de types
 - Production des-dits éléments de spécification orientées donnée, sous forme de jeu de donnée qui doivent être correctement détectés comme valide ou comme invalide.
   - Décision de retirer des mots-clés inutils
 - Création d'un outils pour rendre testables ces éléments de spécification
+
   - Utilisation d'une framework de test existant
   - Avantage / inconvénients de la méthode de chargement des tests
   - Améliorations possibles
     - Recherche et utilisation d'une librarie dédiée aux tests orientés donné
+
+- Retour: ma spécification aurais pu prendre la forme d'une prise de note de l'ensemble des besoins listés par Xavier TALON, avec pour chaque besoin, un effort pour préciser les limites précises de ce besoin.
 
 ### Recherche d'une librarie de parsing YAML en Go qui supporte les numéros de ligne
 
@@ -208,6 +229,8 @@ TODO: create schema
 
 ### Retour sur l'écriture de Lidy en Go
 
+[lidy-short-reference]: https://github.com/ditrit/lidy#short-reference
 [tiobe]: https://www.tiobe.com/tiobe-index/
+[yaml]: https://yaml.org/
 
 ## WebDba
