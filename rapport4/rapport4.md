@@ -90,7 +90,7 @@ En l'absence d'outils similair aux JSON Schema pour répondre à ces deux besoin
 
 ### Lidy
 
-Lidy est un validateur de syntax de deuxième niveau et déserialiseur pour YAML. A l'instare des validateurs JSON Schema, Lidy n'opère pas pour un dialect unique: il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateur_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règle: il s'agit de la syntax YAML. Ainsi, le système de règle Lidy est lui-même un dialecte YAML. Plus de détail sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu du fonctionnement de Lidy](#aperçu-du-fonctionnement-de-lidy)
+Lidy est un validateur de syntax de deuxième niveau et déserialiseur pour YAML. A l'instare des validateurs JSON Schema, Lidy n'opère pas pour un dialect unique: il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateur_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règle: il s'agit de la syntax YAML. Ainsi, le système de règle Lidy est lui-même un dialecte YAML. Plus de détail sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-l-utilisation-de-lidy)
 
 #### Développement initial de Lidy
 
@@ -196,25 +196,16 @@ Tandis que le document YAML suivant n'est pas un arbre valide:
 
 Il n'est pas valide car il contient des données qui ne sont pas explicitement autorisées par le schéma Lidy (mapping, entier, valeur null).
 
+Les fonctionnalités de Lidy sont présentées de manière plus exhaustives dans [la section short reference du README de Lidy][lidy-short-reference].
+
 ### Aperçu du fonctionnement de Lidy
 
 Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAML pour convertir le schéma Lidy, ainsi que le document à valider, d'une chaine de caractères YAML en une structure de donnée JS. Le document à valider est parcouru concourrament aux expressions du schéma Lidy, avec des appèls récursif de fonction.
 
-- Lorsqu'un validateur produit une erreur, la validation est interrompue et l'erreur est rapportée à l'utilisateur, avec une description de l'erreur et le numéro de ligne du document à valider.
+- Lorsqu'un validateur produit une erreur, la validation est interrompue et l'erreur est rapportée à l'utilisateur, avec une description de l'erreur et le numéro de ligne du document à valider. Cette gestion d'erreur est basée sur le système de levée et attrapage d'exception de JS, aussi le code ne peux rapporter qu'une seul erreur de validation à l'utilisateur.
 - La résolution des noms de règle est possible à tout moment car le schéma Lidy est passé en paramètre de toutes les fonctions recursives, dans une valeur de context global.
-
-- Lidy:
-  - boolean, integer, float, string, null
-  - containers:
-    - \_mapOf / \_listOf
-  - structured types:
-    - \_map / \_list
-  - optional part of structured types:
-    - \_mapFacultative / \_listFacultative
-  - definining rules, using rules
-  - [lidy-short-reference][lidy-short-reference]
-
-_règles_, définies avec des _spécificateur_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_
+- À chaque fois qu'une règle est validée, Lidy cherche à executer du code JS fourni par le développeur, afin de construire une instance JS correspondant à la section du document qui viens d'être validée. Ceci permet d'effectuer des verifications supplémentaires, ainsi que des transformations sur les données de l'utilisateur ; par exemple, la normalisation de ces données.
+- Enfin, si la validation termine sans erreur, Lidy produit l'instance de la règle principale (main) et la renvoie au développeur.
 
 ### [Analyse et réalisation]
 
@@ -301,7 +292,7 @@ Fait:
 
 À faire:
 
-- Rendre les numéros de ligne et de column accessibles comme donnée présente sur l'erreur
+- Rendre les numéros de ligne et de columne accessibles comme donnée présente sur l'erreur
 - Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
 - Les erreurs sont écrites directement dans l'objet de context, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreur de fonction en fonction. Exception: la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cet hypothèses doivent être abandonnées.
 - Permettre à l'utilisateur de paramétrer le comportement en cas d'erreur.
