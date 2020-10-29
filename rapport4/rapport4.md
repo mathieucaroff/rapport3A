@@ -232,15 +232,58 @@ La traduction de code JS en Typescript signifie souvent le simple ajout de types
 
 À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initiallement développé. En effet, Lidy a été développée dans le context de Leto, afin de permettre l'analyse de fichier YAML afin de vérifier que leur structure est conforme au schéma TOSCA spécifié en YAML par un fichier de grammaire Lidy au sein du projet Leto. Cependant, je n'ai pas les compétences pour travailler sur Leto. Je ne connais pas la grammaire TOSCA, ni même les conceptes d'orchestration associés et je juge que je n'aurais pas assez de temps pour acquérir ces connaissances et compétences dans le temps qui m'était imparti: entre 4 et 8 semaines. Lidy avait était développée sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteller moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
 
-### Spécification et tests
+### Changement du DSL Lidy et spécification
 
-Conscient que je ne disposais que de peu de temps, j'ai choisi de concentrer mon travail de spécification sur les parties de Lidy qui en avaient le plus besoin. J'était notemment géné par une poignée de mot-clés Lidy, pour lequels le comportement attendu étais obscure ou problématique. Il s'agissait
+Conscient que je ne disposais que de peu de temps, j'ai choisi de concentrer mon travail de spécification sur les parties de Lidy qui en avaient le plus besoin. J'était notemment géné par une poignée de mot-clés Lidy, pour lequels le comportement attendu étais obscure ou problématique. Il s'agissait des mot-clés suivant:
+
+- (QSpec1: copy) `_copy`
+- (QSpec2: optional) `_optional`
+
+Il y avait aussi la question de la manière dont les mot-clés qui étaient permis ensemble devait se combiner. Les combinaisons suivantes posaient problème:
+
+- (QSpec3: list/dict) les règles par défaut `list` et `dict` était plutôt redondante car elles pouvaient être remplacées par les expressions `{ _listOf: any }` et ` _dictOf: { any: any } }`.
+
+- (QSpec4: dict/dictOf) `_dict` avec `_dictOf`, si une clé est reconnue simultanément par `_dict` et `_dictOf`, pour les entrées non-requises de `_dict`, faut-il autoriser la valeur à avoir le type proposé par le `_dictOf`, ou bien n'autoriser que le type donné par le `_dict`?
+
+- (QSpec5: dict-vs-map) Lidy utilisait le radical `dict` pour former les mot-clés qui référaient aux mappings YAML. Le radical `map`, utilisé dans la spécification YAML semble plus approprié ici. Il a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
+
+- (QSpec6: required-vs-xFacultative) Lidy utilisait un mot-clé \_required, pour spécifier les entrées obligatoire d'un mappping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car cela oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car ceci implique que par défaut, les entrées des mappings sont optionnels. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problèmes lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
+
+- (QSpec7: notin) Enfin, le mot-clé `_notin` n'étaient pas utilisé et n'avait pas tests. Il n'avait donc pas de comportement bien défini. Par ailleurs, le seul cas d'usage d'un moyen de spécification par exclusion me semblait être pour l'exclusion des mots-clés dans les identifieurs, ce qui posait beaucoups de problèmes.
+
+J'ai donc pris les décisions suivantes:
+
+- (QSpec3: list/dict) Retirer les règles par défaut `list` et `dict`
+- (QSpec7: notin) Retirer le mot-clé `_notin`
+- (QSpec5: dict-vs-map) Remplacer `dict` par `map` dans `_dict` et `_dictOf`
+- (QSpec4: dict/dictOf) N'autoriser que le type donné par le `_dict`, dans le doute, l'option la plus strict est généralement meilleur.
+- (QSpec2: optional) -- décision prise en commun avec QSpec6, required-vs-xFacultative
+- (QSpec6: required-vs-xFacultative) Remplacer les mot-clés `_required` et `_optional` sont remplacés par une utilisation plus uniforme, avec les mots-clés `_listFacultative` et `_mapFacultative`.
+  - Le radicale "Facultative" a été préféré à "Optional" car les mots-clés `_mapOf` et `_listOf` commençaient déjà par les cinq et six caractéres `_mapO` et `_listO`. "Optional" aurait donc ralenti l'utilisation de l'autcompletion de un caractères pour ces mot-clés.
+- (QSpec1: copy) Renommer le mot-clé `_copy` en `_merge`.
+  - Le mot-clés `_merge` accepte désormais une liste d'expression lidy plutôt que une seul expression. Le spécifieur de mapping qui contient le mot-clé `_merge` est donc marqué comme héritant de chacune de ces expression.
+
+#### Détails sur la spécification du mot-clé `_mergeable`
+
+Il a été determiné que l'utilisation et le comportement du mot-clés `_merge` devait respecter certaines caractéristiques. Ainsi, durant la première lecture du schema, Lidy doit vérifier que le mot-clé n'est utilisé qu'avec des expressions Lidy qui soient fusionnables ("mergeable"). Les expression Lidy fusionneables sont précisément:
+
+- les règles correspondant à une expression mergeable
+- les spécifieurs \_oneOf ne contenant que des expressions mergeables
+- les spécifieurs de mappings ne contenant pas de mot-clé \_mapOf
+
+Si le mot-clé `_merge` est utilisé sur une expression qui n'est pas mergeable, Lidy doit le signaler.
+
+Lidy doit aussi vérifier que l'ensembles des mappings concernés par un \_merge ne contiennent jamais plusieurs entrées sous le même nom. Si ceci se produit, Lidy doit le signaler à l'utilisateur, par une erreur au moment de la première lecture de schema.
+
+À l'étape de validation de la donnée, Lidy doit vérifier que l'ensemble des entrées requises sont présentes. Lidy doit aussi vérifier que l'ensembles des entrées connues ont la bonne valeur. Enfin, Lidy doit vérifier que l'ensemble des entrées qui sont présentes sont bien connues, ou bien, dans le cas ou le mot-clé `_mapOf` est présent sur le noeuds contenant le mot-clé `_merge`, Lidy doit vérifier que les entrées qui ne sont pas connues respect bien les expression Lidy du `_mapOf` pour la clé et pour la valeur.
+
+### Test
 
 Lidy est un outils de vérification de données structurées.
 Lorsque j
 
 - Production des-dits éléments de spécification orientées donnée, sous forme de jeu de donnée qui doivent être correctement détectés comme valide ou comme invalide.
-  - Décision de retirer des mots-clés inutils
+
 - Création d'un outils pour rendre testables ces éléments de spécification
 
   - Utilisation d'une framework de test existant
