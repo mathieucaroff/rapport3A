@@ -15,7 +15,7 @@ Rapport de stage de Mathieu CAROFF
 
 (liens cliquables)
 
-- [Rapport](#rapport)
+<!-- - [Rapport](#rapport)
   - [Table des matières](#table-des-matières)
   - [Plan](#plan)
   - [Orness](#orness)
@@ -44,7 +44,7 @@ Rapport de stage de Mathieu CAROFF
     - [Retour sur le travail de spécification](#retour-sur-le-travail-de-spécification)
           - [_adapted v-model for existing software_](#adapted-v-model-for-existing-software)
     - [Retour sur les tests](#retour-sur-les-tests)
-    - [Recherche d'une librarie de parsing YAML en Go qui supporte les numéros de ligne](#recherche-dune-librarie-de-parsing-yaml-en-go-qui-supporte-les-numéros-de-ligne)
+    - [Support des numéros de ligne lors de la conversion du YAML en Go](#support-des-numéros-de-ligne-lors-de-la-conversion-du-yaml-en-go)
     - [Conception de l'API de la librarie Lidy](#conception-de-lapi-de-la-librarie-lidy)
     - [Conception du fonctionnement de l'API Lidy](#conception-du-fonctionnement-de-lapi-lidy)
     - [Analyse et validation du schema](#analyse-et-validation-du-schema)
@@ -52,7 +52,7 @@ Rapport de stage de Mathieu CAROFF
     - [Rapporter les erreurs](#rapporter-les-erreurs)
     - [Schéma de fonctionnement du projet](#schéma-de-fonctionnement-du-projet)
     - [Retour sur l'écriture de Lidy en Go](#retour-sur-lécriture-de-lidy-en-go)
-  - [WebDba](#webdba)
+  - [WebDba](#webdba) -->
 
 ## Plan
 
@@ -369,14 +369,11 @@ Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Gola
 
 ### Retour sur les tests
 
-Un autre point qui pourrait être améliorer est le chargement et l'execution des tests. Lidy est un outils qui se prète bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eu l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situation: Il s'agit de **tests orientés donné**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existes des librairies de tests spécialisées sur ce types de tests. Lidy bénificierait d'utiliser une telle librairie. Il est à noter cependant, que Les tests de Lidy ont des besoins forts en terme de flexibilité de la paramétrisation.
+Un autre point qui pourrait être améliorer est le chargement et l'execution des tests. Lidy est un outils qui se prète bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eu l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situation: Il s'agit de **tests orientés donné**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existes des librairies de tests spécialisées sur ce types de tests. Lidy bénificierait d'utiliser une telle librairie. Il est à noter cependant, que les tests de Lidy ont des besoins forts sur les fonctionnalités de la paramétrisation. Il n'est pas garanti qu'une librairie suffisement avancée existe déja.
 
-### Recherche d'une librarie de parsing YAML en Go qui supporte les numéros de ligne
+### Support des numéros de ligne lors de la conversion du YAML en Go
 
-- Une seul librairie existante
-- Le support des numéros de lignes [est une issue dans le bug tracker](https://github.com/go-yaml/yaml/issues/108)
-- Des contributeurs de la librarie ont indiqué que cela était supporté dans la version de la librarie, mais n'ont pas donné d'exemple. Par ailleur, la documentation est extrèmenent limitée sur le sujet.
-- Mes recheches m'ont permise de trouver cette manière de faire. J'ai [publié l'information dans l'issue concernée](https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147).
+Une des contraintes auxquelles Lidy doit répondre est la conservation des numéros de ligne lors de la conversion du YAML en Go. En Golang, il existe une seul librairie pour faire la sérialisation/déserialisation YAML. Il s'agit de [Go-YAML](https://github.com/go-yaml/yaml). Cette librairie est maintenu par les développeurs de Canonical, l'entreprise qui produit et maintient la distribution Linux Ubuntu. Cette librairie se contente en faite de faire appèle à [libyaml](https://github.com/yaml/libyaml), l'implémentation officielle de YAML en langage C. Dans la version 2 de Go-YAML, il n'est pas possible d'obtenir les numéros de ligne correspondants aux valeurs extraites du document. Cependant, le support des numéros de lignes [est une issue dans le bug tracker](https://github.com/go-yaml/yaml/issues/108): des contributeurs de la librarie ont indiqué que la conservation des numéros de ligne était supportée dans la version 3 de la librarie. Ils n'ont néhanmoins pas donné d'exemples. Par ailleur, la documentation est extrèmenent limitée sur le sujet et ne fourni pas non-plus d'exemple. C'est en lisant le code de la librairie que j'ai pu comprendre comment utiliser la version 3 de Go-YAML pour obtenir les numéros de ligne. J'ai [publié l'information dans l'issue concernée](https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147) afin d'éviter aux autres développeur ayant ce problème d'avoir à chercher comme moi.
 
 ### Conception de l'API de la librarie Lidy
 
