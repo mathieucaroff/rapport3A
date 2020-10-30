@@ -1,9 +1,58 @@
-# Rapport 4
+---
+header-includes:
+  - \renewcommand{\familydefault}{\sfdefault}
+  - \usepackage{svg}
+---
+
+# Rapport
 
 Rapport de stage de Mathieu CAROFF
 
 <!-- 3750 characteres par page
 4 pages = 15000 charactères -->
+
+## Table des matières
+
+(liens cliquables)
+
+- [Rapport](#rapport)
+  - [Table des matières](#table-des-matières)
+  - [Plan](#plan)
+  - [Orness](#orness)
+    - [Culture d'entreprise](#culture-dentreprise)
+    - [Activité](#activité)
+    - [Expertise](#expertise)
+  - [Période Juin-Juillet: Projet Lidy](#période-juin-juillet-projet-lidy)
+    - [[Context]](#context)
+    - [Origine de Lidy: Leto](#origine-de-lidy-leto)
+    - [Analyser les fichiers OASIS TOSCA](#analyser-les-fichiers-oasis-tosca)
+      - [ToP: TOSCA Parser](#top-tosca-parser)
+      - [ANTLR](#antlr)
+      - [Json Schema](#json-schema)
+    - [Lidy](#lidy)
+      - [Développement initial de Lidy](#développement-initial-de-lidy)
+      - [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy)
+      - [YAML](#yaml)
+      - [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy)
+    - [Aperçu du fonctionnement de Lidy](#aperçu-du-fonctionnement-de-lidy)
+    - [[Analyse et réalisation]](#analyse-et-réalisation)
+    - [Recherche, travail et impression sur Golang](#recherche-travail-et-impression-sur-golang)
+    - [Approches initiales, difficultés et exploration des stratégies](#approches-initiales-difficultés-et-exploration-des-stratégies)
+    - [Changement du DSL Lidy et spécification](#changement-du-dsl-lidy-et-spécification)
+      - [Détails sur la spécification du mot-clé `_mergeable`](#détails-sur-la-spécification-du-mot-clé-_mergeable)
+    - [Test](#test)
+    - [Retour sur le travail de spécification](#retour-sur-le-travail-de-spécification)
+          - [_adapted v-model for existing software_](#adapted-v-model-for-existing-software)
+    - [Retour sur les tests](#retour-sur-les-tests)
+    - [Recherche d'une librarie de parsing YAML en Go qui supporte les numéros de ligne](#recherche-dune-librarie-de-parsing-yaml-en-go-qui-supporte-les-numéros-de-ligne)
+    - [Conception de l'API de la librarie Lidy](#conception-de-lapi-de-la-librarie-lidy)
+    - [Conception du fonctionnement de l'API Lidy](#conception-du-fonctionnement-de-lapi-lidy)
+    - [Analyse et validation du schema](#analyse-et-validation-du-schema)
+    - [Validation des données](#validation-des-données)
+    - [Rapporter les erreurs](#rapporter-les-erreurs)
+    - [Schéma de fonctionnement du projet](#schéma-de-fonctionnement-du-projet)
+    - [Retour sur l'écriture de Lidy en Go](#retour-sur-lécriture-de-lidy-en-go)
+  - [WebDba](#webdba)
 
 ## Plan
 
@@ -279,19 +328,48 @@ Lidy doit aussi vérifier que l'ensembles des mappings concernés par un \_merge
 
 ### Test
 
-Lidy est un outils de vérification de données structurées.
-Lorsque j
+Conscient de l'aspect chronophage de l'écriture d'une spécification complète, j'opte pour produire la spécification sous forme d'un ensemble de tests commentés. Je réalise initialement ces tests en TypeScript, avec l'outils de test unitaire Japa. Ceci me permet d'utiliser le code existant pour ajouter un niveau de vérification à mes tests de spécification, puisque le code existant peut-être executé depuis TypeScript.
 
-- Production des-dits éléments de spécification orientées donnée, sous forme de jeu de donnée qui doivent être correctement détectés comme valide ou comme invalide.
+Lorsque viens le moment de passer à Golang, les discussions que j'ai avec mon maitre de stage Xavier TALON sur l'intéret de rendre Lidy disponible dans plusieurs langages m'amène à choisir de mettre mes tests dans un format qui pourra être consommé depuis n'importe quel langage de programmation. Je choisi le langage de serialisation HJSON "Human JSON", un format très similair au JSON, qui tout comme le YAML vise à être facile à utiliser par les humains. Il se distingue cependant du YAML par ses décisions conservatrices vis-à-vis de l'utilisation des accolades (`{}`). HJSON choisi de préserver les accolades, là ou YAML les interdit.
 
-- Création d'un outils pour rendre testables ces éléments de spécification
+Afin de pouvoir utiliser ces données de tests en Golang, je comprends que j'ai besoin d'un outils capable d'executer les tests à chaque modification du code ou des tests. J'ai aussi besoin d'un outils capable de réaliser des statistiques sur le nombre de tests executés et qui on réussi. Cette outils doit aussi être capable de gérer la desactivation de tests pour les tests qui ne doivent pas être executés. J'adopte et j'apprends donc la suite d'outils de test comportemental Golang **Ginkgo**. Cet outils réponds aux contraintes listées ci-dessus ; c'est aussi l'outils le plus abouti en termes de tests unitaires et de tests d'intégration dans la communauté Golang.
 
-  - Utilisation d'une framework de test existant
-  - Avantage / inconvénients de la méthode de chargement des tests
-  - Améliorations possibles
-    - Recherche et utilisation d'une librarie dédiée aux tests orientés donné
+Pour pouvoir charger les tests dang Ginkgo, il me faut obtenir les données présentes dans les différents fichiers HJSON de la spécification, lire ces fichiers, desérialiser les données HJSON, produire des fonctions capable de consommer ces données et enfin donner ces fonction à Ginkgo pour que celui ci puisse les executer et rapporter les erreurs.
 
-- Retour: ma spécification aurais pu prendre la forme d'une prise de note de l'ensemble des besoins listés par Xavier TALON, avec pour chaque besoin, un effort pour préciser les limites précises de ce besoin.
+C'est exactement ce que font les fichiers [hWalk_testdata_test.go](https://github.com/ditrit/lidy/blob/go-2020-10/hWalk_testdata_test.go) et [hReadTestdata_test.go](https://github.com/ditrit/lidy/blob/go-2020-10/hReadTestdata_test.go). hWalk_testdata_test.go se charge de parcourir les dossiers de la spécification afin d'obtenir la listes des fichiers de données. hReadTestdata_test.go quand à lui, lit ces fichiers, les désérialise et produits les tests Ginkgo à partir des données.
+
+Avoir du code dédier au chargement des données de tests à l'avantage de donner beaucoups de contrôle sur la manière dont ces données sont utilisées au moment du tests. C'est une approche très flexible. Par exemple, ceci me permet d'utiliser le commentaire d'explication du but du test comme moyen de spécifier si le test doit réussir ou échouer ; dans [map.spec.hjson](https://github.com/ditrit/lidy/blob/go-2020-10/testdata/collection/map.spec.hjson), on trouve (extrait):
+
+```hjson
+{
+  "_map 1 entry": {
+    expression: _map: { aa: float }
+
+    "accept if valid": {
+      "{ aa: 2.2 }": {}
+      "{ aa: 0 }": {}
+    }
+
+    "reject missing entry": {
+      "{}": {}
+    }
+  }
+}
+```
+
+Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.2 }` et `{ aa: 0 }`, mais rejeter le document `{}`. La seul manière pour le test de savoir si les documents doivent être accéptés ou rejetés par le schéma est le commentaire associé aux tests: Celui-ci commence soit par "accept", soit par "reject". Cette flexibilité permet donc d'avoir des tests avec des descriptions organiques, sans avoir besoin de se répéter.
+
+### Retour sur le travail de spécification
+
+Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Golang, je trouve que les tests ont été d'une très grande utilité, mais que cependant, l'effort réalisé en amont de la spécification semble ne pas avoir été suffisant. Je pense qu'un point distinctif sur lequel je pourrais m'améliorer à l'avenir est la _délimitation du besoin_. Dans le cas d'un logicielle existant, comme pour Lidy, cet effort doit probablement se faire en s'appuillant sur les fonctionnalités existantes. On peut envisager la chose comme un cycle en V-inversé, suivi d'un cycle en V:
+
+###### _adapted v-model for existing software_
+
+![adapted v-model for existing software schema](misc/specification-v-cycle.png)
+
+### Retour sur les tests
+
+Un autre point qui pourrait être améliorer est le chargement et l'execution des tests. Lidy est un outils qui se prète bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eu l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situation: Il s'agit de **tests orientés donné**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existes des librairies de tests spécialisées sur ce types de tests. Lidy bénificierait d'utiliser une telle librairie. Il est à noter cependant, que Les tests de Lidy ont des besoins forts en terme de flexibilité de la paramétrisation.
 
 ### Recherche d'une librarie de parsing YAML en Go qui supporte les numéros de ligne
 
