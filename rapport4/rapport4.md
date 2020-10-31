@@ -16,6 +16,8 @@ Rapport de stage de Mathieu CAROFF
 
 (liens cliquables)
 
+(skipped for now)
+
 <!-- - [Rapport](#rapport)
   - [Table des matières](#table-des-matières)
   - [Plan](#plan)
@@ -55,7 +57,7 @@ Rapport de stage de Mathieu CAROFF
     - [Retour sur l'écriture de Lidy en Go](#retour-sur-lécriture-de-lidy-en-go)
   - [WebDba](#webdba) -->
 
-## Plan
+<!-- ## Plan
 
 - Présentation de l'Entreprise Orness
 - Présentation de l'Association Ditrit
@@ -78,7 +80,7 @@ Rapport de stage de Mathieu CAROFF
     - Tests
     - Permissions
     - Big Data
-  - Les chantiers sur lequels j'ai travaillé
+  - Les chantiers sur lequels j'ai travaillé -->
 
 ## Orness
 
@@ -216,7 +218,7 @@ tree:
     - leaf
 
 node:
-  - listOf: tree
+  _listOf: tree
 
 leaf: string
 ```
@@ -248,7 +250,7 @@ Il n'est pas valide car il contient des données qui ne sont pas explicitement a
 
 Les fonctionnalités de Lidy sont présentées de manière plus exhaustives dans [la section short reference du README de Lidy][lidy-short-reference].
 
-### Aperçu du fonctionnement de Lidy
+### Aperçu du fonctionnement de Lidy-JS
 
 Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAML pour convertir le schéma Lidy, ainsi que le document à valider, d'une chaine de caractères YAML en une structure de donnée JS. Le document à valider est parcouru concourrament aux expressions du schéma Lidy, avec des appèls récursif de fonction.
 
@@ -364,7 +366,7 @@ Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.
 
 Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Golang, je trouve que les tests ont été d'une très grande utilité, mais que cependant, l'effort réalisé en amont de la spécification semble ne pas avoir été suffisant. Je pense qu'un point distinctif sur lequel je pourrais m'améliorer à l'avenir est la _délimitation du besoin_. Dans le cas d'un logicielle existant, comme pour Lidy, cet effort doit probablement se faire en s'appuillant sur les fonctionnalités existantes. On peut envisager la chose comme un cycle en V-inversé, suivi d'un cycle en V:
 
-###### _adapted v-model for existing software_
+###### _adapted-v-model-for-existing-software_
 
 ![adapted v-model for existing software schema](misc/specification-v-cycle.png)
 
@@ -398,9 +400,34 @@ Le premier problème que j'ai rencontré est que le système de type Go pose des
 
 Le second problème qui s'est posé était de faire figurer dans les résultats de Lidy les numéros de ligne et nom de fichier en plus des valeurs déserialisées et des valeurs produites par les Builders. Il n'y avait qu'une seul solution possible à ce problème. Il s'agissait d'alterner dans les résultats de Lidy entre des niveaux de données Lidy et des niveaux de donnée utilisateur. Ceci permet d'indique pour chaque noeud, sa position dans le document.
 
-### Conception de l'API interne de Lidy
+### Conception interne de Lidy
 
-- 2 phases d'analyse
+Une fois l'API externe de Lidy décidée, les spécifications et testes écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure ou les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les cause externes suceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
+
+J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étape de validation: Une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à verifier est reçu. Ceci peut être synthétisé par le schéma ci-dessous:
+
+###### lidy-newparser-parse
+
+![Lidy NewParser.Parse](misc/Lidy-NewParser-Parse.png)
+
+Une question demeure cependant, faut-il réaliser des transformations sur le schéma entre sa la première étape et la deuxième étape. Quel format donner au la représentation interne du Schema pour que l'implémentation de la deuxième étape soit simple. L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
+
+Le système de type de Golang supporte un concepte objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différent objet et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ai à se soucier du type de l'objet et donc sans qu'il n'ai à se soucier de quel occurence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concepte d'expression. Ceci permet de créer différentes "classes" qui chacunes implémente l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cet expression Lidy ou pas.
+
+En pratique, l'interface utilisée et plus complexe. On trouve l'interface interne suivante:
+
+[`lidySchemaType.go`](https://github.com/ditrit/lidy/blob/go-2020-10/lidySchemaType.go#L9-L13)
+
+```go
+type tExpression interface {
+  match(content yaml.Node, parser *tParser) (tResult, []error)
+  name() string
+  description() string
+}
+```
+
+Les methodes `name()` et `description()` permettent d'obtenir un nom et une description peu-profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus velue. C'est cette méthode qui perment d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué avant, cette méthode prends en paramètre le noeud yaml à tester (`content yaml.Node`). Cependant, elle accèpte aussi une instance de parseur `parser *tParser`, comme context. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire(tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
+
 - Difficulté: Quel format de donnée pour la représentation intermédiare du schéma? Quel calculs peuvent être anticipés?
 - Solution: Afin d'être capable de fournir les numéros de lignes des noeuds du schéma dans l'étape de validation, il est préférable que le format de donné de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des noeuds YAML.
 
