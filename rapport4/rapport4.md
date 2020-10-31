@@ -1,4 +1,5 @@
 ---
+title: Rapport
 header-includes:
   - \renewcommand{\familydefault}{\sfdefault}
   - \usepackage{svg}
@@ -377,13 +378,27 @@ Une des contraintes auxquelles Lidy doit répondre est la conservation des numé
 
 ### Conception de l'API de la librarie Lidy
 
-- Difficulté: La manière de Golang de faire des interfaces est unique, et il n'est pas facile de trouver un bon guide qui explique comment faire, ni des listes de bonne pratique suffisement complètes. Je suis amené de faire des arbitrage et des paris.
-- Le manque d'une spécification complète se fait à nouveau sentir
-  - Sans connaître les besoins exacts de Leto, il est difficile d'y répondre complètement:
-    - La première version de l'API ne donnait les numéros de ligne que lorsqu'une erreur était renvoyée. Ceci s'est révélé insuffisant pour les besoins de Leto.
-- Décision de ne pas prendre en charge l'ouverture des fichiers pour assurer la protabilité de Lidy vers les autres langages, par l'intermédière de WASM. Problème: Pouvoir indiquer dans les rapports d'erreur le chemin du fichiers d'où provient l'erreur. Solution: Fournir à l'utilisateur une structure de donnée représentant un fichier.
+#### Invocation
 
-### Conception du fonctionnement de l'API Lidy
+Une fois la question des dépendances externes de Lidy résolues, il me fallait décider de comment le développeur qui utiliserai la librairie Lidy l'invoquerait. Il s'agissait de la première API de librairie que je réalisait en Golang et avec mes connaissances limité de la communauté Go, je ne savait pas quels philosophie adopter pour produire une bonne interface du point de vu des standards Golang.
+
+J'étais en particulier géné par mes habitudes de bonnes pratiques dans les autres langages. En effet, dans les langages orientés objets, c'est une bonne pratique de ne jamais exposer les propriétés d'un objet à l'utilisateur et de ne lui permettre de lire et modifier ces propriétés qu'à travers des méthodes dites _accesseur_. Ceci m'a amnené à choisir de implémenter en Go un pattern orienté objet nommé "fluent interface", pattern dans lequel les appels de méthodes sont chainés. On peut par exemple voir ce pattern dans le fichier de test de Lidy [`hBuilderMap_test.go`](https://github.com/ditrit/lidy/blob/39f8efc3b56645113c209ffa7671b1177a33dce4/hBuilderMap_test.go#L16-L35), dans lequel les méthodes `NewParser`, `With` et `Parse` sont chainées. Je sais aujourd'hui que ce type d'interface est rarement utilisé en Go et qu'il est en faite courant de donner accès à l'utilisateurs aux propriétés d'un objet, afin qu'il puisse le construire. À ma connaissance, ce type d'approche n'est uitilisé qu'en C et en Go.
+
+#### Fichiers
+
+Une autres question importante à laquelle il a fallut répondre est celle du chargement des fichiers dans Lidy. En effet, Lidy est une librairie qui se veut portable. Il est possible de compiler le code Golang en WASM et de l'utiliser dans depuis d'autres langages. Cependant, lorsqu'on utilise cette approche, il n'est pas possible d'utiliser les fonctions de l'OS, tel que l'ouverture de fichiers. Ceci se comprends bien dans la mesure ou l'on peut être amené à executer du code WASM dans le navigateur, platforme ne disposant pas de système de fichier.
+
+Cependant, Lidy utilise le concepte de fichier lorsqu'il s'agit de signaler des erreur à l'utilisateur. La solution à ce problème est d'accépter de la part de l'utilisateur le nom du fichier en plus de son contenu. Pour rendre une tel interface plus agréable pour le développeur, Lidy [dispose d'un concepte de fichier](https://github.com/ditrit/lidy/blob/master/lidy.go#L136), faisant abstraction de l'OS. Ceci permet de couvrir l'ensemble des cas d'utilisation de Lidy, tant sur les platformes sans OS que avec OS.
+
+#### Résultats de Lidy
+
+La question de la forme des résultats produits par Lidy a aussi posé quelques problèmes.
+
+Le premier problème que j'ai rencontré est que le système de type Go pose des limites et requière d'utiliser `interface{}` lorqu'on veut faire cohabiter des types divers. `interface{}` est l'équivalent du type `Object` dans les langages orienté objet ; ceci illustre une fois de plus la défiance de Golang pour la programmation intentionnelle. Lorque l'on connait tout les types auxquelles on peut avoir à faire, si l'on souhaite éviter l'utilisation de `interface{}`, on peut utiliser une astuce faisant appèle à une structure, mais ceci n'est pas nécéssairement utile. Le confort apporté par cet astuce est celui d'éviter les "cast de types" (conversion de type statique) de Golang. En effet, les types Golang disposent d'aucun mécanismes pour garantir qu'il sera possible d'identifier le type réel de la donnée. Cependant, cet approche a tout autant de désavantage dans la mesure ou elle permet l'expression de valeurs insensées. On pourrait être tenté de dire que le système de typage de Go est faible. Dans le cas de Lidy, puisque Lidy peut être amenée à manipuler des types de données créés par l'utilisateur, la seconde approche n'est pas envisageable, ou du moins elle n'apporte presque aucun bénéfice. J'ai donc opté pour la première approche.
+
+Le second problème qui s'est posé était de faire figurer dans les résultats de Lidy les numéros de ligne et nom de fichier en plus des valeurs déserialisées et des valeurs produites par les Builders. Il n'y avait qu'une seul solution possible à ce problème. Il s'agissait d'alterner dans les résultats de Lidy entre des niveaux de données Lidy et des niveaux de donnée utilisateur. Ceci permet d'indique pour chaque noeud, sa position dans le document.
+
+### Conception de l'API interne de Lidy
 
 - 2 phases d'analyse
 - Difficulté: Quel format de donnée pour la représentation intermédiare du schéma? Quel calculs peuvent être anticipés?
