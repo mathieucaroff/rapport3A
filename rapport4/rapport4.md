@@ -135,6 +135,8 @@ include-before: |
 
 _Les liens de la table des matière sont cliquables._
 
+_Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu dans un navigateur, dans un IDE ou dans Sumatra PDF, il est possible de revenir en arrière après avoir cliqué un lien en utilisant le raccourci clavier Control+[flèche gauche]_.
+
 # Orness
 
 Orness est une entreprise de services du numérique (ESN), opérant à Paris, avec ses bureaux dans le 9ème arrondissment. Elle a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui co-président l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux aussi membres fondateurs et co-directeurs techniques. [(orness-histoire)](#orness-histoire)
