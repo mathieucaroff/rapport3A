@@ -174,7 +174,7 @@ Le projet Lidy a émergé comme un outil nécessaire au développement d'un proj
 
 ### ToP: TOSCA Parser
 
-Le [projet ToP](#top), produit par l'association Ditrit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indenté de YAML, ce qui a mené à l'adoption d'un outils de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
+Le [projet ToP](#top), produit par l'association Ditrit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indenté de YAML, ce qui a mené à l'adoption d'un outil de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
 
 ### ANTLR
 
@@ -184,7 +184,7 @@ Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les ver
 
 ### Json Schema
 
-La seconde approche pour l'analyse syntaxique TOSCA 2.0+ a été l'utilisation d'un parseur générique de donné YAML, couplé à un système de vérification de données. Le système de vérification de données utilisé était AJV, un outils Javascript qui implémente la spécification JSON Schema.
+La seconde approche pour l'analyse syntaxique TOSCA 2.0+ a été l'utilisation d'un parseur générique de donné YAML, couplé à un système de vérification de données. Le système de vérification de données utilisé était AJV, un outil Javascript qui implémente la spécification JSON Schema.
 
 AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensemble, ils constituent les deux implémentations JavaScript les plus rapides de la spécification JSON-Schema-draft-07, devant json-schema-validator-generator et jsen. Ces outils fonctionnent ainsi : un développeur souhaite valider les données qu'il reçoit d'un utilisateur. Il décrit le format de ces données dans un fichier JSON qui respecte la spécification JSON-Schema. Ensuite, il écrit du code qui charge le JSON-Schema dans AJV et en retire un "schéma compilé", qu'il peut alors utiliser pour valider des données structurées reçues de l'utilisateur. Lorsqu'une donnée de l'utilisateur ne respecte pas le schéma, l'ensemble des divergences entre la donnée fourni et le format de donnée attendu est rapporté. Le code du développeur peut ensuite décider que faire de cette liste d'erreurs; généralement signaler ces erreurs à l'utilisateur.
 
@@ -193,11 +193,11 @@ AJV et JSON Schema répondaient bien au besoin de ToP, cependant deux problèmes
 - AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peut **connaître les numéros de ligne** d'où proviennent les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
 - AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP, comme un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
 
-En l'absence d'outils similaire aux JSON Schema pour répondre à ces deux besoins, l'association Ditrit a décidé de créer son propre outil : Lidy.
+En l'absence d' similaire aux JSON Schema pour répondre à ces deux besoins, l'association Ditrit a décidé de créer son propre outil : Lidy.
 
 ## Lidy
 
-Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique: il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles: il s'agit de la syntax YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy)
+Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique : il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles : il s'agit de la syntax YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy)
 
 ### Développement initial de Lidy
 
@@ -350,7 +350,7 @@ Il y avait aussi la question de la manière dont les mot-clés qui étaient perm
 
 - (QSpec3: list/dict) les règles par défaut `list` et `dict` étaient plutôt redondantes car elles pouvaient être remplacées par les expressions `{ _listOf: any }` et ` _dictOf: { any: any } }`.
 
-- (QSpec4: dict/dictOf) `_dict` avec `_dictOf`, si une clé est reconnue simultanément par `_dict` et `_dictOf`, pour les entrées non-requises de `_dict`, faut-il autoriser la valeur à avoir le type proposé par le `_dictOf`, ou bien n'autoriser que le type donné par le `_dict`?
+- (QSpec4: dict/dictOf) `_dict` avec `_dictOf`, si une clé est reconnue simultanément par `_dict` et `_dictOf`, pour les entrées non-requises de `_dict`, faut-il autoriser la valeur à avoir le type proposé par le `_dictOf`, ou bien n'autoriser que le type donné par le `_dict` ?
 
 - (QSpec5: dict-vs-map) Lidy utilisait le radical `dict` pour former les mot-clés qui référaient aux mappings YAML. Le radical `map`, utilisé dans la spécification YAML semble plus approprié ici. Il a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
 
@@ -366,7 +366,7 @@ J'ai donc pris les décisions suivantes:
 - (QSpec4: dict/dictOf) N'autoriser que le type donné par le `_dict`, dans le doute, l'option la plus strict est généralement meilleure.
 - (QSpec2: optional) -- décision prise en commun avec QSpec6, required-vs-xFacultative
 - (QSpec6: required-vs-xFacultative) Les mot-clés `_required` et `_optional` sont remplacés par une utilisation plus uniforme, avec les mots-clés `_listFacultative` et `_mapFacultative`.
-  - Le radicale "Facultative" a été préféré à "Optional" car les mots-clés `_mapOf` et `_listOf` commençaient déjà par les cinq et six caractères `_mapO` et `_listO`. "Optional" aurait donc ralenti l'utilisation de l'autocompletion de ?un? caractères pour ces mot-clés.
+  - Le radicale "Facultative" a été préféré à "Optional" car les mots-clés `_mapOf` et `_listOf` commençaient déjà par les cinq et six caractères `_mapO` et `_listO`. "Optional" aurait donc ralenti l'utilisation de l'autocompletion de un caractères pour ces mot-clés.
 - (QSpec1: copy) Renommer le mot-clé `_copy` en `_merge`.
   - Le mot-clé `_merge` accepte désormais une liste d'expression lidy plutôt que une seule expression. Le spécifieur de mapping qui contient le mot-clé `_merge` est donc marqué comme héritant de chacune de ces expressions.
 
@@ -451,7 +451,7 @@ Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des e
 
 La question de la forme des résultats produits par Lidy a aussi posé quelques problèmes.
 
-Le premier problème que j'ai rencontré est que le système de type Go pose des limites et requière d'utiliser `interface{}` lorqu'on veut faire cohabiter des types divers. `interface{}` est l'équivalent du type `Object` dans les langages orientés objet ; ceci illustre une fois de plus la défiance de Golang pour la programmation intentionnelle. Lorsque l'on connaît tous les types auxquels on peut avoir à faire, si l'on souhaite éviter l'utilisation de `interface{}`, on peut utiliser une astuce faisant appel à une structure, mais ceci n'est pas nécessairement utile. Le confort apporté par cette astuce est celui d'éviter les "cast de types" (conversion de type statique) de Golang. En effet, les types Golang ne disposent d'aucun mécanisme pour garantir qu'il sera possible d'identifier le type réel de la donnée. Cependant, cette approche a tout autant de désavantages dans la mesure où elle permet l'expression de valeurs insensées. On pourrait être tenté de dire que le système de typage de Go est faible. ?Dans le cas de Lidy?, puisque Lidy peut être amenée à manipuler des types de données créés par l'utilisateur, la seconde approche n'est pas envisageable, ou du moins elle n'apporte presque aucun bénéfice. J'ai donc opté pour la première approche.
+Le premier problème que j'ai rencontré est que le système de type Go pose des limites et requière d'utiliser `interface{}` lorqu'on veut faire cohabiter des types divers. `interface{}` est l'équivalent du type `Object` dans les langages orientés objet ; ceci illustre une fois de plus la défiance de Golang pour la programmation intentionnelle. Lorsque l'on connaît tous les types auxquels on peut avoir à faire, si l'on souhaite éviter l'utilisation de `interface{}`, on peut utiliser une astuce faisant appel à une structure, mais ceci n'est pas nécessairement utile. Le confort apporté par cette astuce est celui d'éviter les "cast de types" (conversion de type statique) de Golang. En effet, les types Golang ne disposent d'aucun mécanisme pour garantir qu'il sera possible d'identifier le type réel de la donnée. Cependant, cette approche a tout autant de désavantages dans la mesure où elle permet l'expression de valeurs insensées. On pourrait être tenté de dire que le système de typage de Go est faible. Puisque Lidy peut être amené à manipuler des types de données créés par l'utilisateur, la seconde approche n'est pas envisageable, ou du moins elle n'apporte presque aucun bénéfice. J'ai donc opté pour la première approche.
 
 Le second problème qui s'est posé était de faire figurer dans les résultats de Lidy les numéros de ligne et nom de fichier en plus des valeurs désérialisées et des valeurs produites par les Builders. Il n'y avait qu'une seule solution possible à ce problème. Il s'agissait d'alterner dans les résultats de Lidy entre des niveaux de données Lidy et des niveaux de données utilisateur. Ceci permet d'indiquer pour chaque nœud, sa position dans le document.
 
@@ -483,7 +483,7 @@ type tExpression interface {
 
 Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme context. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire(tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
 
-- Difficulté: Quel format de données pour la représentation intermédiaire du schéma? Quels calculs peuvent être anticipés?
+- Difficulté: Quel format de données pour la représentation intermédiaire du schéma ? Quels calculs peuvent être anticipés ?
 - Solution: Afin d'être capable de fournir les numéros de lignes des nœuds du schéma dans l'étape de validation, il est préférable que le format de donnée de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des nœuds YAML.
 
 ## Analyse et validation du schéma
@@ -507,7 +507,7 @@ Fait:
 
 À faire:
 
-- Rendre les numéros de ligne et de columne accessibles comme donnée présente sur l'erreur
+- Rendre les numéros de ligne et de colonne accessibles comme donnée présente sur l'erreur
 - Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
 - Les erreurs sont écrites directement dans l'objet de context, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreur de fonction en fonction. Exception: la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cet hypothèses doivent être abandonnées.
 - Permettre à l'utilisateur de paramétrer le comportement en cas d'erreur.
