@@ -35,12 +35,12 @@ include-before: |
 
   Stage du 2 juin 2020 au 30 novembre 2020
 
-  Stage encadré par:
+  Stage encadré par :
 
   - Claude YUGMA, enseignant-chercheur à l'École des Mines de Saint-Étienne
   - Xavier TALON, directeur technique de Orness
 
-  Suivi de versions:
+  Suivi de versions :
 
   - version 1, 2020-11
 ---
@@ -54,9 +54,9 @@ include-before: |
   - [Culture d'entreprise](#culture-dentreprise)
 - [Lidy](#lidy)
   - [[Context]](#context)
-  - [Origine de Lidy: Leto](#origine-de-lidy-leto)
+  - [Origine de Lidy : Leto](#origine-de-lidy-leto)
   - [Analyser les fichiers OASIS TOSCA](#analyser-les-fichiers-oasis-tosca)
-    - [ToP: TOSCA Parser](#top-tosca-parser)
+    - [ToP : TOSCA Parser](#top-tosca-parser)
     - [ANTLR](#antlr)
     - [Json Schema](#json-schema)
   - [Lidy](#lidy-1)
@@ -117,12 +117,12 @@ include-before: |
 - Présentation de l'Entreprise Crédit Agricole
   - Service
   - Equipe
-- Présentation du projet pendant la période Juin-Juillet: Lidy
+- Présentation du projet pendant la période Juin-Juillet : Lidy
   - Contexte
   - Analyse
   - Objectifs
   - Réalisation
-- Présentation du projet pendant la période Aout-Novembre: Webdba
+- Présentation du projet pendant la période Aout-Novembre : Webdba
   - Utilité
   - Histoire
   - Chantiers en cours
@@ -160,19 +160,19 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 # Lidy
 
-_Période Juin-Juillet: Projet Lidy_
+_Période Juin-Juillet : Projet Lidy_
 
 Lidy est une librairie qui permet à l'utilisateur de lire et d'analyser un fichier YAML, afin de valider qu'il correspond bien à un format complexe décrit par l'utilisateur.
 
 ## [Context]
 
-## Origine de Lidy: Leto
+## Origine de Lidy : Leto
 
 Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML, et de dire s'il s'agissait d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire, et à ultimement mené à la naissance du projet Lidy.
 
 ## Analyser les fichiers OASIS TOSCA
 
-### ToP: TOSCA Parser
+### ToP : TOSCA Parser
 
 Le [projet ToP](#top), produit par l'association Ditrit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indenté de YAML, ce qui a mené à l'adoption d'un outil de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
 
@@ -207,12 +207,12 @@ Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript).
 
 Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrêté, les discussions et retours que reçoivent les membres de l'association Ditrit au sujet des besoins des entreprises indiquent un besoin pour un orchestrateur de déploiement de systèmes cloud et multi-machines. En d'autres termes, il apparaît que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association Ditrit, Xavier Talon me propose de ré-ouvrir le travail sur le sujet Leto, en **entamant la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association Ditrit réalise la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permettrait d'apporter une forme d'uniformité dans les projets Ditrit, facilitant aussi la réutilisation de code au sein de l'association.
 
-La proposition de travailler sur Lidy a provoqué chez moi des opinions contrastées:
+La proposition de travailler sur Lidy a provoqué chez moi des opinions contrastées :
 
 - D'un côté, le type de programme qu'est Lidy et le type de besoins auquel il répond m'intéressent car ils relèvent de la programmation pure. Lidy manipule principalement des structures de données et des données des types habituels de programmation, tels que les nombres et les chaînes de caractères, et assure que ces structures ont la forme demandée.
 - D'un autre côté, j'identifie que Lidy répond à un besoin qui est déjà traité par les JSON Schema et qu'il doit exister d'autres produits qui répondent à ce besoin. Je remarque aussi l'absence de spécification et de documentation pour Lidy.
 
-Ces considérations prises en compte, je choisis d'affirmer mon intérêt pour le sujet Lidy. Je continue de creuser le sujet et j'identifie des faiblesses supplémentaires:
+Ces considérations prises en compte, je choisis d'affirmer mon intérêt pour le sujet Lidy. Je continue de creuser le sujet et j'identifie des faiblesses supplémentaires :
 
 - Le projet Lidy n'a que très peu de tests unitaires. La plupart des tests qui assurent le bon fonctionnement de Lidy sont en fait les tests unitaires du projet Leto. Dans une entreprise de traduction de Lidy, les tests de Leto ne seront pas disponibles.
 - L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment où Lidy cherchera à utiliser le code de validation invalide.
@@ -222,18 +222,18 @@ La nature purement programmation du problème, et l'autonomie dont je dispose su
 
 ### YAML
 
-Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les développeurs, humains, par opposition aux machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux formats de données composites et d'un format de données scalaires (élémentaire, atomique), voir [Failsafe Schema](#yaml-recommended-schema) dans la spécification. Il s'agit des formats suivants:
+Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les développeurs, humains, par opposition aux machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux formats de données composites et d'un format de données scalaires (élémentaire, atomique), voir [Failsafe Schema](#yaml-recommended-schema) dans la spécification. Il s'agit des formats suivants :
 
 - "Generic Mapping" (map): Un format générique pour les associations nom-valeur. Ce format est caractérisé par l'utilisation du caractère deux-points ":", entre le nom et la valeur.
 - "Generic Sequence" (seq): Un format générique pour les listes de valeurs. Ce format est caractérisé par l'utilisation de tiret en début de ligne, pour chaque valeur ou bien caractérisés par des crochets autour d'une liste de valeurs séparées par des virgules.
 - "Generic String" (str): Un format pour toutes les valeurs scalaires.
 
-Cependant, la plupart des implémentations de YAML supporte aussi les quatre autres formats de données scalaires du JSON. Ces formats sont spécifiés dans le [chapitre 10.2 de la spécification YAML](#yaml-json-schema). Il s'agit des types de données suivants:
+Cependant, la plupart des implémentations de YAML supporte aussi les quatre autres formats de données scalaires du JSON. Ces formats sont spécifiés dans le [chapitre 10.2 de la spécification YAML](#yaml-json-schema). Il s'agit des types de données suivants :
 
-- Null: Ce type n'a qu'une valeur possible: "null"
-- Boolean: "true" ou "false"
-- Integer: un entier positive ou négatif
-- Floating Point: un nombre à virgule
+- Null : Ce type n'a qu'une valeur possible : "null"
+- Boolean : "true" ou "false"
+- Integer : un entier positive ou négatif
+- Floating Point : un nombre à virgule
 
 Par ailleurs, une bonne partie des implémentations de YAML supporte aussi le type [Timestamp](#yaml-timestamp), spécifié dans la version 1.1 de YAML. Ce type de données sert à spécifier des dates et n'a pas de limite de précision temporelle.
 
@@ -241,7 +241,7 @@ Par ailleurs, une bonne partie des implémentations de YAML supporte aussi le ty
 
 Lidy permet à un développeur de spécifier des règles que Lidy interprète et utilise pour vérifier la validité d'un document YAML. Ces règles permettent de vérifier que les valeurs qui sont fournies par l'utilisateur correspondent bien aux types attendus.
 
-Voici par exemple, un schéma Lidy spécifiant une règle pour décrire des chimères:
+Voici par exemple, un schéma Lidy spécifiant une règle pour décrire des chimères :
 
 ```yaml
 main: chimera
@@ -262,7 +262,7 @@ animalFamily:
 
 La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle par défaut de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les nom-valeurs sont spécifiés par une paire liant un nom verbatime, à une expression Lidy.
 
-Lidy supporte aussi des types définis de manière récursive. Voici par exemple un schéma Lidy spécifiant un arbre avec des chaînes de caractères aux feuilles:
+Lidy supporte aussi des types définis de manière récursive. Voici par exemple un schéma Lidy spécifiant un arbre avec des chaînes de caractères aux feuilles :
 
 ```yaml
 main: tree
@@ -278,7 +278,7 @@ node:
 leaf: string
 ```
 
-Le spécifieur `_oneOf` reçoit une liste d'expression Lidy et n'accepte que les valeurs YAML qui valident au moins une de ces expressions. Le mot-clé `_listOf` reçoit une expression Lidy et constitue un spécifieur de qui accepte les séquences YAML dont chaque élément valide l'expression Lidy reçue. Ainsi, le document YAML suivant est un arbre valide:
+Le spécifieur `_oneOf` reçoit une liste d'expression Lidy et n'accepte que les valeurs YAML qui valident au moins une de ces expressions. Le mot-clé `_listOf` reçoit une expression Lidy et constitue un spécifieur de qui accepte les séquences YAML dont chaque élément valide l'expression Lidy reçue. Ainsi, le document YAML suivant est un arbre valide :
 
 ```yaml
 - - - a
@@ -290,7 +290,7 @@ Le spécifieur `_oneOf` reçoit une liste d'expression Lidy et n'accepte que les
 - g
 ```
 
-Tandis que le document YAML suivant n'est pas un arbre valide:
+Tandis que le document YAML suivant n'est pas un arbre valide :
 
 ```yaml
 - - a
@@ -320,7 +320,7 @@ Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAM
 
 L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntax de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de contrôle (if/while/for) ; de même Go autorise certaines instructions goto, support l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) de ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
 
-En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a aussi que deux structures de donnée: le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation. Ceci détonne avec les langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
+En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a aussi que deux structures de donnée : le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation. Ceci détonne avec les langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
 
 Ainsi, le minimalisme pragmatique de Golang force les développeurs à décrire de manière plus explicite et plus impérative certaines opérations standards de programmation. Golang les contraint aussi à trouver de nouvelles manières d'exprimer leur intention de programmation. Cette tâche est difficile et peut donner l'impression de devoir tout ré-apprendre. Voila pourquoi selon moi Golang produit l'impression d'être un langage étrange.
 
@@ -328,25 +328,25 @@ Au fur et à mesure de mon utilisation de Go et de mes lectures à son sujet, j'
 
 ## Approches initiales, difficultés et exploration des stratégies
 
-L'idée initiale pour réaliser la ré-écriture de Lidy en Golang a été la traduction du code JS de Lidy en code Golang. Immédiatement, des difficultés se posent:
+L'idée initiale pour réaliser la ré-écriture de Lidy en Golang a été la traduction du code JS de Lidy en code Golang. Immédiatement, des difficultés se posent :
 
 - JS est un langage permissif, dynamiquement typé, tandis que Golang est strict et statiquement typé.
 - Mes connaissances en Golang sont très limitées, je n'ai jamais créé de projet en Golang.
 
-Afin de surmonter cette double difficulté, j'ai l'idée de passer par un langage intermédiaire: TypeScript. TypeScript est une extension du langage JS pour supporter l'utilisation de valeurs statiquement typées. J'ai appris ce langage durant mon stage du printemps 2019, chez Deskpro. Il m'apparaît que ce langage permettrait de surmonter la difficulté de dureté des types en Golang de manière plus progressive. Je commence donc une traduction de Lidy en TypeScript.
+Afin de surmonter cette double difficulté, j'ai l'idée de passer par un langage intermédiaire : TypeScript. TypeScript est une extension du langage JS pour supporter l'utilisation de valeurs statiquement typées. J'ai appris ce langage durant mon stage du printemps 2019, chez Deskpro. Il m'apparaît que ce langage permettrait de surmonter la difficulté de dureté des types en Golang de manière plus progressive. Je commence donc une traduction de Lidy en TypeScript.
 
-La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, et quelles informations elles reçoivent et contiennent. Je réalise donc ce travail d'ajout des types au code. Je rencontre cependant assez vite un certain nombre de limitations. En effet, JS permet d'assigner facilement une propriété avec n'importe quel nom à une valeur, avec pour seul contrainte que ladite valeur soit un objet. Ceci rend la modélisation des types de l'implémentation en JS de Lidy difficile, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, telles que les différences de niveau de fonctionnalités offertes d'un langage à un autre: JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'exécution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuyer sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'a presque aucun test unitaire.
+La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, et quelles informations elles reçoivent et contiennent. Je réalise donc ce travail d'ajout des types au code. Je rencontre cependant assez vite un certain nombre de limitations. En effet, JS permet d'assigner facilement une propriété avec n'importe quel nom à une valeur, avec pour seul contrainte que ladite valeur soit un objet. Ceci rend la modélisation des types de l'implémentation en JS de Lidy difficile, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, telles que les différences de niveau de fonctionnalités offertes d'un langage à un autre : JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'exécution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuyer sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'a presque aucun test unitaire.
 
-À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initialement développé. En effet, Lidy a été développé dans le contexte de Leto, afin de permettre l'analyse de fichier YAML, afin de vérifier que leur structure est conforme au schéma TOSCA spécifié en YAML par un fichier de grammaire Lidy au sein du projet Leto. Cependant, je n'ai pas les compétences pour travailler sur Leto. Je ne connais pas la grammaire TOSCA, ni même les concepts d'orchestration associés et je juge que je n'aurais pas assez de temps pour acquérir ces connaissances et compétences dans le temps qui m'était imparti: entre 4 et 8 semaines. Lidy avait été développé sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteler moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
+À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initialement développé. En effet, Lidy a été développé dans le contexte de Leto, afin de permettre l'analyse de fichier YAML, afin de vérifier que leur structure est conforme au schéma TOSCA spécifié en YAML par un fichier de grammaire Lidy au sein du projet Leto. Cependant, je n'ai pas les compétences pour travailler sur Leto. Je ne connais pas la grammaire TOSCA, ni même les concepts d'orchestration associés et je juge que je n'aurais pas assez de temps pour acquérir ces connaissances et compétences dans le temps qui m'était imparti : entre 4 et 8 semaines. Lidy avait été développé sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteler moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
 
 ## Changement du DSL Lidy et spécification
 
-Conscient que je ne disposais que de peu de temps, j'ai choisi de concentrer mon travail de spécification sur les parties de Lidy qui en avaient le plus besoin. J'étais notamment gêné par une poignée de mot-clés de Lidy, pour lesquels le comportement attendu était obscure ou problématique. Il s'agissait des mot-clés suivant:
+Conscient que je ne disposais que de peu de temps, j'ai choisi de concentrer mon travail de spécification sur les parties de Lidy qui en avaient le plus besoin. J'étais notamment gêné par une poignée de mot-clés de Lidy, pour lesquels le comportement attendu était obscure ou problématique. Il s'agissait des mot-clés suivant :
 
 - (QSpec1: copy) `_copy`
 - (QSpec2: optional) `_optional`
 
-Il y avait aussi la question de la manière dont les mot-clés qui étaient permis ensemble devaient se combiner. Les combinaisons suivantes posaient problème:
+Il y avait aussi la question de la manière dont les mot-clés qui étaient permis ensemble devaient se combiner. Les combinaisons suivantes posaient problème :
 
 - (QSpec3: list/dict) les règles par défaut `list` et `dict` étaient plutôt redondantes car elles pouvaient être remplacées par les expressions `{ _listOf: any }` et ` _dictOf: { any: any } }`.
 
@@ -358,7 +358,7 @@ Il y avait aussi la question de la manière dont les mot-clés qui étaient perm
 
 - (QSpec7: notin) Enfin, le mot-clé `_notin` n'était pas utilisé et n'avait pas tests. Il n'avait donc pas de comportement bien défini. Par ailleurs, le seul cas d'usage d'un moyen de spécification par exclusion me semblait être pour l'exclusion des mots-clés dans les identifieurs, ce qui posait beaucoup de problèmes.
 
-J'ai donc pris les décisions suivantes:
+J'ai donc pris les décisions suivantes :
 
 - (QSpec3: list/dict) Retirer les règles par défaut `list` et `dict`
 - (QSpec7: notin) Retirer le mot-clé `_notin`
@@ -372,7 +372,7 @@ J'ai donc pris les décisions suivantes:
 
 ### Détails sur la spécification du mot-clé `_mergeable`
 
-Il a été déterminé que l'utilisation et le comportement du mot-clé `_merge` devait respecter certaines caractéristiques. Ainsi, durant la première lecture du schéma, Lidy doit vérifier que le mot-clé n'est utilisé qu'avec des expressions Lidy qui soient fusionnables ("mergeable"). Les expressions Lidy fusionnables sont précisément:
+Il a été déterminé que l'utilisation et le comportement du mot-clé `_merge` devait respecter certaines caractéristiques. Ainsi, durant la première lecture du schéma, Lidy doit vérifier que le mot-clé n'est utilisé qu'avec des expressions Lidy qui soient fusionnables ("mergeable"). Les expressions Lidy fusionnables sont précisément :
 
 - les règles correspondant à une expression mergeable
 - les spécifieurs \_oneOf ne contenant que des expressions mergeables
@@ -394,9 +394,9 @@ Afin de pouvoir utiliser ces données de tests en Golang, je comprends que j'ai 
 
 Pour pouvoir charger les tests dans Ginkgo, il me faut obtenir les données présentes dans les différents fichiers HJSON de la spécification, lire ces fichiers, désérialiser les données HJSON, produire des fonctions capables de consommer ces données et enfin donner ces fonctions à Ginkgo pour que celui-ci puisse les exécuter et rapporter les erreurs.
 
-C'est exactement ce que font les fichiers [hWalk_testdata_test.go](https://github.com/ditrit/lidy/blob/go-2020-10/hWalk_testdata_test.go) et [hReadTestdata_test.go](https://github.com/ditrit/lidy/blob/go-2020-10/hReadTestdata_test.go). hWalk_testdata_test.go se charge de parcourir les dossiers de la spécification afin d'obtenir la liste des fichiers de données. hReadTestdata_test.go quand à lui, lit ces fichiers, les désérialise et produit les tests Ginkgo à partir des données.
+C'est exactement ce que font les fichiers [hWalk_testdata_test.go](https ://github.com/ditrit/lidy/blob/go-2020-10/hWalk_testdata_test.go) et [hReadTestdata_test.go](https ://github.com/ditrit/lidy/blob/go-2020-10/hReadTestdata_test.go). hWalk_testdata_test.go se charge de parcourir les dossiers de la spécification afin d'obtenir la liste des fichiers de données. hReadTestdata_test.go quand à lui, lit ces fichiers, les désérialise et produit les tests Ginkgo à partir des données.
 
-Avoir du code dédié au chargement des données de tests à l'avantage de donner beaucoup de contrôle sur la manière dont ces données sont utilisées au moment du test. C'est une approche très flexible. Par exemple, ceci me permet d'utiliser le commentaire d'explication du but du test comme moyen de spécifier si le test doit réussir ou échouer ; dans [map.spec.hjson](https://github.com/ditrit/lidy/blob/go-2020-10/testdata/collection/map.spec.hjson), on trouve (extrait):
+Avoir du code dédié au chargement des données de tests à l'avantage de donner beaucoup de contrôle sur la manière dont ces données sont utilisées au moment du test. C'est une approche très flexible. Par exemple, ceci me permet d'utiliser le commentaire d'explication du but du test comme moyen de spécifier si le test doit réussir ou échouer ; dans [map.spec.hjson](https ://github.com/ditrit/lidy/blob/go-2020-10/testdata/collection/map.spec.hjson), on trouve (extrait):
 
 ```hjson
 {
@@ -415,11 +415,11 @@ Avoir du code dédié au chargement des données de tests à l'avantage de donne
 }
 ```
 
-Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.2 }` et `{ aa: 0 }`, mais rejeter le document `{}`. La seule manière pour le test de savoir si les documents doivent être acceptés ou rejetés par le schéma est le commentaire associé aux tests: Celui-ci commence soit par "accept", soit par "reject". Cette flexibilité permet donc d'avoir des tests avec des descriptions organiques, sans avoir besoin de se répéter.
+Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.2 }` et `{ aa: 0 }`, mais rejeter le document `{}`. La seule manière pour le test de savoir si les documents doivent être acceptés ou rejetés par le schéma est le commentaire associé aux tests : Celui-ci commence soit par "accept", soit par "reject". Cette flexibilité permet donc d'avoir des tests avec des descriptions organiques, sans avoir besoin de se répéter.
 
 ## Retour sur le travail de spécification
 
-Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Golang, je trouve que les tests ont été d'une très grande utilité, mais que cependant, l'effort réalisé en amont de la spécification semble ne pas avoir été suffisant. Je pense qu'un point distinctif sur lequel je pourrais m'améliorer à l'avenir est la _délimitation du besoin_. Dans le cas d'un logiciel existant, comme pour Lidy, cet effort doit probablement se faire en s'appuyant sur les fonctionnalités existantes. On peut envisager la chose comme un cycle en V-inversé, suivi d'un cycle en V:
+Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Golang, je trouve que les tests ont été d'une très grande utilité, mais que cependant, l'effort réalisé en amont de la spécification semble ne pas avoir été suffisant. Je pense qu'un point distinctif sur lequel je pourrais m'améliorer à l'avenir est la _délimitation du besoin_. Dans le cas d'un logiciel existant, comme pour Lidy, cet effort doit probablement se faire en s'appuyant sur les fonctionnalités existantes. On peut envisager la chose comme un cycle en V-inversé, suivi d'un cycle en V :
 
 ##### _adapted-v-model-for-existing-software_
 
@@ -459,7 +459,7 @@ Le second problème qui s'est posé était de faire figurer dans les résultats 
 
 Une fois l'API externe de Lidy décidée, les spécifications et tests écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure où les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les cause externes susceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
 
-J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation: une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le schéma [Fonctionnement de NewParser.Parse()](#fonctionnement-de-newparserparse)..
+J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le schéma [Fonctionnement de NewParser.Parse()](#fonctionnement-de-newparserparse)..
 
 ##### lidy-newparser-parse
 
@@ -469,7 +469,7 @@ Une question demeure cependant, faut-il réaliser des transformations sur le sch
 
 Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémente l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
 
-En pratique, l'interface utilisée est plus complexe. On trouve l'interface interne suivante:
+En pratique, l'interface utilisée est plus complexe. On trouve l'interface interne suivante :
 
 [`lidySchemaType.go`](https://github.com/ditrit/lidy/blob/go-2020-10/lidySchemaType.go#L9-L13)
 
@@ -483,12 +483,12 @@ type tExpression interface {
 
 Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme context. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire(tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
 
-- Difficulté: Quel format de données pour la représentation intermédiaire du schéma ? Quels calculs peuvent être anticipés ?
-- Solution: Afin d'être capable de fournir les numéros de lignes des nœuds du schéma dans l'étape de validation, il est préférable que le format de donnée de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des nœuds YAML.
+- Difficulté : Quel format de données pour la représentation intermédiaire du schéma ? Quels calculs peuvent être anticipés ?
+- Solution : Afin d'être capable de fournir les numéros de lignes des nœuds du schéma dans l'étape de validation, il est préférable que le format de donnée de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des nœuds YAML.
 
 ## Analyse et validation du schéma
 
-Difficulté: comment gérer construction de l'arbre d'expression avec les types Go. En effet, en Go, il n'y a pas de syntaxe pour déclarer qu'un type implément une interface. Solution: utilisation d'une astuce, tels que proposé dans l'issue tracker de Go.
+Difficulté : comment gérer construction de l'arbre d'expression avec les types Go. En effet, en Go, il n'y a pas de syntaxe pour déclarer qu'un type implément une interface. Solution : utilisation d'une astuce, tels que proposé dans l'issue tracker de Go.
 
 ## Validation des données
 
@@ -498,18 +498,18 @@ Difficulté: comment gérer construction de l'arbre d'expression avec les types 
 
 ## Rapporter les erreurs
 
-Fait:
+Fait :
 
 - Faire une fonction dédiée.
 - Lui passer les informations nécéssaires.
 - La fonction produit une erreurs descriptive, avec le numéro de ligne
 - Lors qu'une fonction détècte une erreur, l'analyse se poursuit, de façon à ce que toutes les erreurs puissent être levées. Les fonctions renvoient aussi une liste d'erreurs, plutôt que une seul erreur.
 
-À faire:
+À faire :
 
 - Rendre les numéros de ligne et de colonne accessibles comme donnée présente sur l'erreur
 - Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
-- Les erreurs sont écrites directement dans l'objet de context, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreur de fonction en fonction. Exception: la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cet hypothèses doivent être abandonnées.
+- Les erreurs sont écrites directement dans l'objet de context, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreur de fonction en fonction. Exception : la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cet hypothèses doivent être abandonnées.
 - Permettre à l'utilisateur de paramétrer le comportement en cas d'erreur.
 
 ## Schéma de fonctionnement du projet
