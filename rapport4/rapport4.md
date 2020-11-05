@@ -503,6 +503,32 @@ Elles correspondent aux 5 spécifieurs, plus les références vers des règles. 
 
 ## Analyse et validation du schéma
 
+Valider un schéma Lidy comporte plusieurs aspects.
+
+- Détéction du type de chaque expression: Si c'est une règle cela corresponds à une chaine de caractère Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
+- Vérification des expressions Lidy: Vérifier que chaque spécifieur comporte les mot-clés nécessaires, et uniquement des mot-clés connus de Lidy, autorisés pour ce spécifieur.
+- Vérification de l'existence d'une déclaration de règle pour chaque référence à une règle.
+- Analyse des déclarations de règle pour savoir si elles sont exportées, et si oui, sous quel nom. Vérifier que les règles pour lesquelles on trouve des builders sont toutes connues et exportées. Ce comportement dépends des options données par l'utilisateur.
+
+Certaines vérifications posent des difficultés spécifiques, lié au fait que ces vérification ne peuvent pas être réalisée sur la base des données locale seuls, mais requière des données pouvant venir d'un autre point du document.
+
+Problème A, références directes et des cycles:
+
+`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clé permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même noeud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont ouvertes au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle même dans un \_merge, dans un \_oneOf ou dans une référence pour que ceci crée une boucle infinie qu moment de la vérification de la règle. Cependant, les cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
+
+Problème B, ordre de parcours des règles:
+
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peux être utilisé que sur des règles mergeable. Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quel règles \_merge est utilisé. Il semble donc y avoir un problème sur l'ordre dans lequel les analyses sont effectuées.
+
+Le problème (A) est un problème de detection de cycles au sein d'un graph orienté. Ce problème se résouds en applicant un algorithme de parcours de graphe en profondeur avec trois marquages possible pour chaque noeuds au lieu de seulement deux. Les noeuds passent du marquage 0 au marquage 1 lorsqu'il sont exploré à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descends vers un noeuds marqué 1, noeud que nous appellerons noeuds d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle en listant l'ensemble des descendant du noeuds d'alerte. L'exploration peut alors continuer en excluant le lien problèmatique.
+
+Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par le graphe est inévitable. Ceci est génant car on souhaite rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent à que l'ensemble des erreurs soient rapportées au cours d'une unique passe, réalisée dans l'ordre du document. Il doit donc y avoir une passe dédiée à la détéction des cycles. Comme cette passe est nécéssaire à la détection de certaines erreur, elle doit absolument être effectuée avant la passe de signalement des erreurs. Ceci nous place donc dans un mode de fonctionnement en quatre passes:
+
+1. Analyse des en-têtes de règle (nom, export et présence de builders)
+2. Analyse des cycles
+3. Analyse des règles avec signalement des erreurs du développeur
+4. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
+
 ## Validation des données
 
 - Même problème d'interface Go pour supporter les appèles récursifs
