@@ -54,9 +54,9 @@ include-before: |
   - [Culture d'entreprise](#culture-dentreprise)
 - [Lidy](#lidy)
   - [[Context]](#context)
-  - [Origine de Lidy : Leto](#origine-de-lidy-leto)
+  - [Origine de Lidy : Leto](#origine-de-lidy--leto)
   - [Analyser les fichiers OASIS TOSCA](#analyser-les-fichiers-oasis-tosca)
-    - [ToP : TOSCA Parser](#top-tosca-parser)
+    - [ToP : TOSCA Parser](#top--tosca-parser)
     - [ANTLR](#antlr)
     - [Json Schema](#json-schema)
   - [Lidy](#lidy-1)
@@ -75,13 +75,13 @@ include-before: |
         - [_adapted-v-model-for-existing-software_](#adapted-v-model-for-existing-software)
   - [Retour sur les tests](#retour-sur-les-tests)
   - [Support des numéros de ligne lors de la conversion du YAML en Go](#support-des-numéros-de-ligne-lors-de-la-conversion-du-yaml-en-go)
-  - [Conception de l'API de la librarie Lidy](#conception-de-lapi-de-la-librarie-lidy)
+  - [Conception de l'API de la librairie Lidy](#conception-de-lapi-de-la-librairie-lidy)
     - [Invocation](#invocation)
     - [Fichiers](#fichiers)
     - [Résultats de Lidy](#résultats-de-lidy)
   - [Conception interne de Lidy](#conception-interne-de-lidy)
         - [lidy-newparser-parse](#lidy-newparser-parse)
-  - [Analyse et validation du schema](#analyse-et-validation-du-schema)
+  - [Analyse et validation du schéma](#analyse-et-validation-du-schéma)
   - [Validation des données](#validation-des-données)
   - [Rapporter les erreurs](#rapporter-les-erreurs)
   - [Schéma de fonctionnement du projet](#schéma-de-fonctionnement-du-projet)
@@ -382,7 +382,7 @@ Si le mot-clé `_merge` est utilisé sur une expression qui n'est pas mergeable,
 
 Lidy doit aussi vérifier que l'ensemble des mappings concernés par un \_merge ne contienne jamais plusieurs entrées sous le même nom. Si ceci se produit, Lidy doit le signaler à l'utilisateur, par une erreur au moment de la première lecture de schéma.
 
-À l'étape de validation de la donnée, Lidy doit vérifier que l'ensemble des entrées requises sont présentes. Lidy doit aussi vérifier que l'ensemble des entrées connues ont la bonne valeur. Enfin, Lidy doit vérifier que l'ensemble des entrées qui sont présentes sont bien connues, ou bien, dans le cas ou le mot-clé `_mapOf` est présent sur le nœuds contenant le mot-clé `_merge`, Lidy doit vérifier que les entrées qui ne sont pas connues respectent bien les expressions Lidy du `_mapOf` pour la clé et pour la valeur.
+À l'étape de validation de la donnée, Lidy doit vérifier que l'ensemble des entrées requises sont présentes. Lidy doit aussi vérifier que l'ensemble des entrées connues ont la bonne valeur. Enfin, Lidy doit vérifier que l'ensemble des entrées qui sont présentes sont bien connues, ou bien, dans le cas ou le mot-clé `_mapOf` est présent sur le nœud contenant le mot-clé `_merge`, Lidy doit vérifier que les entrées qui ne sont pas connues respectent bien les expressions Lidy du `_mapOf` pour la clé et pour la valeur.
 
 ## Test
 
@@ -459,7 +459,14 @@ Le second problème qui s'est posé était de faire figurer dans les résultats 
 
 Une fois l'API externe de Lidy décidée, les spécifications et tests écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure où les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les cause externes susceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
 
-J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le schéma [Fonctionnement de NewParser.Parse()](#fonctionnement-de-newparserparse)..
+J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le diagrame [Fonctionnement de NewParser().Parse()](#fonctionnement-de-newparserparse). Dans ce diagrame d'execution, la méthode `.parseContent()` reçois quatre paramètres:
+
+- _schema_ (requis) le schéma Lidy contenant les règles
+- _target_ quel règle du schéma utiliser pour commencer la validation
+- _option_ quel jeu d'option utiliser vis-à-vis des erreurs et warnings
+- _builderMap_ (`.With`), un dictionnaire de fonctions capables de vérifier et contruire les entités associées aux règles exportées. Les flèches entre le block `.parseContent()` et le block des builders symbolise les appels aux fonctions de la builder-map.
+
+La première étape, comme la deuxième étape produit soit des erreurs, soit un résultat. La forme résultat de la deuxième étape a déjà été décidé, mais pas celle du résultat de la première étape.
 
 ##### lidy-newparser-parse
 
@@ -481,14 +488,20 @@ type tExpression interface {
 }
 ```
 
-Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme context. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire(tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
+Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme context. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
 
-- Difficulté : Quel format de données pour la représentation intermédiaire du schéma ? Quels calculs peuvent être anticipés ?
-- Solution : Afin d'être capable de fournir les numéros de lignes des nœuds du schéma dans l'étape de validation, il est préférable que le format de donnée de la représentation intermédiaire du schéma soit aussi similaire que possible au schéma lui même. Ainsi, le travail que doit faire le code de chargement du schéma est une simple recopie avec normalisation des valeurs des nœuds YAML.
+Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expressions qui se continennent les unes les autres. On dénombre 6 types d'expressions:
+
+- `tRule`
+- `tMap`
+- `tList`
+- `tOneOf`
+- `tIn`
+- `tRegex`
+
+Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, le type référence vers une règle n'est pas nécéssaire. En effet, on aurais pu directement remplacer la référence par valeur de la règle. Cependant, afin de faciliter le débuggage et l'ajout future de fonctionnalités au système de règle, il est intéressant de faire apparaitre les expressions règles dans l'arbre d'expression.
 
 ## Analyse et validation du schéma
-
-Difficulté : comment gérer construction de l'arbre d'expression avec les types Go. En effet, en Go, il n'y a pas de syntaxe pour déclarer qu'un type implément une interface. Solution : utilisation d'une astuce, tels que proposé dans l'issue tracker de Go.
 
 ## Validation des données
 
