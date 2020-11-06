@@ -461,14 +461,14 @@ Le second problème qui s'est posé était de faire figurer dans les résultats 
 
 Une fois l'API externe de Lidy décidée, les spécifications et tests écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure où les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les cause externes susceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
 
-J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le diagrame [Fonctionnement de NewParser().Parse()](#fonctionnement-de-newparserparse). Dans ce diagrame d'execution, la méthode `.parseContent()` reçois quatre paramètres:
+J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le diagramme [Fonctionnement de NewParser().Parse()](#fonctionnement-de-newparserparse). Dans ce diagramme d'exécution, la méthode `.parseContent()` reçois quatre paramètres:
 
 - _schema_ (requis) le schéma Lidy contenant les règles
 - _target_ quel règle du schéma utiliser pour commencer la validation
 - _option_ quel jeu d'option utiliser vis-à-vis des erreurs et warnings
-- _builderMap_ (`.With`), un dictionnaire de fonctions capables de vérifier et contruire les entités associées aux règles exportées. Les flèches entre le block `.parseContent()` et le block des builders symbolise les appels aux fonctions de la builder-map.
+- _builderMap_ (`.With`), un dictionnaire de fonctions capables de vérifier et construire les entités associées aux règles exportées. Les flèches entre le block `.parseContent()` et le block des builders symbolisent les appels aux fonctions de la builder-map.
 
-La première étape, comme la deuxième étape produit soit des erreurs, soit un résultat. La forme résultat de la deuxième étape a déjà été décidé, mais pas celle du résultat de la première étape.
+La première étape, comme la deuxième étape, produit soit des erreurs soit un résultat. La forme résultat de la deuxième étape a déjà été décidée, mais pas celle du résultat de la première étape.
 
 ##### lidy-newparser-parse
 
@@ -476,7 +476,7 @@ La première étape, comme la deuxième étape produit soit des erreurs, soit un
 
 Une question demeure cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
 
-Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémente l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
+Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacunes, implémentent l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
 
 En pratique, l'interface utilisée est plus complexe. On trouve l'interface interne suivante :
 
@@ -490,9 +490,9 @@ type tExpression interface {
 }
 ```
 
-Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme context. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
+Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué ci-avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme contexte. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` ?et? une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
 
-Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expressions qui se continennent les unes les autres. On dénombre 6 types d'expressions:
+Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expressions qui se contiennent les unes les autres. On dénombre 6 types d'expressions:
 
 - `tRule`
 - `tMap`
@@ -501,7 +501,7 @@ Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expression
 - `tIn`
 - `tRegex`
 
-Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, le type référence vers une règle n'est pas nécéssaire. En effet, on aurais pu directement remplacer la référence par valeur de la règle. Cependant, afin de faciliter le débuggage et l'ajout future de fonctionnalités au système de règle, il est intéressant de faire apparaitre les expressions règles dans l'arbre d'expression.
+Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, le type référence vers une règle n'est pas nécessaire. En effet, on aurait pu directement remplacer la référence par la valeur de la règle. Cependant, afin de faciliter le débuggage et l'ajout future de fonctionnalités au système de règles, il est intéressant de faire apparaître les expressions règles dans l'arbre d'expression.
 
 ## Analyse et validation du schéma
 
@@ -610,15 +610,15 @@ Fait :
 
 - Question de la description des erreurs -> Interface spécifique pour permettre à un nœud du schéma de décrire la vérification qu'il opère
 - Faire une fonction dédiée.
-- Lui passer les informations nécéssaires.
-- La fonction produit une erreurs descriptive, avec le numéro de ligne
-- Lors qu'une fonction détècte une erreur, l'analyse se poursuit, de façon à ce que toutes les erreurs puissent être levées. Les fonctions renvoient aussi une liste d'erreurs, plutôt que une seul erreur.
+- Lui passer les informations nécessaires.
+- La fonction produit une erreur descriptive, avec le numéro de ligne
+- Lors qu'une fonction détecte une erreur, l'analyse se poursuit, de façon à ce que toutes les erreurs puissent être levées. Les fonctions renvoient aussi une liste d'erreurs, plutôt qu'une seule erreur.
 
 À faire :
 
-- Rendre les numéros de ligne et de colonne accessibles comme donnée présente sur l'erreur
+- Rendre les numéros de ligne et de colonne accessibles comme données présentes sur l'erreur
 - Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
-- Les erreurs sont écrites directement dans l'objet de context, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreur de fonction en fonction. Exception : la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cet hypothèses doivent être abandonnées.
+- Les erreurs sont écrites directement dans l'objet de contexte, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreurs de fonction en fonction. Exception : la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cette hypothèse doivent être abandonnées.
 - Permettre à l'utilisateur de paramétrer le comportement en cas d'erreur.
 
 ## Schéma de fonctionnement du projet
