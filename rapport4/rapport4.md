@@ -82,7 +82,7 @@ include-before: |
   - [Conception interne de Lidy](#conception-interne-de-lidy)
         - [lidy-newparser-parse](#lidy-newparser-parse)
   - [Analyse et validation du schéma](#analyse-et-validation-du-schéma)
-  - [Validation des données](#validation-des-données)
+  - [Règles Lidy prédéfinies](#règles-lidy-prédéfinies)
   - [Rapporter les erreurs](#rapporter-les-erreurs)
   - [Schéma de fonctionnement du projet](#schéma-de-fonctionnement-du-projet)
   - [Retour sur l'écriture de Lidy en Go](#retour-sur-lécriture-de-lidy-en-go)
@@ -92,6 +92,8 @@ include-before: |
         - [go-yaml-issue-108](#go-yaml-issue-108)
         - [go-yaml-issue-108-mc](#go-yaml-issue-108-mc)
         - [lib-yaml](#lib-yaml)
+        - [lidy-default-rule](#lidy-default-rule)
+        - [lidy-predefined-rules](#lidy-predefined-rules)
         - [lidy-short-reference](#lidy-short-reference)
         - [orness-valeurs](#orness-valeurs)
         - [orness-histoire](#orness-histoire)
@@ -260,7 +262,7 @@ animalFamily:
   _in: [bird, canine, feline, leonine, prey]
 ```
 
-La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle par défaut de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les nom-valeurs sont spécifiés par une paire liant un nom verbatime, à une expression Lidy.
+La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle prédéfinie de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les nom-valeurs sont spécifiés par une paire liant un nom verbatime, à une expression Lidy.
 
 Lidy supporte aussi des types définis de manière récursive. Voici par exemple un schéma Lidy spécifiant un arbre avec des chaînes de caractères aux feuilles :
 
@@ -529,16 +531,84 @@ Une implication notable de l'algorithme décrit ci-dessus est que le parcours de
 3. Analyse des règles avec signalement des erreurs du développeur
 4. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
 
-## Validation des données
+## Règles Lidy prédéfinies
 
+Lidy fourni à l'utilisateur huit [règles prédéfinies](#lidy-predefined-rules). Il s'agit de règles acceptant chacun des 7 types du schéma de la version 2.1 de YAML, ainsi que le type `any` qui accepte toute donnée YAML, sans aucune validation.
+
+Les 5 types ci-dessous sont natifs à Go et sont fourni à l'utilisateur sous le type Go correspondant.
+
+- `boolean`
+- `float`
+- `int` -- integer
+- `string`
+- `nullType` -- null
+
+Les 2 types ci-dessous sont moins communs. Ils sont validé par une expression régulière et fourni à l'utilisateur comme une chaine de caractères.
+
+- `timestamp` -- ISO 8601 datetime
+- `binary` -- a base64 encoded binary blob, with space characters allowed
+
+Enfin, le type `any` accèpte toute les donnée YAML.
+
+- `any`
+
+Une particularité intéressante du type `any` est que l'utilisateur pourrait le construire lui-même si Lidy ne le fournissait pas. La rêgle suivante est une définition équivalente de la règle prédéfinie `any`:
+
+```yaml
+any:
+  _oneOf:
+    - boolean
+    - string
+    - int
+    - float
+    - nullType
+    - { listOf: any }
+    - { mapOf: { any: any } }
+```
+
+Une particularité encore plus intéressante de `any` est que l'implémentation réel de la règle dans Lidy est calquée sur la définition ci-dessus. Voir [lidyDefaultRule.go](#lidy-default-rule):
+
+```go
+ruleAny.expression = tOneOf{
+  optionList: []tExpression{
+    sp.lidyDefaultRuleMap["string"],
+    sp.lidyDefaultRuleMap["boolean"],
+    sp.lidyDefaultRuleMap["int"],
+    sp.lidyDefaultRuleMap["float"],
+    sp.lidyDefaultRuleMap["nullType"],
+    tMap{
+      tMapForm{
+        mapOf: tKeyValueExpression{
+          key:   ruleAny,
+          value: ruleAny,
+        },
+      },
+      tSizingNone{},
+    },
+    tList{
+      tListForm{
+        listOf: ruleAny,
+      },
+      tSizingNone{},
+    },
+  },
+}
+```
+
+Cette implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contraintes, les vérifications imposées par la définitions ci-dessus de `any` vont forcer une exploration récursive de la totalité du contenu du noeud, alors que celui-ci aurait pu être purement ignoré. En d'autre terme, cette implémentation de `any` a un cout proportionnel à la taille du noeud, alors qu'une implémentation spécifique qui ignore le noeuds aurais un cout constant.
+
+Il se trouve que l'exploration du contenu du noeuds est en faite inévitable, puisque la règle doit produire un résultat synthétisant toutes les informations du document d'origine.
+
+<!--
+## Validation des données
 - Même problème d'interface Go pour supporter les appèles récursifs
-- Question de la description des erreurs -> Interface spécifique pour permettre à un nœud du schéma de décrire la vérification qu'il opère
-- Difficulté sur les types extensions
+- Difficulté sur les types avec \_merge -->
 
 ## Rapporter les erreurs
 
 Fait :
 
+- Question de la description des erreurs -> Interface spécifique pour permettre à un nœud du schéma de décrire la vérification qu'il opère
 - Faire une fonction dédiée.
 - Lui passer les informations nécéssaires.
 - La fonction produit une erreurs descriptive, avec le numéro de ligne
@@ -583,6 +653,14 @@ TODO: create schema
 ##### lib-yaml
 
 [https://github.com/yaml/libyaml](https://github.com/yaml/libyaml)
+
+##### lidy-default-rule
+
+[https://github.com/ditrit/lidy/blob/39f8efc3b56645113c209ffa7671b1177a33dce4/lidyDefaultRule.go#L108-L137](https://github.com/ditrit/lidy/blob/39f8efc3b56645113c209ffa7671b1177a33dce4/lidyDefaultRule.go#L108-L137)
+
+##### lidy-predefined-rules
+
+[https://github.com/ditrit/lidy#predefined-lidy-rules](https://github.com/ditrit/lidy#predefined-lidy-rules)
 
 ##### lidy-short-reference
 
