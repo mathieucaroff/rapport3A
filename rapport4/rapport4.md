@@ -478,7 +478,7 @@ La première étape, comme la deuxième étape, produit soit des erreurs soit un
 
 Une question demeure cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
 
-Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémentent l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
+Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémente l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
 
 En pratique, l'interface utilisée est plus complexe. On trouve l'interface interne suivante :
 
@@ -492,7 +492,7 @@ type tExpression interface {
 }
 ```
 
-Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué ci-avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme contexte. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
+Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué ci-avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme contexte. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide, elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
 
 Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expressions qui se contiennent les unes les autres. On dénombre 6 types d'expressions:
 
@@ -509,37 +509,37 @@ Elles correspondent aux 5 spécifieurs, plus les références vers des règles. 
 
 Valider un schéma Lidy comporte plusieurs aspects.
 
-- Détéction du type de chaque expression: Si c'est une règle cela corresponds à une chaîne de caractère Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
-- Vérification des expressions Lidy: Vérifier que chaque spécifieur comporte les mot-clés nécessaires, et uniquement des mot-clés connus de Lidy, autorisés pour ce spécifieur.
+- Détection du type de chaque expression : Si c'est une règle cela correspond à une chaîne de caractères Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
+- Vérification des expressions Lidy : Vérifier que chaque spécifieur comporte les mot-clés nécessaires, et uniquement des mot-clés connus de Lidy, autorisés pour ce spécifieur.
 - Vérification de l'existence d'une déclaration de règle pour chaque référence à une règle.
-- Analyse des déclarations de règle pour savoir si elles sont exportées, et si oui, sous quel nom. Vérifier que les règles pour lesquelles on trouve des builders sont toutes connues et exportées. Ce comportement dépends des options données par l'utilisateur.
+- Analyse des déclarations de règle pour savoir si elles sont exportées, et si oui, sous quel nom. Vérifier que les règles pour lesquelles on trouve des builders sont toutes connues et exportées. Ce comportement dépend des options données par l'utilisateur.
 
-Certaines vérifications posent des difficultés spécifiques, lié au fait que ces vérification ne peuvent pas être réalisée sur la base des données locale seuls, mais requière des données pouvant venir d'un autre point du document.
+Certaines vérifications posent des difficultés spécifiques, liées au fait que ces vérifications ne peuvent pas être réalisées sur la base des données locales seules, mais requièrent des données pouvant venir d'un autre point du document.
 
 Problème A, références directes et des cycles:
 
-`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clé permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont ouvertes au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle même dans un \_merge, dans un \_oneOf ou dans une référence pour que ceci crée une boucle infinie qu moment de la vérification de la règle. Cependant, les cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
+`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clés permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont ouvertes au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle même dans un \_merge, dans un \_oneOf ou dans une référence pour que ceci crée une boucle infinie au moment de la vérification de la règle. Cependant, les cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
 
 Problème B, ordre de parcours des règles:
 
-Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peux être utilisé que sur des règles mergeable. Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quel règles \_merge est utilisé. Il semble donc y avoir un problème sur l'ordre dans lequel les analyses sont effectuées.
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles mergeables. Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle \_merge est utilisé. Il semble donc y avoir un problème sur l'ordre dans lequel les analyses sont effectuées.
 
-Le problème (A) est un problème de detection de cycles au sein d'un graph orienté. Ce problème se résous en applicant un algorithme de parcours de graphe en profondeur avec trois marquages possible pour chaque nœuds au lieu de seulement deux. Les nœuds passent du marquage 0 au marquage 1 lorsqu'il sont exploré à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descends vers un nœuds marqué 1, nœud que nous appellerons nœuds d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle en listant l'ensemble des descendant du nœuds d'alerte. L'exploration peut alors continuer en excluant le lien problématique.
+Le problème (A) est un problème de détection de cycles au sein d'un graphe orienté. Ce problème se résout en appliquant un algorithme de parcours de graphe en profondeur avec trois marquages possibles pour chaque nœud au lieu de seulement deux. Les nœuds passent du marquage 0 au marquage 1 lorsqu'ils sont explorés à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descend vers un nœud marqué 1, nœud que nous appellerons nœud d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle en listant l'ensemble des descendant du nœud d'alerte. L'exploration peut alors continuer en excluant le lien problématique.
 
-Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par le graphe est inévitable. Ceci est gênant car on souhaite rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent à que l'ensemble des erreurs soient rapportées au cours d'une unique passe, réalisée dans l'ordre du document. Il doit donc y avoir une passe dédiée à la détéction des cycles. Comme cette passe est nécessaire à la détection de certaines erreur, elle doit absolument être effectuée avant la passe de signalement des erreurs. Ceci nous place donc dans un mode de fonctionnement en quatre passes:
+Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par le graphe est inévitable. Ceci est gênant car on souhaite rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent à ce que l'ensemble des erreurs soient rapportées au cours d'une unique passe, réalisée dans l'ordre du document. Il doit donc y avoir une passe dédiée à la détection des cycles. Comme cette passe est nécessaire à la détection de certaines erreur, elle doit absolument être effectuée avant la passe de signalement des erreurs. Ceci nous place donc dans un mode de fonctionnement en quatre passes:
 
 1. Analyse des en-têtes de règle (nom, export et présence de builders)
 2. Recherche de cycles de dépendances directes
 3. Analyse des règles avec signalement des erreurs du développeur
 4. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
 
-La première passe ne concerne que les noms des règles et les builders. Elle est faite dans des positions des règles dans le document. La seconde passe, elle, examine le contenu des nœuds des manière récursive, mais ne s'intéresse. Elle établie les dépendances directes et suit ces dépendances, réalisant ainsi un parcours de graphe en profondeur. Elle vérifie qu'aucun
+La première passe ne concerne que les noms des règles et les builders. Elle est faite dans des positions des règles dans le document. La seconde passe, elle, examine le contenu des nœuds de manière récursive, mais ne s'intéresse ???. Elle établie les dépendances directes et suit ces dépendances, réalisant ainsi un parcours de graphe en profondeur. Elle vérifie qu'aucun ???
 (suivant l'ordre topologique des dépendances)
 (suivant l'ordre positionnel du document)
 
 ## Règles Lidy prédéfinies
 
-Lidy fourni à l'utilisateur huit [règles prédéfinies](#lidy-predefined-rules). Il s'agit de règles acceptant chacun des 7 types du schéma de la version 2.1 de YAML, ainsi que le type `any` qui accepte toute donnée YAML, sans aucune validation.
+Lidy fournit à l'utilisateur huit [règles prédéfinies](#lidy-predefined-rules). Il s'agit de règles acceptant chacun des 7 types du schéma de la version 2.1 de YAML, ainsi que le type `any` qui accepte toute donnée YAML, sans aucune validation.
 
 Les 5 types ci-dessous sont natifs à Go et sont fourni à l'utilisateur sous le type Go correspondant.
 
@@ -549,12 +549,12 @@ Les 5 types ci-dessous sont natifs à Go et sont fourni à l'utilisateur sous le
 - `string`
 - `nullType` -- null
 
-Les 2 types ci-dessous sont moins communs. Ils sont validé par une expression régulière et fourni à l'utilisateur comme une chaîne de caractères.
+Les 2 types ci-dessous sont moins communs. Ils sont validés par une expression régulière et fournie à l'utilisateur comme une chaîne de caractères.
 
 - `timestamp` -- ISO 8601 datetime
 - `binary` -- a base64 encoded binary blob, with space characters allowed
 
-Enfin, le type `any` accèpte toute les donnée YAML.
+Enfin, le type `any` accepte toutes les données YAML.
 
 - `any`
 
@@ -572,7 +572,7 @@ any:
     - { mapOf: { any: any } }
 ```
 
-Une particularité encore plus intéressante de `any` est que l'implémentation réel de la règle dans Lidy est calquée sur la définition ci-dessus. Voir [lidyDefaultRule.go](#lidy-default-rule):
+Une particularité encore plus intéressante de `any` est que l'implémentation réelle de la règle dans Lidy est calquée sur la définition ci-dessus. Voir [lidyDefaultRule.go](#lidy-default-rule):
 
 ```go
 ruleAny.expression = tOneOf{
@@ -601,9 +601,9 @@ ruleAny.expression = tOneOf{
 }
 ```
 
-Une telle implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contraintes, les vérifications imposées par la définitions ci-dessus de `any` vont forcer une exploration récursive de la totalité du sous-arbre du nœud, alors que celui-ci aurait pu être purement ignoré. En d'autre terme, cette implémentation de `any` a un coût proportionnel à la taille du sous-arbre, alors qu'une implémentation spécifique qui ignore le nœuds aurais un coût constant.
+Une telle implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contrainte, les vérifications imposées par la définition ci-dessus de `any` vont forcer une exploration récursive de la totalité du sous-arbre du nœud, alors que celui-ci aurait pu être purement ignoré. En d'autres termes, cette implémentation de `any` a un coût proportionnel à la taille du sous-arbre, alors qu'une implémentation spécifique qui ignore le nœuds aurait un coût constant.
 
-Il se trouve que l'exploration du contenu du nœuds est en faite inévitable, puisque la règle doit produire un résultat synthétisant toutes les informations du document d'origine. C'est pourquoi le coût ne peux pas être constant et est au mieux proportionnel à la taille du sous-arbre, comme c'est le cas de cette solution.
+Il se trouve que l'exploration du contenu du nœud est en fait inévitable, puisque la règle doit produire un résultat synthétisant toutes les informations du document d'origine. C'est pourquoi le coût ne peut pas être constant et est au mieux proportionnel à la taille du sous-arbre, comme c'est le cas de cette solution.
 
 <!--
 ## Validation des données
@@ -612,7 +612,7 @@ Il se trouve que l'exploration du contenu du nœuds est en faite inévitable, pu
 
 ### Rapporter les erreurs
 
-Rapporter les erreurs découverte lors de l'exploration recursive de données structurées est un problème qui apparaît à deux reprise dans Lidy. Une première fois pour le chargement du schema Lidy et une deuxième fois pour la validation des données. Ce problème comporte plusieurs enjeux. Le premier est d'être capable rapporter l'intégralité des erreurs présentes dans le document, plutôt que une seul erreur. Le second enjeu est de produire des erreurs qui soient aussi utiles que possible au développeur ou utilisateur qui les reçevra. Enfin, le troisième enjeu est de produire une implémentation qui utilise peut de code lorsque c'est possible, afin de réduire le coût de maintenance de Lidy. Chacun de ces enjeux on été pris en compte dans mon implémentation de Lidy, quoique, les deux derniers n'ont pas pu être pleinement réalisés, comme nous allons le voire.
+Rapporter les erreurs découvertes lors de l'exploration récursive de données structurées est un problème qui apparaît à deux reprises dans Lidy. Une première fois pour le chargement du schéma Lidy et une deuxième fois pour la validation des données. Ce problème comporte plusieurs enjeux. Le premier est d'être capable rapporter l'intégralité des erreurs présentes dans le document, plutôt que une seule erreur. Le second enjeu est de produire des erreurs qui soient aussi utiles que possible au développeur ou utilisateur qui les reçevra. Enfin, le troisième enjeu est de produire une implémentation qui utilise peu de code lorsque c'est possible, afin de réduire le coût de maintenance de Lidy. Chacun de ces enjeux a été pris en compte dans mon implémentation de Lidy, quoique, les deux derniers n'aient pas pu être pleinement réalisés, comme nous allons le voir.
 
 #### Enjeu d'exhaustivité du rapport
 
@@ -620,12 +620,12 @@ _Ne pas s'arrêter à la première erreur._
 
 Le premier enjeu est de parvenir à rapporter toutes les erreurs. Il se décompose en plusieurs sous-problèmes.
 
-- Les validateurs doivent être implémenté de manière à ne pas s'interrompre lors dès qu'un erreurs est détectée, mais au contraire, à réaliser la totalités des vérifications qu'ils peuvent faire avant de rendre la main.
+- Les validateurs doivent être implémentés de manière à ne pas s'interrompre lors dès qu'une erreur est détectée, mais au contraire, à réaliser la totalité des vérifications qu'ils peuvent faire avant de rendre la main.
 
-- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à \_oneOf: Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionner ou échouer, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
+- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à \_oneOf: Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
 
 Ces contraintes que font peser `_oneOf` sur l'implémentation de Lidy m'ont amené à choisir de passer les erreurs comme une liste d'erreurs, en résultat des fonctions de vérification Lidy. Un exemple de méthode qui renvoie une liste d'erreur est la méthode `match()` de l'interface `tExpression`.
-Le fonctionnement de cette interface a expliqué donné dans la section [Conception interne de Lidy](#conception-interne-de-lidy).
+Le fonctionnement de cette interface a été expliqué dans la section [Conception interne de Lidy](#conception-interne-de-lidy).
 
 #### Enjeu d'informativité des erreurs
 
@@ -643,7 +643,7 @@ Le second enjeu est de produire une information d'erreur riche. Voici les inform
 
 Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée: si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
 
-Les raisons pour lesquelles j'avais choisi ce format simple était ma maîtrise limitée du système de type unique de Go, la nouveauté de leur approche de la gestion des erreurs, et surtout le haut degré d'incertitude qui règne dans la communauté Go sur la question des bonnes pratiques de gestion des erreurs. Après une discussion avec mon maitre de stage Xavier TALON, ainsi qu'avec Josef PRIOU, un membre de l'association Ditrit, nous avons pu établir une manière de rapporter à l'utilisateur les informations A, B, C et D de manière utilisable par une machine. Cette réunion ayant eu lieu après que j'ai été affécté à ma mission au Crédit Agricole, cette solution sera implémentée lorsqu'un développeur de l'association, probablement moi-même, pourra consacrer du temps à Lidy.
+Les raisons pour lesquelles j'avais choisi ce format simple était ma maîtrise limitée du système de type unique de Go, la nouveauté de leur approche de la gestion des erreurs, et surtout le haut degré d'incertitude qui règne dans la communauté Go sur la question des bonnes pratiques de gestion des erreurs. Après une discussion avec mon maître de stage Xavier TALON, ainsi qu'avec Josef PRIOU, un membre de l'association Ditrit, nous avons pu établir une manière de rapporter à l'utilisateur les informations A, B, C et D de manière utilisable par une machine. Cette réunion ayant eu lieu après que j'ai été affecté à ma mission au Crédit Agricole, cette solution sera implémentée lorsqu'un développeur de l'association, probablement moi-même, pourra consacrer du temps à Lidy.
 
 #### Enjeu de légèreté de l'implémentation
 
@@ -651,7 +651,7 @@ _Produire une code facile à comprendre et à maintenir, sans duplication_
 
 Le troisième enjeu est un enjeu interne à Lidy et transverse. Il est en lien avec les deux premiers enjeux. Il s'agit de disposer d'une manière simple de rapporter les erreurs à l'intérieur des fonctions de validation.
 
-Afin de faire voire le travail qui a été réalisé sur ce sujet, voici un extrait de l'implémentation de la méthode `match()` pour le spécificateur `tList`. Il défini le comportement de validation du spécifieur.
+Afin de montrer le travail qui a été réalisé sur ce sujet, voici un extrait de l'implémentation de la méthode `match()` pour le spécificateur `tList`. Il définit le comportement de validation du spécifieur.
 
 [`lidyMatch.go`](https://github.com/ditrit/lidy/blob/go-2020-10/lidyMatch.go#L214-L264)
 
@@ -681,7 +681,7 @@ func (list tList) match(content yaml.Node, parser *tParser) (tResult, []error) {
 }
 ```
 
-L'extrait ci-dessus montre comment un validateur fait pour ne pas s'arrêter à la première erreur et rapporter l'intégralité des erreurs. Les listes d'erreurs sont traitées comme des données et ajoutées à une _liste de liste d'erreurs_.
+L'extrait ci-dessus montre comment un validateur procède pour ne pas s'arrêter à la première erreur et rapporter l'intégralité des erreurs. Les listes d'erreurs sont traitées comme des données et ajoutées à une _liste de liste d'erreurs_.
 Par exemple, l'instruction `errList.Push(list.sizing.check(content, parser))` fait appel à un vérificateur externe, `list.sizing.check()`. Cette fonction de vérification produit une liste d'erreurs, qui est ajoutée par la méthode `.Push()` à `errList`, la _liste de liste d'erreurs_. Enfin, la méthode `.ConcatError()` permet de rassembler ces listes de liste en une seul liste d'erreur. Notons que ces deux méthodes, `.Push()` et `.ConcatError()` appartiennent à un court _package_ écrit spécifiquement pour répondre aux besoins de rapport d'erreurs des fonctions de vérification de Lidy. Voir le packet [errorlist](https://github.com/ditrit/lidy/blob/go-2020-10/errorlist/errorlist.go) (32 lignes de code).
 
 Dans l'extrait ci-dessus, on rencontre aussi la fonction contentError: `parser.contentError(content, message)`. Cette fonction fabrique une nouvelle erreur à partir d'un nœud YAML à l'origine de l'erreur et de la description de la valeur attendue:
@@ -704,7 +704,7 @@ func (sp tSchemaParser) schemaError(node yaml.Node, expected string) []error {
 }
 ```
 
-Une amélioration possible de l'implémentation du transport des erreurs serais de cesser de traiter les erreurs comme valeur de retour des fonctions, et de faire ques les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schema et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de context global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe ou elles sont détectées. Ceci permettrais d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
+Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de context global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
 
 Extra:
 
