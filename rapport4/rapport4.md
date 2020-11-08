@@ -83,7 +83,10 @@ include-before: |
         - [lidy-newparser-parse](#lidy-newparser-parse)
   - [Analyse et validation du schéma](#analyse-et-validation-du-schéma)
   - [Règles Lidy prédéfinies](#règles-lidy-prédéfinies)
-  - [Rapporter les erreurs](#rapporter-les-erreurs)
+    - [Rapporter les erreurs](#rapporter-les-erreurs)
+      - [Enjeu d'exhaustivité du rapport](#enjeu-dexhaustivité-du-rapport)
+      - [Enjeu d'informativité des erreurs](#enjeu-dinformativité-des-erreurs)
+      - [Enjeu de légèreté de l'implémentation](#enjeu-de-légèreté-de-limplémentation)
   - [Schéma de fonctionnement du projet](#schéma-de-fonctionnement-du-projet)
 - [WebDBA](#webdba)
 - [Table des liens](#table-des-liens)
@@ -161,7 +164,7 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 # Lidy
 
-_Période Juin-Juillet : Projet Lidy_
+_Période juin-juillet : Projet Lidy_
 
 Lidy est une librairie qui permet à l'utilisateur de lire et d'analyser un fichier YAML, afin de valider qu'il correspond bien à un format complexe décrit par l'utilisateur.
 
@@ -440,13 +443,13 @@ Une des contraintes auxquelles Lidy doit répondre est la conservation des numé
 
 Une fois la question des dépendances externes de Lidy résolue, il me fallait décider de comment le développeur qui utiliserait la librairie Lidy l'invoquerait. Il s'agissait de la première API de librairie que je réalisais en Golang et avec mes connaissances limitées de la communauté Go, je ne savais pas quelle philosophie adopter pour produire une bonne interface du point de vu des standards Golang.
 
-J'étais en particulier gêné par mes habitudes de bonnes pratiques dans les autres langages. En effet, dans les langages orientés objets, c'est une bonne pratique de ne jamais exposer les propriétés d'un objet à l'utilisateur et de ne lui permettre de lire et modifier ces propriétés qu'à travers des méthodes dites _accesseur_. Ceci m'a amené à choisir d'implémenter en Go un pattern orienté objet nommé "fluent interface", pattern dans lequel les appels de méthodes sont chaînés. On peut par exemple voir ce pattern dans le fichier de test de Lidy [`hBuilderMap_test.go`](https://github.com/ditrit/lidy/blob/39f8efc3b56645113c209ffa7671b1177a33dce4/hBuilderMap_test.go#L16-L35), dans lequel les méthodes `NewParser`, `With` et `Parse` sont chaînées. Je sais aujourd'hui que ce type d'interface est rarement utilisé en Go et qu'il est en fait courant de donner accès à l'utilisateurs aux propriétés d'un objet, afin qu'il puisse le construire. À ma connaissance, ce type d'approche n'est utilisé qu'en C et en Go.
+J'étais en particulier gêné par mes habitudes de bonnes pratiques dans les autres langages. En effet, dans les langages orientés objets, c'est une bonne pratique de ne jamais exposer les propriétés d'un objet à l'utilisateur et de ne lui permettre de lire et modifier ces propriétés qu'à travers des méthodes dites _accesseur_. Ceci m'a amené à choisir d'implémenter en Go un pattern orienté objet nommé "fluent interface", pattern dans lequel les appels de méthodes sont chaînés. On peut par exemple voir ce pattern dans le fichier de test de Lidy [`hBuilderMap_test.go`](https://github.com/ditrit/lidy/blob/go-2020-10/hBuilderMap_test.go#L16-L35), dans lequel les méthodes `NewParser`, `With` et `Parse` sont chaînées. Je sais aujourd'hui que ce type d'interface est rarement utilisé en Go et qu'il est en fait courant de donner accès à l'utilisateurs aux propriétés d'un objet, afin qu'il puisse le construire. À ma connaissance, ce type d'approche n'est utilisé qu'en C et en Go.
 
 ### Fichiers
 
 Une autres question importante à laquelle il a fallut répondre est celle du chargement des fichiers dans Lidy. En effet, Lidy est une librairie qui se veut portable. Il est possible de compiler le code Golang en WASM et de l'utiliser depuis d'autres langages. Cependant, lorsqu'on utilise cette approche, il n'est pas possible d'utiliser les fonctions de l'OS, tel que l'ouverture de fichiers. Ceci se comprend bien dans la mesure ou l'on peut être amené à exécuter du code WASM dans le navigateur, plateforme ne disposant pas de système de fichiers.
 
-Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des erreurs à l'utilisateur. La solution à ce problème est d'accepter de la part de l'utilisateur le nom du fichier en plus de son contenu. Pour rendre une telle interface plus agréable pour le développeur, Lidy [dispose d'un concept de fichier](https://github.com/ditrit/lidy/blob/master/lidy.go#L136), faisant abstraction de l'OS. Ceci permet de couvrir l'ensemble des cas d'utilisation de Lidy, tant sur les plateformes sans OS que avec OS.
+Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des erreurs à l'utilisateur. La solution à ce problème est d'accepter de la part de l'utilisateur le nom du fichier en plus de son contenu. Pour rendre une telle interface plus agréable pour le développeur, Lidy [dispose d'un concept de fichier](https://github.com/ditrit/lidy/blob/go-2020-10/lidy.go#L134-L141), faisant abstraction de l'OS. Ceci permet de couvrir l'ensemble des cas d'utilisation de Lidy, tant sur les plateformes sans OS que avec OS.
 
 ### Résultats de Lidy
 
@@ -489,7 +492,7 @@ type tExpression interface {
 }
 ```
 
-Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué ci-avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme contexte. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` ?et? une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
+Les méthodes `name()` et `description()` permettent d'obtenir un nom et une description peu profonde du test de validation réalisé par l'expression Lidy. La méthode `match()` est plus complexe. C'est cette méthode qui permet d'invoquer l'expression pour réaliser le test d'une valeur Lidy. Comme indiqué ci-avant, cette méthode prend en paramètre le nœud yaml à tester (`content yaml.Node`). Cependant, elle accepte aussi une instance de parseur `parser *tParser`, comme contexte. Ceci lui permet d'accéder aux options et aux builders donnés par l'utilisateur pour la validation. En sortie de la méthode, on trouve la paire (tResult, []error). `[]error` est une liste d'erreurs. Elle est vide si et seulement si le test mené par l'expression a réussi. Si elle est non-vide elle doit rapporter autant d'erreurs qu'il est possible de rapporter. `tResult` est la représentation interne à Lidy d'un résultat pour l'utilisateur. Cette valeur est non-nulle si et seulement si la liste d'erreur est vide. En d'autres termes, `match()` renvoie soit un résultat, soit une ou plusieurs erreurs.
 
 Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expressions qui se contiennent les unes les autres. On dénombre 6 types d'expressions:
 
@@ -598,31 +601,128 @@ ruleAny.expression = tOneOf{
 }
 ```
 
-Cette implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contraintes, les vérifications imposées par la définitions ci-dessus de `any` vont forcer une exploration récursive de la totalité du contenu du noeud, alors que celui-ci aurait pu être purement ignoré. En d'autre terme, cette implémentation de `any` a un cout proportionnel à la taille du noeud, alors qu'une implémentation spécifique qui ignore le noeuds aurais un cout constant.
+Une telle implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contraintes, les vérifications imposées par la définitions ci-dessus de `any` vont forcer une exploration récursive de la totalité du sous-arbre du nœud, alors que celui-ci aurait pu être purement ignoré. En d'autre terme, cette implémentation de `any` a un coût proportionnel à la taille du sous-arbre, alors qu'une implémentation spécifique qui ignore le nœuds aurais un coût constant.
 
-Il se trouve que l'exploration du contenu du noeuds est en faite inévitable, puisque la règle doit produire un résultat synthétisant toutes les informations du document d'origine.
+Il se trouve que l'exploration du contenu du nœuds est en faite inévitable, puisque la règle doit produire un résultat synthétisant toutes les informations du document d'origine. C'est pourquoi le coût ne peux pas être constant et est au mieux proportionnel à la taille du sous-arbre, comme c'est le cas de cette solution.
 
 <!--
 ## Validation des données
-- Même problème d'interface Go pour supporter les appèles récursifs
+- Même problème d'interface Go pour supporter les appèls récursifs
 - Difficulté sur les types avec \_merge -->
 
-## Rapporter les erreurs
+### Rapporter les erreurs
 
-Fait :
+Rapporter les erreurs découverte lors de l'exploration recursive de données structurées est un problème qui apparaît à deux reprise dans Lidy. Une première fois pour le chargement du schema Lidy et une deuxième fois pour la validation des données. Ce problème comporte plusieurs enjeux. Le premier est d'être capable rapporter l'intégralité des erreurs présentes dans le document, plutôt que une seul erreur. Le second enjeu est de produire des erreurs qui soient aussi utiles que possible au développeur ou utilisateur qui les reçevra. Enfin, le troisième enjeu est de produire une implémentation qui utilise peut de code lorsque c'est possible, afin de réduire le coût de maintenance de Lidy. Chacun de ces enjeux on été pris en compte dans mon implémentation de Lidy, quoique, les deux derniers n'ont pas pu être pleinement réalisés, comme nous allons le voire.
 
-- Question de la description des erreurs -> Interface spécifique pour permettre à un nœud du schéma de décrire la vérification qu'il opère
-- Faire une fonction dédiée.
-- Lui passer les informations nécessaires.
-- La fonction produit une erreur descriptive, avec le numéro de ligne
-- Lors qu'une fonction détecte une erreur, l'analyse se poursuit, de façon à ce que toutes les erreurs puissent être levées. Les fonctions renvoient aussi une liste d'erreurs, plutôt qu'une seule erreur.
+#### Enjeu d'exhaustivité du rapport
 
-À faire :
+_Ne pas s'arrêter à la première erreur._
 
-- Rendre les numéros de ligne et de colonne accessibles comme données présentes sur l'erreur
-- Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
-- Les erreurs sont écrites directement dans l'objet de contexte, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreurs de fonction en fonction. Exception : la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cette hypothèse doivent être abandonnées.
-- Permettre à l'utilisateur de paramétrer le comportement en cas d'erreur.
+Le premier enjeu est de parvenir à rapporter toutes les erreurs. Il se décompose en plusieurs sous-problèmes.
+
+- Les validateurs doivent être implémenté de manière à ne pas s'interrompre lors dès qu'un erreurs est détectée, mais au contraire, à réaliser la totalités des vérifications qu'ils peuvent faire avant de rendre la main.
+
+- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à \_oneOf: Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionner ou échouer, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
+
+Ces contraintes que font peser `_oneOf` sur l'implémentation de Lidy m'ont amené à choisir de passer les erreurs comme une liste d'erreurs, en résultat des fonctions de vérification Lidy. Un exemple de méthode qui renvoie une liste d'erreur est la méthode `match()` de l'interface `tExpression`.
+Le fonctionnement de cette interface a expliqué donné dans la section [Conception interne de Lidy](#conception-interne-de-lidy).
+
+#### Enjeu d'informativité des erreurs
+
+_Aider l'utilisateur ou le développeur à traiter l'erreur._
+
+Le second enjeu est de produire une information d'erreur riche. Voici les informations intéressantes identifiées:
+
+- (A) Le type de vérification qui a échoué
+- (B) La situation attendue
+- (C) La situation trouvée
+- (D) La position de la situation trouvée dans le document ou schéma
+- (E) La distinction entre erreur et warning
+- (F) (_Dans le cas de la vérification des données utilisateur_) La position définissant la situation attendue. Cette position se dans le schema du développeur.
+- (G) (_Dans le cas du spécificateur \_oneOf_) La liste des sous-erreurs qui ensemble contribuent à l'échec de la validation du \_oneOf.
+
+Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée: si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
+
+Les raisons pour lesquelles j'avais choisi ce format simple était ma maîtrise limitée du système de type unique de Go, la nouveauté de leur approche de la gestion des erreurs, et surtout le haut degré d'incertitude qui règne dans la communauté Go sur la question des bonnes pratiques de gestion des erreurs. Après une discussion avec mon maitre de stage Xavier TALON, ainsi qu'avec Josef PRIOU, un membre de l'association Ditrit, nous avons pu établir une manière de rapporter à l'utilisateur les informations A, B, C et D de manière utilisable par une machine. Cette réunion ayant eu lieu après que j'ai été affécté à ma mission au Crédit Agricole, cette solution sera implémentée lorsqu'un développeur de l'association, probablement moi-même, pourra consacrer du temps à Lidy.
+
+#### Enjeu de légèreté de l'implémentation
+
+_Produire une code facile à comprendre et à maintenir, sans duplication_
+
+Le troisième enjeu est un enjeu interne à Lidy et transverse. Il est en lien avec les deux premiers enjeux. Il s'agit de disposer d'une manière simple de rapporter les erreurs à l'intérieur des fonctions de validation.
+
+Afin de faire voire le travail qui a été réalisé sur ce sujet, voici un extrait de l'implémentation de la méthode `match()` pour le spécificateur `tList`. Il défini le comportement de validation du spécifieur.
+
+[`lidyMatch.go`](https://github.com/ditrit/lidy/blob/go-2020-10/lidyMatch.go#L214-L264)
+
+```go
+// List
+func (list tList) match(content yaml.Node, parser *tParser) (tResult, []error) {
+  // (...)
+
+  listData := ListData{}
+  errList := errorlist.List{}
+
+  // Bad sizing
+  errList.Push(list.sizing.check(content, parser))
+
+  // (...)
+
+  // Signaling missing keys
+  for k := len(content.Content); k < len(list.form.list); k++ {
+    message := fmt.Sprintf(
+      "a %dth entry %s",
+      k, list.form.list[k].description(),
+    )
+    errList.Push(parser.contentError(content, message))
+  }
+
+  return parser.wrap(listData, content), errList.ConcatError()
+}
+```
+
+L'extrait ci-dessus montre comment un validateur fait pour ne pas s'arrêter à la première erreur et rapporter l'intégralité des erreurs. Les listes d'erreurs sont traitées comme des données et ajoutées à une _liste de liste d'erreurs_.
+Par exemple, l'instruction `errList.Push(list.sizing.check(content, parser))` fait appel à un vérificateur externe, `list.sizing.check()`. Cette fonction de vérification produit une liste d'erreurs, qui est ajoutée par la méthode `.Push()` à `errList`, la _liste de liste d'erreurs_. Enfin, la méthode `.ConcatError()` permet de rassembler ces listes de liste en une seul liste d'erreur. Notons que ces deux méthodes, `.Push()` et `.ConcatError()` appartiennent à un court _package_ écrit spécifiquement pour répondre aux besoins de rapport d'erreurs des fonctions de vérification de Lidy. Voir le packet [errorlist](https://github.com/ditrit/lidy/blob/go-2020-10/errorlist/errorlist.go) (32 lignes de code).
+
+Dans l'extrait ci-dessus, on rencontre aussi la fonction contentError: `parser.contentError(content, message)`. Cette fonction fabrique une nouvelle erreur à partir d'un nœud YAML à l'origine de l'erreur et de la description de la valeur attendue:
+
+[lidyMatch.go:contentError()](https://github.com/ditrit/lidy/blob/go-2020-10/lidyMatch.go#L395-L401)
+
+```go
+func (parser *tParser) contentError(content yaml.Node, expected string) []error {
+  return []error{fmt.Errorf("error with content node, kind #%d, tag '%s', value '%s' at position %s:%s, where [%s] was expected", content.Kind, content.Tag, content.Value, parser.contentFile.name, getPosition(content), expected)}
+}
+```
+
+Cette fonction a un analogue pour les erreurs survenant au moment de l'analyse du schema:
+
+[lidySchemaParser.go:schemaError()](https://github.com/ditrit/lidy/blob/go-2020-10/lidySchemaParser.go#L238-L244)
+
+```go
+func (sp tSchemaParser) schemaError(node yaml.Node, expected string) []error {
+	return []error{fmt.Errorf("error in schema with yaml node, kind #%d, tag '%s', value '%s' at position %s:%s, where [%s] was expected", node.Kind, node.ShortTag(), node.Value, sp.name, getPosition(node), expected)}
+}
+```
+
+Une amélioration possible de l'implémentation du transport des erreurs serais de cesser de traiter les erreurs comme valeur de retour des fonctions, et de faire ques les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schema et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de context global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe ou elles sont détectées. Ceci permettrais d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
+
+Extra:
+
+- Le problème de rapporter les erreurs se pose lors de l'étape de vérification du schéma ainsi que lors de l'étape de vérification du document.
+- Difficultés avec Go / résolution des difficultés
+
+- Rapporter toutes les erreurs du document, pas juste la première
+
+  - Lorsqu'une fonction détecte une erreur, l'analyse se poursuit, de façon à ce que toutes les erreurs puissent être levées. Les fonctions renvoient aussi une liste d'erreurs, plutôt qu'une seule erreur.
+  - Les erreurs sont écrites directement dans l'objet de contexte, de façon à alléger le type de retour des fonctions, et donc éviter d'avoir à passer et concaténer les listes d'erreurs de fonction en fonction. Exception : la construction `_oneOf`, doit être capable d'explorer une hypothèse et de la rejeter. Auquel cas, les erreurs spécifiques à cette hypothèse doivent être abandonnées.
+
+- Rendre les erreurs utiles pour l'utilisateur
+
+  - DONE La fonction produit une erreur descriptive, avec le numéro de ligne
+  - DONE Question de la description des erreurs -> Interface spécifique pour permettre à un nœud du schéma de décrire la vérification qu'il opère
+  - DONE Faire une fonction dédiée
+  - Créer sur les erreurs des champs dédiés aux numéros de ligne et de colonne de l'erreur
+  - Avoir des catégories d'erreurs numérotées, spécifiées dans une énumération des erreurs possibles, distinguant erreur et warning
 
 ## Schéma de fonctionnement du projet
 
@@ -634,8 +734,6 @@ TODO: create schema
 - Passes to load the schema
 - Communication model for the recursive exploration while (loading the schema, validating the data)
 -->
-
-## Retour sur l'écriture de Lidy en Go
 
 # WebDBA
 
@@ -659,7 +757,7 @@ TODO: create schema
 
 ##### lidy-default-rule
 
-[https://github.com/ditrit/lidy/blob/39f8efc3b56645113c209ffa7671b1177a33dce4/lidyDefaultRule.go#L108-L137](https://github.com/ditrit/lidy/blob/39f8efc3b56645113c209ffa7671b1177a33dce4/lidyDefaultRule.go#L108-L137)
+[https://github.com/ditrit/lidy/blob/go-2020-10/lidyDefaultRule.go#L108-L137](https://github.com/ditrit/lidy/blob/go-2020-10/lidyDefaultRule.go#L108-L137)
 
 ##### lidy-predefined-rules
 
