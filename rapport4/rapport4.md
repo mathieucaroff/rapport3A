@@ -85,7 +85,6 @@ include-before: |
   - [Règles Lidy prédéfinies](#règles-lidy-prédéfinies)
   - [Rapporter les erreurs](#rapporter-les-erreurs)
   - [Schéma de fonctionnement du projet](#schéma-de-fonctionnement-du-projet)
-  - [Retour sur l'écriture de Lidy en Go](#retour-sur-lécriture-de-lidy-en-go)
 - [WebDBA](#webdba)
 - [Table des liens](#table-des-liens)
         - [go-yaml](#go-yaml)
@@ -182,7 +181,7 @@ Le [projet ToP](#top), produit par l'association Ditrit, vise à produire un par
 
 La première approche utilisée pour analyser les fichiers YAML TOSCA, a été l'utilisation d'un outil d'analyse générique Java : ANTLR. En effet, à l'époque, fin 2018 - début 2019, l'association Ditrit utilisait principalement le langage de programmation Java. ANTLR, "ANother Tool for Language Recognition" est un parseur pour les langages non-contextuels (_context-free_). C'est un parseur LL(\*), donc un parseur top-down, ce qui signifie qu'il cherche à attribuer une valeur unique à chaque mot qu'il lit, aussitôt que possible.
 
-Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à parser. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour parser les fichiers TOSCA 2.0+.
+Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à parser. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANTLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour parser les fichiers TOSCA 2.0+.
 
 ### Json Schema
 
@@ -262,7 +261,7 @@ animalFamily:
   _in: [bird, canine, feline, leonine, prey]
 ```
 
-La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle prédéfinie de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les nom-valeurs sont spécifiés par une paire liant un nom verbatime, à une expression Lidy.
+La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle prédéfinie de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les nom-valeurs sont spécifiés par une paire liant un nom verbatim, à une expression Lidy.
 
 Lidy supporte aussi des types définis de manière récursive. Voici par exemple un schéma Lidy spécifiant un arbre avec des chaînes de caractères aux feuilles :
 
@@ -453,7 +452,7 @@ Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des e
 
 La question de la forme des résultats produits par Lidy a aussi posé quelques problèmes.
 
-Le premier problème que j'ai rencontré est que le système de type Go pose des limites et requière d'utiliser `interface{}` lorqu'on veut faire cohabiter des types divers. `interface{}` est l'équivalent du type `Object` dans les langages orientés objet ; ceci illustre une fois de plus la défiance de Golang pour la programmation intentionnelle. Lorsque l'on connaît tous les types auxquels on peut avoir à faire, si l'on souhaite éviter l'utilisation de `interface{}`, on peut utiliser une astuce faisant appel à une structure, mais ceci n'est pas nécessairement utile. Le confort apporté par cette astuce est celui d'éviter les "cast de types" (conversion de type statique) de Golang. En effet, les types Golang ne disposent d'aucun mécanisme pour garantir qu'il sera possible d'identifier le type réel de la donnée. Cependant, cette approche a tout autant de désavantages dans la mesure où elle permet l'expression de valeurs insensées. On pourrait être tenté de dire que le système de typage de Go est faible. Puisque Lidy peut être amené à manipuler des types de données créés par l'utilisateur, la seconde approche n'est pas envisageable, ou du moins elle n'apporte presque aucun bénéfice. J'ai donc opté pour la première approche.
+Le premier problème que j'ai rencontré est que le système de type Go pose des limites et requière d'utiliser `interface{}` lorsqu'on veut faire cohabiter des types divers. `interface{}` est l'équivalent du type `Object` dans les langages orientés objet ; ceci illustre une fois de plus la défiance de Golang pour la programmation intentionnelle. Lorsque l'on connaît tous les types auxquels on peut avoir à faire, si l'on souhaite éviter l'utilisation de `interface{}`, on peut utiliser une astuce faisant appel à une structure, mais ceci n'est pas nécessairement utile. Le confort apporté par cette astuce est celui d'éviter les "cast de types" (conversion de type statique) de Golang. En effet, les types Golang ne disposent d'aucun mécanisme pour garantir qu'il sera possible d'identifier le type réel de la donnée. Cependant, cette approche a tout autant de désavantages dans la mesure où elle permet l'expression de valeurs insensées. On pourrait être tenté de dire que le système de typage de Go est faible. Puisque Lidy peut être amené à manipuler des types de données créés par l'utilisateur, la seconde approche n'est pas envisageable, ou du moins elle n'apporte presque aucun bénéfice. J'ai donc opté pour la première approche.
 
 Le second problème qui s'est posé était de faire figurer dans les résultats de Lidy les numéros de ligne et nom de fichier en plus des valeurs désérialisées et des valeurs produites par les Builders. Il n'y avait qu'une seule solution possible à ce problème. Il s'agissait d'alterner dans les résultats de Lidy entre des niveaux de données Lidy et des niveaux de données utilisateur. Ceci permet d'indiquer pour chaque nœud, sa position dans le document.
 
@@ -476,7 +475,7 @@ La première étape, comme la deuxième étape, produit soit des erreurs soit un
 
 Une question demeure cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
 
-Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacunes, implémentent l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
+Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémentent l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
 
 En pratique, l'interface utilisée est plus complexe. On trouve l'interface interne suivante :
 
@@ -501,13 +500,13 @@ Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expression
 - `tIn`
 - `tRegex`
 
-Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, le type référence vers une règle n'est pas nécessaire. En effet, on aurait pu directement remplacer la référence par la valeur de la règle. Cependant, afin de faciliter le débuggage et l'ajout future de fonctionnalités au système de règles, il est intéressant de faire apparaître les expressions règles dans l'arbre d'expression.
+Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, `tRule`, le type référence vers une règle n'est pas nécessaire. En effet, on aurait pu directement remplacer la référence par la valeur de la règle et ainsi accélérer la validation des données. Cependant, afin de faciliter le débuggage et l'ajout future de fonctionnalités au système de règles, il est intéressant de faire apparaître les expressions-règles dans l'arbre d'expression.
 
 ## Analyse et validation du schéma
 
 Valider un schéma Lidy comporte plusieurs aspects.
 
-- Détéction du type de chaque expression: Si c'est une règle cela corresponds à une chaine de caractère Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
+- Détéction du type de chaque expression: Si c'est une règle cela corresponds à une chaîne de caractère Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
 - Vérification des expressions Lidy: Vérifier que chaque spécifieur comporte les mot-clés nécessaires, et uniquement des mot-clés connus de Lidy, autorisés pour ce spécifieur.
 - Vérification de l'existence d'une déclaration de règle pour chaque référence à une règle.
 - Analyse des déclarations de règle pour savoir si elles sont exportées, et si oui, sous quel nom. Vérifier que les règles pour lesquelles on trouve des builders sont toutes connues et exportées. Ce comportement dépends des options données par l'utilisateur.
@@ -516,20 +515,24 @@ Certaines vérifications posent des difficultés spécifiques, lié au fait que 
 
 Problème A, références directes et des cycles:
 
-`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clé permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même noeud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont ouvertes au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle même dans un \_merge, dans un \_oneOf ou dans une référence pour que ceci crée une boucle infinie qu moment de la vérification de la règle. Cependant, les cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
+`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clé permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont ouvertes au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle même dans un \_merge, dans un \_oneOf ou dans une référence pour que ceci crée une boucle infinie qu moment de la vérification de la règle. Cependant, les cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
 
 Problème B, ordre de parcours des règles:
 
 Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peux être utilisé que sur des règles mergeable. Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quel règles \_merge est utilisé. Il semble donc y avoir un problème sur l'ordre dans lequel les analyses sont effectuées.
 
-Le problème (A) est un problème de detection de cycles au sein d'un graph orienté. Ce problème se résouds en applicant un algorithme de parcours de graphe en profondeur avec trois marquages possible pour chaque noeuds au lieu de seulement deux. Les noeuds passent du marquage 0 au marquage 1 lorsqu'il sont exploré à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descends vers un noeuds marqué 1, noeud que nous appellerons noeuds d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle en listant l'ensemble des descendant du noeuds d'alerte. L'exploration peut alors continuer en excluant le lien problèmatique.
+Le problème (A) est un problème de detection de cycles au sein d'un graph orienté. Ce problème se résous en applicant un algorithme de parcours de graphe en profondeur avec trois marquages possible pour chaque nœuds au lieu de seulement deux. Les nœuds passent du marquage 0 au marquage 1 lorsqu'il sont exploré à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descends vers un nœuds marqué 1, nœud que nous appellerons nœuds d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle en listant l'ensemble des descendant du nœuds d'alerte. L'exploration peut alors continuer en excluant le lien problématique.
 
-Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par le graphe est inévitable. Ceci est génant car on souhaite rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent à que l'ensemble des erreurs soient rapportées au cours d'une unique passe, réalisée dans l'ordre du document. Il doit donc y avoir une passe dédiée à la détéction des cycles. Comme cette passe est nécéssaire à la détection de certaines erreur, elle doit absolument être effectuée avant la passe de signalement des erreurs. Ceci nous place donc dans un mode de fonctionnement en quatre passes:
+Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par le graphe est inévitable. Ceci est gênant car on souhaite rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent à que l'ensemble des erreurs soient rapportées au cours d'une unique passe, réalisée dans l'ordre du document. Il doit donc y avoir une passe dédiée à la détéction des cycles. Comme cette passe est nécessaire à la détection de certaines erreur, elle doit absolument être effectuée avant la passe de signalement des erreurs. Ceci nous place donc dans un mode de fonctionnement en quatre passes:
 
 1. Analyse des en-têtes de règle (nom, export et présence de builders)
-2. Analyse des cycles
+2. Recherche de cycles de dépendances directes
 3. Analyse des règles avec signalement des erreurs du développeur
 4. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
+
+La première passe ne concerne que les noms des règles et les builders. Elle est faite dans des positions des règles dans le document. La seconde passe, elle, examine le contenu des nœuds des manière récursive, mais ne s'intéresse. Elle établie les dépendances directes et suit ces dépendances, réalisant ainsi un parcours de graphe en profondeur. Elle vérifie qu'aucun
+(suivant l'ordre topologique des dépendances)
+(suivant l'ordre positionnel du document)
 
 ## Règles Lidy prédéfinies
 
@@ -543,7 +546,7 @@ Les 5 types ci-dessous sont natifs à Go et sont fourni à l'utilisateur sous le
 - `string`
 - `nullType` -- null
 
-Les 2 types ci-dessous sont moins communs. Ils sont validé par une expression régulière et fourni à l'utilisateur comme une chaine de caractères.
+Les 2 types ci-dessous sont moins communs. Ils sont validé par une expression régulière et fourni à l'utilisateur comme une chaîne de caractères.
 
 - `timestamp` -- ISO 8601 datetime
 - `binary` -- a base64 encoded binary blob, with space characters allowed
@@ -552,7 +555,7 @@ Enfin, le type `any` accèpte toute les donnée YAML.
 
 - `any`
 
-Une particularité intéressante du type `any` est que l'utilisateur pourrait le construire lui-même si Lidy ne le fournissait pas. La rêgle suivante est une définition équivalente de la règle prédéfinie `any`:
+Une particularité intéressante du type `any` est que l'utilisateur pourrait le construire lui-même si Lidy ne le fournissait pas. La règle suivante est une définition équivalente de la règle prédéfinie `any`:
 
 ```yaml
 any:
