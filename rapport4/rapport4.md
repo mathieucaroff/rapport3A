@@ -84,6 +84,8 @@ include-before: |
   - [Conception interne de Lidy](#conception-interne-de-lidy)
         - [lidy-newparser-parse](#lidy-newparser-parse)
   - [Analyse et validation du schéma](#analyse-et-validation-du-schéma)
+    - [Deux problèmes de graphe](#deux-problèmes-de-graphe)
+    - [Algorithme de parcours de graphe](#algorithme-de-parcours-de-graphe)
   - [Règles Lidy prédéfinies](#règles-lidy-prédéfinies)
   - [Rapporter les erreurs](#rapporter-les-erreurs)
     - [Enjeu d'exhaustivité du rapport](#enjeu-dexhaustivité-du-rapport)
@@ -371,7 +373,7 @@ J'ai donc pris les décisions suivantes :
 
 ### Détails sur la spécification du mot-clé `_mergeable`
 
-Il a été déterminé que l'utilisation et le comportement du mot-clé `_merge` devait respecter certaines caractéristiques. Ainsi, durant la première lecture du schéma, Lidy doit vérifier que le mot-clé n'est utilisé qu'avec des expressions Lidy qui soient fusionnables ("mergeable"). Les expressions Lidy fusionnables sont précisément :
+Il a été déterminé que l'utilisation et le comportement du mot-clé `_merge` devait respecter certaines caractéristiques. Ainsi, durant la première lecture du schéma, Lidy doit vérifier que le mot-clé n'est utilisé qu'avec des expressions Lidy qui soient "fusionnables" ou "mergeable" dans la terminologie Lidy. Les expressions Lidy fusionnables sont précisément :
 
 - les règles correspondant à une expression mergeable
 - les spécifieurs \_oneOf ne contenant que des expressions mergeables
@@ -509,28 +511,34 @@ Valider un schéma Lidy comporte plusieurs aspects.
 - Vérification de l'existence d'une déclaration de règle pour chaque référence à une règle.
 - Analyse des déclarations de règle pour savoir si elles sont exportées, et si oui, sous quel nom. Vérifier que les règles pour lesquelles on trouve des builders sont toutes connues et exportées. Ce comportement dépend des options données par l'utilisateur.
 
-Certaines vérifications posent des difficultés spécifiques, liées au fait que ces vérifications ne peuvent pas être réalisées sur la base des données locales seules, mais requièrent des données pouvant venir d'un autre point du document.
+Certaines vérifications posent des difficultés spécifiques, liées au fait que ces vérifications ne peuvent pas être réalisées sur la base des données locales seules, mais requièrent des données pouvant provenir d'autres positions du document.
 
-Problème A, références directes et des cycles:
+### Deux problèmes de graphe
 
-`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clés permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont ouvertes au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle même dans un \_merge, dans un \_oneOf ou dans une référence pour que ceci crée une boucle infinie au moment de la vérification de la règle. Cependant, les cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
+Problème A, références directes et cycles:
+
+`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clés permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont exposées au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle-même dans un \_merge ou dans un \_oneOf ou encore dans une référence de règle pour que cette situation crée une boucle infinie au moment de l'application de la règle. Cependant, il existe des cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
 
 Problème B, ordre de parcours des règles:
 
-Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles mergeables. Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle \_merge est utilisé. Il semble donc y avoir un problème sur l'ordre dans lequel les analyses sont effectuées.
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé \_merge est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
 
-Le problème (A) est un problème de détection de cycles au sein d'un graphe orienté. Ce problème se résout en appliquant un algorithme de parcours de graphe en profondeur avec trois marquages possibles pour chaque nœud au lieu de seulement deux. Les nœuds passent du marquage 0 au marquage 1 lorsqu'ils sont explorés à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descend vers un nœud marqué 1, nœud que nous appellerons nœud d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle en listant l'ensemble des descendant du nœud d'alerte. L'exploration peut alors continuer en excluant le lien problématique.
+### Algorithme de parcours de graphe
 
-Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par le graphe est inévitable. Ceci est gênant car on souhaite rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent à ce que l'ensemble des erreurs soient rapportées au cours d'une unique passe, réalisée dans l'ordre du document. Il doit donc y avoir une passe dédiée à la détection des cycles. Comme cette passe est nécessaire à la détection de certaines erreur, elle doit absolument être effectuée avant la passe de signalement des erreurs. Ceci nous place donc dans un mode de fonctionnement en quatre passes:
+_Solutions aux problèmes (A) et (B)._
 
-1. Analyse des en-têtes de règle (nom, export et présence de builders)
-2. Recherche de cycles de dépendances directes
-3. Analyse des règles avec signalement des erreurs du développeur
-4. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
+Le problème (A) est un problème de détection de cycles au sein d'un graphe orienté. Ce problème se résout en appliquant un algorithme de parcours de graphe en profondeur avec trois marquages possibles pour chaque nœud, au lieu de deux, dans un parcours en profondeur classique. Les nœuds passent du marquage 0 au marquage 1 lorsqu'ils sont explorés à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descend vers un nœud marqué 1, nœud que nous appellerons nœud d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle et l'exploration peut continuer en excluant le lien problématique.
 
-La première passe ne concerne que les noms des règles et les builders. Elle est faite dans des positions des règles dans le document. La seconde passe, elle, examine le contenu des nœuds de manière récursive, mais ne s'intéresse ???. Elle établie les dépendances directes et suit ces dépendances, réalisant ainsi un parcours de graphe en profondeur. Elle vérifie qu'aucun ???
-(suivant l'ordre topologique des dépendances)
-(suivant l'ordre positionnel du document)
+Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par la topologie du graphe est inévitable. Cette contrainte est gênante car le projet lidy a besoin de rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée, rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent de rapporter l'ensemble des erreurs au cours d'une unique passe réalisée dans l'ordre du document. Puisque ces deux ordres sont incompatibles, une seconde passe doit être ajoutée et affectée à la détection des cycles. Comme cette passe est nécessaire à la détection de certaines erreurs, celle-ci doit être effectuée avant la passe de signalement des erreurs. Ainsi, le projet adopte un mode de fonctionnement en quatre étapes:
+
+A. Analyse des en-têtes de règle (nom, export et présence de builders)
+B. (Passe 1, ordre topologique) Recherche de cycles de dépendances directes
+C. (Passe 2, ordre du document) Analyse des règles avec signalement des erreurs du développeur
+D. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
+
+Ce mode de fonctionnement vient à bout du problème (A).
+
+Un examen du problème (B) montre que la contrainte d'ordre qui avait émergée est satisfaite par l'ordre topologique. L'ajout de la passe 1 nécessaire au problème (A) permet également de résoudre le problème (B).
 
 ## Règles Lidy prédéfinies
 
