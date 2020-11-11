@@ -66,6 +66,7 @@ include-before: |
       - [ANTLR](#antlr)
       - [Json Schema](#json-schema)
     - [Lidy](#lidy)
+    - [Terminlogie de Lidy](#terminlogie-de-lidy)
     - [Développement initial de Lidy](#développement-initial-de-lidy)
     - [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy)
     - [YAML](#yaml)
@@ -99,6 +100,7 @@ include-before: |
         - [go-yaml](#go-yaml)
         - [go-yaml-issue-108](#go-yaml-issue-108)
         - [go-yaml-issue-108-mc](#go-yaml-issue-108-mc)
+        - [learn-yaml-inyminutes](#learn-yaml-inyminutes)
         - [lib-yaml](#lib-yaml)
         - [lidy-predefined-rules](#lidy-predefined-rules)
         - [lidy-short-reference](#lidy-short-reference)
@@ -168,15 +170,15 @@ _Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu d
 
 ## Orness
 
-Orness est une entreprise de services du numérique (ESN), opérant à Paris, avec ses bureaux dans le 9ème arrondissement. Elle a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui co-président l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux-aussi membres fondateurs et co-directeurs techniques. [(orness-histoire)](#orness-histoire)
+Orness est une entreprise de services du numérique (ESN), situé à Paris, avec ses bureaux dans le 9ème arrondissement. Cette SARL a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui coprésident l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux aussi membres fondateurs et codirecteurs techniques. [(orness-histoire)](#orness-histoire)
 
-Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaire de 12 millions d'euros, elle affiche le modeste résultat de 650 mille euros. [(orness-societe)](#orness-societe)
+Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaires de 12 millions d'euros, elle affiche un résultat de 650 mille euros. [(orness-societe)](#orness-societe)
 
 <!-- ## Culture d'entreprise -->
 
-Orness accorde une grande importance à l'humain. La qualité de la vie des employés au travail, l'entente et le sentiment de sécurité morale ont une grande importance chez les dirigeants de Orness. Leur maniement de ces valeurs, dans une entreprise à taille humaine, permet de créer une atmosphère relaxante chez Orness. Ainsi, les valeurs de transparence, d'audace et de partage se ressentent bien, tant chez les dirigeants que au sein des employés. [(orness-valeurs)](#orness-valeurs)
+Orness accorde une grande importance à l'humain. La qualité de la vie des employés au travail, l'entente et le sentiment de sécurité morale ont une grande importance chez les dirigeants de Orness. Leur maniement de ces valeurs, dans une entreprise à taille humaine, permet de créer une atmosphère relaxante chez Orness. Ainsi, les valeurs de transparence, d'audace et de partage se ressentent bien, tant chez les dirigeants qu'au sein des employés. [(orness-valeurs)](#orness-valeurs)
 
-Outre l'importance accordée au bien-être au travail, Orness s'engage sur les sujets de l'Open Source, de la souveraineté numérique et de l'inclusion des femmes au travail. [(orness-engagements)](#orness-engagements)
+Outre l'importance accordée au bien-être au travail, Orness s'engage sur les sujets de l'Open Source, de la souveraineté numérique et de l'inclusion des femmes dans le milieu professionel, notamment au travers de partenariats. [(orness-engagements)](#orness-engagements)
 
 <!-- ## Activité -->
 
@@ -229,13 +231,17 @@ En l'absence d' similaire aux JSON Schema pour répondre à ces deux besoins, l'
 
 Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique : il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles : il s'agit de la syntax YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy)
 
+### Terminlogie de Lidy
+
+On désignera par _développeur_, la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF, et les individus qui seront amenés à travailler sur Lidy dans le futur.
+
 ### Développement initial de Lidy
 
 Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript). Il réutilise la dépendance js-yaml de ce dernier. La définition de l'ensemble des règles de validation, précédemment spécifique à ToP, devient une responsabilité du projet parent : Leto. Cette première version de Lidy a été pensée comme un remplacement des JSON Schema, mais avec les fonctionnalités nécessaires pour pouvoir spécifier une grammaire TOSCA, ainsi que l'indication des numéros de lignes. La contrainte à laquelle devait répondre Lidy était de répondre à tous les besoins de Leto pour l'analyse des fichiers. Comme nous allons le voir dans la section suivante, cette approche économe à des limites.
 
 ### Reprise du travail sur Lidy
 
-Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrêté, les discussions et retours que reçoivent les membres de l'association Ditrit au sujet des besoins des entreprises indiquent un besoin pour un orchestrateur de déploiement de systèmes cloud et multi-machines. En d'autres termes, il apparaît que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association Ditrit, Xavier Talon me propose de ré-ouvrir le travail sur le sujet Leto, en **entamant la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association Ditrit réalise la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permettrait d'apporter une forme d'uniformité dans les projets Ditrit, facilitant aussi la réutilisation de code au sein de l'association.
+Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrêté, les discussions et retours que reçoivent les membres de l'association Ditrit au sujet des besoins des entreprises indiquent un besoin pour un orchestrateur de déploiement de systèmes cloud et multimachines. En d'autres termes, il apparaît que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association Ditrit, Xavier Talon me propose de rouvrir le travail sur le sujet Leto, en **entamant la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association Ditrit réalise la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permettrait d'apporter une forme d'uniformité dans les projets Ditrit, facilitant aussi la réutilisation de code au sein de l'association.
 
 La proposition de travailler sur Lidy a provoqué chez moi des opinions contrastées :
 
@@ -252,20 +258,22 @@ La nature purement programmation du problème ainsi que l'autonomie dont je disp
 
 ### YAML
 
-Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les développeurs, humains, par opposition aux machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux formats de données composites et d'un format de données scalaires (élémentaire, atomique), voir [Failsafe Schema](#yaml-recommended-schema) dans la spécification. Il s'agit des formats suivants :
+Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les développeurs, humains, par opposition aux machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. Le lecteur est chaudement invité à découvrir la syntaxe YAML à travers des ressources d'apprentissage en ligne telles que [learnxinyminutes](#learn-yaml-inyminutes).
+
+La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux formats de données composites et d'un format de données scalaires (élémentaire, atomique), voir [Failsafe Schema](#yaml-recommended-schema) dans la spécification. Il s'agit des formats suivants :
 
 - "Generic Mapping" (map): Un format générique pour les associations nom-valeur. Ce format est caractérisé par l'utilisation du caractère deux-points ":", entre le nom et la valeur.
-- "Generic Sequence" (seq): Un format générique pour les listes de valeurs. Ce format est caractérisé par l'utilisation de tiret en début de ligne, pour chaque valeur ou bien caractérisés par des crochets autour d'une liste de valeurs séparées par des virgules.
+- "Generic Sequence" (seq): Un format générique pour les listes de valeurs. Ce format est caractérisé par l'utilisation de tiret en début de ligne, pour chaque valeur ou bien caractérisé par des crochets autour d'une liste de valeurs séparées par des virgules.
 - "Generic String" (str): Un format pour toutes les valeurs scalaires.
 
-Cependant, la plupart des implémentations de YAML supporte aussi les quatre autres formats de données scalaires du JSON. Ces formats sont spécifiés dans le [chapitre 10.2 de la spécification YAML](#yaml-json-schema). Il s'agit des types de données suivants :
+Cependant, la plupart des implémentations de YAML supportent aussi les quatre autres formats de données scalaires du JSON. Ces formats sont spécifiés dans le [chapitre 10.2 de la spécification YAML](#yaml-json-schema). Il s'agit des types de données suivants :
 
-- Null : Ce type n'a qu'une valeur possible : "null"
+- Null : ce type n'a qu'une valeur possible : "null"
 - Boolean : "true" ou "false"
 - Integer : un entier positive ou négatif
 - Floating Point : un nombre à virgule
 
-Par ailleurs, une bonne partie des implémentations de YAML supporte aussi le type [Timestamp](#yaml-timestamp), spécifié dans la version 1.1 de YAML. Ce type de données sert à spécifier des dates et n'a pas de limite de précision temporelle.
+Par ailleurs, une bonne partie des implémentations de YAML supporte aussi le type [Timestamp](#yaml-timestamp), spécifié dans la version 1.1 de YAML. Ce type de donnée sert à spécifier des dates et n'a pas de limite de précision temporelle.
 
 ### Aperçu de l'utilisation de Lidy
 
@@ -290,7 +298,7 @@ animalFamily:
   _in: [bird, canine, feline, leonine, prey]
 ```
 
-La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle prédéfinie de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les nom-valeurs sont spécifiés par une paire liant un nom verbatim, à une expression Lidy.
+La règle `main` sert à indiquer la règle principale du document. La règle `animalFamily` utilise le spécificateur `_in` qui exige que la valeur fournie soit parmi les valeurs listées. La règle `int` est une règle prédéfinie de Lidy qui n'accepte que des entiers. Enfin, la règle chimera utilise le spécificateur de Mapping, avec le mot-clé `_map`, qui n'accepte que les Mappings YAML dont les noms-valeurs sont spécifiés par une paire liant un nom verbatim, à une expression Lidy.
 
 Lidy supporte aussi des types définis de manière récursive. Voici par exemple un schéma Lidy spécifiant un arbre avec des chaînes de caractères aux feuilles :
 
@@ -308,7 +316,7 @@ node:
 leaf: string
 ```
 
-Le spécifieur `_oneOf` reçoit une liste d'expression Lidy et n'accepte que les valeurs YAML qui valident au moins une de ces expressions. Le mot-clé `_listOf` reçoit une expression Lidy et constitue un spécifieur de qui accepte les séquences YAML dont chaque élément valide l'expression Lidy reçue. Ainsi, le document YAML suivant est un arbre valide :
+Le spécifieur `_oneOf` reçoit une liste d'expression Lidy et n'accepte que les valeurs YAML qui valident au moins une de ces expressions. Le mot-clé `_listOf` correspond à un spécifieur de liste. Il reçoit en paramètre une unique expression Lidy (E) et accepte les séquences YAML dont tous les éléments valident l'expression (E). Ainsi, le document YAML suivant est un arbre valide :
 
 ```yaml
 - - - a
@@ -333,30 +341,30 @@ Tandis que le document YAML suivant n'est pas un arbre valide :
 
 Il n'est pas valide car il contient des données qui ne sont pas explicitement autorisées par le schéma Lidy (mapping, entier, valeur null).
 
-Les fonctionnalités de Lidy sont présentées de manière plus exhaustives dans [la section short reference du README de Lidy](#lidy-short-reference).
+Les fonctionnalités de Lidy sont présentées de manière plus exhaustives dans [la section short-reference du README de Lidy](#lidy-short-reference).
 
 ### Aperçu du fonctionnement de Lidy-JS
 
 Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAML pour convertir le schéma Lidy, ainsi que le document à valider, d'une chaîne de caractères YAML en une structure de données JS. Le document à valider est parcouru concurremment aux expressions du schéma Lidy, avec des appels récursifs de fonction.
 
 - Lorsqu'un validateur produit une erreur, la validation est interrompue et l'erreur est rapportée à l'utilisateur, avec une description de l'erreur et le numéro de ligne du document à valider. Cette gestion d'erreur est basée sur le système de levée et attrapage d'exception de JS, aussi le code ne peut rapporter qu'une seule erreur de validation à l'utilisateur.
-- La résolution des noms de règle est possible à tout moment car le schéma Lidy est passé en paramètre de toutes les fonctions récursives, dans une valeur de contexte global.
+- La résolution des noms de règles est possible à tout moment car le schéma Lidy est passé en paramètre de toutes les fonctions récursives, dans une valeur de contexte global.
 - À chaque fois qu'une règle est validée, Lidy cherche à exécuter du code JS fourni par le développeur, afin de construire une instance JS correspondant à la section du document qui vient d'être validée. Ceci permet d'effectuer des vérifications supplémentaires, ainsi que des transformations sur les données de l'utilisateur ; par exemple, la normalisation de ces données.
 - Enfin, si la validation termine sans erreur, Lidy produit l'instance de la règle principale (main) et la renvoie au développeur.
 
 ## Recherche, travail et impression sur Golang
 
-L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntax de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de contrôle (if/while/for) ; de même Go autorise certaines instructions goto, support l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) de ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
+L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de contrôle (if/while/for) ; de même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmis ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
 
-En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a aussi que deux structures de donnée : le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation. Ceci détonne avec les langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
+En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a que deux structures de donnée : le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation spécifique. Ceci dénote des langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
 
-Ainsi, le minimalisme pragmatique de Golang force les développeurs à décrire de manière plus explicite et plus impérative certaines opérations standards de programmation. Golang les contraint aussi à trouver de nouvelles manières d'exprimer leur intention de programmation. Cette tâche est difficile et peut donner l'impression de devoir tout ré-apprendre. Voila pourquoi selon moi Golang produit l'impression d'être un langage étrange.
+Ainsi, le minimalisme pragmatique de Golang force les développeurs à décrire de manière plus explicite et plus impérative certaines opérations standards de programmation. Golang les contraint aussi à trouver de nouvelles manières d'exprimer leur intention de programmation. Cette tâche est difficile et peut donner l'impression de devoir tout réapprendre. Voila pourquoi selon moi Golang produit l'impression d'être un langage étrange.
 
 Au fur et à mesure de mon utilisation de Go et de mes lectures à son sujet, j'ai appris que Go avait été pensé par les ingénieurs de Google pour ressembler au langage C ; une ressemblance qui est en effet fort perceptible. Après plusieurs semaines d'utilisation de Go, je trouve aussi à Go des ressemblances avec Python, un autre langage apprécié chez Google. Go, en tant que langage avec un fort engagement pour la programmation impérative et le minimalisme des fonctionnalités est un bon langage pour découvrir et apprendre la programmation.
 
 ## Approches initiales, difficultés et exploration des stratégies
 
-L'idée initiale pour réaliser la ré-écriture de Lidy en Golang a été la traduction du code JS de Lidy en code Golang. Immédiatement, des difficultés se posent :
+L'idée initiale pour réaliser la réécriture de Lidy en Golang a été la traduction du code JS de Lidy en code Golang. Immédiatement, des difficultés se posent :
 
 - JS est un langage permissif, dynamiquement typé, tandis que Golang est strict et statiquement typé.
 - Mes connaissances en Golang sont très limitées, je n'ai jamais créé de projet en Golang.
@@ -455,11 +463,11 @@ Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Gola
 
 ### Retour sur les tests
 
-Un autre point qui pourrait être améliorer est le chargement et l'exécution des tests. Lidy est un outil qui se prête bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eu l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situations : il s'agit de **tests orientés données**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existe des librairies de tests spécialisées sur ce type de tests. Lidy bénéficierait d'utiliser une telle librairie. Il est à noter cependant, que les tests de Lidy ont des besoins forts sur les fonctionnalités de la paramétrisation. Il n'est pas garanti qu'une librairie suffisamment avancée existe déjà.
+Un autre point qui pourrait être améliorer est le chargement et l'exécution des tests. Lidy est un outil qui se prête bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eues l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situations : il s'agit de **tests orientés données**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existe des librairies de tests spécialisées sur ce type de tests. Lidy bénéficierait d'utiliser une telle librairie. Il est à noter cependant, que les tests de Lidy ont des besoins forts sur les fonctionnalités de la paramétrisation. Il n'est pas garanti qu'une librairie suffisamment avancée existe déjà.
 
 ## Support des numéros de ligne lors de la conversion du YAML en Go
 
-Une des contraintes auxquelles Lidy doit répondre est la conservation des numéros de ligne lors de la conversion du YAML en Go. En Golang, il existe une seul librairie pour faire la sérialisation/désérialisation YAML. Il s'agit de [Go-YAML](#go-yaml). Cette librairie est maintenu par les développeurs de Canonical, l'entreprise qui produit et maintient la distribution Linux Ubuntu. Cette librairie se contente en fait de faire appel à [libyaml](#libyaml), l'implémentation officielle de YAML en langage C. Dans la version 2 de Go-YAML, il n'est pas possible d'obtenir les numéros de ligne correspondant aux valeurs extraites du document. Cependant, le support des numéros de lignes [est une issue dans le bug tracker](#go-yaml-issue-108): des contributeurs de la librairie ont indiqué que la conservation des numéros de ligne était supportée dans la version 3 de la librairie. Ils n'ont néanmoins pas donné d'exemples. Par ailleurs, la documentation est extrêmement limitée sur le sujet et ne fournit pas non-plus d'exemple. C'est en lisant le code de la librairie que j'ai pu comprendre comment utiliser la version 3 de Go-YAML pour obtenir les numéros de ligne. J'ai [publié l'information dans l'issue concernée](#go-yaml-issue-108-mc) afin d'éviter aux autres développeurs ayant ce problème d'avoir à chercher comme moi.
+Une des contraintes auxquelles Lidy doit répondre est la conservation des numéros de ligne lors de la conversion du YAML en Go. En Golang, il existe une seul librairie pour faire la sérialisation/désérialisation YAML. Il s'agit de [Go-YAML](#go-yaml). Cette librairie est maintenue par les développeurs de Canonical, l'entreprise qui produit et maintient la distribution Linux Ubuntu. Cette librairie se contente en fait de faire appel à [libyaml](#libyaml), l'implémentation officielle de YAML en langage C. Dans la version 2 de Go-YAML, il n'est pas possible d'obtenir les numéros de ligne correspondant aux valeurs extraites du document. Cependant, le support des numéros de lignes [est une issue dans le bug tracker](#go-yaml-issue-108): des contributeurs de la librairie ont indiqué que la conservation des numéros de ligne était supportée dans la version 3 de la librairie. Ils n'ont néanmoins pas donné d'exemples. Par ailleurs, la documentation est extrêmement limitée sur le sujet et ne fournit pas non-plus d'exemple. C'est en lisant le code de la librairie que j'ai pu comprendre comment utiliser la version 3 de Go-YAML pour obtenir les numéros de ligne. J'ai [publié l'information dans l'issue concernée](#go-yaml-issue-108-mc) afin d'éviter aux autres développeurs cette recherche laborieuse que j'ai menée.
 
 ## Conception de l'API de la librairie Lidy
 
@@ -471,13 +479,13 @@ J'étais en particulier gêné par mes habitudes de bonnes pratiques dans les au
 
 ### Fichiers dans Lidy
 
-Une autres question importante à laquelle il a fallut répondre est celle du chargement des fichiers dans Lidy. En effet, Lidy est une librairie qui se veut portable. Il est possible de compiler le code Golang en WASM et de l'utiliser depuis d'autres langages. Cependant, lorsqu'on utilise cette approche, il n'est pas possible d'utiliser les fonctions de l'OS, tel que l'ouverture de fichiers. Ceci se comprend bien dans la mesure ou l'on peut être amené à exécuter du code WASM dans le navigateur, plateforme ne disposant pas de système de fichiers.
+Une autres question importante à laquelle il a fallu répondre est celle du chargement des fichiers dans Lidy. En effet, Lidy est une librairie qui se veut portable. Il est possible de compiler le code Golang en WASM et de l'utiliser depuis d'autres langages. Cependant, lorsqu'on utilise cette approche, il n'est pas possible d'utiliser les fonctions de l'OS, telles que l'ouverture de fichiers. Ceci se comprend bien dans la mesure ou l'on peut être amené à exécuter du code WASM dans le navigateur, plateforme ne disposant pas de système de fichiers.
 
-Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des erreurs à l'utilisateur. La solution à ce problème est d'accepter de la part de l'utilisateur le nom du fichier en plus de son contenu. Pour rendre une telle interface plus agréable pour le développeur, Lidy [dispose d'un concept de fichier](https://github.com/ditrit/lidy/blob/go-2020-10/lidy.go#L134-L141), faisant abstraction de l'OS. Ceci permet de couvrir l'ensemble des cas d'utilisation de Lidy, tant sur les plateformes sans OS que avec OS.
+Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des erreurs à l'utilisateur. La solution à ce problème est d'accepter de la part de l'utilisateur le nom du fichier en plus de son contenu. Pour rendre une telle interface plus agréable pour le développeur, Lidy [dispose d'un concept de fichier](https://github.com/ditrit/lidy/blob/go-2020-10/lidy.go#L134-L141), faisant abstraction de l'OS. Ceci permet de couvrir l'ensemble des cas d'utilisation de Lidy, tant sur les plateformes sans OS, que avec OS.
 
 ### Résultats de Lidy
 
-La question de la forme des résultats produits par Lidy a aussi posé quelques problèmes.
+La question de la forme des résultats produits par Lidy a aussi posé des difficultés.
 
 Le premier problème que j'ai rencontré est que le système de type Go pose des limites et requière d'utiliser `interface{}` lorsqu'on veut faire cohabiter des types divers. `interface{}` est l'équivalent du type `Object` dans les langages orientés objet ; ceci illustre une fois de plus la défiance de Golang pour la programmation intentionnelle. Lorsque l'on connaît tous les types auxquels on peut avoir à faire, si l'on souhaite éviter l'utilisation de `interface{}`, on peut utiliser une astuce faisant appel à une structure, mais ceci n'est pas nécessairement utile. Le confort apporté par cette astuce est celui d'éviter les "cast de types" (conversion de type statique) de Golang. En effet, les types Golang ne disposent d'aucun mécanisme pour garantir qu'il sera possible d'identifier le type réel de la donnée. Cependant, cette approche a tout autant de désavantages dans la mesure où elle permet l'expression de valeurs insensées. On pourrait être tenté de dire que le système de typage de Go est faible. Puisque Lidy peut être amené à manipuler des types de données créés par l'utilisateur, la seconde approche n'est pas envisageable, ou du moins elle n'apporte presque aucun bénéfice. J'ai donc opté pour la première approche.
 
@@ -485,7 +493,7 @@ Le second problème qui s'est posé était de faire figurer dans les résultats 
 
 ## Conception interne de Lidy
 
-Une fois l'API externe de Lidy décidée, les spécifications et tests écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure où les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les cause externes susceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
+Une fois l'API externe de Lidy décidée, les spécifications et tests écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure où les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les causes externes susceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
 
 J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le diagramme [Fonctionnement de NewParser().Parse()](#fonctionnement-de-newparserparse). Dans ce diagramme d'exécution, la méthode `.parseContent()` reçois quatre paramètres:
 
@@ -795,6 +803,10 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 ##### go-yaml-issue-108-mc
 
 [https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147](https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147)
+
+##### learn-yaml-inyminutes
+
+[https://learnxinyminutes.com/docs/yaml](https://learnxinyminutes.com/docs/yaml)
 
 ##### lib-yaml
 
