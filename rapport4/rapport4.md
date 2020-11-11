@@ -58,6 +58,9 @@ include-before: |
   - [Orness](#orness)
   - [Ditrit](#ditrit)
   - [Crédit Agricole](#crédit-agricole)
+    - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
+    - [Quelques chiffres](#quelques-chiffres)
+    - [Organisation CAGIP](#organisation-cagip)
 - [Projet Lidy](#projet-lidy)
   - [Contexte de Lidy](#contexte-de-lidy)
     - [Origine de Lidy : Leto](#origine-de-lidy--leto)
@@ -92,16 +95,20 @@ include-before: |
     - [Algorithme de parcours de graphe](#algorithme-de-parcours-de-graphe)
   - [Règles Lidy prédéfinies](#règles-lidy-prédéfinies)
   - [Rapporter les erreurs](#rapporter-les-erreurs)
-    - [Enjeu d'exhaustivité du rapport](#enjeu-dexhaustivité-du-rapport)
+    - [Enjeu d'exhaustivité du rapport des erreurs](#enjeu-dexhaustivité-du-rapport-des-erreurs)
     - [Enjeu d'informativité des erreurs](#enjeu-dinformativité-des-erreurs)
     - [Enjeu de légèreté de l'implémentation](#enjeu-de-légèreté-de-limplémentation)
 - [WebDBA](#webdba)
 - [Table des liens](#table-des-liens)
+        - [ca-histoire](#ca-histoire)
+        - [ca-key-figures](#ca-key-figures)
         - [go-yaml](#go-yaml)
         - [go-yaml-issue-108](#go-yaml-issue-108)
         - [go-yaml-issue-108-mc](#go-yaml-issue-108-mc)
+        - [investopedia-top-banks](#investopedia-top-banks)
         - [learn-yaml-inyminutes](#learn-yaml-inyminutes)
         - [lib-yaml](#lib-yaml)
+        - [lidy-documentation](#lidy-documentation)
         - [lidy-predefined-rules](#lidy-predefined-rules)
         - [lidy-short-reference](#lidy-short-reference)
         - [orness-valeurs](#orness-valeurs)
@@ -153,10 +160,10 @@ _Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu d
 <!--
 Compte tenu du contexte de la pandémie, les conditions initiales du stage ont évolué. Initialement programmé pour débuter le 2 avril, la date de début du stage s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
-  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.  
-  - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur. 
-   
-    
+  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
+  - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
+
+
 -->
 
 # Organisations
@@ -182,6 +189,57 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 ## Ditrit
 
 ## Crédit Agricole
+
+### Histoire du Crédit Agricole
+
+Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionnales en une seule entitée nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’Etat. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
+
+À partir de 1980, le Crédit Agricole commence à créer et racheter des filliales et des banques, avec par exemple, la création de l'assurance Predica en 1986, le rachat de LCL en 2002. Le Crédit Agricole développe aussi des activités bancaires dans les pays voisins de la France et à l'internationale. En 2004,
+le Crédit Agricole organise la fusion des filiales bancares LCL et Indosuez sous le nom de Calyon, qui en 2010 sera renommée CACIB (Crédit Agricole Corporate and Investment Bank).
+
+C'est en 2019 qu'est créé l'entité CAGIP (Crédit Agricole Group Infrastructure Platform), afin de permettre regroupemend des moyens informatiques du Crédit Agricole. Nous reviendrons sur les entités CACIB et CAGIP par la suite.
+
+[(ca-histoire)](#ca-histoire)
+
+### Quelques chiffres
+
+En 2019, le CA. est la 10ème banque mondiale par le total de bilan. Elle compte 139 000 collaborateurs à travers le monde (75% en France, 25% à l'international). CACIB constitue le premier marché de placement privé en Europe en 2016. CACIB est présente dans 36 pays et compte plus de 52 millions de clients.
+
+[(ca-key-figures)](#ca-key-figures), [investopedia-top-banks](#investopedia-banks)
+
+### Organisation CAGIP
+
+Depuis le 1er janvier 2019, CAGIP regroupe les collaborateurs, l'infrastructure et les activités informatiques des filliales suivantes:
+
+- Crédit Agricole Assurance
+- Crédit Agricole Corporate And Investment Bank (CACIB)
+- Crédit Agricole Technologies & Services
+- SILCA
+
+Ainsi, CAGIP représente plus de 80% de l'activité de production informatique du Groupe, avec près de 4000 collaborateurs réparties sur 17 sites en France.
+
+CAGIP est composé d'un grand nombre d'entités, catégorisées en trois groupes:
+les clusters métiers, au nombre de 7, les socles de services partagés, au nombre de 6 et enfin les stratégies innovation et solution (SIS).
+
+![Organigramme structure CAGIP](misc/CAGIP-map.png)
+
+L'entité au sein de laquelle je travaille est le Cluster Grande Clientelle. Ce cluster a pour charge de pourvoir l'infrastructure informatique et d'assurer le bon fonctionnement de celle-ci. Ceci implique d'assurer le monitoring de des informations relative au taux d'utilisation des ressources, de l'inventaire des ressources, de l'anticipation des besoins en ressources et de travailler à les résolutions des problèmes que peuvent signaler les utilisateurs de l'infrastructure.
+
+Ainsi, le cluster Grande Clientelle de CAGIP pourvoie l'infrastructure des plus grosses filiales du Crédit Agricole :
+
+- Crédit Agricole SA (CASA)
+- Crédit Agricole Corporate and Invetement Bank (CACIB)
+  - CACEIS
+  - Crédit Agricole Indosuez Wealth Management (CAIW)
+  - Crédit Agricole Indosuez Private Banking
+
+Le cluster Grande Clientelle travaille avec 12 datacenters. Il est composé de plus de 155 collaborateurs, travaillant sur les campus de SQY Park et de Montrouge-Evergreen, deux campus d'informatique en Ile de France.
+
+Le cluster Grande Clientelle est structuré en quatre pôles, eux-même composés de services:
+
+![Organigramme structure Cluster Grande Clientelle](misc/CAGIP-grande-clientelle.png)
+
+Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisement, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournis les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'execute, ansi que les logiciels de base de données. Au sein de ce service, je travail dans l'espace des DBAs (DataBase Administrators) ; espace managé par Olivier KANCEL. Les DBAs sont répartis en plusieurs équipe, chacune gérant des instances de bases de données d'une ou deux technologies. Je travail au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable d'un logiciel d'inventaire nécéssaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
 
 # Projet Lidy
 
@@ -334,7 +392,7 @@ Tandis que le document YAML suivant n'est pas un arbre valide :
 
 Il n'est pas valide car il contient des données qui ne sont pas explicitement autorisées par le schéma Lidy (mapping, entier, valeur null).
 
-Les fonctionnalités de Lidy sont présentées de manière plus exhaustives dans [la section short-reference du README de Lidy](#lidy-short-reference).
+Les fonctionnalités de Lidy sont présentées de manière plus exhaustives dans [la section short-reference du README de Lidy](#lidy-short-reference) et dans la [documentation](#lidy-documentation).
 
 ### Aperçu du fonctionnement de Lidy-JS
 
@@ -645,7 +703,7 @@ Il se trouve que l'exploration du contenu du nœud est en fait inévitable, puis
 
 Rapporter les erreurs découvertes lors de l'exploration récursive de données structurées est un problème qui apparaît à deux reprises dans Lidy. Une première fois pour le chargement du schéma Lidy et une deuxième fois pour la validation des données. Ce problème comporte plusieurs enjeux. Le premier est d'être capable rapporter l'intégralité des erreurs présentes dans le document, plutôt que une seule erreur. Le second enjeu est de produire des erreurs qui soient aussi utiles que possible au développeur ou utilisateur qui les reçevra. Enfin, le troisième enjeu est de produire une implémentation qui utilise peu de code lorsque c'est possible, afin de réduire le coût de maintenance de Lidy. Chacun de ces enjeux a été pris en compte dans mon implémentation de Lidy, quoique, les deux derniers n'aient pas pu être pleinement réalisés, comme nous allons le voir.
 
-### Enjeu d'exhaustivité du rapport
+### Enjeu d'exhaustivité du rapport des erreurs
 
 _Ne pas s'arrêter à la première erreur._
 
@@ -771,19 +829,29 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 - Sujet: Burst
   - Description du problème
     - Cluster VS ExaUnit
-    - Interface d'affichage
-  - Comment attendre que l'API reflète les chagements
-    - Comment tester que le programme à le bon comportement
+  - Comment attendre que l'API reflète les changements
+    - Comment tester que le programme a le bon comportement
   - Ne pas perdre le contacte avec l'utilisateur pendant le deburst
     - (Timeout à 5 minutes des proxys, etc)
     - Utiliser StreamingHttpResponse
     - Former un JSON valide _malgrès les possibiltés d'erreurs_
-  - Problème de l'attribution des CPUs entre ExaUnit (_impossibilité de savoir sur quel)
+  - Problème de l'attribution des CPUs entre ExaUnit (_impossibilité de savoir sur quel exaunit les CPUs dès que des CPUS sont affectés_)
+  - Logging
 - ~~Sujet: Gestion de tâches Celery/Airflow~~ en conclusion (si voulu)
 - ~~Sujet: Inventaire Oracle~~
 -->
 
 # Table des liens
+
+##### ca-histoire
+
+[https://www.credit-agricole.com/le-groupe/histoire-du-groupe-credit-agricole](https://www.credit-agricole.com/le-groupe/histoire-du-groupe-credit-agricole)
+
+##### ca-key-figures
+
+[https://www.credit-agricole.com/en/content/download/178601/4535452](https://www.credit-agricole.com/en/content/download/178601/4535452)
+
+[https://www.credit-agricole.com/en/finance/finance/key-figures-credit-agricole-s.a](https://www.credit-agricole.com/en/finance/finance/key-figures-credit-agricole-s.a)
 
 ##### go-yaml
 
@@ -797,6 +865,10 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 [https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147](https://github.com/go-yaml/yaml/issues/108#issuecomment-638412147)
 
+##### investopedia-top-banks
+
+[https://www.investopedia.com/articles/investing/122315/worlds-top-10-banks-jpm-wfc.asp](https://www.investopedia.com/articles/investing/122315/worlds-top-10-banks-jpm-wfc.asp)
+
 ##### learn-yaml-inyminutes
 
 [https://learnxinyminutes.com/docs/yaml](https://learnxinyminutes.com/docs/yaml)
@@ -804,6 +876,10 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 ##### lib-yaml
 
 [https://github.com/yaml/libyaml](https://github.com/yaml/libyaml)
+
+##### lidy-documentation
+
+[https://github.com/ditrit/lidy/blob/master/DOCUMENTATION.md](https://github.com/ditrit/lidy/blob/master/DOCUMENTATION.md)
 
 ##### lidy-predefined-rules
 
