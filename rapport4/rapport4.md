@@ -151,19 +151,12 @@ _Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu d
 # Contexte du stage
 
 <!--
-- Pandémie => Les conditions initiales du stage ont été modifiées
-- Début du stage prévu le 2 avril, embauche par l'entreprise Orness le 2 juin.
-- Début prévu au Crédit Agricole pour tout le stage
-- Début réalisé en deux temps:
-  - Première partie pour l'association DitRit
-    - une association sponsorisée par Orness
-    - uniquement à distance
-    - travail sur la librairie de validation de données Lidy
-    - la date de début au C.A. étant incertaine, incertitude durée de la première mission / "sur le budget temps"
-  - Seconde partie pour le Crédit Agricole
-    - travail sur site
-    - travail au sein d'une équipe
-    - travail sur l'outil d'inventaire WebDBA
+Compte tenu du contexte de la pandémie, les conditions initiales du stage ont évolué. Initialement programmé pour débuter le 2 avril, la date de début du stage s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
+Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
+  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.  
+  - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur. 
+   
+    
 -->
 
 # Organisations
