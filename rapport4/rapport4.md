@@ -53,10 +53,13 @@ include-before: |
 # Table des matières
 
 - [Table des matières](#table-des-matières)
-- [Orness](#orness)
-  - [Culture d'entreprise](#culture-dentreprise)
+- [Contexte du stage](#contexte-du-stage)
+- [Organisations](#organisations)
+  - [Orness](#orness)
+  - [Ditrit](#ditrit)
+  - [Crédit Agricole](#crédit-agricole)
 - [Projet Lidy](#projet-lidy)
-  - [Context de Lidy](#context-de-lidy)
+  - [Contexte de Lidy](#contexte-de-lidy)
     - [Origine de Lidy : Leto](#origine-de-lidy--leto)
     - [Analyser les fichiers OASIS TOSCA](#analyser-les-fichiers-oasis-tosca)
       - [ToP : TOSCA Parser](#top--tosca-parser)
@@ -143,15 +146,35 @@ _Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu d
 
 \clearpage
 
-# Orness
+# Contexte du stage
+
+<!--
+- Pandémie => Les conditions initiales du stage ont été modifiées
+- Début du stage prévu le 2 avril, embauche par l'entreprise Orness le 2 juin.
+- Début prévu au Crédit Agricole pour tout le stage
+- Début réalisé en deux temps:
+  - Première partie pour l'association DitRit
+    - une association sponsorisée par Orness
+    - uniquement à distance
+    - travail sur la librairie de validation de données Lidy
+    - la date de début au C.A. étant incertaine, incertitude durée de la première mission / "sur le budget temps"
+  - Seconde partie pour le Crédit Agricole
+    - travail sur site
+    - travail au sein d'une équipe
+    - travail sur l'outil d'inventaire WebDBA
+-->
+
+# Organisations
+
+## Orness
 
 Orness est une entreprise de services du numérique (ESN), opérant à Paris, avec ses bureaux dans le 9ème arrondissement. Elle a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui co-président l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux-aussi membres fondateurs et co-directeurs techniques. [(orness-histoire)](#orness-histoire)
 
-Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaire de 12 millions d'euro, elle affiche le modeste résultat de 650 mille euros. [(orness-societe)](#orness-societe)
+Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaire de 12 millions d'euros, elle affiche le modeste résultat de 650 mille euros. [(orness-societe)](#orness-societe)
 
-## Culture d'entreprise
+<!-- ## Culture d'entreprise -->
 
-Orness accorde une grande importance à l'humain. La qualité de la vie des employés au travail, l'entente et le sentiment de sécurité morale ont une grande importance chez les dirigeants de Orness, et leur maniement de ces valeurs, dans une entreprise à taille humaine, permet de créer une atmosphère relaxante chez Orness. Ainsi, les valeurs de transparence, d'audace et de partage se ressentent bien, tant chez les dirigeants que au sein des employés. [(orness-valeurs)](#orness-valeurs)
+Orness accorde une grande importance à l'humain. La qualité de la vie des employés au travail, l'entente et le sentiment de sécurité morale ont une grande importance chez les dirigeants de Orness. Leur maniement de ces valeurs, dans une entreprise à taille humaine, permet de créer une atmosphère relaxante chez Orness. Ainsi, les valeurs de transparence, d'audace et de partage se ressentent bien, tant chez les dirigeants que au sein des employés. [(orness-valeurs)](#orness-valeurs)
 
 Outre l'importance accordée au bien-être au travail, Orness s'engage sur les sujets de l'Open Source, de la souveraineté numérique et de l'inclusion des femmes au travail. [(orness-engagements)](#orness-engagements)
 
@@ -161,17 +184,21 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 <!-- ## Expertise -->
 
+## Ditrit
+
+## Crédit Agricole
+
 # Projet Lidy
 
 _Période juin-juillet : Projet Lidy_
 
-Lidy est une librairie qui permet à l'utilisateur de lire et d'analyser un fichier YAML, afin de valider qu'il correspond bien à un format complexe décrit par l'utilisateur.
+Lidy est une librairie qui permet à un développeur de lire et d'analyser un fichier YAML, afin de valider qu'il correspond bien à un format complexe décrit par le développeur.
 
-## Context de Lidy
+## Contexte de Lidy
 
 ### Origine de Lidy : Leto
 
-Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML, et de dire s'il s'agissait d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire, et à ultimement mené à la naissance du projet Lidy.
+Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML afin de déterminer s'il s'agis d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
 
 ### Analyser les fichiers OASIS TOSCA
 
@@ -183,13 +210,13 @@ Le [projet ToP](#top), produit par l'association Ditrit, vise à produire un par
 
 La première approche utilisée pour analyser les fichiers YAML TOSCA, a été l'utilisation d'un outil d'analyse générique Java : ANTLR. En effet, à l'époque, fin 2018 - début 2019, l'association Ditrit utilisait principalement le langage de programmation Java. ANTLR, "ANother Tool for Language Recognition" est un parseur pour les langages non-contextuels (_context-free_). C'est un parseur LL(\*), donc un parseur top-down, ce qui signifie qu'il cherche à attribuer une valeur unique à chaque mot qu'il lit, aussitôt que possible.
 
-Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à parser. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANTLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour parser les fichiers TOSCA 2.0+.
+Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à _parser_. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANTLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour parser les fichiers TOSCA 2.0+.
 
 #### Json Schema
 
-La seconde approche pour l'analyse syntaxique TOSCA 2.0+ a été l'utilisation d'un parseur générique de donné YAML, couplé à un système de vérification de données. Le système de vérification de données utilisé était AJV, un outil Javascript qui implémente la spécification JSON Schema.
+La seconde approche pour l'analyse syntaxique TOSCA 2.0+ a été l'utilisation d'un parseur générique de donné YAML, couplé à un système de vérification de données. Le système de vérification de données utilisé était AJV, un outil JS (JavaScript) qui implémente la spécification JSON Schema.
 
-AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensemble, ils constituent les deux implémentations JavaScript les plus rapides de la spécification JSON-Schema-draft-07, devant json-schema-validator-generator et jsen. Ces outils fonctionnent ainsi : un développeur souhaite valider les données qu'il reçoit d'un utilisateur. Il décrit le format de ces données dans un fichier JSON qui respecte la spécification JSON-Schema. Ensuite, il écrit du code qui charge le JSON-Schema dans AJV et en retire un "schéma compilé", qu'il peut alors utiliser pour valider des données structurées reçues de l'utilisateur. Lorsqu'une donnée de l'utilisateur ne respecte pas le schéma, l'ensemble des divergences entre la donnée fourni et le format de donnée attendu est rapporté. Le code du développeur peut ensuite décider que faire de cette liste d'erreurs; généralement signaler ces erreurs à l'utilisateur.
+AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensemble, ils constituent les deux implémentations JS les plus rapides de la spécification JSON-Schema-draft-07, devant json-schema-validator-generator et jsen. Ces outils fonctionnent ainsi : un développeur souhaite valider les données qu'il reçoit d'un utilisateur. Il décrit le format de ces données dans un fichier JSON qui respecte la spécification JSON-Schema. Ensuite, il écrit du code qui charge le JSON-Schema dans AJV et en retire un "schéma compilé", qu'il peut alors utiliser pour valider des données structurées reçues de l'utilisateur. Lorsqu'une donnée de l'utilisateur ne respecte pas le schéma, l'ensemble des divergences entre la donnée fourni et le format de donnée attendu est rapporté. Le code du développeur peut ensuite décider que faire de cette liste d'erreurs; généralement signaler ces erreurs à l'utilisateur.
 
 AJV et JSON Schema répondaient bien au besoin de ToP, cependant deux problèmes se dégageaient de leur utilisation :
 
@@ -217,11 +244,11 @@ La proposition de travailler sur Lidy a provoqué chez moi des opinions contrast
 
 Ces considérations prises en compte, je choisis d'affirmer mon intérêt pour le sujet Lidy. Je continue de creuser le sujet et j'identifie des faiblesses supplémentaires :
 
-- Le projet Lidy n'a que très peu de tests unitaires. La plupart des tests qui assurent le bon fonctionnement de Lidy sont en fait les tests unitaires du projet Leto. Dans une entreprise de traduction de Lidy, les tests de Leto ne seront pas disponibles.
+- Le projet Lidy n'a que très peu de tests unitaires. La plupart des tests qui assurent le bon fonctionnement de Lidy sont en fait les tests unitaires du projet Leto. Ces testes ne seront pas exploitables à la traduction de Lidy et tant que Leto n'aura pas aussi été traduit.
 - L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment où Lidy cherchera à utiliser le code de validation invalide.
 - L'implémentation ne spécifie par conséquent pas comment les erreurs faites par le développeur du schéma Lidy doivent être rapportées. L'implémentation présuppose simplement que ces erreurs ne peuvent pas exister.
 
-La nature purement programmation du problème, et l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
+La nature purement programmation du problème ainsi que l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
 
 ### YAML
 
@@ -521,7 +548,7 @@ Problème A, références directes et cycles:
 
 Problème B, ordre de parcours des règles:
 
-Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JavaScript, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé \_merge est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé \_merge est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
 
 ### Algorithme de parcours de graphe
 
@@ -727,7 +754,7 @@ func (sp tSchemaParser) schemaError(node yaml.Node, expected string) []error {
 }
 ```
 
-Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de context global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
+Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de contexte global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
 
 # WebDBA
 
