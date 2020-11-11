@@ -731,6 +731,30 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 # WebDBA
 
+<!--
+- Context
+  - Besoin d'inventaire des DBAs
+    - Nombre de databases (plusieurs centaines de milliers)
+  - Première solution frameworkless en PHP
+  - Nouvelle solution créée par Thomas en Python
+    - Django pour le système de communication avec la base de données et de création de template HTML (Jinja)
+    - Extension Django Rest Framework pour les API
+  - Problème commun: Int
+- Sujet: Burst
+  - Description du problème
+    - Cluster VS ExaUnit
+    - Interface d'affichage
+  - Comment attendre que l'API reflète les chagements
+    - Comment tester que le programme à le bon comportement
+  - Ne pas perdre le contacte avec l'utilisateur pendant le deburst
+    - (Timeout à 5 minutes des proxys, etc)
+    - Utiliser StreamingHttpResponse
+    - Former un JSON valide _malgrès les possibiltés d'erreurs_
+  - Problème de l'attribution des CPUs entre ExaUnit (_impossibilité de savoir sur quel)
+- ~~Sujet: Gestion de tâches Celery/Airflow~~ en conclusion (si voulu)
+- ~~Sujet: Inventaire Oracle~~
+-->
+
 # Table des liens
 
 ##### go-yaml
