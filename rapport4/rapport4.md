@@ -56,7 +56,7 @@ include-before: |
 - [Contexte du stage](#contexte-du-stage)
 - [Organisations](#organisations)
   - [Orness](#orness)
-  - [Ditrit](#ditrit)
+  - [DitRit](#ditrit)
   - [Crédit Agricole](#crédit-agricole)
     - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
     - [Quelques chiffres](#quelques-chiffres)
@@ -131,7 +131,7 @@ include-before: |
 <!-- ## Plan
 
 - Présentation de l'Entreprise Orness
-- Présentation de l'Association Ditrit
+- Présentation de l'Association DitRit
   - Aperçu
   - Raison d'être
   - Reflexions menées dans DitRit
@@ -190,7 +190,7 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 <!-- ## Expertise -->
 
-## Ditrit
+## DitRit
 
 ## Crédit Agricole
 
@@ -307,11 +307,11 @@ Le projet Lidy a émergé comme un outil nécessaire au développement d'un proj
 
 #### ToP : TOSCA Parser
 
-Le [projet ToP](#top), produit par l'association Ditrit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indenté de YAML, ce qui a mené à l'adoption d'un outil de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
+Le [projet ToP](#top), produit par l'association DitRit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indenté de YAML, ce qui a mené à l'adoption d'un outil de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
 
 #### ANTLR
 
-La première approche utilisée pour analyser les fichiers YAML TOSCA, a été l'utilisation d'un outil d'analyse générique Java : ANTLR. En effet, à l'époque, fin 2018 - début 2019, l'association Ditrit utilisait principalement le langage de programmation Java. ANTLR, "ANother Tool for Language Recognition" est un parseur pour les langages non-contextuels (_context-free_). C'est un parseur LL(\*), donc un parseur top-down, ce qui signifie qu'il cherche à attribuer une valeur unique à chaque mot qu'il lit, aussitôt que possible.
+La première approche utilisée pour analyser les fichiers YAML TOSCA, a été l'utilisation d'un outil d'analyse générique Java : ANTLR. En effet, à l'époque, fin 2018 - début 2019, l'association DitRit utilisait principalement le langage de programmation Java. ANTLR, "ANother Tool for Language Recognition" est un parseur pour les langages non-contextuels (_context-free_). C'est un parseur LL(\*), donc un parseur top-down, ce qui signifie qu'il cherche à attribuer une valeur unique à chaque mot qu'il lit, aussitôt que possible.
 
 Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à _parser_. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANTLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour parser les fichiers TOSCA 2.0+.
 
@@ -326,7 +326,7 @@ AJV et JSON Schema répondaient bien au besoin de ToP, cependant deux problèmes
 - AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peut **connaître les numéros de ligne** d'où proviennent les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
 - AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP, comme un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
 
-En l'absence d' similaire aux JSON Schema pour répondre à ces deux besoins, l'association Ditrit a décidé de créer son propre outil : Lidy.
+En l'absence d' similaire aux JSON Schema pour répondre à ces deux besoins, l'association DitRit a décidé de créer son propre outil : Lidy.
 
 ### Lidy
 
@@ -342,7 +342,7 @@ Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript).
 
 ### Reprise du travail sur Lidy
 
-Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrêté, les discussions et retours que reçoivent les membres de l'association Ditrit au sujet des besoins des entreprises indiquent un besoin pour un orchestrateur de déploiement de systèmes cloud et multimachines. En d'autres termes, il apparaît que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association Ditrit, Xavier Talon me propose de rouvrir le travail sur le sujet Leto, en **entamant la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association Ditrit réalise la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permettrait d'apporter une forme d'uniformité dans les projets Ditrit, facilitant aussi la réutilisation de code au sein de l'association.
+Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrêté, les discussions et retours que reçoivent les membres de l'association DitRit au sujet des besoins des entreprises indiquent un besoin pour un orchestrateur de déploiement de systèmes cloud et multimachines. En d'autres termes, il apparaît que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association DitRit, Xavier Talon me propose de rouvrir le travail sur le sujet Leto, en **entamant la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association DitRit réalise la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permettrait d'apporter une forme d'uniformité dans les projets DitRit, facilitant aussi la réutilisation de code au sein de l'association.
 
 La proposition de travailler sur Lidy a provoqué chez moi des opinions contrastées :
 
@@ -782,7 +782,7 @@ Le second enjeu est de produire une information d'erreur riche. Voici les inform
 
 Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée: si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
 
-Les raisons pour lesquelles j'avais choisi ce format simple était ma maîtrise limitée du système de type unique de Go, la nouveauté de leur approche de la gestion des erreurs, et surtout le haut degré d'incertitude qui règne dans la communauté Go sur la question des bonnes pratiques de gestion des erreurs. Après une discussion avec mon maître de stage Xavier TALON, ainsi qu'avec Josef PRIOU, un membre de l'association Ditrit, nous avons pu établir une manière de rapporter à l'utilisateur les informations A, B, C et D de manière utilisable par une machine. Cette réunion ayant eu lieu après que j'ai été affecté à ma mission au Crédit Agricole, cette solution sera implémentée lorsqu'un développeur de l'association, probablement moi-même, pourra consacrer du temps à Lidy.
+Les raisons pour lesquelles j'avais choisi ce format simple était ma maîtrise limitée du système de type unique de Go, la nouveauté de leur approche de la gestion des erreurs, et surtout le haut degré d'incertitude qui règne dans la communauté Go sur la question des bonnes pratiques de gestion des erreurs. Après une discussion avec mon maître de stage Xavier TALON, ainsi qu'avec Joseph PRIOU, un membre de l'association DitRit, nous avons pu établir une manière de rapporter à l'utilisateur les informations A, B, C et D de manière utilisable par une machine. Cette réunion ayant eu lieu après que j'ai été affecté à ma mission au Crédit Agricole, cette solution sera implémentée lorsqu'un développeur de l'association, probablement moi-même, pourra consacrer du temps à Lidy.
 
 ### Enjeu de légèreté de l'implémentation
 
