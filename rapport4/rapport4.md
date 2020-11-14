@@ -102,6 +102,8 @@ include-before: |
     - [Enjeu d'informativité des erreurs](#enjeu-dinformativité-des-erreurs)
     - [Enjeu de légèreté de l'implémentation](#enjeu-de-légèreté-de-limplémentation)
 - [WebDBA](#webdba)
+  - [De PHP à Django et avenir](#de-php-à-django-et-avenir)
+  - [Fonctionnalité de Burst](#fonctionnalité-de-burst)
 - [Table des liens](#table-des-liens)
         - [ca-histoire](#ca-histoire)
         - [ca-key-figures](#ca-key-figures)
@@ -867,14 +869,35 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 # WebDBA
 
-- Mes travaux au Crédit Agricole -> WebDBA
+Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outils utilisé principalement pour répondre au besoin d'inventaire des bases de données. En tant que tel, il est gère des conceptes systèmes tels que celui de machine, de cluster de machien, de service et de système de ficher. Il gère aussi des concepts base de donnée tel que les instances de base données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces conceptes, permettant d'afficher les informations associées au-dit concepte. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieur champs sur les conceptes les plus important qu'il manipule.
 
+Par ailleur, cet outils à vocation à supporter l'ensembles des APIs de l'équipe Postgres, ou du moins, celles développées en Python, comme cela a été le cas pour le travail que j'ai réalisé.
+
+## De PHP à Django et avenir
+
+Initialement, WebDBA était développé en PHP vanilla (sans framework). En 2017, Thomas a réalisé un port de WebDBA de PHP vers Python-Django. La framework de backend web Django offre de nombreux avantages pour le développement et le maintient de solutions d'inventaire tels que WebDBA :
+
+- Django dispose d'un ORM intégré très poussé. Il dispose du concepte de _migration_, qui permet de faire évoluer la base de donnée en même temps que le modèle de donnée de l'application de manière automatique.
+- Django dispose d'un système de génération de page par template complet et très populaire.
+- Enfin, Django est un framework très utilisé et son écosystème est très développé.
+
+En effet, WebDBA utilise de nombreux composants de l'écosystème Django. On peu citer notemment:
+
+- Django Rest Framework, composant très important pour toutes les APIs d'alimentation en donnée de WebDBA
+- Django Tables (2), utilisé pour afficher les listes et le découpage en pages
+- Django Filters, qui permet la recherche d'informations
+
+WebDBA utilise aussi la librairie CSS Bootstrap pour produire facilement une apparence agréable et connue.
+
+## Fonctionnalité de Burst
+
+- Mes travaux au Crédit Agricole -> WebDBA
 <!--
 - Context
   - Besoin d'inventaire des DBAs
     - Nombre de databases (plusieurs centaines de milliers)
   - Première solution frameworkless en PHP
-  - Nouvelle solution créée par Thomas en Python
+  - Nouvelle solution créée par Thomas en Python en 2017, utilisant Django
     - Django pour le système de communication avec la base de données et de création de template HTML (Jinja)
     - Extension Django Rest Framework pour les API
   - Problème commun: Int
@@ -891,7 +914,7 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
   - Logging
 - ~~Sujet: Gestion de tâches Celery/Airflow~~ en conclusion (si voulu)
 - ~~Sujet: Inventaire Oracle~~
--->
+  -->
 
 # Table des liens
 
