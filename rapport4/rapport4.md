@@ -61,7 +61,9 @@ include-before: |
     - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
     - [Quelques chiffres](#quelques-chiffres)
     - [Organisation CAGIP](#organisation-cagip)
+    - [Espace des DBAs](#espace-des-dbas)
     - [Équipe](#équipe)
+        - [Carte de prise en charge des sujets de l'équipe](#carte-de-prise-en-charge-des-sujets-de-léquipe)
 - [Projet Lidy](#projet-lidy)
   - [Contexte de Lidy](#contexte-de-lidy)
     - [Origine de Lidy : Leto](#origine-de-lidy--leto)
@@ -107,6 +109,7 @@ include-before: |
         - [go-yaml-issue-108](#go-yaml-issue-108)
         - [go-yaml-issue-108-mc](#go-yaml-issue-108-mc)
         - [investopedia-top-banks](#investopedia-top-banks)
+        - [JSON-Schema-draft-07](#json-schema-draft-07)
         - [learn-yaml-inyminutes](#learn-yaml-inyminutes)
         - [lib-yaml](#lib-yaml)
         - [lidy-documentation](#lidy-documentation)
@@ -240,7 +243,20 @@ Le cluster Grande Clientelle est structuré en quatre pôles, eux-même composé
 
 ![Organigramme structure Cluster Grande Clientelle](misc/CAGIP-grande-clientelle.png)
 
-Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisement, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournis les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'execute, ansi que les logiciels de base de données. Au sein de ce service, je travail dans l'espace des DBAs (DataBase Administrators) ; espace managé par Olivier KANCEL. Les DBAs sont répartis en plusieurs équipes, chacune gérant une ou deux technologies de bases de données.
+Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisement, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournis les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'execute, ansi que les logiciels de base de données. Au sein de ce service, je travail dans l'espace des DBAs, Database Administrators ; espace managé par Olivier KANCEL.
+
+### Espace des DBAs
+
+Les DBAs sont répartis en plusieurs équipes, chacune gérant un nombre réduit de technologies.
+
+- Microsoft SQL Server
+- Oracle
+- PostgreSql
+- Big Data
+
+Les équipes Microsoft SQL Server et Oracle ne gère chacune qu'une seul technologie. L'équipe PostgreSql, dont je fait parti gère les bases de données de technologie PostgreSql, Sybase et MySql. Enfin, l'équipe Big Data gère les bases de données de type NoSql ainsi que d'autres technologies de stockage Big Data, telles que Apache Hadoop.
+
+L'ensemble de l'espace cherche à adopter des pratiques DevOps vis-à-vis de la gestion des problèmes d'infrastructure. Le term DevOps, contraction de developpeur et opérationel, deux domaines des métiers de l'informatique, vise à adopter un mode de travail qui intègres les problématiques d'infrastructure dans le travail de développement et aussi qui utilise les pratique de dévelppement informatique pour la gestion de l'infrastructure. Cet pratique cherche à étendre l'utilisation des pratiques Agiles au monde des opérationels, de la gestion de l'infrastructure. On y trouve des enjeux tels que l'automatisation, la reproductibilité et la livraison continue.
 
 ### Équipe
 
@@ -256,7 +272,24 @@ L'équipe comporte 7 membres, par order d'arrivé dans l'équipe:
 - Mathieu CAROFF
 - Cécilia TONY
 
-Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes préstataires. Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
+Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes préstataires.
+
+Les sujets sur lesquels travaille l'équipe sont répartis parmis les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outils Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parks de machaines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travail sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travail sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
+
+##### Carte de prise en charge des sujets de l'équipe
+
+|       Sujet \\ Membre | Thomas | Abdelilah | Karima | Céline | Pierre-Éric | Mathieu | Cécilia |
+| --------------------: | :----: | :-------: | :----: | :----: | :---------: | :-----: | :-----: |
+| Aquisition des sujets |   +    |     +     |        |        |             |         |         |
+|            BDD Sybase |        |           |   +    |        |      +      |         |         |
+|        BDD PostgreSQL |   +    |     +     |   +    |        |             |         |         |
+|                WebDBA |   +    |     +     |        |   +    |             |    +    |    +    |
+|               Ansible |        |           |   +    |        |      +      |         |         |
+|       Nouveaux outils |        |           |        |   +    |             |    +    |         |
+
+Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relatie au fonctionnement de Python et à l'utilisation de Git.
+
+Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
 
 # Projet Lidy
 
@@ -834,6 +867,8 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 # WebDBA
 
+- Mes travaux au Crédit Agricole -> WebDBA
+
 <!--
 - Context
   - Besoin d'inventaire des DBAs
@@ -885,6 +920,10 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 ##### investopedia-top-banks
 
 [https://www.investopedia.com/articles/investing/122315/worlds-top-10-banks-jpm-wfc.asp](https://www.investopedia.com/articles/investing/122315/worlds-top-10-banks-jpm-wfc.asp)
+
+##### JSON-Schema-draft-07
+
+[https://json-schema.org/specification.html](https://json-schema.org/specification.html)
 
 ##### learn-yaml-inyminutes
 
