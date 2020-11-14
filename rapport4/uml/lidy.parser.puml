@@ -1,0 +1,112 @@
+@startuml
+
+skinparam classFontName CMU Sans Serif
+skinparam dpi 150
+
+interface File  {
+    - zzFile()
+
+    + Name() string
+    + Content() []byte
+    + Yaml() error
+}
+interface Parser  {
+    + Target(target string) Parser
+    + With(builderMap <font color=blue>map</font>[string]Builder) Parser
+    + Option(option Option) Parser
+    + Schema() []error
+    + Parse(file File) (tResult, []error)
+}
+interface Position  {
+    + Filename() string
+    + Line() int
+    + Column() int
+}
+interface Result  {
+    + RuleName() string
+    + HasBeenBuilt() bool
+    + IsLidyData() bool
+    + Data() <font color=blue>interface</font>{}
+}
+class Option << (S,Aquamarine) >> {
+    + WarnUnimplementedBuilder bool
+    + IgnoreExtraBuilder bool
+    + WarnUnusedRule bool
+    + BypassMissingRule bool
+    + StopAtFirstSchemaError bool
+    + StopAtFirstError bool
+}
+class ListData << (S,Aquamarine) >> {
+    + List []Result
+    + ListOf []Result
+}
+class MapData << (S,Aquamarine) >> {
+    + Map <font color=blue>map</font>[string]Result
+    + MapOf []KeyValueData
+
+    + Hashed() (<font color=blue>map</font>[string]Result, error)
+}
+class tFile << (S,Aquamarine) >> {
+    - name string
+    - content []byte
+    - yaml yaml.Node
+
+    - zzFile()
+}
+class tParser << (S,Aquamarine) >> {
+    - builderMap <font color=blue>map</font>[string]Builder
+    - lidyDefaultRuleMap <font color=blue>map</font>[string]*tRule
+    - option Option
+    - schema tSchema
+    - schemaErrorSlice []error
+    - target string
+    - contentFile tFile
+    - dependencyGraph *topsort.Graph
+    - currentRuleName string
+
+    - parseSchema() []error
+    - parseContent(file File) (tResult, []error)
+    - wrap(data <font color=blue>interface</font>{}, content yaml.Node) tResult
+    - reportSchemaParserInternalError(context string, expression tExpression, content yaml.Node) []error
+    - contentError(content yaml.Node, expected string) []error
+}
+class tPosition << (S,Aquamarine) >> {
+    - filename string
+    - line int
+    - column int
+    - lineEnd int
+    - columnEnd int
+}
+class tResult << (S,Aquamarine) >> {
+    - ruleName string
+    - hasBeenBuilt bool
+    - isLidyData bool
+    - data <font color=blue>interface</font>{}
+}
+class tSchemaParser << (S,Aquamarine) >> {
+    - processRule(ruleName string) []error
+    - precomputeLidyDefaultRules()
+    - hollowSchema(documentNode yaml.Node) (tSchema, []error)
+    - createRule(key yaml.Node, value yaml.Node) (*tRule, []error)
+    - expression(node yaml.Node) (tExpression, []error)
+    - ruleReference(node yaml.Node) (tExpression, []error)
+    - formRecognizer(node yaml.Node) (tExpression, []error)
+    - schemaError(node yaml.Node, expected string) []error
+}
+"tParser" <-- "Option"
+"tResult" <-- "MapData"
+"tResult" <-- "ListData"
+
+
+"File" *-- "Parser"
+"tFile" *-- "tParser"
+"Position" *-- "Result"
+"tPosition" *-- "tResult"
+
+"File" <|-- "tFile"
+"Parser" <|-- "tParser"
+"Position" <|-- "tPosition"
+"Result" <|-- "tResult"
+
+"tParser" #.. "tSchemaParser"
+@enduml

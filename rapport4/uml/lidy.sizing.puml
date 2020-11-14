@@ -1,0 +1,29 @@
+@startuml
+
+skinparam classFontName CMU Sans Serif
+skinparam dpi 150
+
+interface tSizing  {
+    - check\(content yaml\.Node, parser \*tParser\) \[\]error
+}
+class tSizingMax << (S,Aquamarine) >> {
+    - max int
+}
+class tSizingMin << (S,Aquamarine) >> {
+    - min int
+}
+class tSizingMinMax << (S,Aquamarine) >> {
+}
+class tSizingNb << (S,Aquamarine) >> {
+    - nb int
+}
+class tSizingNone << (S,Aquamarine) >> {
+}
+"tSizingMax" *-- "tSizingMinMax"
+"tSizingMin" *-- "tSizingMinMax"
+"tSizing" <|-- "tSizingMax"
+"tSizing" <|-- "tSizingMin"
+"tSizing" <|-- "tSizingMinMax"
+"tSizing" <|-- "tSizingNb"
+"tSizing" <|-- "tSizingNone"
+@enduml

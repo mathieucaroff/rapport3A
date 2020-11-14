@@ -1,0 +1,43 @@
+@startuml
+
+!pragma teoz true
+
+skinparam responseMessageBelowArrow true
+
+participant "WebDBA Burst module" as mod
+participant "Oracle API Client" as cli
+participant "Oracle API" as ora
+
+[-> mod: Burst API, request\n(exasystem, cluster, cpu)
+
+== 1. Preparation ==
+
+mod -> cli: get info\n(exasystem)
+cli -> cli: get configuration\n(exasystem)
+cli -> ora: get info (GET)
+mod <- ora: exasystem info
+[<-- mod: (error if invalid request)
+mod -> mod: compute cpu counts
+mod -> mod: craft request bodys
+
+== 2. Exasystem configuration ==
+
+mod -> ora: request cpu on exasystem (POST)
+
+group exasystem loop
+    mod -> ora: get exasystem info
+    mod <- ora: exasystem info
+    mod --> mod: break the loop if\nexpected cpus are listed
+    [<- mod: progress information
+    ...30 seconds of sleep between each iteration. 10 minutes max....
+end
+
+[<-- mod: (error if cpus were never listed)
+
+== 3. Cluster configuration ==
+
+...run a similar loop to add cpus to the from the exasystem to the cluster....
+
+[<- mod: send success status
+
+@enduml

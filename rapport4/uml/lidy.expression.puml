@@ -1,0 +1,71 @@
+@startuml
+
+skinparam classFontName CMU Sans Serif
+skinparam dpi 150
+
+interface tExpression  {
+    - match(content yaml.Node, parser *tParser) (tResult, []error)
+    - name() string
+    - description() string
+}
+class tIn << (S,Aquamarine) >> {
+    - valueMap <font color=blue>map</font>[string][]string
+}
+class tList << (S,Aquamarine) >> {
+    - form tListForm
+    - sizing tSizing
+}
+class tMap << (S,Aquamarine) >> {
+    - form tMapForm
+    - sizing tSizing
+}
+interface tMergeableExpression  {
+    - mergeMatch(mapResult MapData, usefulList []bool, content yaml.Node, parser *tParser) []error
+}
+class tOneOf << (S,Aquamarine) >> {
+    - optionList []tExpression
+
+    + _dependencyList []string
+}
+class tRegex << (S,Aquamarine) >> {
+    - regexString string
+    - regex *regexp.Regexp
+}
+class tRule << (S,Aquamarine) >> {
+    - ruleName string
+    - lidyMatcher tLidyMatcher
+    - builder Builder
+    - expression tExpression
+
+    + _node yaml.Node
+    + _mergeList []string
+}
+class tListForm << (S,Aquamarine) >> {
+    - list []tExpression
+    - optionalList []tExpression
+    - listOf tExpression
+}
+class tMapForm << (S,Aquamarine) >> {
+    - propertyMap <font color=blue>map</font>[string]tExpression
+    - optionalMap <font color=blue>map</font>[string]tExpression
+    - mapOf tKeyValueExpression
+    - mergeList []tMergeableExpression
+
+    + _dependencyList []string
+}
+"tList" <-- "tListForm"
+"tMap" <-- "tMapForm"
+
+"tExpression" *-- "tMergeableExpression"
+
+"tExpression" <|-- "tIn"
+"tExpression" <|-- "tList"
+"tExpression" <|-- "tMap"
+"tExpression" <|-- "tOneOf"
+"tExpression" <|-- "tRegex"
+"tExpression" <|-- "tRule"
+"tMergeableExpression" <|-- "tMap"
+"tMergeableExpression" <|-- "tOneOf"
+"tMergeableExpression" <|-- "tRule"
+
+@enduml

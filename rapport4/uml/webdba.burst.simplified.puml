@@ -1,0 +1,37 @@
+@startuml
+
+!pragma teoz true
+
+skinparam responseMessageBelowArrow true
+
+participant "WebDBA Burst module" as mod
+participant "Oracle API" as ora
+
+[-> mod: Burst API, request\n(exasystem, cluster, cpu)
+
+== 1. Preparation ==
+
+mod -> ora: get exasystem info
+mod <- ora
+
+== 2. Exasystem configuration ==
+
+mod -> ora: request extra cpus\non exasystem
+
+group exasystem loop
+    mod -> ora: check until cpus are\nlisted on exasystem
+    mod <- ora
+end
+
+== 3. Cluster configuration ==
+
+mod -> ora: request binding cpus\nto cluster
+
+group cluster loop
+    mod -> ora: check until cpus are\nlisted on cluster
+    mod <- ora
+end
+
+[<- mod: send success status
+
+@enduml
