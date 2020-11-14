@@ -16,6 +16,10 @@ TypeScript est une extension du language JavaScript permettant d'ajouter des ann
 Langage de programmation statiquement typé, développé chez Google et dont la première version a été publiée en 2012. Golang cherche à ressembler à C, mais en évitant les problèmes de mémoire et en facilitant la programmation concurrente, via des primitives appropriés à la communication inter-process. Golang me donne l'impression d'être un intermédiaire statiquement typé entre C et Python. Je trouve aussi que ce langage est déroutant dans la mesure ou de nombreux problèmes ne peuvent pas être résolu en Go en utilisant l'approche habituelle, disponible dans l'ensemble des autres langages de programmation haut-niveau.
 </dd>
 
+<dt>Python</dt>
+<dd>
+</dd>
+
 <dt>TOSCA><dt>
 <dd>
 OASIS TOSCA, "Topology Orchestration Specification for Cloud Applications" est un langage de spécification de topologie de machines pour le Cloud. Ce langage s'épargne l'effort de définir une syntax complète en réutilisant le format YAML. Ainsi, depuis la TOSCA 2.0, TOSCA est un sous-ensemble de YAML, au sense que tout les fichiers TOSCA sont des fichiers YAML.
