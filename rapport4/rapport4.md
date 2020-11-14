@@ -61,6 +61,7 @@ include-before: |
     - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
     - [Quelques chiffres](#quelques-chiffres)
     - [Organisation CAGIP](#organisation-cagip)
+    - [Équipe](#équipe)
 - [Projet Lidy](#projet-lidy)
   - [Contexte de Lidy](#contexte-de-lidy)
     - [Origine de Lidy : Leto](#origine-de-lidy--leto)
@@ -239,7 +240,23 @@ Le cluster Grande Clientelle est structuré en quatre pôles, eux-même composé
 
 ![Organigramme structure Cluster Grande Clientelle](misc/CAGIP-grande-clientelle.png)
 
-Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisement, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournis les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'execute, ansi que les logiciels de base de données. Au sein de ce service, je travail dans l'espace des DBAs (DataBase Administrators) ; espace managé par Olivier KANCEL. Les DBAs sont répartis en plusieurs équipe, chacune gérant des instances de bases de données d'une ou deux technologies. Je travail au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable d'un logiciel d'inventaire nécéssaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
+Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisement, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournis les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'execute, ansi que les logiciels de base de données. Au sein de ce service, je travail dans l'espace des DBAs (DataBase Administrators) ; espace managé par Olivier KANCEL. Les DBAs sont répartis en plusieurs équipes, chacune gérant une ou deux technologies de bases de données.
+
+### Équipe
+
+Je travail au sein de l'équipe Je travail au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable de WebDBA, un logiciel d'inventaire nécéssaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
+
+L'équipe comporte 7 membres, par order d'arrivé dans l'équipe:
+
+- Thomas DAUBY
+- Abdelilah BOUHNASS
+- Karima TIGRINE
+- Céline ANNIBAL
+- Pierre-Éric HENRY
+- Mathieu CAROFF
+- Cécilia TONY
+
+Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes préstataires. Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
 
 # Projet Lidy
 
