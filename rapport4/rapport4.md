@@ -74,7 +74,7 @@ include-before: |
       - [ANTLR](#antlr)
       - [Json Schema](#json-schema)
     - [Lidy](#lidy)
-    - [Terminlogie de Lidy](#terminlogie-de-lidy)
+    - [Terminologie de Lidy](#terminologie-de-lidy)
     - [Développement initial de Lidy](#développement-initial-de-lidy)
     - [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy)
     - [YAML](#yaml)
@@ -168,7 +168,7 @@ _Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu d
 <!--
 Compte tenu du contexte de la pandémie, les conditions initiales du stage ont évolué. Initialement programmé pour débuter le 2 avril, la date de début du stage s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
-  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
+  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sur sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
   - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
 
 
@@ -186,7 +186,7 @@ Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre 
 
 Orness accorde une grande importance à l'humain. La qualité de la vie des employés au travail, l'entente et le sentiment de sécurité morale ont une grande importance chez les dirigeants de Orness. Leur maniement de ces valeurs, dans une entreprise à taille humaine, permet de créer une atmosphère relaxante chez Orness. Ainsi, les valeurs de transparence, d'audace et de partage se ressentent bien, tant chez les dirigeants qu'au sein des employés. [(orness-valeurs)](#orness-valeurs)
 
-Outre l'importance accordée au bien-être au travail, Orness s'engage sur les sujets de l'Open Source, de la souveraineté numérique et de l'inclusion des femmes dans le milieu professionel, notamment au travers de partenariats. [(orness-engagements)](#orness-engagements)
+Outre l'importance accordée au bien-être au travail, Orness s'engage sur les sujets de l'Open Source, de la souveraineté numérique et de l'inclusion des femmes dans le milieu professionnel, notamment au travers de partenariats. [(orness-engagements)](#orness-engagements)
 
 <!-- ## Activité -->
 
@@ -196,17 +196,17 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 ## DitRit
 
-DitRit est une association à but non-lucratif réalisant un travaille de réflection et de mise en pratique sur les sujets relatif à la transition numérique. DitRit s'intéresse en particulier à cette transition chez les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
+DitRit est une association à but non-lucratif réalisant un travail de réflexion et de mise en pratique sur les sujets relatifs à la transition numérique. DitRit s'intéresse en particulier à cette transition pour les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
 
-Les activités de l'association prend donc deux forme: celle de réflection et celle de création logiciel. Le travail de recheche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peu parfois donner lieu à des réalisation plus concrètes sous forme de projets de logiciel Open-Source, librement accessible en tant que repository Github de l'assocation.
+Les activités de l'association prennent donc deux formes: celle de réflexion et celle de création logiciel. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peu parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
 
-Les groupes de réflexion se tiennent régulièrement, avec une période de l'ordre quelques semaines. Ils traitent des sujets tels que la sécurité informatique en entreprise, l'application des bonnes pratique ITIL et aussi l'encadrement des activités et process de l'association. Par ailleur, les avancés réalisées sur l'ensembles des projets et sujets de l'association sont rapportés lors d'une réunion hebdomadaire ouverte au publique tenu entre midi et une heure.
+Les groupes de réflexion se tiennent régulièrement, avec une période de l'ordre quelques semaines. Ils traitent des sujets tels que la sécurité informatique en entreprise, l'application des bonnes pratique ITIL et aussi l'encadrement des activités et process de l'association. Par ailleurs, les avancées réalisées sur l'ensemble des projets et sujets de l'association sont rapportés lors d'une réunion hebdomadaire ouverte au publique, tenu entre midi et une heure.
 
-Ditrit utilise Zulipchat ainsi que les mail pour la communication écrite entre ses membres, Jitsy pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hebergement du code source. Le langage de programmation principalement utilisés était initiallement Java, mais depuis 2019 DitRit réalise la pluspart de ses développements en Golang.
+Ditrit utilise Zulipchat ainsi que les mails pour la communication écrite entre ses membres, Jitsy pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hébergement du code source. Le langage de programmation principalement utilisés était initialement Java, mais depuis 2019 DitRit réalise la plupart de ses développements en Golang.
 
 ### Participaction à DitRit
 
-La pluspart des individus ayant apporté une contribution à DitRit sont instcrits dans l'instance Zulipchat de l'assocation. En novembre 2020, celle-ci compte 30 noms. Je vais donc me contenter de présenter les plus notables:
+La plupart des individus ayant apporté une contribution à DitRit sont inscrits dans l'instance Zulipchat de l'association. En novembre 2020, celle-ci compte 30 noms. Je vais donc me contenter de présenter les plus notables:
 
 - Jan Atac
 - Joseph Priou
@@ -217,19 +217,19 @@ La pluspart des individus ayant apporté une contribution à DitRit sont instcri
 - Cédric Vautrain
 - Hervé Chibois
 
-Drien, Jan, Joseph, Thierry et Xavier sont les cinq membres fondateurs de l'assocation. Joseph, Xavier et Romain assurent la tenu des réunions hebdomadaires. Xavier et Hervé sont les deux directeurs techniques de Orness. Ils réalisent respectivement le suivi des travaux de développement de Romain et Cédric sur les projets Gandalf et Ogree-3D. Romain et Cédric sont deux développeurs employés par Orness à temps plein pour travailler sur les projets de DitRit.
+Jan, Joseph, Romain, Thierry et Xavier sont les cinq membres fondateurs de l'association. Joseph, Xavier et Romain assurent la tenue des réunions hebdomadaires. Xavier et Hervé sont les deux directeurs techniques de Orness. Ils réalisent respectivement le suivi des travaux de développement de Romain et Cédric sur les projets Gandalf et Ogree-3D. Romain et Cédric sont deux développeurs employés par Orness à temps plein pour travailler sur les projets de DitRit.
 
 Ma présence et mon travail au sein de DitRit m'ont donné l'occasion de discuter avec Joseph, Romain et Xavier.
 
 ### Projets de DitRit
 
-Gandalf est un projet de système d'interconnection automatique visant à rendre facile l'intégration et l'interopérabilité des différents applications désirables pour disposer d'une usine logiciel. Gandalf intègre dans sa conception l'ensemble des contraintes spécifique aux très grandes entreprises, tel que la haute disponibilité ou encore le support de clients multiples.
+Gandalf est un projet de système d'interconnexion automatique visant à rendre facile l'intégration et l'interopérabilité des différentes applications désirables pour disposer d'une usine logicielle. Gandalf intègre dans sa conception l'ensemble des contraintes spécifiques aux très grandes entreprises, telles que la haute disponibilité ou encore le support de clients multiples.
 
-Ogree est un projet produit par Hervé afin d'analyser les logs produits par des salles de machines, et d'en extraire des informations afin de reconstituer la carte du réseau ainsi que d'autres vues sythétiques. En effet, Hervé agit en tant que consultant et intervient physiquement dans les salles de machines lorqu'une telle intervention est nécessaire. Le projet Ogree est donc né de ce besoin de disposer de données à jour lors de ses interventions.
+Ogree est un projet produit par Hervé afin d'analyser les logs produits par des salles de machines, et d'en extraire des informations afin de reconstituer la carte du réseau ainsi que d'autres vues synthétiques. En effet, Hervé agit en tant que consultant et intervient physiquement dans les salles de machines lorsqu'une telle intervention est nécessaire. Le projet Ogree est donc né de ce besoin de disposer de données à jour lors de ses interventions.
 
-Le projet Ogree-3D dérive du projet Ogree. Il a pour but de construire des vues tridimentionels des salles de machines, afin de faciliter la préparation d'intervention, ainsi que de manière générale, de faciliter la maintenance de l'infrastructure informatique physique. Ce projet est développé en C# par Cédric à temps plein depuis juillet 2020, avec le moteur de rendu de Unity.
+Le projet Ogree-3D dérive du projet Ogree. Il a pour but de construire des vues tridimensionnelles des salles de machines, afin de faciliter la préparation d'interventions, ainsi que de manière générale, de faciliter la maintenance de l'infrastructure informatique physique. Ce projet est développé en C# par Cédric à temps plein depuis juillet 2020, avec le moteur de rendu de Unity.
 
-Enfin, DitRit comporte aussi des projets de moindre envergure. Il s'agit de Shoset, librairie de gestion de socket et de routage pour les systèmes redondants, ainsi que de Lidy, une librairie d'analyse et vérification de données structurées qui conserve le lien aux sources. Shoset a été construit pour répondre à un besoin du projet Gandalf, projet présenté plus haut, tandis que Lidy, lui réponds à un besoin de Leto, un autre projet qui sera présenté dans la section Lidy.
+Enfin, DitRit comporte aussi des projets de moindre envergure. Il s'agit de Shoset, librairie de gestion de socket et de routage pour les systèmes redondants, ainsi que de Lidy, une librairie d'analyse et vérification de données structurées qui conserve le lien aux sources. Shoset a été construit pour répondre à un besoin du projet Gandalf, projet présenté plus haut, tandis que Lidy, lui répond à un besoin de Leto, un autre projet qui sera présenté dans la section Lidy.
 
 Durant la période pendant laquelle j'ai été affecté à travailler pour DitRit, mes contributions se sont principalement axées sur le projet Lidy. J'ai cependant aussi travaillé à l'automatisation du déploiement du site web de DitRit.
 
@@ -237,12 +237,11 @@ Durant la période pendant laquelle j'ai été affecté à travailler pour DitRi
 
 ### Histoire du Crédit Agricole
 
-Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionnales en une seule entitée nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’Etat. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
+Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionales en une seule entité nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’Etat. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
 
-À partir de 1980, le Crédit Agricole commence à créer et racheter des filliales et des banques, avec par exemple, la création de l'assurance Predica en 1986, le rachat de LCL en 2002. Le Crédit Agricole développe aussi des activités bancaires dans les pays voisins de la France et à l'internationale. En 2004,
-le Crédit Agricole organise la fusion des filiales bancares LCL et Indosuez sous le nom de Calyon, qui en 2010 sera renommée CACIB (Crédit Agricole Corporate and Investment Bank).
+À partir de 1980, le Crédit Agricole commence à créer et racheter des filiales et des banques, avec par exemple, la création de l'assurance Predica en 1986, le rachat de LCL en 2002. Le Crédit Agricole développe aussi des activités bancaires dans les pays voisins de la France et à l'internationale. En 2004, le Crédit Agricole organise la fusion des filiales bancaires LCL et Indosuez sous le nom de Calyon, qui en 2010 sera renommée CACIB (Crédit Agricole Corporate and Investment Bank).
 
-C'est en 2019 qu'est créé l'entité CAGIP (Crédit Agricole Group Infrastructure Platform), afin de permettre regroupemend des moyens informatiques du Crédit Agricole. Nous reviendrons sur les entités CACIB et CAGIP par la suite.
+C'est en 2019 qu'est créé l'entité CAGIP (Crédit Agricole Group Infrastructure Platform), afin de permettre regroupement des moyens informatiques du Crédit Agricole. Nous reviendrons sur les entités CACIB et CAGIP par la suite.
 
 [(ca-histoire)](#ca-histoire)
 
@@ -254,7 +253,7 @@ En 2019, le CA. est la 10ème banque mondiale par le total de bilan. Elle compte
 
 ### Organisation CAGIP
 
-Depuis le 1er janvier 2019, CAGIP regroupe les collaborateurs, l'infrastructure et les activités informatiques des filliales suivantes:
+Depuis le 1er janvier 2019, CAGIP regroupe les collaborateurs, l'infrastructure et les activités informatiques des filiales suivantes:
 
 - Crédit Agricole Assurance
 - Crédit Agricole Corporate And Investment Bank (CACIB)
@@ -268,9 +267,9 @@ les clusters métiers, au nombre de 7, les socles de services partagés, au nomb
 
 ![Organigramme structure CAGIP](misc/CAGIP-map.png)
 
-L'entité au sein de laquelle je travaille est le Cluster Grande Clientelle. Ce cluster a pour charge de pourvoir l'infrastructure informatique et d'assurer le bon fonctionnement de celle-ci. Ceci implique d'assurer le monitoring de des informations relative au taux d'utilisation des ressources, de l'inventaire des ressources, de l'anticipation des besoins en ressources et de travailler à les résolutions des problèmes que peuvent signaler les utilisateurs de l'infrastructure.
+L'entité au sein de laquelle je travaille est le Cluster Grandes Clientèles. Ce cluster a pour charge de pourvoir l'infrastructure informatique et d'assurer le bon fonctionnement de celle-ci. Ceci implique d'assurer le monitoring des informations relatives au taux d'utilisation des ressources, de l'inventaire des ressources, de l'anticipation des besoins en ressources et de travailler à la résolution des problèmes que peuvent signaler les utilisateurs de l'infrastructure.
 
-Ainsi, le cluster Grande Clientelle de CAGIP pourvoie l'infrastructure des plus grosses filiales du Crédit Agricole :
+Ainsi, le cluster Grandes Clientèles de CAGIP pourvoit l'infrastructure des plus grosses filiales du Crédit Agricole :
 
 - Crédit Agricole SA (CASA)
 - Crédit Agricole Corporate and Invetement Bank (CACIB)
@@ -278,13 +277,13 @@ Ainsi, le cluster Grande Clientelle de CAGIP pourvoie l'infrastructure des plus 
   - Crédit Agricole Indosuez Wealth Management (CAIW)
   - Crédit Agricole Indosuez Private Banking
 
-Le cluster Grande Clientelle travaille avec 12 datacenters. Il est composé de plus de 155 collaborateurs, travaillant sur les campus de SQY Park et de Montrouge-Evergreen, deux campus d'informatique en Ile de France.
+Le cluster Grandes Clientèles travaille avec 12 datacenters. Il est composé de plus de 155 collaborateurs, travaillant sur les campus de SQY Park et de Montrouge-Evergreen, deux campus d'informatique situés en Ile de France.
 
-Le cluster Grande Clientelle est structuré en quatre pôles, eux-même composés de services:
+Le cluster Grandes Clientèles est structuré en quatre pôles, eux-même composés de services:
 
-![Organigramme structure Cluster Grande Clientelle](misc/CAGIP-grande-clientelle.png)
+![Organigramme structure Cluster Grandes Clientèles](misc/CAGIP-grandes-clienteles.png)
 
-Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisement, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournis les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'execute, ansi que les logiciels de base de données. Au sein de ce service, je travail dans l'espace des DBAs, Database Administrators ; espace managé par Olivier KANCEL.
+Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisément, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournit les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'exécute, ainsi que les logiciels de base de données. Au sein de ce service, je travaille dans l'espace des DBAs, Database Administrators ; espace managé par Olivier KANCEL.
 
 ### Espace des DBAs
 
@@ -295,15 +294,15 @@ Les DBAs sont répartis en plusieurs équipes, chacune gérant un nombre réduit
 - PostgreSql
 - Big Data
 
-Les équipes Microsoft SQL Server et Oracle ne gère chacune qu'une seul technologie. L'équipe PostgreSql, dont je fait parti gère les bases de données de technologie PostgreSql, Sybase et MySql. Enfin, l'équipe Big Data gère les bases de données de type NoSql ainsi que d'autres technologies de stockage Big Data, telles que Apache Hadoop.
+Les équipes Microsoft SQL Server et Oracle ne gèrent chacune qu'une seule technologie. L'équipe PostgreSql, dont je fais parti gère les bases de données de technologie PostgreSql, Sybase et MySql. Enfin, l'équipe Big Data gère les bases de données de type NoSql ainsi que d'autres technologies de stockage Big Data, telles que Apache Hadoop.
 
-L'ensemble de l'espace cherche à adopter des pratiques DevOps vis-à-vis de la gestion des problèmes d'infrastructure. Le term DevOps, contraction de developpeur et opérationel, deux domaines des métiers de l'informatique, vise à adopter un mode de travail qui intègres les problématiques d'infrastructure dans le travail de développement et aussi qui utilise les pratique de dévelppement informatique pour la gestion de l'infrastructure. Cet pratique cherche à étendre l'utilisation des pratiques Agiles au monde des opérationels, de la gestion de l'infrastructure. On y trouve des enjeux tels que l'automatisation, la reproductibilité et la livraison continue.
+L'ensemble de l'espace cherche à adopter des pratiques DevOps vis-à-vis de la gestion des problèmes d'infrastructure. Le terme DevOps, contraction de développeur et opérationnel, deux domaines des métiers de l'informatique, vise à adopter un mode de travail qui intègre les problématiques d'infrastructure dans le travail de développement et aussi qui utilise les pratiques de développement informatique pour la gestion de l'infrastructure. Cette pratique cherche à étendre l'utilisation des pratiques Agiles au monde des opérationnels, de la gestion de l'infrastructure. On y trouve des enjeux tels que l'automatisation, la reproductibilité et la livraison continue.
 
 ### Équipe
 
-Je travail au sein de l'équipe Je travail au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable de WebDBA, un logiciel d'inventaire nécéssaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
+Je travaille au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable de WebDBA, un logiciel d'inventaire nécessaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
 
-L'équipe comporte 7 membres, par order d'arrivé dans l'équipe:
+L'équipe comporte 7 membres, par ordre d'arrivé dans l'équipe:
 
 - Thomas DAUBY
 - Abdelilah BOUHNASS
@@ -313,22 +312,22 @@ L'équipe comporte 7 membres, par order d'arrivé dans l'équipe:
 - Mathieu CAROFF
 - Cécilia TONY
 
-Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes préstataires.
+Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes prestataires.
 
-Les sujets sur lesquels travaille l'équipe sont répartis parmis les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outils Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parks de machaines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travail sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travail sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
+Les sujets sur lesquels travaille l'équipe sont répartis parmi les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outil Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parques de machines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travaille sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travaille sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
 
 ##### Carte de prise en charge des sujets de l'équipe
 
-|       Sujet \\ Membre | Thomas | Abdelilah | Karima | Céline | Pierre-Éric | Mathieu | Cécilia |
-| --------------------: | :----: | :-------: | :----: | :----: | :---------: | :-----: | :-----: |
-| Aquisition des sujets |   +    |     +     |        |        |             |         |         |
-|            BDD Sybase |        |           |   +    |        |      +      |         |         |
-|        BDD PostgreSQL |   +    |     +     |   +    |        |             |         |         |
-|                WebDBA |   +    |     +     |        |   +    |             |    +    |    +    |
-|               Ansible |        |           |   +    |        |      +      |         |         |
-|       Nouveaux outils |        |           |        |   +    |             |    +    |         |
+|        Sujet \\ Membre | Thomas | Abdelilah | Karima | Céline | Pierre-Éric | Mathieu | Cécilia |
+| ---------------------: | :----: | :-------: | :----: | :----: | :---------: | :-----: | :-----: |
+| Acquisition des sujets |   +    |     +     |        |        |             |         |         |
+|             BDD Sybase |        |           |   +    |        |      +      |         |         |
+|         BDD PostgreSQL |   +    |     +     |   +    |        |             |         |         |
+|                 WebDBA |   +    |     +     |        |   +    |             |    +    |    +    |
+|                Ansible |        |           |   +    |        |      +      |         |         |
+|        Nouveaux outils |        |           |        |   +    |             |    +    |         |
 
-Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relatie au fonctionnement de Python et à l'utilisation de Git.
+Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relative au fonctionnement de Python et à l'utilisation de Git.
 
 Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
 
@@ -373,7 +372,7 @@ En l'absence d' similaire aux JSON Schema pour répondre à ces deux besoins, l'
 
 Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique : il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles : il s'agit de la syntax YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy)
 
-### Terminlogie de Lidy
+### Terminologie de Lidy
 
 On désignera par _développeur_, la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF, et les individus qui seront amenés à travailler sur Lidy dans le futur.
 
@@ -496,7 +495,7 @@ Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAM
 
 ## Recherche, travail et impression sur Golang
 
-L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de contrôle (if/while/for) ; de même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmis ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
+L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de contrôle (if/while/for) ; de même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmi ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
 
 En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a que deux structures de donnée : le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation spécifique. Ceci dénote des langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
 
@@ -650,7 +649,7 @@ La première étape, comme la deuxième étape, produit soit des erreurs soit un
 
 ![Fonctionnement de NewParser.Parse()](misc/Lidy-NewParser-Parse.png)
 
-Une question demeure cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
+Des questions demeurent cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
 
 Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémente l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
 
@@ -908,27 +907,27 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 # WebDBA
 
-Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outils utilisé principalement pour répondre au besoin d'inventaire des bases de données. En tant que tel, il est gère des conceptes systèmes tels que celui de machine, de cluster de machien, de service et de système de ficher. Il gère aussi des concepts base de donnée tel que les instances de base données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces conceptes, permettant d'afficher les informations associées au-dit concepte. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieur champs sur les conceptes les plus important qu'il manipule.
+Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé principalement pour répondre au besoin d'inventaire des bases de données. En tant que tel, il est gère des concepts systèmes tels que celui de machine, de cluster de machine, de service et de système de fichers. Il gère aussi des concepts base de données tels que les instances de base données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus importants qu'il manipule.
 
-Par ailleur, cet outils à vocation à supporter l'ensembles des APIs de l'équipe Postgres, ou du moins, celles développées en Python, comme cela a été le cas pour le travail que j'ai réalisé.
+Par ailleurs, cet outil à vocation à supporter l'ensemble des APIs de l'équipe Postgres, ou du moins, celles développées en Python, comme cela a été le cas pour le travail que j'ai réalisé.
 
 ## De PHP à Django et avenir
 
-Initialement, WebDBA était développé en PHP vanilla (sans framework). En 2017, Thomas a réalisé un port de WebDBA de PHP vers Python-Django. La framework de backend web Django offre de nombreux avantages pour le développement et le maintient de solutions d'inventaire tels que WebDBA :
+Initialement, WebDBA était développé en PHP vanilla (sans framework). En 2017, Thomas a réalisé un port de WebDBA de PHP vers Python-Django. La framework de backend web Django offre de nombreux avantages pour le développement et le maintien de solutions d'inventaire tels que WebDBA :
 
-- Django dispose d'un ORM intégré très poussé. Il dispose du concepte de _migration_, qui permet de faire évoluer la base de donnée en même temps que le modèle de donnée de l'application de manière automatique.
+- Django dispose d'un ORM intégré très poussé. Il dispose du concept de _migration_, qui permet de faire évoluer la base de données en même temps que le modèle de données de l'application de manière automatique.
 - Django dispose d'un système de génération de page par template complet et très populaire.
 - Enfin, Django est un framework très utilisé et son écosystème est très développé.
 
-En effet, WebDBA utilise de nombreux composants de l'écosystème Django. On peu citer notemment:
+En effet, WebDBA utilise de nombreux composants de l'écosystème Django. On peut citer notemment:
 
-- Django Rest Framework, composant très important pour toutes les APIs d'alimentation en donnée de WebDBA
+- Django Rest Framework, composant très important pour toutes les APIs d'alimentation en données de WebDBA
 - Django Tables (2), utilisé pour afficher les listes et le découpage en pages
 - Django Filters, qui permet la recherche d'informations
 
 WebDBA utilise aussi la librairie CSS Bootstrap pour produire facilement une apparence agréable et connue.
 
-WebDBA est déstiné a supporter de plus en plus d'APIs, en particulier des APIs pour réaliser des tâches automatisables tels que le déploiement d'une nouvelle base de donnée, l'installation de mise à jour sur une base de donnée existante, ou la suppression d'une base donnée. L'API que j'ai réalisé s'inscrit dans ces objectifs.
+WebDBA est destiné à supporter de plus en plus d'APIs, en particulier des APIs pour réaliser des tâches automatisables telles que le déploiement d'une nouvelle base de données, l'installation de mises à jour sur une base de données existante, ou la suppression d'une base donnée. L'API que j'ai réalisée s'inscrit dans ces objectifs.
 
 ## Fonctionnalité de Burst
 
