@@ -57,6 +57,8 @@ include-before: |
 - [Organisations](#organisations)
   - [Orness](#orness)
   - [DitRit](#ditrit)
+    - [Participaction à DitRit](#participaction-à-ditrit)
+    - [Projets de DitRit](#projets-de-ditrit)
   - [Crédit Agricole](#crédit-agricole)
     - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
     - [Quelques chiffres](#quelques-chiffres)
@@ -194,6 +196,43 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 ## DitRit
 
+DitRit est une association à but non-lucratif réalisant un travaille de réflection et de mise en pratique sur les sujets relatif à la transition numérique. DitRit s'intéresse en particulier à cette transition chez les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
+
+Les activités de l'association prend donc deux forme: celle de réflection et celle de création logiciel. Le travail de recheche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peu parfois donner lieu à des réalisation plus concrètes sous forme de projets de logiciel Open-Source, librement accessible en tant que repository Github de l'assocation.
+
+Les groupes de réflexion se tiennent régulièrement, avec une période de l'ordre quelques semaines. Ils traitent des sujets tels que la sécurité informatique en entreprise, l'application des bonnes pratique ITIL et aussi l'encadrement des activités et process de l'association. Par ailleur, les avancés réalisées sur l'ensembles des projets et sujets de l'association sont rapportés lors d'une réunion hebdomadaire ouverte au publique tenu entre midi et une heure.
+
+Ditrit utilise Zulipchat ainsi que les mail pour la communication écrite entre ses membres, Jitsy pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hebergement du code source. Le langage de programmation principalement utilisés était initiallement Java, mais depuis 2019 DitRit réalise la pluspart de ses développements en Golang.
+
+### Participaction à DitRit
+
+La pluspart des individus ayant apporté une contribution à DitRit sont instcrits dans l'instance Zulipchat de l'assocation. En novembre 2020, celle-ci compte 30 noms. Je vais donc me contenter de présenter les plus notables:
+
+- Jan Atac
+- Joseph Priou
+- Romain Fairant
+- Thierry Cagnin
+- Xavier Talon
+
+- Cédric Vautrain
+- Hervé Chibois
+
+Drien, Jan, Joseph, Thierry et Xavier sont les cinq membres fondateurs de l'assocation. Joseph, Xavier et Romain assurent la tenu des réunions hebdomadaires. Xavier et Hervé sont les deux directeurs techniques de Orness. Ils réalisent respectivement le suivi des travaux de développement de Romain et Cédric sur les projets Gandalf et Ogree-3D. Romain et Cédric sont deux développeurs employés par Orness à temps plein pour travailler sur les projets de DitRit.
+
+Ma présence et mon travail au sein de DitRit m'ont donné l'occasion de discuter avec Joseph, Romain et Xavier.
+
+### Projets de DitRit
+
+Gandalf est un projet de système d'interconnection automatique visant à rendre facile l'intégration et l'interopérabilité des différents applications désirables pour disposer d'une usine logiciel. Gandalf intègre dans sa conception l'ensemble des contraintes spécifique aux très grandes entreprises, tel que la haute disponibilité ou encore le support de clients multiples.
+
+Ogree est un projet produit par Hervé afin d'analyser les logs produits par des salles de machines, et d'en extraire des informations afin de reconstituer la carte du réseau ainsi que d'autres vues sythétiques. En effet, Hervé agit en tant que consultant et intervient physiquement dans les salles de machines lorqu'une telle intervention est nécessaire. Le projet Ogree est donc né de ce besoin de disposer de données à jour lors de ses interventions.
+
+Le projet Ogree-3D dérive du projet Ogree. Il a pour but de construire des vues tridimentionels des salles de machines, afin de faciliter la préparation d'intervention, ainsi que de manière générale, de faciliter la maintenance de l'infrastructure informatique physique. Ce projet est développé en C# par Cédric à temps plein depuis juillet 2020, avec le moteur de rendu de Unity.
+
+Enfin, DitRit comporte aussi des projets de moindre envergure. Il s'agit de Shoset, librairie de gestion de socket et de routage pour les systèmes redondants, ainsi que de Lidy, une librairie d'analyse et vérification de données structurées qui conserve le lien aux sources. Shoset a été construit pour répondre à un besoin du projet Gandalf, projet présenté plus haut, tandis que Lidy, lui réponds à un besoin de Leto, un autre projet qui sera présenté dans la section Lidy.
+
+Durant la période pendant laquelle j'ai été affecté à travailler pour DitRit, mes contributions se sont principalement axées sur le projet Lidy. J'ai cependant aussi travaillé à l'automatisation du déploiement du site web de DitRit.
+
 ## Crédit Agricole
 
 ### Histoire du Crédit Agricole
@@ -303,7 +342,7 @@ Lidy est une librairie qui permet à un développeur de lire et d'analyser un fi
 
 ### Origine de Lidy : Leto
 
-Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML afin de déterminer s'il s'agis d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
+Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, standard produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML afin de déterminer s'il s'agis d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
 
 ### Analyser les fichiers OASIS TOSCA
 
@@ -889,9 +928,14 @@ En effet, WebDBA utilise de nombreux composants de l'écosystème Django. On peu
 
 WebDBA utilise aussi la librairie CSS Bootstrap pour produire facilement une apparence agréable et connue.
 
+WebDBA est déstiné a supporter de plus en plus d'APIs, en particulier des APIs pour réaliser des tâches automatisables tels que le déploiement d'une nouvelle base de donnée, l'installation de mise à jour sur une base de donnée existante, ou la suppression d'une base donnée. L'API que j'ai réalisé s'inscrit dans ces objectifs.
+
 ## Fonctionnalité de Burst
 
+La principale mission que j'ai réalisé au Crédit Agricole a été la mise en place d'une API permettant de "Burster" un cluster de base données. La fonctionnalité de Burst permet d'ajouter des CPUs et donc de la puissance de calcul à un ensemble de machine. Il s'agit d'une fonctionnalité disponible sur les machines Oracle utilisant la technologie Oracle ExaCC, une technologie récente de Oracle.
+
 - Mes travaux au Crédit Agricole -> WebDBA
+
 <!--
 - Context
   - Besoin d'inventaire des DBAs
