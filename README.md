@@ -154,12 +154,10 @@ _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubus
 
 # Contexte du stage
 
-<!--
-Compte tenu du contexte de la pandémie, les conditions initiales du stage ont évolué. Initialement programmé pour débuter le 2 avril, la date de début du stage s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
+Compte tenu du contexte de la pandémie, le stage ne s'est pas déroulé dans les conditions initialement prévues. La date de début du stage, programmé pour débuter le 2 avril, s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
-  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sur sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
+  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec pour difficulté, l'incertitude sur sa durée car la date de début au CA était indéterminée. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
   - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
--->
 
 # Orness
 
