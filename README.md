@@ -58,18 +58,10 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
 
 - [Table des matières](#table-des-matières)
 - [Contexte du stage](#contexte-du-stage)
-- [Organisations](#organisations)
-  - [Orness](#orness)
-  - [DitRit](#ditrit)
-    - [Participaction à DitRit](#participaction-à-ditrit)
-    - [Projets de DitRit](#projets-de-ditrit)
-  - [Crédit Agricole](#crédit-agricole)
-    - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
-    - [Quelques chiffres](#quelques-chiffres)
-    - [Organisation CAGIP](#organisation-cagip)
-    - [Espace des DBAs](#espace-des-dbas)
-    - [Équipe](#équipe)
-        - [Carte de prise en charge des sujets de l'équipe](#carte-de-prise-en-charge-des-sujets-de-léquipe)
+- [Orness](#orness)
+- [DitRit](#ditrit)
+  - [Participaction à DitRit](#participaction-à-ditrit)
+  - [Projets de DitRit](#projets-de-ditrit)
 - [Projet Lidy](#projet-lidy)
   - [Contexte de Lidy](#contexte-de-lidy)
     - [Origine de Lidy : Leto](#origine-de-lidy--leto)
@@ -107,6 +99,13 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
     - [Enjeu d'exhaustivité du rapport des erreurs](#enjeu-dexhaustivité-du-rapport-des-erreurs)
     - [Enjeu d'informativité des erreurs](#enjeu-dinformativité-des-erreurs)
     - [Enjeu de légèreté de l'implémentation](#enjeu-de-légèreté-de-limplémentation)
+- [Crédit Agricole](#crédit-agricole)
+  - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
+  - [Quelques chiffres](#quelques-chiffres)
+  - [Organisation CAGIP](#organisation-cagip)
+  - [Espace des DBAs](#espace-des-dbas)
+  - [Équipe](#équipe)
+      - [Carte de prise en charge des sujets de l'équipe](#carte-de-prise-en-charge-des-sujets-de-léquipe)
 - [WebDBA](#webdba)
   - [De PHP à Django et avenir](#de-php-à-django-et-avenir)
   - [Projet d'automatisation de la commande du Burst](#projet-dautomatisation-de-la-commande-du-burst)
@@ -164,9 +163,7 @@ Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raiso
   - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
 -->
 
-# Organisations
-
-## Orness
+# Orness
 
 Orness est une entreprise de services du numérique (ESN), situé à Paris, avec ses bureaux dans le 9ème arrondissement. Cette SARL a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui coprésident l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux aussi membres fondateurs et codirecteurs techniques. [(orness-histoire)](#orness-histoire)
 
@@ -184,7 +181,7 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 <!-- ## Expertise -->
 
-## DitRit
+# DitRit
 
 DitRit est une association à but non-lucratif réalisant un travail de réflexion et de mise en pratique sur les sujets relatifs à la transition numérique. DitRit s'intéresse en particulier à cette transition pour les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
 
@@ -194,7 +191,7 @@ Les groupes de réflexion se tiennent régulièrement, avec une période de l'or
 
 Ditrit utilise Zulipchat ainsi que les mails pour la communication écrite entre ses membres, Jitsy pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hébergement du code source. Le langage de programmation principalement utilisés était initialement Java, mais depuis 2019 DitRit réalise la plupart de ses développements en Golang.
 
-### Participaction à DitRit
+## Participaction à DitRit
 
 La plupart des individus ayant apporté une contribution à DitRit sont inscrits dans l'instance Zulipchat de l'association. En novembre 2020, celle-ci compte 30 noms. Je vais donc me contenter de présenter les plus notables:
 
@@ -210,7 +207,7 @@ Jan, Joseph, Romain, Thierry et Xavier sont les cinq membres fondateurs de l'ass
 
 Ma présence et mon travail au sein de DitRit m'ont donné l'occasion de discuter avec Joseph, Romain et Xavier.
 
-### Projets de DitRit
+## Projets de DitRit
 
 Gandalf est un projet de système d'interconnexion automatique visant à rendre facile l'intégration et l'interopérabilité des différentes applications désirables pour disposer d'une usine logicielle. Gandalf intègre dans sa conception l'ensemble des contraintes spécifiques aux très grandes entreprises, telles que la haute disponibilité ou encore le support de clients multiples.
 
@@ -221,104 +218,6 @@ Le projet Ogree-3D dérive du projet Ogree. Il a pour but de construire des vues
 Enfin, DitRit comporte aussi des projets de moindre envergure. Il s'agit de Shoset, librairie de gestion de socket et de routage pour les systèmes redondants, ainsi que de Lidy, une librairie d'analyse et vérification de données structurées qui conserve le lien aux sources. Shoset a été construit pour répondre à un besoin du projet Gandalf, projet présenté plus haut, tandis que Lidy, lui répond à un besoin de Leto, un autre projet qui sera présenté dans la section Lidy.
 
 Durant la période pendant laquelle j'ai été affecté à travailler pour DitRit, mes contributions se sont principalement axées sur le projet Lidy. J'ai cependant aussi travaillé à l'automatisation du déploiement du site web de DitRit.
-
-## Crédit Agricole
-
-### Histoire du Crédit Agricole
-
-Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionales en une seule entité nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’Etat. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
-
-À partir de 1980, le Crédit Agricole commence à créer et racheter des filiales et des banques, avec par exemple, la création de l'assurance Predica en 1986, le rachat de LCL en 2002. Le Crédit Agricole développe aussi des activités bancaires dans les pays voisins de la France et à l'internationale. En 2004, le Crédit Agricole organise la fusion des filiales bancaires LCL et Indosuez sous le nom de Calyon, qui en 2010 sera renommée CACIB (Crédit Agricole Corporate and Investment Bank).
-
-C'est en 2019 qu'est créé l'entité CAGIP (Crédit Agricole Group Infrastructure Platform), afin de permettre regroupement des moyens informatiques du Crédit Agricole. Nous reviendrons sur les entités CACIB et CAGIP par la suite.
-
-[(ca-histoire)](#ca-histoire)
-
-### Quelques chiffres
-
-En 2019, le CA. est la 10ème banque mondiale par le total de bilan. Elle compte 139 000 collaborateurs à travers le monde (75% en France, 25% à l'international). CACIB constitue le premier marché de placement privé en Europe en 2016. CACIB est présente dans 36 pays et compte plus de 52 millions de clients.
-
-[(ca-key-figures)](#ca-key-figures), [investopedia-top-banks](#investopedia-banks)
-
-### Organisation CAGIP
-
-Depuis le 1er janvier 2019, CAGIP regroupe les collaborateurs, l'infrastructure et les activités informatiques des filiales suivantes:
-
-- Crédit Agricole Assurance
-- Crédit Agricole Corporate And Investment Bank (CACIB)
-- Crédit Agricole Technologies & Services
-- SILCA
-
-Ainsi, CAGIP représente plus de 80% de l'activité de production informatique du Groupe, avec près de 4000 collaborateurs réparties sur 17 sites en France.
-
-CAGIP est composé d'un grand nombre d'entités, catégorisées en trois groupes:
-les clusters métiers, au nombre de 7, les socles de services partagés, au nombre de 6 et enfin les stratégies innovation et solution (SIS).
-
-![Organigramme structure CAGIP](misc/CAGIP-map.png)
-
-L'entité au sein de laquelle je travaille est le Cluster Grandes Clientèles. Ce cluster a pour charge de pourvoir l'infrastructure informatique et d'assurer le bon fonctionnement de celle-ci. Ceci implique d'assurer le monitoring des informations relatives au taux d'utilisation des ressources, de l'inventaire des ressources, de l'anticipation des besoins en ressources et de travailler à la résolution des problèmes que peuvent signaler les utilisateurs de l'infrastructure.
-
-Ainsi, le cluster Grandes Clientèles de CAGIP pourvoit l'infrastructure des plus grosses filiales du Crédit Agricole :
-
-- Crédit Agricole SA (CASA)
-- Crédit Agricole Corporate and Invetement Bank (CACIB)
-  - CACEIS
-  - Crédit Agricole Indosuez Wealth Management (CAIW)
-  - Crédit Agricole Indosuez Private Banking
-
-Le cluster Grandes Clientèles travaille avec 12 datacenters. Il est composé de plus de 155 collaborateurs, travaillant sur les campus de SQY Park et de Montrouge-Evergreen, deux campus d'informatique situés en Ile de France.
-
-Le cluster Grandes Clientèles est structuré en quatre pôles, eux-même composés de services:
-
-![Organigramme structure Cluster Grandes Clientèles](misc/CAGIP-grandes-clienteles.png)
-
-Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisément, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournit les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'exécute, ainsi que les logiciels de base de données. Au sein de ce service, je travaille dans l'espace des DBAs, Database Administrators ; espace managé par Olivier KANCEL.
-
-### Espace des DBAs
-
-Les DBAs sont répartis en plusieurs équipes, chacune gérant un nombre réduit de technologies.
-
-- Microsoft SQL Server
-- Oracle
-- PostgreSql
-- Big Data
-
-Les équipes Microsoft SQL Server et Oracle ne gèrent chacune qu'une seule technologie. L'équipe PostgreSql, dont je fais parti gère les bases de données de technologie PostgreSql, Sybase et MySql. Enfin, l'équipe Big Data gère les bases de données de type NoSql ainsi que d'autres technologies de stockage Big Data, telles que Apache Hadoop.
-
-L'ensemble de l'espace cherche à adopter des pratiques DevOps vis-à-vis de la gestion des problèmes d'infrastructure. Le terme DevOps, contraction de développeur et opérationnel, deux domaines des métiers de l'informatique, vise à adopter un mode de travail qui intègre les problématiques d'infrastructure dans le travail de développement et aussi qui utilise les pratiques de développement informatique pour la gestion de l'infrastructure. Cette pratique cherche à étendre l'utilisation des pratiques Agiles au monde des opérationnels, de la gestion de l'infrastructure. On y trouve des enjeux tels que l'automatisation, la reproductibilité et la livraison continue.
-
-### Équipe
-
-Je travaille au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable de WebDBA, un logiciel d'inventaire nécessaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
-
-L'équipe comporte 7 membres, par ordre d'arrivé dans l'équipe:
-
-- Thomas DAUBY
-- Abdelilah BOUHNASS
-- Karima TIGRINE
-- Céline ANNIBAL
-- Pierre-Éric HENRY
-- Mathieu CAROFF
-- Cécilia TONY
-
-Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes prestataires.
-
-Les sujets sur lesquels travaille l'équipe sont répartis parmi les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outil Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parques de machines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travaille sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travaille sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
-
-##### Carte de prise en charge des sujets de l'équipe
-
-|        Sujet \\ Membre | Thomas | Abdelilah | Karima | Céline | Pierre-Éric | Mathieu | Cécilia |
-| ---------------------: | :----: | :-------: | :----: | :----: | :---------: | :-----: | :-----: |
-| Acquisition des sujets |   +    |     +     |        |        |             |         |         |
-|             BDD Sybase |        |           |   +    |        |      +      |         |         |
-|         BDD PostgreSQL |   +    |     +     |   +    |        |             |         |         |
-|                 WebDBA |   +    |     +     |        |   +    |             |    +    |    +    |
-|                Ansible |        |           |   +    |        |      +      |         |         |
-|        Nouveaux outils |        |           |        |   +    |             |    +    |         |
-
-Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relative au fonctionnement de Python et à l'utilisation de Git.
-
-Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
 
 # Projet Lidy
 
@@ -893,6 +792,104 @@ func (sp tSchemaParser) schemaError(node yaml.Node, expected string) []error {
 ```
 
 Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de contexte global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
+
+# Crédit Agricole
+
+## Histoire du Crédit Agricole
+
+Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionales en une seule entité nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’Etat. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
+
+À partir de 1980, le Crédit Agricole commence à créer et racheter des filiales et des banques, avec par exemple, la création de l'assurance Predica en 1986, le rachat de LCL en 2002. Le Crédit Agricole développe aussi des activités bancaires dans les pays voisins de la France et à l'internationale. En 2004, le Crédit Agricole organise la fusion des filiales bancaires LCL et Indosuez sous le nom de Calyon, qui en 2010 sera renommée CACIB (Crédit Agricole Corporate and Investment Bank).
+
+C'est en 2019 qu'est créé l'entité CAGIP (Crédit Agricole Group Infrastructure Platform), afin de permettre regroupement des moyens informatiques du Crédit Agricole. Nous reviendrons sur les entités CACIB et CAGIP par la suite.
+
+[(ca-histoire)](#ca-histoire)
+
+## Quelques chiffres
+
+En 2019, le CA. est la 10ème banque mondiale par le total de bilan. Elle compte 139 000 collaborateurs à travers le monde (75% en France, 25% à l'international). CACIB constitue le premier marché de placement privé en Europe en 2016. CACIB est présente dans 36 pays et compte plus de 52 millions de clients.
+
+[(ca-key-figures)](#ca-key-figures), [investopedia-top-banks](#investopedia-banks)
+
+## Organisation CAGIP
+
+Depuis le 1er janvier 2019, CAGIP regroupe les collaborateurs, l'infrastructure et les activités informatiques des filiales suivantes:
+
+- Crédit Agricole Assurance
+- Crédit Agricole Corporate And Investment Bank (CACIB)
+- Crédit Agricole Technologies & Services
+- SILCA
+
+Ainsi, CAGIP représente plus de 80% de l'activité de production informatique du Groupe, avec près de 4000 collaborateurs réparties sur 17 sites en France.
+
+CAGIP est composé d'un grand nombre d'entités, catégorisées en trois groupes:
+les clusters métiers, au nombre de 7, les socles de services partagés, au nombre de 6 et enfin les stratégies innovation et solution (SIS).
+
+![Organigramme structure CAGIP](misc/CAGIP-map.png)
+
+L'entité au sein de laquelle je travaille est le Cluster Grandes Clientèles. Ce cluster a pour charge de pourvoir l'infrastructure informatique et d'assurer le bon fonctionnement de celle-ci. Ceci implique d'assurer le monitoring des informations relatives au taux d'utilisation des ressources, de l'inventaire des ressources, de l'anticipation des besoins en ressources et de travailler à la résolution des problèmes que peuvent signaler les utilisateurs de l'infrastructure.
+
+Ainsi, le cluster Grandes Clientèles de CAGIP pourvoit l'infrastructure des plus grosses filiales du Crédit Agricole :
+
+- Crédit Agricole SA (CASA)
+- Crédit Agricole Corporate and Invetement Bank (CACIB)
+  - CACEIS
+  - Crédit Agricole Indosuez Wealth Management (CAIW)
+  - Crédit Agricole Indosuez Private Banking
+
+Le cluster Grandes Clientèles travaille avec 12 datacenters. Il est composé de plus de 155 collaborateurs, travaillant sur les campus de SQY Park et de Montrouge-Evergreen, deux campus d'informatique situés en Ile de France.
+
+Le cluster Grandes Clientèles est structuré en quatre pôles, eux-même composés de services:
+
+![Organigramme structure Cluster Grandes Clientèles](misc/CAGIP-grandes-clienteles.png)
+
+Le pôle dont je fais parti est le pôle Distributed Infrastructure and Network. Plus précisément, je fais parti du service Middleware and Database Services, service piloté par Olivier JAN. Ce service fournit les capacités des logiciels du niveau Middleware. Il s'agit des logiciels administrables sans avoir le contrôle total sur la machine sur laquelle il s'exécute, ainsi que les logiciels de base de données. Au sein de ce service, je travaille dans l'espace des DBAs, Database Administrators ; espace managé par Olivier KANCEL.
+
+## Espace des DBAs
+
+Les DBAs sont répartis en plusieurs équipes, chacune gérant un nombre réduit de technologies.
+
+- Microsoft SQL Server
+- Oracle
+- PostgreSql
+- Big Data
+
+Les équipes Microsoft SQL Server et Oracle ne gèrent chacune qu'une seule technologie. L'équipe PostgreSql, dont je fais parti gère les bases de données de technologie PostgreSql, Sybase et MySql. Enfin, l'équipe Big Data gère les bases de données de type NoSql ainsi que d'autres technologies de stockage Big Data, telles que Apache Hadoop.
+
+L'ensemble de l'espace cherche à adopter des pratiques DevOps vis-à-vis de la gestion des problèmes d'infrastructure. Le terme DevOps, contraction de développeur et opérationnel, deux domaines des métiers de l'informatique, vise à adopter un mode de travail qui intègre les problématiques d'infrastructure dans le travail de développement et aussi qui utilise les pratiques de développement informatique pour la gestion de l'infrastructure. Cette pratique cherche à étendre l'utilisation des pratiques Agiles au monde des opérationnels, de la gestion de l'infrastructure. On y trouve des enjeux tels que l'automatisation, la reproductibilité et la livraison continue.
+
+## Équipe
+
+Je travaille au sein de l'équipe PostgreSQL-Sybase. Cette équipe est aussi responsable de WebDBA, un logiciel d'inventaire nécessaire au travail des DBAs du service, ainsi qu'à la conformité du Crédit Agricole vis-à-vis des audits de commissaires aux compte et autres membres instances de contrôle financier.
+
+L'équipe comporte 7 membres, par ordre d'arrivé dans l'équipe:
+
+- Thomas DAUBY
+- Abdelilah BOUHNASS
+- Karima TIGRINE
+- Céline ANNIBAL
+- Pierre-Éric HENRY
+- Mathieu CAROFF
+- Cécilia TONY
+
+Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes prestataires.
+
+Les sujets sur lesquels travaille l'équipe sont répartis parmi les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outil Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parques de machines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travaille sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travaille sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
+
+#### Carte de prise en charge des sujets de l'équipe
+
+|        Sujet \\ Membre | Thomas | Abdelilah | Karima | Céline | Pierre-Éric | Mathieu | Cécilia |
+| ---------------------: | :----: | :-------: | :----: | :----: | :---------: | :-----: | :-----: |
+| Acquisition des sujets |   +    |     +     |        |        |             |         |         |
+|             BDD Sybase |        |           |   +    |        |      +      |         |         |
+|         BDD PostgreSQL |   +    |     +     |   +    |        |             |         |         |
+|                 WebDBA |   +    |     +     |        |   +    |             |    +    |    +    |
+|                Ansible |        |           |   +    |        |      +      |         |         |
+|        Nouveaux outils |        |           |        |   +    |             |    +    |         |
+
+Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relative au fonctionnement de Python et à l'utilisation de Git.
+
+Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
 
 # WebDBA
 
