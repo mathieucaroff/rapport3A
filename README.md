@@ -97,6 +97,7 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
     - [Enjeu d'exhaustivité du rapport des erreurs](#enjeu-dexhaustivité-du-rapport-des-erreurs)
     - [Enjeu d'informativité des erreurs](#enjeu-dinformativité-des-erreurs)
     - [Enjeu de légèreté de l'implémentation](#enjeu-de-légèreté-de-limplémentation)
+  - [Conclusion du projet Lidy](#conclusion-du-projet-lidy)
 - [Crédit Agricole](#crédit-agricole)
   - [Histoire du Crédit Agricole](#histoire-du-crédit-agricole)
   - [Quelques chiffres](#quelques-chiffres)
@@ -784,6 +785,16 @@ func (sp tSchemaParser) schemaError(node yaml.Node, expected string) []error {
 ```
 
 Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de contexte global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
+
+## Conclusion du projet Lidy
+
+Après 7 semaines et demi, ma mission au Crédit Agricole a commencée, interrompant mon travail sur Lidy. Ce projet m'aura permis d'acquérir une expérience significative avec le langage Go, ainsi qu'une expérience de développement informatique dans le monde associatif.
+
+Lidy est un projet qui a de nombreuses applications potentielles pour aider
+
+<!--
+- IDE pour apporter du support pour les DSL Yaml
+-->
 
 # Crédit Agricole
 
