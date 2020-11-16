@@ -82,7 +82,6 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
     - [Détails sur la spécification du mot-clé `_mergeable`](#détails-sur-la-spécification-du-mot-clé-_mergeable)
   - [Tests de Lidy](#tests-de-lidy)
   - [Retour sur le travail de spécification](#retour-sur-le-travail-de-spécification)
-        - [_adapted-v-model-for-existing-software_](#adapted-v-model-for-existing-software)
     - [Retour sur les tests](#retour-sur-les-tests)
   - [Support des numéros de ligne lors de la conversion du YAML en Go](#support-des-numéros-de-ligne-lors-de-la-conversion-du-yaml-en-go)
   - [Conception de l'API de la librairie Lidy](#conception-de-lapi-de-la-librairie-lidy)
@@ -90,7 +89,6 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
     - [Fichiers dans Lidy](#fichiers-dans-lidy)
     - [Résultats de Lidy](#résultats-de-lidy)
   - [Conception interne de Lidy](#conception-interne-de-lidy)
-        - [lidy-newparser-parse](#lidy-newparser-parse)
   - [Analyse et validation du schéma](#analyse-et-validation-du-schéma)
     - [Deux problèmes de graphe](#deux-problèmes-de-graphe)
     - [Algorithme de parcours de graphe](#algorithme-de-parcours-de-graphe)
@@ -484,11 +482,9 @@ Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.
 
 ## Retour sur le travail de spécification
 
-Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Golang, je trouve que les tests ont été d'une très grande utilité, mais que cependant, l'effort réalisé en amont de la spécification semble ne pas avoir été suffisant. Je pense qu'un point distinctif sur lequel je pourrais m'améliorer à l'avenir est la _délimitation du besoin_. Dans le cas d'un logiciel existant, comme pour Lidy, cet effort doit probablement se faire en s'appuyant sur les fonctionnalités existantes. On peut envisager la chose comme un cycle en V-inversé, suivi d'un cycle en V :
+Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Golang, je trouve que les tests ont été d'une très grande utilité, mais que cependant, l'effort réalisé en amont de la spécification semble ne pas avoir été suffisant. Je pense qu'un point distinctif sur lequel je pourrais m'améliorer à l'avenir est la _délimitation du besoin_. Dans le cas d'un logiciel existant, comme pour Lidy, cet effort doit probablement se faire en s'appuyant sur les fonctionnalités existantes. On peut envisager la chose comme un cycle en V-inversé, suivi d'un cycle en V, comme présenté dans la figure \ref{adapted-v-model}.
 
-##### _adapted-v-model-for-existing-software_
-
-![adapted v-model for existing software schema](misc/specification-v-cycle.png)
+![adapted v-model for existing software schema\label{adapted-v-model}](misc/specification-v-cycle.png)
 
 ### Retour sur les tests
 
@@ -533,9 +529,7 @@ J'avais alors une idée assez précise de la manière dont Lidy devait réaliser
 
 La première étape, comme la deuxième étape, produit soit des erreurs soit un résultat. La forme résultat de la deuxième étape a déjà été décidée, mais pas celle du résultat de la première étape.
 
-##### lidy-newparser-parse
-
-![Fonctionnement de NewParser.Parse()](misc/Lidy-NewParser-Parse.png)
+![Fonctionnement de NewParser.Parse()\label{lidy-newparser-parse}](misc/Lidy-NewParser-Parse.png)
 
 Des questions demeurent cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
 
