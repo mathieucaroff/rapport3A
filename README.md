@@ -415,7 +415,7 @@ Il y avait aussi la question de la manière dont les mot-clés qui étaient perm
 
 - (QSpec5: dict-vs-map) Lidy utilisait le radical `dict` pour former les mot-clés qui référaient aux mappings YAML. Le radical `map`, utilisé dans la spécification YAML semble plus approprié ici. Il a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
 
-- (QSpec6: required-vs-xFacultative) Lidy utilisait un mot-clé \_required, pour spécifier les entrées obligatoires d'un mapping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car cela oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car implique que, par défaut, les entrées des mappings sont optionnels. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problème lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
+- (QSpec6: required-vs-xFacultative) Lidy utilisait un mot-clé `_required`, pour spécifier les entrées obligatoires d'un mapping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car cela oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car implique que, par défaut, les entrées des mappings sont optionnels. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problème lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
 
 - (QSpec7: notin) Enfin, le mot-clé `_notin` n'était pas utilisé et n'avait pas tests. Il n'avait donc pas de comportement bien défini. Par ailleurs, le seul cas d'usage d'un moyen de spécification par exclusion me semblait être pour l'exclusion des mots-clés dans les identifieurs, ce qui posait beaucoup de problèmes.
 
@@ -436,12 +436,12 @@ J'ai donc pris les décisions suivantes :
 Il a été déterminé que l'utilisation et le comportement du mot-clé `_merge` devait respecter certaines caractéristiques. Ainsi, durant la première lecture du schéma, Lidy doit vérifier que le mot-clé n'est utilisé qu'avec des expressions Lidy qui soient "fusionnables" ou "mergeable" dans la terminologie Lidy. Les expressions Lidy fusionnables sont précisément :
 
 - les règles correspondant à une expression mergeable
-- les spécifieurs \_oneOf ne contenant que des expressions mergeables
-- les spécifieurs de mappings ne contenant pas de mot-clé \_mapOf
+- les spécifieurs `_oneOf` ne contenant que des expressions mergeables
+- les spécifieurs de mappings ne contenant pas de mot-clé `_mapOf`
 
 Si le mot-clé `_merge` est utilisé sur une expression qui n'est pas mergeable, Lidy doit le signaler.
 
-Lidy doit aussi vérifier que l'ensemble des mappings concernés par un \_merge ne contienne jamais plusieurs entrées sous le même nom. Si ceci se produit, Lidy doit le signaler à l'utilisateur, par une erreur au moment de la première lecture de schéma.
+Lidy doit aussi vérifier que l'ensemble des mappings concernés par un `_merge` ne contienne jamais plusieurs entrées sous le même nom. Si ceci se produit, Lidy doit le signaler à l'utilisateur, par une erreur au moment de la première lecture de schéma.
 
 À l'étape de validation de la donnée, Lidy doit vérifier que l'ensemble des entrées requises sont présentes. Lidy doit aussi vérifier que l'ensemble des entrées connues ont la bonne valeur. Enfin, Lidy doit vérifier que l'ensemble des entrées qui sont présentes sont bien connues, ou bien, dans le cas ou le mot-clé `_mapOf` est présent sur le nœud contenant le mot-clé `_merge`, Lidy doit vérifier que les entrées qui ne sont pas connues respectent bien les expressions Lidy du `_mapOf` pour la clé et pour la valeur.
 
@@ -573,11 +573,11 @@ Certaines vérifications posent des difficultés spécifiques, liées au fait qu
 
 Problème A, références directes et cycles:
 
-`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clés permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont exposées au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle-même dans un \_merge ou dans un \_oneOf ou encore dans une référence de règle pour que cette situation crée une boucle infinie au moment de l'application de la règle. Cependant, il existe des cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
+`_merge`, `_oneOf` et les références de règles sont "directes". En effet, ces mots-clés permettent de faire référence à d'autres règles dont la vérification sera réalisée sur le même nœud que celui sur lequel l'expression en cours opère. Ceci signifie que ces trois constructions sont exposées au problème de boucle infinie. Pour donner le cas le plus simple, il suffit qu'une règle fasse référence à elle-même dans un `_merge` ou dans un `_oneOf` ou encore dans une référence de règle pour que cette situation crée une boucle infinie au moment de l'application de la règle. Cependant, il existe des cas plus complexes peuvent impliquer un nombre arbitrairement grand de règles.
 
 Problème B, ordre de parcours des règles:
 
-Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé \_merge est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé `_merge` est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
 
 ### Algorithme de parcours de graphe
 
@@ -667,7 +667,7 @@ Il se trouve que l'exploration du contenu du nœud est en fait inévitable, puis
 <!--
 ## Validation des données
 - Même problème d'interface Go pour supporter les appèls récursifs
-- Difficulté sur les types avec \_merge -->
+- Difficulté sur les types avec `_merge` -->
 
 ## Rapporter les erreurs
 
@@ -681,7 +681,7 @@ Le premier enjeu est de parvenir à rapporter toutes les erreurs. Il se décompo
 
 - Les validateurs doivent être implémentés de manière à ne pas s'interrompre lors dès qu'une erreur est détectée, mais au contraire, à réaliser la totalité des vérifications qu'ils peuvent faire avant de rendre la main.
 
-- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à \_oneOf: Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
+- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à `_oneOf`: Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
 
 Ces contraintes que font peser `_oneOf` sur l'implémentation de Lidy m'ont amené à choisir de passer les erreurs comme une liste d'erreurs, en résultat des fonctions de vérification Lidy. Un exemple de méthode qui renvoie une liste d'erreur est la méthode `match()` de l'interface `tExpression`.
 Le fonctionnement de cette interface a été expliqué dans la section [Conception interne de Lidy](#conception-interne-de-lidy).
@@ -698,7 +698,7 @@ Le second enjeu est de produire une information d'erreur riche. Voici les inform
 - (D) La position de la situation trouvée dans le document ou schéma
 - (E) La distinction entre erreur et warning
 - (F) (_Dans le cas de la vérification des données utilisateur_) La position définissant la situation attendue. Cette position se dans le schema du développeur.
-- (G) (_Dans le cas du spécificateur \_oneOf_) La liste des sous-erreurs qui ensemble contribuent à l'échec de la validation du \_oneOf.
+- (G) (_Dans le cas du spécificateur `_oneOf`_) La liste des sous-erreurs qui ensemble contribuent à l'échec de la validation du `_oneOf`.
 
 Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée: si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
 
