@@ -111,7 +111,7 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
     - [Technologie ExaCC](#technologie-exacc)
     - [Processus d'ajout des CPUs](#processus-dajout-des-cpus)
     - [Attendre l'API Oracle](#attendre-lapi-oracle)
-    - [Diagrame de séquence détaillé du burst](#diagrame-de-séquence-détaillé-du-burst)
+    - [Diagramme de séquences détaillé du burst](#diagramme-de-séquences-détaillé-du-burst)
       - [Client](#client)
       - [Requêtes invalides](#requêtes-invalides)
       - [Création des requêtes](#création-des-requêtes)
@@ -250,7 +250,7 @@ AJV et JSON Schema répondaient bien au besoin de ToP, cependant deux problèmes
 - AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peut **connaître les numéros de ligne** d'où proviennent les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
 - AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP : celle d'un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
 
-En l'absence d'outils similaire aux JSON Schema pour répondre à ces deux besoins, l'association DitRit a décidé de créer son propre outil : Lidy.
+En l'absence d'outils similaires aux JSON Schema pour répondre à ces deux besoins, l'association DitRit a décidé de créer son propre outil : Lidy.
 
 ### Lidy
 
@@ -379,7 +379,7 @@ Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAM
 
 ## Recherche, travail et impression sur Golang
 
-L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**. En effet, Golang choisi de rendre obligatoire les accolades des blocs de code et de retirer les parenthèses des tests des structures de contrôle (if/while/for). De même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmi ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
+L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**. En effet, Golang choisit de rendre obligatoire les accolades des blocs de code et de retirer les parenthèses des tests des structures de contrôle (if/while/for). De même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmi ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
 
 En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a que deux structures de donnée : le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation spécifique. Ceci dénote des langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
 
@@ -413,9 +413,9 @@ Il y avait aussi la question de la manière dont les mot-clés qui étaient perm
 
 - (QSpec4: dict/dictOf) `_dict` avec `_dictOf`, si une clé est reconnue simultanément par `_dict` et `_dictOf`, pour les entrées non-requises de `_dict`, faut-il autoriser la valeur à avoir le type proposé par le `_dictOf`, ou bien n'autoriser que le type donné par le `_dict` ?
 
-- (QSpec5: dict-vs-map) L'implémentation en JS de Lidy utilise le radical `dict` pour former les mot-clés qui référent aux mappings YAML. Cependant, le radical `map`, utilisé dans la spécification YAML me semble plus approprié. `map` a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
+- (QSpec5: dict-vs-map) L'implémentation en JS de Lidy utilise le radical `dict` pour former les mot-clés qui réfèrent aux mappings YAML. Cependant, le radical `map`, utilisé dans la spécification YAML me semble plus approprié. `map` a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
 
-- (QSpec6: required-vs-xFacultative) L'implémentation en JS de Lidy utilise un mot-clé `_required`, pour spécifier les entrées obligatoires d'un mapping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car cela oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car implique que, par défaut, les entrées des mappings sont optionnels. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problème lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
+- (QSpec6: required-vs-xFacultative) L'implémentation en JS de Lidy utilise un mot-clé `_required`, pour spécifier les entrées obligatoires d'un mapping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car implique que, par défaut, les entrées des mappings sont optionnelles. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problème lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
 
 - (QSpec7: notin) Enfin, le mot-clé `_notin` n'était pas utilisé et n'avait pas de tests. Il n'avait donc pas de comportement bien défini. Par ailleurs, le seul cas d'usage d'un moyen de spécification par exclusion me semblait être pour l'exclusion des mots-clés dans les identifieurs, ce qui posait beaucoup de problèmes.
 
@@ -443,7 +443,7 @@ Si le mot-clé `_merge` est utilisé sur une expression qui n'est pas mergeable,
 
 Lidy doit aussi vérifier que l'ensemble des mappings concernés par un `_merge` ne contienne jamais plusieurs entrées sous le même nom. Si ceci se produit, Lidy doit le signaler à l'utilisateur, par une erreur au moment de la première lecture de schéma.
 
-À l'étape de validation de la donnée, Lidy doit vérifier que l'ensemble des entrées requises sont présentes. Lidy doit aussi vérifier que l'ensemble des entrées connues ont la bonne valeur. Enfin, Lidy doit vérifier que l'ensemble des entrées qui sont présentes sont bien connues, ou bien, dans le cas ou le mot-clé `_mapOf` est présent sur le nœud contenant le mot-clé `_merge`, Lidy doit vérifier que les entrées qui ne sont pas connues respectent bien les expressions Lidy du `_mapOf` pour la clé et pour la valeur.
+À l'étape de validation de la donnée, Lidy doit vérifier que l'ensemble des entrées requises sont présentes. Lidy doit aussi vérifier que l'ensemble des entrées connues ont la bonne valeur. Enfin, Lidy doit vérifier que l'ensemble des entrées qui sont présentes sont bien connues, ou bien, dans le cas où le mot-clé `_mapOf` est présent sur le nœud contenant le mot-clé `_merge`, Lidy doit vérifier que les entrées qui ne sont pas connues respectent bien les expressions Lidy du `_mapOf` pour la clé et pour la valeur.
 
 ## Tests de Lidy
 
@@ -502,7 +502,7 @@ J'étais en particulier gêné par mes habitudes de bonnes pratiques dans les au
 
 ### Fichiers dans Lidy
 
-Une autres question importante à laquelle il a fallu répondre est celle du chargement des fichiers dans Lidy. En effet, Lidy est une librairie qui se veut portable. Il est possible de compiler le code Golang en WASM et de l'utiliser depuis d'autres langages. Cependant, lorsqu'on utilise cette approche, il n'est pas possible d'utiliser les fonctions de l'OS, telles que l'ouverture de fichiers. Ceci se comprend bien dans la mesure ou l'on peut être amené à exécuter du code WASM dans le navigateur, plateforme ne disposant pas de système de fichiers.
+Une autres question importante à laquelle il a fallu répondre est celle du chargement des fichiers dans Lidy. En effet, Lidy est une librairie qui se veut portable. Il est possible de compiler le code Golang en WASM et de l'utiliser depuis d'autres langages. Cependant, lorsqu'on utilise cette approche, il n'est pas possible d'utiliser les fonctions de l'OS, telles que l'ouverture de fichiers. Ceci se comprend bien dans la mesure où l'on peut être amené à exécuter du code WASM dans le navigateur, plateforme ne disposant pas de système de fichiers.
 
 Cependant, Lidy utilise le concept de fichier lorsqu'il s'agit de signaler des erreurs à l'utilisateur. La solution à ce problème est d'accepter de la part de l'utilisateur le nom du fichier en plus de son contenu. Pour rendre une telle interface plus agréable pour le développeur, Lidy [dispose d'un concept de fichier](https://github.com/ditrit/lidy/blob/go-2020-10/lidy.go#L134-L141), faisant abstraction de l'OS. Ceci permet de couvrir l'ensemble des cas d'utilisation de Lidy, tant sur les plateformes sans OS, que avec OS.
 
@@ -577,7 +577,7 @@ Problème A, références directes et cycles:
 
 Problème B, ordre de parcours des règles:
 
-Le mot-clé `_merge`, pose un problème spécifique supplémentaire : il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé `_merge` est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire : il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé `_merge` est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparaît une contrainte d'ordre.
 
 ### Algorithme de parcours de graphe
 
@@ -885,7 +885,7 @@ Durant la période de stage, les tâches que je reçois me sont principalement c
 
 # WebDBA
 
-Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé pour répondre au besoin d'inventaire des bases de données. En tant que tel, il gère des concepts systèmes tels que celui de machine, de cluster, de service et de système de fichers. Il gère aussi des concepts base de données tels que les instances de base données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus important qu'il manipule.
+Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé pour répondre au besoin d'inventaire des bases de données. En tant que tel, il gère des concepts systèmes tels que celui de machine, de cluster, de service et de système de fichers. Il gère aussi des concepts base de données tels que les instances de base de données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus important qu'il manipule.
 
 ## De PHP à Django et avenir
 
@@ -907,63 +907,63 @@ WebDBA est destiné à supporter de plus en plus d'APIs, en particulier des APIs
 
 ## Projet d'automatisation de la commande du Burst
 
-Ce projet constitue la principale mission que j'ai réalisé au Crédit Agricole. Il implique deux des équipes managées par Olivier KANCEL : L'équipe des DBAs Oracle, ainsi que notre équipe. Au sein de notre équipe, Thomas et Abdelilah étaient concernés en tant que superviseurs du projet. Marcellin YOUAN, DBA membre de l'équipe Oracle, était mon interlocuteur et représentant du besoin pour l'équipe Oracle.
+Ce projet constitue la principale mission que j'ai réalisée au Crédit Agricole. Il implique deux des équipes managées par Olivier KANCEL : L'équipe des DBAs Oracle, ainsi que notre équipe. Au sein de notre équipe, Thomas et Abdelilah étaient concernés en tant que superviseurs du projet. Marcellin YOUAN, DBA membre de l'équipe Oracle, était mon interlocuteur et représentant du besoin pour l'équipe Oracle.
 
 Le besoin de l'équipe Oracle était la simplification d'une API propriétaire offerte par Oracle. Cette API sert à commander une fonctionnalité propriétaire des bases de données Oracle : le Burst.
 
 ### Qu'est que le "Burst" ?
 
-Le Burst est une fonctionnalité disponible sur les machines **Oracle ExaCC**. Elle permet d'ajouter des CPUs à un ensemble de machines porteuses des bases de données, afin de rendres ces bases de données temporairement capable de servir un plus grand nombre de requêtes. Il est a noter que cette fonctionnalité est _payante_ et est facturée à l'heure par Oracle en fonction du nombre de CPUs ajoutés.
+Le Burst est une fonctionnalité disponible sur les machines **Oracle ExaCC**. Elle permet d'ajouter des CPUs à un ensemble de machines porteuses des bases de données, afin de rendre ces bases de données temporairement capables de servir un plus grand nombre de requêtes. Il est a noter que cette fonctionnalité est _payante_ et est facturée à l'heure par Oracle en fonction du nombre de CPUs ajoutés.
 
-Le Burst peut être activée manuellement via un bouton dans l'interface web de commande fournie par Oracle. Elle peut aussi être activée automatiquement par l'envoie de plusieurs requêtes sur une API Oracle dédiée.
+Le Burst peut être activé manuellement via un bouton dans l'interface web de commande fournie par Oracle. Elle peut aussi être activée automatiquement par l'envoi de plusieurs requêtes sur une API Oracle dédiée.
 
-Cependant, cette API Oracle est contraignante et pose d'importantes difficultés. En effet, avec cette API, la fabrication de la requête à envoyer pose des difficultés, le burst doit être réalisé en deux étapes et chaque étape nécéssite une période d'attente semi-active afin de vérifier que la requête à bien été prise en compte. L'équipe Oracle souhaiterais disposer d'une API simple sur laquelle il soit possible de réaliser une seul requête et que l'ensembles des étapes mentionnées précédemment soit gérées par WebDBA. L'API WebDBA produira un status de succès si l'ensemble des étapes se déroulent bien et un status d'échec si une d'entre elles échoue.
+Cependant, cette API Oracle est contraignante. En effet, avec cette API, la fabrication de la requête à envoyer pose des difficultés. Le burst doit être réalisé en deux étapes et chaque étape nécessite une période d'attente semi-active afin de vérifier que la requête a bien été prise en compte. L'équipe Oracle souhaiterait disposer d'une API simple sur laquelle il soit possible de réaliser une seul requête et que l'ensemble des étapes mentionnées précédemment soient gérées par WebDBA. L'API WebDBA produira un status de succès si l'ensemble des étapes se déroule bien et un status d'échec si l'une d'entre elles échoue.
 
 ### Technologie ExaCC
 
-Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les conceptes d'exasystem ExaCC de cluster ExaCC, de noeuds ExaCC et de VMs. Ces conceptes se composent tel que présenté dans la figure \ref{exacc-schema}.
+Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les concepts d'exasystem ExaCC de cluster ExaCC, de noeuds ExaCC et de VMs. Ces concepts se composent tels que présentés dans la figure \ref{exacc-schema}.
 
 ![ExaCC schema\label{exacc-schema}](uml/webdba.burst.exacc.png){width=171px}
 
-Le schéma fait aussi figuré les arités et totaux. Ces nombres correspondent au cas des systèmes ExaCCs du Crédit Agricole. Parmis ces conceptes, seul celui d'exasystem de cluster affectent l'usage de l'API d'Oracle. En effet, afin d'ajouter des CPUs à un cluster, il est nécéssaire de commencer par en ajouter à l'exasystem auquel ce cluster appartient. C'est la raison pour laquelle l'opération d'ajout de CPUs doit être réalisé en deux opérations.
+Le schéma fait aussi figurer les arités et totaux. Ces nombres correspondent au cas des systèmes ExaCCs du Crédit Agricole. Parmi ces concepts, seul celui d'exasystem de cluster affecte l'usage de l'API d'Oracle. En effet, afin d'ajouter des CPUs à un cluster, il est nécessaire de commencer par en ajouter à l'exasystem auquel ce cluster appartient. C'est la raison pour laquelle l'opération d'ajout de CPUs doit être réalisé en deux opérations.
 
 ### Processus d'ajout des CPUs
 
 ![Simplified burst sequence diagram\label{simple-burst}](uml/webdba.burst.simplified.png){width=279px}
 
-Les deux opérations d'ajouts de CPUs sont précédés d'une étape d'obtention d'information sur les exasystems, de calcul des paramètres de la requète et d'assemblage de la requète. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin contient trois étapes. Le diagramme de séquence \ref{simple-burst} présente une les interactions entre le module de burst de WebDBA et l'API de Oracle. Ces intéractions constituent une version simplifiée du processus. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet les possibilités d'échec de l'API.
+Les deux opérations d'ajouts de CPUs sont précédées d'une étape d'obtention d'informations sur les exasystems, de calcul des paramètres de la requête et d'assemblage de la requête. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin contient trois étapes. Le diagramme de séquences \ref{simple-burst} présente une les interactions entre le module de burst de WebDBA et l'API de Oracle. Ces interactions constituent une version simplifiée du processus. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet les possibilités d'échec de l'API.
 
 ### Attendre l'API Oracle
 
-Après chaque opération demandée à l'API Oracle, il est nécessaire d'attendre l'application effective des changements. L'attente prends fin lorsque les informations affichées par l'API Oracle reflètent les changements demandés. Il est donc nécéssaire d'interroger périodiquement l'API Oracle et de comparer l'une des valeurs transmises à la valeur attendue jusqu'à ce que la valeur attendue soit atteinte.
+Après chaque opération demandée à l'API Oracle, il est nécessaire d'attendre l'application effective des changements. L'attente prend fin lorsque les informations affichées par l'API Oracle reflètent les changements demandés. Il est donc nécessaire d'interroger périodiquement l'API Oracle et de comparer l'une des valeurs transmises à la valeur attendue jusqu'à ce que la valeur attendue soit atteinte.
 
-Lorsque ce processus m'a été expliqué, j'ai immédiatement identifié une difficulté majeur : La nécéssité d'attendre l'API d'Oracle. En effet, l'attente doit pouvoir durer jusqu'à 10 minutes pour une seul opération. Ceci pose problème car les connections UDP et TCP peuvent être rompues par les intermédiaires de connection si aucune donnée n'est échangée pendant une telle durée. Ce problème a été résolu avec l'aide de Thomas. En effet, Django dispose d'une fonctionnalité permettant de faire des réponses qui dure dans le temps. Il s'agit des `StreamingHttpResponse`. Thomas avait déjà utilisé ce mode de réponse pour transmettre des informations à l'utilisateur pendant l'execution de calculs lourds. Cette technique peut être tout aussi bien réutilisée pour garder l'utilisateur informé de l'état de progression pendant les deux périodes d'attente. Cette technique s'accompagne cependant de difficultés : pour produire une réponse JSON valide, il est nécéssaire de formatter manuellement la réponse textuelle produite.
+Lorsque ce processus m'a été expliqué, j'ai immédiatement identifié une difficulté majeure : la nécessité d'attendre l'API d'Oracle. En effet, l'attente peut atteindre 10 minutes pour une seule opération. Ceci pose problème car les connexions UDP et TCP peuvent être rompues par les intermédiaires de connexion si aucune donnée n'est échangée pendant une telle durée. Ce problème a été résolu avec l'aide de Thomas. En effet, Django dispose d'une fonctionnalité permettant de faire des réponses qui durent dans le temps. Il s'agit des `StreamingHttpResponse`. Thomas avait déjà utilisé ce mode de réponse pour transmettre des informations à l'utilisateur pendant l'exécution de calculs lourds. Cette technique peut être tout aussi bien réutilisée pour garder l'utilisateur informé de l'état de progression pendant les deux périodes d'attente. Cette technique s'accompagne cependant de difficultés : pour produire une réponse JSON valide, il est nécessaire de formater manuellement la réponse textuelle produite.
 
-Aux difficultés habituelles de formattage s'ajoute ici une difficulté supplémentaire : la gestion des erreurs. En effet, la moindre erreur pourrait interrompre la production du JSON de réponse, résultant en une réponse JSON invalide. Ce problème est traité par l'utilisation judicieuse de la structure de controle d'execution `try`/`finally`.
+Aux difficultés habituelles de formatage s'ajoute ici une difficulté supplémentaire : la gestion des erreurs. En effet, la moindre erreur pourrait interrompre la production du JSON de réponse, résultant en une réponse JSON invalide. Ce problème est traité par l'utilisation judicieuse de la structure de contrôle d'exécution `try`/`finally`.
 
-### Diagrame de séquence détaillé du burst
+### Diagramme de séquences détaillé du burst
 
 ![Detailed Burst sequence diagram](uml/webdba.burst.exasystem.detail.png)
 
-Ce diagramme présente les actions que réalise WebDBA pour burster. Il constitue une vue synthétique partielle de mon travail sur le projet d'automations de la commande de burst. Par rapport au diagramme simplifié, il contient un nouveau participant, "Oracle API Client", présenté ci-après.
+Ce diagramme présente les actions que réalise WebDBA pour burster. Il constitue une vue synthétique partielle de mon travail sur le projet d'automatisation de la commande de burst. Par rapport au diagramme simplifié, il contient un nouveau participant, "Oracle API Client", présenté ci-après.
 
 #### Client
 
-En programmation web, un client désigne un composant ou une librairie servant d'intermédiaire avec une API web. Un client permet de simplifier les intéractions avec une telle interface. Dans le cas de ce projet, le client est simplement une classe Python permettant au reste du code du module d'intéragire avec l'API Oracle sans avoir à se soucier des problèmes d'authentification. Notons que le diagramme n'illustre pas toutes les intéractions implicant le client : seul la première intéraction est présentée. L'utilisation du client dans les intéractions qui suivent est implicite.
+En programmation web, un client désigne un composant ou une librairie servant d'intermédiaire avec une API web. Un client permet de simplifier les interactions avec une telle interface. Dans le cas de ce projet, le client est simplement une classe Python permettant au reste du code du module d'interagir avec l'API Oracle sans avoir à se soucier des problèmes d'authentification. Notons que le diagramme n'illustre pas toutes les interactions impliquant le client : seule la première interaction est présentée. L'utilisation du client dans les interactions qui suivent est implicite.
 
-Outre le comfort que la classe client apporte vis-à-vis de l'authentification, ce composant est pratique pour la réalisation de test. En effet, remplacer le composant client par un faux permet de tester le comportement du module WebDBA sans intéragir réellement avec l'API Oracle.
+Outre le confort que la classe client apporte vis-à-vis de l'authentification, ce composant est pratique pour la réalisation de tests. En effet, remplacer le composant client par un faux permet de tester le comportement du module WebDBA sans interagir réellement avec l'API Oracle.
 
 #### Requêtes invalides
 
-Lors de l'étape de préparation, il est possible que la requête sois rejetée ou abandonnée. La requête sera abandonnée avec si l'état demandé est déja l'état du cluster. Ainsi, le module de commande du burst ne fait rien si une demande de deburst est faite alors que l'exasystème n'a pas de CPUs de burst. De même il ne fait rien et renvoie un status de succès si le cluster est déjà bursté avec le bon nombre de CPUs. Cependant, conformément aux contraintes données par l'équipe Oracle, la seul opération autorisée lorsque des CPUs de burst sont utilisés est de retirer tout les CPUs de burst.
+Lors de l'étape de préparation, il est possible que la requête soit rejetée ou abandonnée. La requête sera abandonnée si l'état demandé est déjà l'état du cluster. Ainsi, le module de commande du burst ne fait rien si une demande de deburst est faite alors que l'exasystème n'a pas de CPUs de burst. De même il ne fait rien et renvoie un status de succès si le cluster est déjà bursté avec le bon nombre de CPUs. Cependant, conformément aux contraintes données par l'équipe Oracle, la seule opération autorisée lorsque des CPUs de burst sont utilisés est de retirer tous les CPUs de burst.
 
 #### Création des requêtes
 
-Le calcul des paramètres à utiliser pour les requètes dépends du nombre de CPUs demandés pour le burst ainsi que du nombre de cpus standards présents sur l'exasystème et le cluster. Il se base sur un ensemble de formules données par Marcellin. Ces paramètres sont injectés dans une structure qui est convertie en JSON. Ce JSON est converti en base64 et injecté dans un autre JSON. Ce dernier JSON constitut le corps de la requète à envoyer à l'API Oracle. Ce format de requête inutilement complexe exigé par l'API Oracle est l'une des raisons pour lesquelles l'équipe Oracle a commandé la création de l'API WebDBA simplifiée.
+Le calcul des paramètres à utiliser pour les requêtes dépend du nombre de CPUs demandés pour le burst ainsi que du nombre de cpus standards présents sur l'exasystème et le cluster. Il se base sur un ensemble de formules données par Marcellin. Ces paramètres sont injectés dans une structure qui est convertie en JSON. Ce JSON est converti en base64 et injecté dans un autre JSON. Ce dernier JSON constitut le corps de la requête à envoyer à l'API Oracle. Ce format de requête inutilement complexe exigé par l'API Oracle est l'une des raisons pour lesquelles l'équipe Oracle a commandé la création de l'API WebDBA simplifiée.
 
 #### Deburst
 
-Le diagramme de séquence présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence prêt que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
+Le diagramme de séquences présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence près que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
 
 <!--
 - Sujet: Burst
@@ -983,17 +983,17 @@ Le diagramme de séquence présenté s'applique au cas de l'ajout de CPUs. Dans 
 <dl>
 <dt>JS, JavaScript</dt>
 <dd>
-Language de programmation utilisable sur le pages web ainsi que sur ordinateur. C'est un langage dynamiquement typé, faiblement typé et interprété. Les interpréteurs les plus communs de JavaScript sont les moteurs V8 (pour Chrome, Chromium et NodeJS) et SpiderMonkey (pour Firefox). JS a *très-peu* en commun avec Java, et se rapproche plus de Python, Ruby et particulièrement de Lua.
+Langage de programmation utilisable sur les pages web ainsi que sur ordinateur. C'est un langage dynamiquement typé, faiblement typé et interprété. Les interpréteurs les plus communs de JavaScript sont les moteurs V8 (pour Chrome, Chromium et NodeJS) et SpiderMonkey (pour Firefox). JS a *très-peu* en commun avec Java, et se rapproche plus de Python, Ruby et particulièrement de Lua.
 </dd>
 
 <dt>TS, TypeScript</dt>
 <dd>
-TypeScript est une extension du language JavaScript permettant d'ajouter des annotations de types au sein de code JavaScript, puis ensuite de vérifier que le code respecte les indications de types données par les annotations. La vérification des types est réalisée de manière *statique*, c'est à dire avant l'execution du code, ce qui permet d'éviter la majorité des bugs habituels de JavaScript, et rends plus facile les opérations de *refactoring*. TypeScript n'est pas le premier système d'annotation et de vérification des types pour un language dynamiquemet typé, cependant, il se distingue par son extrème flexibilité, en particulier dans le scénario d'une transition de JavaScript vers TypeScript.
+TypeScript est une extension du  JavaScript permettant d'ajouter des annotations de types au sein de code JavaScript, puis ensuite de vérifier que le code respecte les indications de types données par les annotations. La vérification des types est réalisée de manière *statique*, c'est à dire avant l'exécution du code, ce qui permet d'éviter la majorité des bugs habituels de JavaScript, et rend plus facile les opérations de *refactoring*. TypeScript n'est pas le premier système d'annotation et de vérification des types pour langage dynamiquement typé, cependant, il se distingue par son extrême flexibilité, en particulier dans le scénario d'une transition de JavaScript vers TypeScript.
 </dd>
 
 <dt>Go, Golang</dt>
 <dd>
-Langage de programmation statiquement typé, développé chez Google et dont la première version a été publiée en 2012. Golang cherche à ressembler à C, mais en évitant les problèmes de mémoire et en facilitant la programmation concurrente, via des primitives appropriés à la communication inter-process. Golang me donne l'impression d'être un intermédiaire statiquement typé entre C et Python. Je trouve aussi que ce langage est déroutant dans la mesure ou de nombreux problèmes ne peuvent pas être résolu en Go en utilisant l'approche habituelle, disponible dans l'ensemble des autres langages de programmation haut-niveau.
+Golang est un langage de programmation statiquement typé, développé chez Google et dont la première version a été publiée en 2012. Il cherche à ressembler à C, mais en évitant les problèmes de mémoire et en facilitant la programmation concurrente, via des primitives appropriées à la communication inter-process. Golang me donne l'impression d'être un intermédiaire statiquement typé entre C et Python. Je trouve aussi que ce langage est déroutant dans la mesure où de nombreux problèmes ne peuvent pas être résolus en Go en utilisant l'approche habituelle, disponible dans l'ensemble des autres langages de programmation haut-niveau.
 </dd>
 
 <dt>Python</dt>
@@ -1002,17 +1002,17 @@ Langage de programmation statiquement typé, développé chez Google et dont la 
 
 <dt>TOSCA><dt>
 <dd>
-OASIS TOSCA, "Topology Orchestration Specification for Cloud Applications" est un langage de spécification de topologie de machines pour le Cloud. Ce langage s'épargne l'effort de définir une syntax complète en réutilisant le format YAML. Ainsi, depuis la TOSCA 2.0, TOSCA est un sous-ensemble de YAML, au sense que tout les fichiers TOSCA sont des fichiers YAML.
+OASIS TOSCA, "Topology Orchestration Specification for Cloud Applications" est un langage de spécification de topologie de machines pour le Cloud. Ce langage s'épargne l'effort de définir une syntaxe complète en réutilisant le format YAML. Ainsi, depuis la TOSCA 2.0, TOSCA est un sous-ensemble de YAML, au sens où tous les fichiers TOSCA sont des fichiers YAML.
 </dd>
 
 <dt>YAML</dt>
 <dd>
-YAML est un format textuel pour les données structurées. C'est un sur-ensemble de JSON, au sens que tout fichier JSON valide est un fichier YAML valide. Cependant, contrairement à JSON, YAML est orienté développeur, au sens que le YAML idiomatique est facile à lire et à écrire pour les développeurs. YAML et JSON permettent de représenter les valeurs scalaires communes à la plupart des langages de programmation : nombres, booléens, chaînes de caractères et la valeur nulle. Ils permettent également de représenter des tableaux de valeurs, en utilisant la notation `[]`, et des objets ainsi que des hashs de chaînes et des hashmaps en utilisant la notation `{}`.
+YAML est un format textuel pour les données structurées. C'est un sur-ensemble de JSON, dans le sens que tout fichier JSON valide est un fichier YAML valide. Cependant, contrairement à JSON, YAML est orienté développeur, dans le sens que le YAML idiomatique est facile à lire et à écrire pour les développeurs. YAML et JSON permettent de représenter les valeurs scalaires communes à la plupart des langages de programmation : nombres, booléens, chaînes de caractères et la valeur nulle. Ils permettent également de représenter des tableaux de valeurs, en utilisant la notation `[]`, et des objets ainsi que des hashs de chaînes et des hashmaps en utilisant la notation `{}`.
 </dd>
 
 <dt>Refactoring</dt>
 <dd>
-Opération de modification du code source d'un programme ayant pour but d'améliorer les qualités internes du code, tels que la lisibilité et la réutilisabilité, sans changer le comportement du code. Certaines méthodes de programmations dépendent lourdement du refactoring (TDD, Extreme programming).
+Opération de modification du code source d'un programme ayant pour but d'améliorer les qualités internes du code, telles que la lisibilité et la réutilisabilité, sans changer le comportement du code. Certaines méthodes de programmation dépendent lourdement du refactoring (TDD, Extreme programming).
 </dd>
 
 <dt>Parseur</dt>
@@ -1022,22 +1022,22 @@ Opération de modification du code source d'un programme ayant pour but d'améli
 
 <dt>Parser</dt>
 <dd>
-(Anglicisme informatique) Action d'analyser un text qui respect une syntax afin de produire un arbre de syntaxe.
+(Anglicisme informatique) Action d'analyser un texte qui respecte une syntaxe afin de produire un arbre de syntaxe.
 </dd>
 
 <dt>Sérialiser</dt>
 <dd>
-Produire une représentation sous forme de suite de charactères d'une structure de donnée, afin de pouvoir l'extraire du processus en cours.
+Produire une représentation sous forme de suite de charactères d'une structure de données, afin de pouvoir l'extraire du processus en cours.
 </dd>
 
-<dt>Déserialiser</dt>
+<dt>Désérialiser</dt>
 <dd>
-Produire une représentation sous forme de structure de donnée, présente en mémoire vive et facilement utilisable à partir de données sérialisées.
+Produire une représentation sous forme de structure de données, présente en mémoire vive et facilement utilisable à partir de données sérialisées.
 </dd>
 
 <dt>MVP</dt>
 <dd>
-Minimum Viable Product, Produit Minimum Viable, en production logicielle, produit assurant l'ensemble des fonctionnalités centrales, et dont l'utilisation apporte une plus value à l'utilisateur.
+Minimum Viable Product, Produit Minimum Viable, en production logicielle, produit assurant l'ensemble des fonctionnalités centrales, et dont l'utilisation apporte une plus-value à l'utilisateur.
 </dd>
 </dl>
 
