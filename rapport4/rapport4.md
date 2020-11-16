@@ -48,7 +48,11 @@ include-before: |
   \clearpage
 ---
 
-<pre comment="the content of the pre will be hidden from the pdf version. Indeed, latex can generate its own version of the summary">
+<!-- the content of latex-hide will be hidden from the pdf version. Indeed, latex can generate its own version of the summary.
+
+Note: any balise name would work, I use "markdown-summary" for descriptiveness -->
+
+<markdown-summary
 
 # Table des matières
 
@@ -140,30 +144,7 @@ include-before: |
         - [yaml-recommended-schema](#yaml-recommended-schema)
         - [yaml-timestamp](#yaml-timestamp)
 
-</pre>
-
-<!-- ## Plan
-
-- Présentation de l'Entreprise Orness
-- Présentation de l'Association DitRit
-  - Aperçu
-  - Raison d'être
-  - Reflexions menées dans DitRit
-  - Projets réalisés à DitRit
-- Présentation de l'Entreprise Crédit Agricole
-  - Service
-  - Equipe
-- Présentation du projet pendant la période Aout-Novembre : Webdba
-  - Utilité
-  - Histoire
-  - Chantiers en cours
-    - Tests
-    - Permissions
-    - Big Data
-  - Les chantiers sur lequels j'ai travaillé -->
-
-<!-- 3750 characteres par page
-4 pages = 15000 charactères -->
+/>
 
 <!-- cSpell:enable -->
 
@@ -223,7 +204,6 @@ La plupart des individus ayant apporté une contribution à DitRit sont inscrits
 - Romain Fairant
 - Thierry Cagnin
 - Xavier Talon
-
 - Cédric Vautrain
 - Hervé Chibois
 
