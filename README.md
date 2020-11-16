@@ -149,9 +149,9 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
 
 <!-- cSpell:enable -->
 
-_Les liens de la table des matières sont cliquables._
+_Les liens de la table des matières sont cliquables. **Il est possible de revenir en arrière après avoir cliqué sur un lien en utilisant le raccourci clavier Control+[flèche gauche]**. Controle+[flèche droite] permet de retourner en avant. Ces raccourcis peuvent ne pas être présent dans tout les visionneur de document PDF, mais il sont présents dans ceux des navigateurs web, ainsi que dans Sumatra PDF_
 
-_Ce rapport est disponible au format PDF, Markdown-source et Markdown-HTML. Lu dans un navigateur, dans un IDE ou dans Sumatra PDF, il est possible de revenir en arrière après avoir cliqué un lien en utilisant le raccourci clavier Control+[flèche gauche]_.
+_Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artefactes due aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
 
 \clearpage
 
