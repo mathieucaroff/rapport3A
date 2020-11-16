@@ -1,18 +1,16 @@
 /*
 
-!/architect/
-!/chercheur/
-!/inventeur/
-!/methode/
-!/rapport4/
-!/realisation/
+!/misc/
+!/uml/
 
 !/.gitignore
 !/Makefile
 !/makeloop.ps1
 !/poetry.lock
 !/pyproject.toml
+
 !/README.md
+!/DEPENDENCIES.md
 
 .local/
 
