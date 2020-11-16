@@ -119,7 +119,6 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
       - [Requêtes invalides](#requêtes-invalides)
       - [Création des requêtes](#création-des-requêtes)
       - [Deburst](#deburst)
-    - [Logging](#logging)
 - [Table des liens](#table-des-liens)
         - [ca-histoire](#ca-histoire)
         - [ca-key-figures](#ca-key-figures)
@@ -161,8 +160,6 @@ Compte tenu du contexte de la pandémie, les conditions initiales du stage ont �
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
   - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec, pour difficulté, l'incertitude sur sa durée car la date de début au CA était incertaine. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
   - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
-
-
 -->
 
 # Organisations
@@ -933,19 +930,17 @@ Cependant, cette API Oracle est contraignante et pose d'importantes difficultés
 
 ### Technologie ExaCC
 
-Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les conceptes d'exasystem ExaCC de cluster ExaCC, de noeuds ExaCC et de VMs. Ces conceptes se composent ainsi:
+Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les conceptes d'exasystem ExaCC de cluster ExaCC, de noeuds ExaCC et de VMs. Ces conceptes se composent tel que présenté dans la figure \ref{exacc-schema}.
 
-![ExaCC schema](uml/webdba.burst.exacc.png)
+![ExaCC schema\label{exacc-schema}](uml/webdba.burst.exacc.png){width=171px}
 
 Le schéma fait aussi figuré les arités et totaux. Ces nombres correspondent au cas des systèmes ExaCCs du Crédit Agricole. Parmis ces conceptes, seul celui d'exasystem de cluster affectent l'usage de l'API d'Oracle. En effet, afin d'ajouter des CPUs à un cluster, il est nécéssaire de commencer par en ajouter à l'exasystem auquel ce cluster appartient. C'est la raison pour laquelle l'opération d'ajout de CPUs doit être réalisé en deux opérations.
 
 ### Processus d'ajout des CPUs
 
-Les deux opérations d'ajouts de CPUs sont précédés d'une étape d'obtention d'information sur les exasystems, de calcul des paramètres de la requète et d'assemblage de la requète. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin de l'équipe Oracle contient trois étapes. Le diagramme de séquence ci-dessous présente une version simplifiée du processus:
+![Simplified burst sequence diagram\label{simple-burst}](uml/webdba.burst.simplified.png){width=279px}
 
-![Simplified burst sequence diagram](uml/webdba.burst.simplified.png)
-
-Le diagramme montre les interactions entre le module de burst de WebDBA et l'API de Oracle. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet possibilités d'echec de l'API.
+Les deux opérations d'ajouts de CPUs sont précédés d'une étape d'obtention d'information sur les exasystems, de calcul des paramètres de la requète et d'assemblage de la requète. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin contient trois étapes. Le diagramme de séquence \ref{simple-burst} présente une les interactions entre le module de burst de WebDBA et l'API de Oracle. Ces intéractions constituent une version simplifiée du processus. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet les possibilités d'échec de l'API.
 
 ### Attendre l'API Oracle
 
@@ -978,10 +973,6 @@ Le calcul des paramètres à utiliser pour les requètes dépends du nombre de C
 #### Deburst
 
 Le diagramme de séquence présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence prêt que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
-
-### Logging
-
-Une fois l'ensemble des probl
 
 <!--
 - Sujet: Burst
