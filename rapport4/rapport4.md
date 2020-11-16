@@ -105,7 +105,17 @@ include-before: |
     - [Enjeu de légèreté de l'implémentation](#enjeu-de-légèreté-de-limplémentation)
 - [WebDBA](#webdba)
   - [De PHP à Django et avenir](#de-php-à-django-et-avenir)
-  - [Fonctionnalité de Burst](#fonctionnalité-de-burst)
+  - [Projet d'automatisation de la commande du Burst](#projet-dautomatisation-de-la-commande-du-burst)
+    - [Qu'est que le "Burst" ?](#quest-que-le-burst-)
+    - [Technologie ExaCC](#technologie-exacc)
+    - [Processus d'ajout des CPUs](#processus-dajout-des-cpus)
+    - [Attendre l'API Oracle](#attendre-lapi-oracle)
+    - [Diagrame de séquence détaillé du burst](#diagrame-de-séquence-détaillé-du-burst)
+      - [Client](#client)
+      - [Requêtes invalides](#requêtes-invalides)
+      - [Création des requêtes](#création-des-requêtes)
+      - [Deburst](#deburst)
+    - [Logging](#logging)
 - [Table des liens](#table-des-liens)
         - [ca-histoire](#ca-histoire)
         - [ca-key-figures](#ca-key-figures)
@@ -907,9 +917,7 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 # WebDBA
 
-Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé principalement pour répondre au besoin d'inventaire des bases de données. En tant que tel, il est gère des concepts systèmes tels que celui de machine, de cluster de machine, de service et de système de fichers. Il gère aussi des concepts base de données tels que les instances de base données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus importants qu'il manipule.
-
-Par ailleurs, cet outil à vocation à supporter l'ensemble des APIs de l'équipe Postgres, ou du moins, celles développées en Python, comme cela a été le cas pour le travail que j'ai réalisé.
+Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé pour répondre au besoin d'inventaire des bases de données. En tant que tel, il gère des concepts systèmes tels que celui de machine, de cluster, de service et de système de fichers. Il gère aussi des concepts base de données tels que les instances de base données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus important qu'il manipule.
 
 ## De PHP à Django et avenir
 
@@ -929,35 +937,79 @@ WebDBA utilise aussi la librairie CSS Bootstrap pour produire facilement une app
 
 WebDBA est destiné à supporter de plus en plus d'APIs, en particulier des APIs pour réaliser des tâches automatisables telles que le déploiement d'une nouvelle base de données, l'installation de mises à jour sur une base de données existante, ou la suppression d'une base donnée. L'API que j'ai réalisée s'inscrit dans ces objectifs.
 
-## Fonctionnalité de Burst
+## Projet d'automatisation de la commande du Burst
 
-La principale mission que j'ai réalisé au Crédit Agricole a été la mise en place d'une API permettant de "Burster" un cluster de base données. La fonctionnalité de Burst permet d'ajouter des CPUs et donc de la puissance de calcul à un ensemble de machine. Il s'agit d'une fonctionnalité disponible sur les machines Oracle utilisant la technologie Oracle ExaCC, une technologie récente de Oracle.
+Ce projet constitue la principale mission que j'ai réalisé au Crédit Agricole. Il implique deux des équipes managées par Olivier KANCEL : L'équipe des DBAs Oracle, ainsi que notre équipe. Au sein de notre équipe, Thomas et Abdelilah étaient concernés en tant que superviseurs du projet. Marcellin YOUAN, DBA membre de l'équipe Oracle, était mon interlocuteur et représentant du besoin pour l'équipe Oracle.
 
-- Mes travaux au Crédit Agricole -> WebDBA
+Le besoin de l'équipe Oracle était la simplification d'une API propriétaire offerte par Oracle. Cette API sert à commander une fonctionnalité propriétaire des bases de données Oracle: le Burst.
+
+### Qu'est que le "Burst" ?
+
+Le Burst est une fonctionnalité disponible sur les machines **Oracle ExaCC**. Elle permet d'ajouter des CPUs à un ensemble de machines porteuses des bases de données, afin de rendres ces bases de données temporairement capable de servir un plus grand nombre de requêtes. Il est a noter que cette fonctionnalité est _payante_ et est facturée à l'heure par Oracle en fonction du nombre de CPUs ajoutés.
+
+Le Burst peut être activée manuellement via un bouton dans l'interface web de commande fournie par Oracle. Elle peut aussi être activée automatiquement par l'envoie de plusieurs requêtes sur une API Oracle dédiée.
+
+Cependant, cette API Oracle est contraignante et pose d'importantes difficultés. En effet, avec cette API, la fabrication de la requête à envoyer pose des difficultés, le burst doit être réalisé en deux étapes et chaque étape nécéssite une période d'attente semi-active afin de vérifier que la requête à bien été prise en compte. L'équipe Oracle souhaiterais disposer d'une API simple sur laquelle il soit possible de réaliser une seul requête et que l'ensembles des étapes mentionnées précédemment soit gérées par WebDBA. L'API WebDBA produira un status de succès si l'ensemble des étapes se déroulent bien et un status d'échec si une d'entre elles échoue.
+
+### Technologie ExaCC
+
+Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les conceptes d'exasystem ExaCC de cluster ExaCC, de noeuds ExaCC et de VMs. Ces conceptes se composent ainsi:
+
+![ExaCC schema](uml/webdba.burst.exacc.png)
+
+Le schéma fait aussi figuré les arités et totaux. Ces nombres correspondent au cas des systèmes ExaCCs du Crédit Agricole. Parmis ces conceptes, seul celui d'exasystem de cluster affectent l'usage de l'API d'Oracle. En effet, afin d'ajouter des CPUs à un cluster, il est nécéssaire de commencer par en ajouter à l'exasystem auquel ce cluster appartient. C'est la raison pour laquelle l'opération d'ajout de CPUs doit être réalisé en deux opérations.
+
+### Processus d'ajout des CPUs
+
+Les deux opérations d'ajouts de CPUs sont précédés d'une étape d'obtention d'information sur les exasystems, de calcul des paramètres de la requète et d'assemblage de la requète. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin de l'équipe Oracle contient trois étapes. Le diagramme de séquence ci-dessous présente une version simplifiée du processus:
+
+![Simplified burst sequence diagram](uml/webdba.burst.simplified.png)
+
+Le diagramme montre les interactions entre le module de burst de WebDBA et l'API de Oracle. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet possibilités d'echec de l'API.
+
+### Attendre l'API Oracle
+
+Après chaque opération demandée à l'API Oracle, il est nécessaire d'attendre l'application effective des changements. L'attente prends fin lorsque les informations affichées par l'API Oracle reflètent les changements demandés. Il est donc nécéssaire d'interroger périodiquement l'API Oracle et de comparer l'une des valeurs transmises à la valeur attendue jusqu'à ce que la valeur attendue soit atteinte.
+
+Lorsque ce processus m'a été expliqué, j'ai immédiatement identifié une difficulté majeur : La nécéssité d'attendre l'API d'Oracle. En effet, l'attente doit pouvoir durer jusqu'à 10 minutes pour une seul opération. Ceci pose problème car les connections UDP et TCP peuvent être rompues par les intermédiaires de connection si aucune donnée n'est échangée pendant une telle durée. Ce problème a été résolu avec l'aide de Thomas. En effet, Django dispose d'une fonctionnalité permettant de faire des réponses qui dure dans le temps. Il s'agit des `StreamingHttpResponse`. Thomas avait déjà utilisé ce mode de réponse pour transmettre des informations à l'utilisateur pendant l'execution de calculs lourds. Cette technique peut être tout aussi bien réutilisée pour garder l'utilisateur informé de l'état de progression pendant les deux périodes d'attente. Cette technique s'accompagne cependant de difficultés : pour produire une réponse JSON valide, il est nécéssaire de formatter manuellement la réponse textuelle produite.
+
+Aux difficultés habituelles de formattage s'ajoute ici une difficulté supplémentaire : la gestion des erreurs. En effet, la moindre erreur pourrait interrompre la production du JSON de réponse, résultant en une réponse JSON invalide. Ce problème est traité par l'utilisation judicieuse de la structure de controle d'execution `try`/`finally`.
+
+### Diagrame de séquence détaillé du burst
+
+![Detailed Burst sequence diagram](uml/webdba.burst.exasystem.detail.png)
+
+Ce diagramme présente les actions que réalise WebDBA pour burster. Il constitue une vue synthétique partielle de mon travail sur le projet d'automations de la commande de burst. Par rapport au diagramme simplifié, il contient un nouveau participant, "Oracle API Client", présenté ci-après.
+
+#### Client
+
+En programmation web, un client désigne un composant ou une librairie servant d'intermédiaire avec une API web. Un client permet de simplifier les intéractions avec une telle interface. Dans le cas de ce projet, le client est simplement une classe Python permettant au reste du code du module d'intéragire avec l'API Oracle sans avoir à se soucier des problèmes d'authentification. Notons que le diagramme n'illustre pas toutes les intéractions implicant le client : seul la première intéraction est présentée. L'utilisation du client dans les intéractions qui suivent est implicite.
+
+Outre le comfort que la classe client apporte vis-à-vis de l'authentification, ce composant est pratique pour la réalisation de test. En effet, remplacer le composant client par un faux permet de tester le comportement du module WebDBA sans intéragir réellement avec l'API Oracle.
+
+#### Requêtes invalides
+
+Lors de l'étape de préparation, il est possible que la requête sois rejetée ou abandonnée. La requête sera abandonnée avec si l'état demandé est déja l'état du cluster. Ainsi, le module de commande du burst ne fait rien si une demande de deburst est faite alors que l'exasystème n'a pas de CPUs de burst. De même il ne fait rien et renvoie un status de succès si le cluster est déjà bursté avec le bon nombre de CPUs. Cependant, conformément aux contraintes données par l'équipe Oracle, la seul opération autorisée lorsque des CPUs de burst sont utilisés est de retirer tout les CPUs de burst.
+
+#### Création des requêtes
+
+Le calcul des paramètres à utiliser pour les requètes dépends du nombre de CPUs demandés pour le burst ainsi que du nombre de cpus standards présents sur l'exasystème et le cluster. Il se base sur un ensemble de formules données par Marcellin. Ces paramètres sont injectés dans une structure qui est convertie en JSON. Ce JSON est converti en base64 et injecté dans un autre JSON. Ce dernier JSON constitut le corps de la requète à envoyer à l'API Oracle. Ce format de requête inutilement complexe exigé par l'API Oracle est l'une des raisons pour lesquelles l'équipe Oracle a commandé la création de l'API WebDBA simplifiée.
+
+#### Deburst
+
+Le diagramme de séquence présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence prêt que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
+
+### Logging
+
+Une fois l'ensemble des probl
 
 <!--
-- Context
-  - Besoin d'inventaire des DBAs
-    - Nombre de databases (plusieurs centaines de milliers)
-  - Première solution frameworkless en PHP
-  - Nouvelle solution créée par Thomas en Python en 2017, utilisant Django
-    - Django pour le système de communication avec la base de données et de création de template HTML (Jinja)
-    - Extension Django Rest Framework pour les API
-  - Problème commun: Int
 - Sujet: Burst
-  - Description du problème
-    - Cluster VS ExaUnit
-  - Comment attendre que l'API reflète les changements
-    - Comment tester que le programme a le bon comportement
-  - Ne pas perdre le contacte avec l'utilisateur pendant le deburst
-    - (Timeout à 5 minutes des proxys, etc)
-    - Utiliser StreamingHttpResponse
-    - Former un JSON valide _malgrès les possibiltés d'erreurs_
-  - Problème de l'attribution des CPUs entre ExaUnit (_impossibilité de savoir sur quel exaunit les CPUs dès que des CPUS sont affectés_)
+(  - Problème de l'attribution des CPUs entre ExaUnit (_impossibilité de savoir sur quel exaunit les CPUs dès que des CPUS sont affectés_))
   - Logging
 - ~~Sujet: Gestion de tâches Celery/Airflow~~ en conclusion (si voulu)
 - ~~Sujet: Inventaire Oracle~~
-  -->
+-->
 
 # Table des liens
 
@@ -967,9 +1019,9 @@ La principale mission que j'ai réalisé au Crédit Agricole a été la mise en 
 
 ##### ca-key-figures
 
-[https://www.credit-agricole.com/en/content/download/178601/4535452](https://www.credit-agricole.com/en/content/download/178601/4535452)
-
 [https://www.credit-agricole.com/en/finance/finance/key-figures-credit-agricole-s.a](https://www.credit-agricole.com/en/finance/finance/key-figures-credit-agricole-s.a)
+
+[https://www.credit-agricole.com/en/content/download/178601/4535452](https://www.credit-agricole.com/en/content/download/178601/4535452)
 
 ##### go-yaml
 

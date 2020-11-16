@@ -1,5 +1,10 @@
 # Glossaire
 
+<dt>API</dt>
+<dd>
+<!-- TODO -->
+</dd>
+
 <dl>
 <dt>JS, JavaScript</dt>
 <dd>

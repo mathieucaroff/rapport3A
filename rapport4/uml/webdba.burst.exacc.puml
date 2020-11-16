@@ -1,0 +1,11 @@
+@startuml
+class "ExaSystem (2)" as ExaSystem
+class "Cluster (4)" as Cluster
+class "Node (16)" as Node
+class "VM (32)" as VM
+
+ExaSystem "1 ." <-up- "2" Cluster
+ExaSystem "1" <-up- "4 ." Node
+Cluster "1" <-up- "4 ." VM
+Node "1 ." <-up- "2" VM
+@enduml

@@ -16,9 +16,10 @@ mod -> cli: get info\n(exasystem)
 cli -> cli: get configuration\n(exasystem)
 cli -> ora: get info (GET)
 mod <- ora: exasystem info
-[<-- mod: (error if invalid request)
+[<-- mod: (abort with success if no-op)
+[<-- mod: (error if incompatible state)
 mod -> mod: compute cpu counts
-mod -> mod: craft request bodys
+mod -> mod: craft request bodies
 
 == 2. Exasystem configuration ==
 
