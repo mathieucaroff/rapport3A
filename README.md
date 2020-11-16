@@ -60,7 +60,7 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
 - [Contexte du stage](#contexte-du-stage)
 - [Orness](#orness)
 - [DitRit](#ditrit)
-  - [Participaction à DitRit](#participaction-à-ditrit)
+  - [Participation à DitRit](#participation-à-ditrit)
   - [Projets de DitRit](#projets-de-ditrit)
 - [Projet Lidy](#projet-lidy)
   - [Contexte de Lidy](#contexte-de-lidy)
@@ -146,9 +146,9 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
 
 <!-- cSpell:enable -->
 
-_Les liens de la table des matières sont cliquables. **Il est possible de revenir en arrière après avoir cliqué sur un lien en utilisant le raccourci clavier Control+[flèche gauche]**. Controle+[flèche droite] permet de retourner en avant. Ces raccourcis peuvent ne pas être présent dans tout les visionneur de document PDF, mais il sont présents dans ceux des navigateurs web, ainsi que dans Sumatra PDF_
+_Les liens de la table des matières sont cliquables. **Il est possible de revenir en arrière après avoir cliqué sur un lien en utilisant le raccourci clavier Contrôl+[flèche gauche]**. Contrôle+[flèche droite] permet de retourner en avant. Ces raccourcis peuvent ne pas être présent dans tous les visionneurs de document PDF, mais ils sont présents dans ceux des navigateurs web, ainsi que dans le visionneur Sumatra PDF._
 
-_Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artefactes due aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
+_Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artéfacts dus aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
 
 \clearpage
 
@@ -157,11 +157,11 @@ _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubus
 Compte tenu du contexte de la pandémie, le stage ne s'est pas déroulé dans les conditions initialement prévues. La date de début du stage, programmé pour débuter le 2 avril, s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
   - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec pour difficulté, l'incertitude sur sa durée car la date de début au CA était indéterminée. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
-  - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
+  - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole, localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
 
 # Orness
 
-Orness est une entreprise de services du numérique (ESN), situé à Paris, avec ses bureaux dans le 9ème arrondissement. Cette SARL a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui coprésident l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, eux aussi membres fondateurs et codirecteurs techniques. [(orness-histoire)](#orness-histoire)
+Orness est une entreprise de services du numérique (ESN), située à Paris, avec ses bureaux dans le 9ème arrondissement. Cette SARL a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui coprésident l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, les deux codirecteurs techniques, eux aussi membres fondateurs. [(orness-histoire)](#orness-histoire)
 
 Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaires de 12 millions d'euros, elle affiche un résultat de 650 mille euros. [(orness-societe)](#orness-societe)
 
@@ -181,15 +181,15 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 DitRit est une association à but non-lucratif réalisant un travail de réflexion et de mise en pratique sur les sujets relatifs à la transition numérique. DitRit s'intéresse en particulier à cette transition pour les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
 
-Les activités de l'association prennent donc deux formes: celle de réflexion et celle de création logiciel. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peu parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
+Les activités de l'association prennent donc deux formes : celle de réflexion et celle de création logiciel. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peu parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
 
 Les groupes de réflexion se tiennent régulièrement, avec une période de l'ordre quelques semaines. Ils traitent des sujets tels que la sécurité informatique en entreprise, l'application des bonnes pratique ITIL et aussi l'encadrement des activités et process de l'association. Par ailleurs, les avancées réalisées sur l'ensemble des projets et sujets de l'association sont rapportés lors d'une réunion hebdomadaire ouverte au publique, tenu entre midi et une heure.
 
-Ditrit utilise Zulipchat ainsi que les mails pour la communication écrite entre ses membres, Jitsy pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hébergement du code source. Le langage de programmation principalement utilisés était initialement Java, mais depuis 2019 DitRit réalise la plupart de ses développements en Golang.
+Ditrit utilise Zulipchat ainsi que les mails pour la communication écrite entre ses membres, Jitsi pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hébergement du code source. Le langage de programmation principalement utilisés était initialement Java, mais depuis 2019 DitRit réalise la plupart de ses développements en Golang.
 
-## Participaction à DitRit
+## Participation à DitRit
 
-La plupart des individus ayant apporté une contribution à DitRit sont inscrits dans l'instance Zulipchat de l'association. En novembre 2020, celle-ci compte 30 noms. Je vais donc me contenter de présenter les plus notables:
+La plupart des individus ayant apporté une contribution à DitRit sont inscrits dans l'instance Zulipchat de l'association. En novembre 2020, celle-ci compte 30 noms. Je vais donc me contenter de présenter les plus notables :
 
 - Jan Atac
 - Joseph Priou
@@ -205,15 +205,15 @@ Ma présence et mon travail au sein de DitRit m'ont donné l'occasion de discute
 
 ## Projets de DitRit
 
-Gandalf est un projet de système d'interconnexion automatique visant à rendre facile l'intégration et l'interopérabilité des différentes applications désirables pour disposer d'une usine logicielle. Gandalf intègre dans sa conception l'ensemble des contraintes spécifiques aux très grandes entreprises, telles que la haute disponibilité ou encore le support de clients multiples.
+Gandalf est un projet de système d'interconnexion automatique visant à rendre facile l'intégration et l'interopérabilité des différentes applications désirables pour disposer d'une usine logicielle. Gandalf intègre dans sa conception l'ensemble des contraintes spécifiques aux très grandes entreprises, telles que la haute disponibilité ou encore le support de clients multiples (DMZ).
 
-Ogree est un projet produit par Hervé afin d'analyser les logs produits par des salles de machines, et d'en extraire des informations afin de reconstituer la carte du réseau ainsi que d'autres vues synthétiques. En effet, Hervé agit en tant que consultant et intervient physiquement dans les salles de machines lorsqu'une telle intervention est nécessaire. Le projet Ogree est donc né de ce besoin de disposer de données à jour lors de ses interventions.
+Ogree est un projet développé par Hervé afin d'analyser les logs produits par des salles de machines et d'en extraire des informations afin de reconstituer la carte du réseau ainsi que d'autres vues synthétiques. En effet, Hervé agit en tant que consultant et intervient physiquement dans les salles de machines lorsqu'une telle intervention est nécessaire. Le projet Ogree est donc né de ce besoin de disposer de données à jour lors de ses interventions.
 
 Le projet Ogree-3D dérive du projet Ogree. Il a pour but de construire des vues tridimensionnelles des salles de machines, afin de faciliter la préparation d'interventions, ainsi que de manière générale, de faciliter la maintenance de l'infrastructure informatique physique. Ce projet est développé en C# par Cédric à temps plein depuis juillet 2020, avec le moteur de rendu de Unity.
 
 Enfin, DitRit comporte aussi des projets de moindre envergure. Il s'agit de Shoset, librairie de gestion de socket et de routage pour les systèmes redondants, ainsi que de Lidy, une librairie d'analyse et vérification de données structurées qui conserve le lien aux sources. Shoset a été construit pour répondre à un besoin du projet Gandalf, projet présenté plus haut, tandis que Lidy, lui répond à un besoin de Leto, un autre projet qui sera présenté dans la section Lidy.
 
-Durant la période pendant laquelle j'ai été affecté à travailler pour DitRit, mes contributions se sont principalement axées sur le projet Lidy. J'ai cependant aussi travaillé à l'automatisation du déploiement du site web de DitRit.
+Durant la période pendant laquelle j'ai été affecté à travailler pour DitRit, mes contributions se sont principalement axées sur le projet Lidy. J'ai aussi travaillé à l'automatisation du déploiement du site web de DitRit.
 
 # Projet Lidy
 
@@ -235,22 +235,22 @@ Le [projet ToP](#top), produit par l'association DitRit, vise à produire un par
 
 #### ANTLR
 
-La première approche utilisée pour analyser les fichiers YAML TOSCA, a été l'utilisation d'un outil d'analyse générique Java : ANTLR. En effet, à l'époque, fin 2018 - début 2019, l'association DitRit utilisait principalement le langage de programmation Java. ANTLR, "ANother Tool for Language Recognition" est un parseur pour les langages non-contextuels (_context-free_). C'est un parseur LL(\*), donc un parseur top-down, ce qui signifie qu'il cherche à attribuer une valeur unique à chaque mot qu'il lit, aussitôt que possible.
+La première approche utilisée pour analyser les fichiers YAML TOSCA, a été l'utilisation d'un outil d'analyse générique Java : ANTLR. En effet, fin 2018 - début 2019, l'association DitRit utilisait principalement le langage de programmation Java. ANTLR, "ANother Tool for Language Recognition" est un parseur pour les langages non-contextuels (_context-free_). C'est un parseur LL(\*), donc un parseur top-down, ce qui signifie qu'il cherche à attribuer une valeur unique à chaque mot qu'il lit, aussitôt que possible.
 
-Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à _parser_. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANTLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour parser les fichiers TOSCA 2.0+.
+Dans le cas de Leto, ANTLR a été capable de produire des parseurs pour les versions 1.0, 1.1 et 1.2 de TOSCA. En effet, ces versions sont basées sur XML, un langage que ANTLR parvient à _parser_. Cependant, les versions ultérieurs à la version 1.2 de TOSCA sont basées sur YAML. ANTLR n'est pas capable de produire de parseur YAML, ni TOSCA 2.0+, car dans ces langages, le niveau d'indentation a valeur de délimiteur de blocs. Cette approche de la délimitation des blocs est très difficile à prendre en compte sans une fonctionnalité dédiée et il s'est trouvé que ANTLR ne dispose pas d'une telle fonctionnalité. Il est toujours possible de prendre en compte l'indentation avec ANTLR, mais ceci utilise une astuce qui complique fortement la grammaire, et donc qui ruine la vitesse d'exécution de l'analyse. Ces deux facteurs ont mené à l'abandon de ANTLR pour le parsing des fichiers TOSCA 2.0+.
 
 #### Json Schema
 
-La seconde approche pour l'analyse syntaxique TOSCA 2.0+ a été l'utilisation d'un parseur générique de donné YAML, couplé à un système de vérification de données. Le système de vérification de données utilisé était AJV, un outil JS (JavaScript) qui implémente la spécification JSON Schema.
+La seconde approche pour l'analyse syntaxique TOSCA 2.0+ a été l'utilisation d'un parseur générique de données YAML, couplé à un système de vérification de données. Le système de vérification de données utilisé était AJV, un outil JS (JavaScript) qui implémente la spécification JSON Schema.
 
-AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensemble, ils constituent les deux implémentations JS les plus rapides de la spécification JSON-Schema-draft-07, devant json-schema-validator-generator et jsen. Ces outils fonctionnent ainsi : un développeur souhaite valider les données qu'il reçoit d'un utilisateur. Il décrit le format de ces données dans un fichier JSON qui respecte la spécification JSON-Schema. Ensuite, il écrit du code qui charge le JSON-Schema dans AJV et en retire un "schéma compilé", qu'il peut alors utiliser pour valider des données structurées reçues de l'utilisateur. Lorsqu'une donnée de l'utilisateur ne respecte pas le schéma, l'ensemble des divergences entre la donnée fourni et le format de donnée attendu est rapporté. Le code du développeur peut ensuite décider que faire de cette liste d'erreurs; généralement signaler ces erreurs à l'utilisateur.
+AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensemble, ils constituent les deux implémentations JS les plus rapides de la spécification JSON-Schema-draft-07, devant json-schema-validator-generator et jsen. Ces outils fonctionnent ainsi : un développeur souhaite valider les données qu'il reçoit d'un utilisateur. Il décrit le format de ces données dans un fichier JSON qui respecte la spécification JSON-Schema. Ensuite, il écrit du code qui charge le JSON-Schema dans AJV et en retire un "schéma compilé", qu'il peut alors utiliser pour valider des données structurées reçues de l'utilisateur. Lorsqu'une donnée de l'utilisateur ne respecte pas le schéma, l'ensemble des divergences entre la donnée fourni et le format de donnée attendu est rapporté. Le code du développeur peut ensuite décider que faire de cette liste d'erreurs. Dans la plupart des cas, il s'agit de signaler ces erreurs à l'utilisateur.
 
 AJV et JSON Schema répondaient bien au besoin de ToP, cependant deux problèmes se dégageaient de leur utilisation :
 
 - AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peut **connaître les numéros de ligne** d'où proviennent les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
-- AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP, comme un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
+- AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP : celle d'un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
 
-En l'absence d' similaire aux JSON Schema pour répondre à ces deux besoins, l'association DitRit a décidé de créer son propre outil : Lidy.
+En l'absence d'outils similaire aux JSON Schema pour répondre à ces deux besoins, l'association DitRit a décidé de créer son propre outil : Lidy.
 
 ### Lidy
 
@@ -258,7 +258,7 @@ Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YA
 
 ### Terminologie de Lidy
 
-On désignera par _développeur_, la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF, et les individus qui seront amenés à travailler sur Lidy dans le futur.
+On désignera par _développeur_, la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF et les individus qui seront amenés à travailler sur Lidy dans le futur.
 
 ### Développement initial de Lidy
 
@@ -283,7 +283,7 @@ La nature purement programmation du problème ainsi que l'autonomie dont je disp
 
 ### YAML
 
-Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les développeurs, humains, par opposition aux machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. Le lecteur est chaudement invité à découvrir la syntaxe YAML à travers des ressources d'apprentissage en ligne telles que [learnxinyminutes](#learn-yaml-inyminutes).
+Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les humains, plutôt que facile à lire pour les machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. Le lecteur est chaudement invité à découvrir la syntaxe YAML à travers des ressources d'apprentissage en ligne telles que [learnxinyminutes](#learn-yaml-inyminutes).
 
 La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux formats de données composites et d'un format de données scalaires (élémentaire, atomique), voir [Failsafe Schema](#yaml-recommended-schema) dans la spécification. Il s'agit des formats suivants :
 
@@ -379,7 +379,7 @@ Dans son implémentation JS, Lidy utilise une librairie de désérialisation YAM
 
 ## Recherche, travail et impression sur Golang
 
-L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**, choisissant de rendre obligatoire les accolades des blocs de code, mais retirant les parenthèses des tests des structures de contrôle (if/while/for) ; de même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmi ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
+L'écriture de Lidy en Go a constitué mon premier travail avec ce langage. Go est un langage très différent de tous les autres langages avec lesquels j'ai travaillé. J'entends souvent dire de Go que c'est un langage étrange. Les développeurs qui expriment cet avis donnent souvent pour premier argument, **la syntaxe de Go**. En effet, Golang choisi de rendre obligatoire les accolades des blocs de code et de retirer les parenthèses des tests des structures de contrôle (if/while/for). De même Go autorise certaines instructions goto, supporte l'usage de labels et les signatures de méthodes utilisant quatre parenthèses plutôt que deux, ce que certains développeurs trouvent lourd. Je ne suis pas de cet avis ; tout au contraire, je suis très satisfait de toutes les décisions prises relatives à la syntaxe de Golang. Je trouve aussi qu'elle n'est en rien étrange lorsqu'on la compare à la syntaxe de langages tels que Python, Visual Basic et Ruby, pour ne citer que les langages [les plus utilisés](#tiobe) parmi ceux qui rejettent la syntaxe dominante. Si je pense que Go est un langage étrange, ce n'est pas pour sa syntaxe, mais plutôt pour sa philosophie.
 
 En effet, Go est un langage avec une forte philosophie de minimalisme et pragmatisme. L'outil Golang cherche simultanément à fournir l'ensemble des outils nécessaires à l'écriture de code Go dans des conditions de production d'entreprises, mais aussi à fournir aussi peu d'outils que possible et que chacun des outils fournis soit aussi simple que possible. Par exemple, le langage Go lui-même est dénudé d'opérateur aussi commun que celui permettant de savoir si une valeur est présente dans une liste (`.includes`, `.contains`). De même, la librairie standard Golang n'a que deux structures de donnée : le tableau (slice) et le tableau associatif hashé (map). Ces deux structures sont suffisantes pour couvrir tous les besoins pratiques d'un développeur, mais leur nombre extrêmement limité signifie que le développeur ne peut pas exprimer son **intention**, ni exprimer de **contrat précis** par son choix d'une structure de programmation spécifique. Ceci dénote des langages de programmation plus communs tels que Java et C++, qui offrent une librairie standard avec plusieurs dizaines de structures de données différentes, chacune répondant à un usage précis.
 
@@ -389,16 +389,16 @@ Au fur et à mesure de mon utilisation de Go et de mes lectures à son sujet, j'
 
 ## Approches initiales, difficultés et exploration des stratégies
 
-L'idée initiale pour réaliser la réécriture de Lidy en Golang a été la traduction du code JS de Lidy en code Golang. Immédiatement, des difficultés se posent :
+Mon idée initiale pour réaliser la réécriture de Lidy en Golang a été l'approche par traduction. Cependant, des difficultés surviennent très rapidement :
 
 - JS est un langage permissif, dynamiquement typé, tandis que Golang est strict et statiquement typé.
 - Mes connaissances en Golang sont très limitées, je n'ai jamais créé de projet en Golang.
 
 Afin de surmonter cette double difficulté, j'ai l'idée de passer par un langage intermédiaire : TypeScript. TypeScript est une extension du langage JS pour supporter l'utilisation de valeurs statiquement typées. J'ai appris ce langage durant mon stage du printemps 2019, chez Deskpro. Il m'apparaît que ce langage permettrait de surmonter la difficulté de dureté des types en Golang de manière plus progressive. Je commence donc une traduction de Lidy en TypeScript.
 
-La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, et quelles informations elles reçoivent et contiennent. Je réalise donc ce travail d'ajout des types au code. Je rencontre cependant assez vite un certain nombre de limitations. En effet, JS permet d'assigner facilement une propriété avec n'importe quel nom à une valeur, avec pour seul contrainte que ladite valeur soit un objet. Ceci rend la modélisation des types de l'implémentation en JS de Lidy difficile, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, telles que les différences de niveau de fonctionnalités offertes d'un langage à un autre : JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'exécution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuyer sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'a presque aucun test unitaire.
+La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, ainsi que quelles informations elles reçoivent et contiennent. Je réalise donc ce travail d'ajout des types au code. Je rencontre cependant assez vite plusieurs limites. En effet, JS permet d'ajouter facilement une propriété avec n'importe quel nom à n'importe quel valeur, avec pour seul contrainte que ladite valeur soit un objet. Ceci rend la modélisation des types de l'implémentation en JS de Lidy difficile, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, telles que les différences de niveau de fonctionnalités offertes d'un langage à un autre : JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'exécution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuyer sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'a presque aucun test unitaire.
 
-À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initialement développé. En effet, Lidy a été développé dans le contexte de Leto, afin de permettre l'analyse de fichier YAML, afin de vérifier que leur structure est conforme au schéma TOSCA spécifié en YAML par un fichier de grammaire Lidy au sein du projet Leto. Cependant, je n'ai pas les compétences pour travailler sur Leto. Je ne connais pas la grammaire TOSCA, ni même les concepts d'orchestration associés et je juge que je n'aurais pas assez de temps pour acquérir ces connaissances et compétences dans le temps qui m'était imparti : entre 4 et 8 semaines. Lidy avait été développé sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteler moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
+À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initialement développé. En effet, Lidy a été développé dans le contexte de Leto, afin de permettre l'analyse de fichier YAML, afin de vérifier que leur structure est conforme à un schéma Lidy écrit pour TOSCA. Cependant, ne connaissant pas la grammaire TOSCA, ni même les concepts d'orchestration associés, je n'ai pas les compétences pour travailler avec ce schéma. Je juge que je n'aurais pas assez de temps pour acquérir ces connaissances et compétences dans le temps qui m'était imparti : entre 4 et 8 semaines. Lidy avait été développé sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteler moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
 
 ## Changement du DSL Lidy et spécification
 
@@ -409,27 +409,27 @@ Conscient que je ne disposais que de peu de temps, j'ai choisi de concentrer mon
 
 Il y avait aussi la question de la manière dont les mot-clés qui étaient permis ensemble devaient se combiner. Les combinaisons suivantes posaient problème :
 
-- (QSpec3: list/dict) les règles par défaut `list` et `dict` étaient plutôt redondantes car elles pouvaient être remplacées par les expressions `{ _listOf: any }` et ` _dictOf: { any: any } }`.
+- (QSpec3: list/dict) les règles par défaut `list` et `dict` étaient plutôt redondantes car elles pouvaient être remplacées par les expressions `{ _listOf: any }` et `{ _dictOf: { any: any } }`.
 
 - (QSpec4: dict/dictOf) `_dict` avec `_dictOf`, si une clé est reconnue simultanément par `_dict` et `_dictOf`, pour les entrées non-requises de `_dict`, faut-il autoriser la valeur à avoir le type proposé par le `_dictOf`, ou bien n'autoriser que le type donné par le `_dict` ?
 
-- (QSpec5: dict-vs-map) Lidy utilisait le radical `dict` pour former les mot-clés qui référaient aux mappings YAML. Le radical `map`, utilisé dans la spécification YAML semble plus approprié ici. Il a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
+- (QSpec5: dict-vs-map) L'implémentation en JS de Lidy utilise le radical `dict` pour former les mot-clés qui référent aux mappings YAML. Cependant, le radical `map`, utilisé dans la spécification YAML me semble plus approprié. `map` a aussi les avantages d'être un mot entier et d'être plus court que `dict`.
 
-- (QSpec6: required-vs-xFacultative) Lidy utilisait un mot-clé `_required`, pour spécifier les entrées obligatoires d'un mapping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car cela oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car implique que, par défaut, les entrées des mappings sont optionnels. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problème lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
+- (QSpec6: required-vs-xFacultative) L'implémentation en JS de Lidy utilise un mot-clé `_required`, pour spécifier les entrées obligatoires d'un mapping. Ce mot-clé est inspiré des JSON-Schema. Sans rentrer trop dans les détails, ceci pose des problèmes car cela oblige l'utilisateur à répéter le nom des règles, ce qui peut mener à des erreurs, dues à une faute de frappe ou de copie. Ceci pose aussi problème car implique que, par défaut, les entrées des mappings sont optionnels. Ce comportement par défaut peut-être adapté lorsqu'il s'agit de vérifier des données entrées dans un formulaire, comme c'est le cas pour les JSON-Schéma, mais pose problème lorsqu'il s'agit de vérifier des langages et DSL comme le fait Lidy.
 
-- (QSpec7: notin) Enfin, le mot-clé `_notin` n'était pas utilisé et n'avait pas tests. Il n'avait donc pas de comportement bien défini. Par ailleurs, le seul cas d'usage d'un moyen de spécification par exclusion me semblait être pour l'exclusion des mots-clés dans les identifieurs, ce qui posait beaucoup de problèmes.
+- (QSpec7: notin) Enfin, le mot-clé `_notin` n'était pas utilisé et n'avait pas de tests. Il n'avait donc pas de comportement bien défini. Par ailleurs, le seul cas d'usage d'un moyen de spécification par exclusion me semblait être pour l'exclusion des mots-clés dans les identifieurs, ce qui posait beaucoup de problèmes.
 
 J'ai donc pris les décisions suivantes :
 
 - (QSpec3: list/dict) Retirer les règles par défaut `list` et `dict`
 - (QSpec7: notin) Retirer le mot-clé `_notin`
 - (QSpec5: dict-vs-map) Remplacer `dict` par `map` dans `_dict` et `_dictOf`
-- (QSpec4: dict/dictOf) N'autoriser que le type donné par le `_dict`, dans le doute, l'option la plus strict est généralement meilleure.
+- (QSpec4: dict/dictOf) N'autoriser que le type donné par le `_dict`, dans le doute, l'option la plus strict étant généralement la meilleure.
 - (QSpec2: optional) -- décision prise en commun avec QSpec6, required-vs-xFacultative
 - (QSpec6: required-vs-xFacultative) Les mot-clés `_required` et `_optional` sont remplacés par une utilisation plus uniforme, avec les mots-clés `_listFacultative` et `_mapFacultative`.
   - Le radicale "Facultative" a été préféré à "Optional" car les mots-clés `_mapOf` et `_listOf` commençaient déjà par les cinq et six caractères `_mapO` et `_listO`. "Optional" aurait donc ralenti l'utilisation de l'autocompletion de un caractères pour ces mot-clés.
 - (QSpec1: copy) Renommer le mot-clé `_copy` en `_merge`.
-  - Le mot-clé `_merge` accepte désormais une liste d'expression lidy plutôt que une seule expression. Le spécifieur de mapping qui contient le mot-clé `_merge` est donc marqué comme héritant de chacune de ces expressions.
+  - Le mot-clé `_merge` accepte désormais une liste d'expressions lidy plutôt que une seule expression. Le spécifieur de mapping qui contient le mot-clé `_merge` est donc marqué comme héritant de chacune de ces expressions.
 
 ### Détails sur la spécification du mot-clé `_mergeable`
 
@@ -577,7 +577,7 @@ Problème A, références directes et cycles:
 
 Problème B, ordre de parcours des règles:
 
-Le mot-clé `_merge`, pose un problème spécifique supplémentaire: il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé `_merge` est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
+Le mot-clé `_merge`, pose un problème spécifique supplémentaire : il ne peut être utilisé que sur des règles "mergeables". Or, dans l'implémentation en JS, ainsi que dans mon implémentation d'origine en Go, c'est aussi au moment de l'analyse que l'on découvre sur quelle règle le mot-clé `_merge` est utilisé. Puisque ces deux actions d'analyse sont inter-dépendantes, il apparait une contrainte d'ordre.
 
 ### Algorithme de parcours de graphe
 
@@ -681,7 +681,7 @@ Le premier enjeu est de parvenir à rapporter toutes les erreurs. Il se décompo
 
 - Les validateurs doivent être implémentés de manière à ne pas s'interrompre lors dès qu'une erreur est détectée, mais au contraire, à réaliser la totalité des vérifications qu'ils peuvent faire avant de rendre la main.
 
-- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à `_oneOf`: Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
+- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à `_oneOf` : Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
 
 Ces contraintes que font peser `_oneOf` sur l'implémentation de Lidy m'ont amené à choisir de passer les erreurs comme une liste d'erreurs, en résultat des fonctions de vérification Lidy. Un exemple de méthode qui renvoie une liste d'erreur est la méthode `match()` de l'interface `tExpression`.
 Le fonctionnement de cette interface a été expliqué dans la section [Conception interne de Lidy](#conception-interne-de-lidy).
@@ -700,7 +700,7 @@ Le second enjeu est de produire une information d'erreur riche. Voici les inform
 - (F) (_Dans le cas de la vérification des données utilisateur_) La position définissant la situation attendue. Cette position se dans le schema du développeur.
 - (G) (_Dans le cas du spécificateur `_oneOf`_) La liste des sous-erreurs qui ensemble contribuent à l'échec de la validation du `_oneOf`.
 
-Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée: si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
+Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée : si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
 
 Les raisons pour lesquelles j'avais choisi ce format simple était ma maîtrise limitée du système de type unique de Go, la nouveauté de leur approche de la gestion des erreurs, et surtout le haut degré d'incertitude qui règne dans la communauté Go sur la question des bonnes pratiques de gestion des erreurs. Après une discussion avec mon maître de stage Xavier TALON, ainsi qu'avec Joseph PRIOU, un membre de l'association DitRit, nous avons pu établir une manière de rapporter à l'utilisateur les informations A, B, C et D de manière utilisable par une machine. Cette réunion ayant eu lieu après que j'ai été affecté à ma mission au Crédit Agricole, cette solution sera implémentée lorsqu'un développeur de l'association, probablement moi-même, pourra consacrer du temps à Lidy.
 
@@ -909,7 +909,7 @@ WebDBA est destiné à supporter de plus en plus d'APIs, en particulier des APIs
 
 Ce projet constitue la principale mission que j'ai réalisé au Crédit Agricole. Il implique deux des équipes managées par Olivier KANCEL : L'équipe des DBAs Oracle, ainsi que notre équipe. Au sein de notre équipe, Thomas et Abdelilah étaient concernés en tant que superviseurs du projet. Marcellin YOUAN, DBA membre de l'équipe Oracle, était mon interlocuteur et représentant du besoin pour l'équipe Oracle.
 
-Le besoin de l'équipe Oracle était la simplification d'une API propriétaire offerte par Oracle. Cette API sert à commander une fonctionnalité propriétaire des bases de données Oracle: le Burst.
+Le besoin de l'équipe Oracle était la simplification d'une API propriétaire offerte par Oracle. Cette API sert à commander une fonctionnalité propriétaire des bases de données Oracle : le Burst.
 
 ### Qu'est que le "Burst" ?
 
