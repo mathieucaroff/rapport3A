@@ -269,18 +269,12 @@ Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript).
 
 Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait été arrêté, les discussions et retours que reçoivent les membres de l'association DitRit au sujet des besoins des entreprises indiquent un besoin pour un orchestrateur de déploiement de systèmes cloud et multimachines. En d'autres termes, il apparaît que les entreprises ont besoin de Leto. Lorsque Orness m'affecte en tant que développeur-contributeur pour l'association DitRit, Xavier Talon me propose de rouvrir le travail sur le sujet Leto, en **entamant la traduction de Lidy en Golang**. En effet, depuis l'été 2019, l'association DitRit réalise la quasi-totalité de ses développements en Golang, et la traduction des programmes Lidy et Leto permettrait d'apporter une forme d'uniformité dans les projets DitRit, facilitant aussi la réutilisation de code au sein de l'association.
 
-La proposition de travailler sur Lidy a provoqué chez moi des opinions contrastées :
+La proposition de travailler sur Lidy provoque chez moi des opinions contrastées :
 
-- D'un côté, le type de programme qu'est Lidy et le type de besoins auquel il répond m'intéressent car ils relèvent de la programmation pure. Lidy manipule principalement des structures de données et des données des types habituels de programmation, tels que les nombres et les chaînes de caractères, et assure que ces structures ont la forme demandée.
-- D'un autre côté, j'identifie que Lidy répond à un besoin qui est déjà traité par les JSON Schema et qu'il doit exister d'autres produits qui répondent à ce besoin. Je remarque aussi l'absence de spécification et de documentation pour Lidy.
+- Le type de programme qu'est Lidy et le type de besoins auquel il répond m'intéressent car ils relèvent de la programmation pure. Lidy manipule principalement des structures de données et des données des types habituels de programmation, tels que les nombres et les chaînes de caractères, et assure que ces structures ont la forme demandée.
+- L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment où Lidy cherchera à utiliser le code de validation invalide. L'implémentation ne spécifie par conséquent pas comment les erreurs faites par le développeur du schéma Lidy doivent être rapportées.L'implémentation ne se soucie simplement pas de ces erreurs. Par ailleurs, les tests unitaires de Lidy sont limités et s'appuient principalement sur le cas particulier du DSL TOSCA.
 
-Ces considérations prises en compte, je choisis d'affirmer mon intérêt pour le sujet Lidy. Je continue de creuser le sujet et j'identifie des faiblesses supplémentaires :
-
-- Le projet Lidy n'a que très peu de tests unitaires. La plupart des tests qui assurent le bon fonctionnement de Lidy sont en fait les tests unitaires du projet Leto. Ces testes ne seront pas exploitables à la traduction de Lidy et tant que Leto n'aura pas aussi été traduit.
-- L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment où Lidy cherchera à utiliser le code de validation invalide.
-- L'implémentation ne spécifie par conséquent pas comment les erreurs faites par le développeur du schéma Lidy doivent être rapportées. L'implémentation présuppose simplement que ces erreurs ne peuvent pas exister.
-
-La nature purement programmation du problème ainsi que l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de continuer de travailler sur le projet Lidy.
+La nature purement programmation du problème ainsi que l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de travailler sur le projet Lidy.
 
 ### YAML
 
@@ -790,11 +784,8 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 Après 7 semaines et demi, ma mission au Crédit Agricole a commencée, interrompant mon travail sur Lidy. Ce projet m'aura permis d'acquérir une expérience significative avec le langage Go, ainsi qu'une expérience de développement informatique dans le monde associatif.
 
-Lidy est un projet qui a de nombreuses applications potentielles pour aider
+Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendant de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensembles des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la productions d'extensions pour supporter les langages YAML précités dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ.
 
-<!--
-- IDE pour apporter du support pour les DSL Yaml
--->
 
 # Crédit Agricole
 
@@ -976,19 +967,11 @@ Le calcul des paramètres à utiliser pour les requêtes dépend du nombre de CP
 
 Le diagramme de séquences présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence près que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
 
-<!--
-- Sujet: Burst
-(  - Problème de l'attribution des CPUs entre ExaUnit (_impossibilité de savoir sur quel exaunit les CPUs dès que des CPUS sont affectés_))
-  - Logging
-- ~~Sujet: Gestion de tâches Celery/Airflow~~ en conclusion (si voulu)
-- ~~Sujet: Inventaire Oracle~~
--->
-
 # Glossaire
 
 <dt>API</dt>
 <dd>
-<!-- TODO -->
+Application Programmable Interface. Une API définit les interactions entre de multiples logicielles intermédiaires. Les API web sont souvent des API REST, utilisant les verbes http GET, POST, PUT et DELETE, accompagnés de données json, sur des urls qui représentent des unités de données.
 </dd>
 
 <dl>
