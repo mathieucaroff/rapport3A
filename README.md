@@ -148,9 +148,11 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
 
 />
 
+ \vspace{18mm}
+
 <!-- cSpell:enable -->
 
-_Les liens de la table des matières sont cliquables. **Il est possible de revenir en arrière après avoir cliqué sur un lien en utilisant le raccourci clavier Contrôl+[flèche gauche]**. Contrôle+[flèche droite] permet de retourner en avant. Ces raccourcis peuvent ne pas être présent dans tous les visionneurs de document PDF, mais ils sont présents dans ceux des navigateurs web, ainsi que dans le visionneur Sumatra PDF._
+_Les liens de la table des matières sont cliquables. **Il est possible de revenir en arrière après avoir cliqué sur un lien en utilisant le raccourci clavier Alt+[flèche gauche]**. Alt+[flèche droite] permet de retourner en avant. Ces raccourcis peuvent ne pas être présents dans tous les visionneurs de document PDF, mais ils sont présents dans ceux des navigateurs web, ainsi que dans le visionneur Sumatra PDF._
 
 _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artéfacts dus aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
 
@@ -213,7 +215,7 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 DitRit est une association à but non-lucratif réalisant un travail de réflexion et de mise en pratique sur les sujets relatifs à la transition numérique. DitRit s'intéresse en particulier à cette transition pour les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
 
-Les activités de l'association prennent donc deux formes : celle de réflexion et celle de création logiciel. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peu parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
+Les activités de l'association prennent donc deux formes : celle de réflexion et celle de création logiciel. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peut parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
 
 Les groupes de réflexion se tiennent régulièrement, avec une période de l'ordre quelques semaines. Ils traitent des sujets tels que la sécurité informatique en entreprise, l'application des bonnes pratique ITIL et aussi l'encadrement des activités et process de l'association. Par ailleurs, les avancées réalisées sur l'ensemble des projets et sujets de l'association sont rapportés lors d'une réunion hebdomadaire ouverte au publique, tenu entre midi et une heure.
 
@@ -257,13 +259,13 @@ Lidy est une librairie qui permet à un développeur de lire et d'analyser un fi
 
 ### Origine de Lidy : Leto
 
-Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, standard produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML afin de déterminer s'il s'agis d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
+Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, standard produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML afin de déterminer s'il s'agit d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
 
 ### Analyser les fichiers OASIS TOSCA
 
 #### ToP : TOSCA Parser
 
-Le [projet ToP](#top), produit par l'association DitRit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indenté de YAML, ce qui a mené à l'adoption d'un outil de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
+Le [projet ToP](#top), produit par l'association DitRit, vise à produire un parseur dédié à la syntaxe TOSCA. Il utilise ANTLR pour les versions de TOSCA inférieures à la version 2.0. À partir de la version 2.0, ANTLR s'est révélé limité pour parser les blocs indentés de YAML, ce qui a mené à l'adoption d'un outil de parsing YAML dédié. À ma connaissance, ce projet n'a pas abouti. Il ne répond pas entièrement aux besoins de Leto et a donc été progressivement abandonné, remplacé par Lidy.
 
 #### ANTLR
 
@@ -279,14 +281,14 @@ AJV, "Another JSON Validator", descend de DJV, "Dynamic JSON Validator". Ensembl
 
 AJV et JSON Schema répondaient bien au besoin de ToP, cependant deux problèmes se dégageaient de leur utilisation :
 
-- AJV n'opère que sur les données après dé-sérialisation. Ceci implique que AJV ne peut **connaître les numéros de ligne** d'où proviennent les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
-- AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP : celle d'un validateur de syntax de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
+- AJV n'opère que sur les données après désérialisation. Ceci implique que AJV ne peut **connaître les numéros de ligne** d'où proviennent les données. Ainsi, il n'est pas possible de signaler à l'utilisateur la position des erreurs que AJV détecte.
+- AJV et l'écosystème JSON Schema ont été développés avec pour but la validation de **données** provenant d'un utilisateur, afin d'assurer leur **validité**. Ce cas d'usage est quelque peu différent de l'utilisation que souhaitait en faire ToP : celle d'un validateur de syntaxe de deuxième niveau. AJV possède bien l'ensemble des fonctionnalités nécessaires, mais il s'agit de fonctionnalités _périphériques_, pour des besoins _centraux_ de ToP. Ceci rend l'utilisation des JSON Schema désagréable et lourde.
 
 En l'absence d'outils similaires aux JSON Schema pour répondre à ces deux besoins, l'association DitRit a décidé de créer son propre outil : Lidy.
 
 ### Lidy
 
-Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique : il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles : il s'agit de la syntax YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy)
+Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique : il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles : il s'agit de la syntaxe YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy).
 
 ### Terminologie de Lidy
 
@@ -294,7 +296,7 @@ On désignera par _développeur_, la ou les personnes qui _utilisent_ Lidy. Par 
 
 ### Développement initial de Lidy
 
-Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript). Il réutilise la dépendance js-yaml de ce dernier. La définition de l'ensemble des règles de validation, précédemment spécifique à ToP, devient une responsabilité du projet parent : Leto. Cette première version de Lidy a été pensée comme un remplacement des JSON Schema, mais avec les fonctionnalités nécessaires pour pouvoir spécifier une grammaire TOSCA, ainsi que l'indication des numéros de lignes. La contrainte à laquelle devait répondre Lidy était de répondre à tous les besoins de Leto pour l'analyse des fichiers. Comme nous allons le voir dans la section suivante, cette approche économe à des limites.
+Lidy a été initialement développé à la suite de ToP, en JS (en JavaScript). Il réutilise la dépendance js-yaml de ce dernier. La définition de l'ensemble des règles de validation, précédemment spécifique à ToP, devient une responsabilité du projet parent : Leto. Cette première version de Lidy a été pensée comme un remplacement des JSON Schema, mais avec les fonctionnalités nécessaires pour pouvoir spécifier une grammaire TOSCA, ainsi que l'indication des numéros de lignes. La contrainte à laquelle devait répondre Lidy était de répondre à tous les besoins de Leto pour l'analyse des fichiers. Comme nous allons le voir dans la section suivante, cette approche économe a des limites.
 
 ### Reprise du travail sur Lidy
 
@@ -303,13 +305,13 @@ Durant l'été 2020, près d'un an après que le travail sur Lidy et Leto ait é
 La proposition de travailler sur Lidy provoque chez moi des opinions contrastées :
 
 - Le type de programme qu'est Lidy et le type de besoins auquel il répond m'intéressent car ils relèvent de la programmation pure. Lidy manipule principalement des structures de données et des données des types habituels de programmation, tels que les nombres et les chaînes de caractères, et assure que ces structures ont la forme demandée.
-- L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment où Lidy cherchera à utiliser le code de validation invalide. L'implémentation ne spécifie par conséquent pas comment les erreurs faites par le développeur du schéma Lidy doivent être rapportées.L'implémentation ne se soucie simplement pas de ces erreurs. Par ailleurs, les tests unitaires de Lidy sont limités et s'appuient principalement sur le cas particulier du DSL TOSCA.
+- L'implémentation actuelle du projet Lidy ne permet pas de garantir la validité d'une grammaire Lidy au moment de son chargement. Les erreurs ne se manifestent qu'au moment où Lidy cherchera à utiliser le code de validation invalide. L'implémentation ne spécifie par conséquent pas comment les erreurs faites par le développeur du schéma Lidy doivent être rapportées. L'implémentation ne se soucie simplement pas de ces erreurs. Par ailleurs, les tests unitaires de Lidy sont limités et s'appuient principalement sur le cas particulier du DSL TOSCA.
 
 La nature purement programmation du problème ainsi que l'autonomie dont je dispose sur ce sujet sont cependant des atouts suffisants pour que je décide de travailler sur le projet Lidy.
 
 ### YAML
 
-Lidy a pour but d'être un vérificateur de données structurées générique pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les humains, plutôt que facile à lire pour les machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. Le lecteur est chaudement invité à découvrir la syntaxe YAML à travers des ressources d'apprentissage en ligne telles que [learnxinyminutes](#learn-yaml-inyminutes).
+Lidy a pour but d'être un vérificateur de données structurées génériques pour YAML. Présentons donc rapidement YAML. YAML est un langage de sérialisation. Il est en cela similaire à JSON (JavaScript Object Notation), avec la différence que YAML vise spécifiquement à être facile à lire pour les humains, plutôt que facile à lire pour les machines. Notons que YAML a été pensé comme une extension de JSON, au sens que tout document JSON valide est aussi un document YAML valide. Le lecteur est chaudement invité à découvrir la syntaxe YAML à travers des ressources d'apprentissage en ligne telles que [learnxinyminutes](#learn-yaml-inyminutes).
 
 La spécification YAML 1.2, la dernière en date, exige au minimum le support de deux formats de données composites et d'un format de données scalaires (élémentaire, atomique), voir [Failsafe Schema](#yaml-recommended-schema) dans la spécification. Il s'agit des formats suivants :
 
@@ -324,7 +326,7 @@ Cependant, la plupart des implémentations de YAML supportent aussi les quatre a
 - Integer : un entier positive ou négatif
 - Floating Point : un nombre à virgule
 
-Par ailleurs, une bonne partie des implémentations de YAML supporte aussi le type [Timestamp](#yaml-timestamp), spécifié dans la version 1.1 de YAML. Ce type de donnée sert à spécifier des dates et n'a pas de limite de précision temporelle.
+Par ailleurs, une bonne partie des implémentations de YAML supporte aussi le type [Timestamp](#yaml-timestamp), spécifié dans la version 1.1 de YAML. Ce type de données sert à spécifier des dates et n'a pas de limite de précision temporelle.
 
 ### Aperçu de l'utilisation de Lidy
 
@@ -422,7 +424,7 @@ Mon idée initiale pour réaliser la réécriture de Lidy en Golang a été l'ap
 
 Afin de surmonter cette double difficulté, j'ai l'idée de passer par un langage intermédiaire : TypeScript. TypeScript est une extension du langage JS pour supporter l'utilisation de valeurs statiquement typées. J'ai appris ce langage durant mon stage du printemps 2019, chez Deskpro. Il m'apparaît que ce langage permettrait de surmonter la difficulté de dureté des types en Golang de manière plus progressive. Je commence donc une traduction de Lidy en TypeScript.
 
-La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, ainsi que quelles informations elles reçoivent et contiennent. Je réalise donc ce travail d'ajout des types au code. Je rencontre cependant assez vite plusieurs limites. En effet, JS permet d'ajouter facilement une propriété avec n'importe quel nom à n'importe quel valeur, avec pour seul contrainte que ladite valeur soit un objet. Ceci rend la modélisation des types de l'implémentation en JS de Lidy difficile, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, telles que les différences de niveau de fonctionnalités offertes d'un langage à un autre : JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'exécution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuyer sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'a presque aucun test unitaire.
+La traduction de code JS en Typescript signifie souvent le simple ajout de types au code. Déterminer correctement ces types requière d'explorer le code, afin de comprendre comment les valeurs transitent dans le code, et quelles informations elles reçoivent et contiennent. Je réalise donc ce travail d'ajout des types au code. Je rencontre cependant assez vite plusieurs limites. En effet, JS permet d'ajouter facilement une propriété avec n'importe quel nom à n'importe quelle valeur, avec pour seule contrainte que ladite valeur soit un objet. Ceci rend la modélisation des types de l'implémentation en JS de Lidy difficile, même avec l'aide de TypeScript. Outre le problème de type, on rencontre d'autres problèmes communs au changement de langages, telles que les différences de niveau de fonctionnalités offertes d'un langage à un autre : JS est un langage haut niveau et un langage de scriptage, alors que Go est un langage orienté système et microservices. Go donne donc plus de contrôle sur le détail de l'exécution, alors que JS se concentre plutôt sur la production de résultats avec peu de code. Me heurtant à toutes ces difficultés, ainsi qu'au problème de conception de cet implémentation de Lidy qui délaisse la vérification du schéma, problème déjà évoqué dans la section [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy), j'ai décidé de laisser de côté l'approche par traduction de code Lidy existant, et de préférer redévelopper Lidy sans m'appuyer sur le code existant. C'est une décision d'autant plus ambitieuse que Lidy est dépourvue de spécification et de documentation, et n'a presque aucun test unitaire.
 
 À ce stade de la réécriture de Lidy, je suis conscient que les conditions dans lesquelles je vais avoir à travailler sont assez différentes des conditions dans lesquelles Lidy a été initialement développé. En effet, Lidy a été développé dans le contexte de Leto, afin de permettre l'analyse de fichier YAML, afin de vérifier que leur structure est conforme à un schéma Lidy écrit pour TOSCA. Cependant, ne connaissant pas la grammaire TOSCA, ni même les concepts d'orchestration associés, je n'ai pas les compétences pour travailler avec ce schéma. Je juge que je n'aurais pas assez de temps pour acquérir ces connaissances et compétences dans le temps qui m'était imparti : entre 4 et 8 semaines. Lidy avait été développé sans spécification, mais avec les besoins de Leto pour besoins directeurs, il ne me sera pas possible de travailler ainsi. Je décide donc de m'atteler moi-même à la tâche de spécification de Lidy, afin que mon code repose sur un socle solide.
 
@@ -455,7 +457,7 @@ J'ai donc pris les décisions suivantes :
 - (QSpec6: required-vs-xFacultative) Les mot-clés `_required` et `_optional` sont remplacés par une utilisation plus uniforme, avec les mots-clés `_listFacultative` et `_mapFacultative`.
   - Le radicale "Facultative" a été préféré à "Optional" car les mots-clés `_mapOf` et `_listOf` commençaient déjà par les cinq et six caractères `_mapO` et `_listO`. "Optional" aurait donc ralenti l'utilisation de l'autocompletion de un caractères pour ces mot-clés.
 - (QSpec1: copy) Renommer le mot-clé `_copy` en `_merge`.
-  - Le mot-clé `_merge` accepte désormais une liste d'expressions lidy plutôt que une seule expression. Le spécifieur de mapping qui contient le mot-clé `_merge` est donc marqué comme héritant de chacune de ces expressions.
+  - Le mot-clé `_merge` accepte désormais une liste d'expressionsLidy plutôt que une seule expression. Le spécifieur de mapping qui contient le mot-clé `_merge` est donc marqué comme héritant de chacune de ces expressions.
 
 ### Détails sur la spécification du mot-clé `_mergeable`
 
@@ -475,7 +477,7 @@ Lidy doit aussi vérifier que l'ensemble des mappings concernés par un `_merge`
 
 Conscient de l'aspect chronophage de l'écriture d'une spécification complète, j'opte pour produire la spécification sous forme d'un ensemble de tests commentés. Je réalise initialement ces tests en TypeScript, avec l'outil de test unitaire Japa. Ceci me permet d'utiliser le code existant pour ajouter un niveau de vérification à mes tests de spécification, puisque le code existant peut être executé depuis TypeScript.
 
-Lorsque vient le moment de passer à Golang, les discussions que j'ai avec mon maître de stage Xavier TALON sur l'intérêt de rendre Lidy disponible dans plusieurs langages m'amène à choisir de mettre mes tests dans un format qui pourra être consommé depuis n'importe quel langage de programmation. Je choisi le langage de sérialisation HJSON "Human JSON", un format très similaire au JSON, qui, tout comme le YAML vise à être facile à utiliser par les humains. Il se distingue cependant du YAML par ses décisions conservatrices vis-à-vis de l'utilisation des accolades (`{}`) : HJSON choisit de préserver les accolades, là où YAML les interdit.
+Lorsque vient le moment de passer à Golang, les discussions que j'ai avec mon maître de stage Xavier TALON sur l'intérêt de rendre Lidy disponible dans plusieurs langages m'amène à choisir de mettre mes tests dans un format qui pourra être consommé depuis n'importe quel langage de programmation. Je choisis le langage de sérialisation HJSON "Human JSON", un format très similaire au JSON, qui, tout comme le YAML vise à être facile à utiliser par les humains. Il se distingue cependant du YAML par ses décisions conservatrices vis-à-vis de l'utilisation des accolades (`{}`) : HJSON choisit de préserver les accolades, là où YAML les interdit.
 
 Afin de pouvoir utiliser ces données de tests en Golang, je comprends que j'ai besoin d'un outil capable d'exécuter les tests à chaque modification du code ou des tests. J'ai aussi besoin d'un outil capable de réaliser des statistiques sur le nombre de tests exécutés et qui ont réussi. Cet outil doit aussi être capable de gérer la désactivation temporaire de tests. J'adopte et j'apprends donc la suite d'outil de test comportemental Golang **Ginkgo**. Cet outil répond aux contraintes listées ci-dessus ; c'est aussi l'outil le plus abouti en terme de tests unitaires et de tests d'intégration dans la communauté Golang.
 
@@ -502,7 +504,7 @@ Avoir du code dédié au chargement des données de tests à l'avantage de donne
 }
 ```
 
-Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.2 }` et `{ aa: 0 }`, mais rejeter le document `{}`. La seule manière pour le test de savoir si les documents doivent être acceptés ou rejetés par le schéma est le commentaire associé aux tests : Celui-ci commence soit par "accept", soit par "reject". Cette flexibilité permet donc d'avoir des tests avec des descriptions organiques, sans avoir besoin de se répéter.
+Dans l'extrait ci-dessus, le schéma donné doit valider les documents `{ aa: 2.2 }` et `{ aa: 0 }`, mais rejeter le document `{}`. La seule manière pour le test de savoir si les documents doivent être acceptés ou rejetés par le schéma est le commentaire associé aux tests : celui-ci commence soit par "accept", soit par "reject". Cette flexibilité permet donc d'avoir des tests avec des descriptions organiques, sans avoir besoin de se répéter.
 
 ## Retour sur le travail de spécification
 
@@ -512,7 +514,7 @@ Lorsque j'analyse le déroulement de mon projet de ré-écriture de Lidy en Gola
 
 ### Retour sur les tests
 
-Un autre point qui pourrait être améliorer est le chargement et l'exécution des tests. Lidy est un outil qui se prête bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eues l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situations : il s'agit de **tests orientés données**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existe des librairies de tests spécialisées sur ce type de tests. Lidy bénéficierait d'utiliser une telle librairie. Il est à noter cependant, que les tests de Lidy ont des besoins forts sur les fonctionnalités de la paramétrisation. Il n'est pas garanti qu'une librairie suffisamment avancée existe déjà.
+Un autre point qui pourrait être amélioré est le chargement et l'exécution des tests. Lidy est un outil qui se prête bien à la production de tests sous forme de jeux de données. Des recherches que j'ai eues l'occasion de mener après la fin du projet m'ont permis de trouver le nom donné à ces situations : il s'agit de **tests orientés données**. En anglais, on parle de "table driven tests" dans les cas simples et de "data-driven tests" ou de "parametrized tests" dans les cas généraux. Il existe des librairies de tests spécialisées sur ce type de tests. Lidy bénéficierait d'utiliser une telle librairie. Il est à noter cependant, que les tests de Lidy ont des besoins forts sur les fonctionnalités de la paramétrisation. Il n'est pas garanti qu'une librairie suffisamment avancée existe déjà.
 
 ## Support des numéros de ligne lors de la conversion du YAML en Go
 
@@ -544,10 +546,10 @@ Le second problème qui s'est posé était de faire figurer dans les résultats 
 
 Une fois l'API externe de Lidy décidée, les spécifications et tests écrits et la librairie de désérialisation YAML validée, le future de Lidy était certain, dans la mesure où les seuls efforts qu'il restait à fournir étaient des efforts d'implémentation de logique logiciel et que toutes les causes externes susceptibles de faire échouer ou de ralentir l'implémentation de Lidy avait été éliminées.
 
-J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le diagramme [Fonctionnement de NewParser().Parse()](#fonctionnement-de-newparserparse). Dans ce diagramme d'exécution, la méthode `.parseContent()` reçois quatre paramètres:
+J'avais alors une idée assez précise de la manière dont Lidy devait réaliser son travail. Je savais qu'il devait y avoir deux étapes de validation : une première étape réalisée dès que le schéma Lidy est reçu et une deuxième étape réalisée lorsque le document à vérifier est reçu. Ceci peut être synthétisé par le diagramme [Fonctionnement de NewParser().Parse()](#fonctionnement-de-newparserparse). Dans ce diagramme d'exécution, la méthode `.parseContent()` reçoit quatre paramètres:
 
 - _schema_ (requis) le schéma Lidy contenant les règles
-- _target_ quel règle du schéma utiliser pour commencer la validation
+- _target_ quelle règle du schéma utiliser pour commencer la validation
 - _option_ quel jeu d'option utiliser vis-à-vis des erreurs et warnings
 - _builderMap_ (`.With`), un dictionnaire de fonctions capables de vérifier et construire les entités associées aux règles exportées. Les flèches entre le block `.parseContent()` et le block des builders symbolisent les appels aux fonctions de la builder-map.
 
@@ -555,7 +557,7 @@ La première étape, comme la deuxième étape, produit soit des erreurs soit un
 
 ![Fonctionnement de NewParser.Parse()\label{lidy-newparser-parse}](misc/Lidy-NewParser-Parse.png)
 
-Des questions demeurent cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le dé-sérialiser YAML.
+Des questions demeurent cependant, faut-il réaliser des transformations sur le schéma entre la première étape et la deuxième étape ? Quel format donner à la représentation interne du schéma pour que l'implémentation de la deuxième étape soit simple ? L'implémentation JS de Lidy ne disposait pas d'une première étape de validation du schéma et utilisait donc le schéma sous le format produit par le désérialiser YAML.
 
 Le système de type de Golang supporte un concept objet appelé "liaison dynamique". Il s'agit de la possibilité d'implémenter la même méthode dans différents objets et d'appeler la méthode attachée à l'objet que l'on manipule, sans que l'appelant n'ait à se soucier du type de l'objet et donc sans qu'il n'ait à se soucier de quelle occurrence de la méthode sera effectivement appelée. Dans le cas de Lidy, un tel mécanisme peut s'avérer avantageux pour le concept d'expression. Ceci permet de créer différentes "classes" qui, chacune, implémente l'interface "expression"; une interface élémentaire de Lidy capable de dire si une structure YAML est valide d'après cette expression Lidy ou pas.
 
@@ -582,14 +584,14 @@ Ainsi, le Schéma YAML est représenté sous la forme d'un ensemble d'expression
 - `tIn`
 - `tRegex`
 
-Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, `tRule`, le type référence vers une règle n'est pas nécessaire. En effet, on aurait pu directement remplacer la référence par la valeur de la règle et ainsi accélérer la validation des données. Cependant, afin de faciliter le débuggage et l'ajout future de fonctionnalités au système de règles, il est intéressant de faire apparaître les expressions-règles dans l'arbre des expressions.
+Elles correspondent aux 5 spécifieurs, plus les références vers des règles. Il est à noter que dans le cas des règles non exportées, `tRule`, le type référence vers une règle n'est pas nécessaire. En effet, on aurait pu directement remplacer la référence par la valeur de la règle et ainsi accélérer la validation des données. Cependant, afin de faciliter le débuggage et l'ajout futur de fonctionnalités au système de règles, il est intéressant de faire apparaître les expressions-règles dans l'arbre des expressions.
 
 ## Analyse et validation du schéma
 
 Valider un schéma Lidy comporte plusieurs aspects.
 
-- Détection du type de chaque expression : Si c'est une règle cela correspond à une chaîne de caractères Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
-- Vérification des expressions Lidy : Vérifier que chaque spécifieur comporte les mot-clés nécessaires, et uniquement des mot-clés connus de Lidy, autorisés pour ce spécifieur.
+- Détection du type de chaque expression : si c'est une règle cela correspond à une chaîne de caractères Lidy. Cependant, si c'est un dictionnaire, il faut y chercher un mot clé ou un ensemble de mot-clés qui permettent d'identifier de manière unique le type de spécifieur utilisé par le développeur.
+- Vérification des expressions Lidy : vérifier que chaque spécifieur comporte les mot-clés nécessaires, et uniquement des mot-clés connus de Lidy, autorisés pour ce spécifieur.
 - Vérification de l'existence d'une déclaration de règle pour chaque référence à une règle.
 - Analyse des déclarations de règle pour savoir si elles sont exportées, et si oui, sous quel nom. Vérifier que les règles pour lesquelles on trouve des builders sont toutes connues et exportées. Ce comportement dépend des options données par l'utilisateur.
 
@@ -611,22 +613,22 @@ _Solutions aux problèmes (A) et (B)._
 
 Le problème (A) est un problème de détection de cycles au sein d'un graphe orienté. Ce problème se résout en appliquant un algorithme de parcours de graphe en profondeur avec trois marquages possibles pour chaque nœud, au lieu de deux, dans un parcours en profondeur classique. Les nœuds passent du marquage 0 au marquage 1 lorsqu'ils sont explorés à la descente, puis du marquage 1 au marquage 2 à la remontée. Si un lien descend vers un nœud marqué 1, nœud que nous appellerons nœud d'alerte, cela prouve l'existence d'un cycle. Il est alors possible de signaler ce cycle et l'exploration peut continuer en excluant le lien problématique.
 
-Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par la topologie du graphe est inévitable. Cette contrainte est gênante car le projet lidy a besoin de rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. Il s'agit aussi que la fonctionnalité qui sert à ne rapporter que la première erreur rencontrée, rapporte systématiquement la première erreur du document. En effet, ces deux contraintes obligent de rapporter l'ensemble des erreurs au cours d'une unique passe réalisée dans l'ordre du document. Puisque ces deux ordres sont incompatibles, une seconde passe doit être ajoutée et affectée à la détection des cycles. Comme cette passe est nécessaire à la détection de certaines erreurs, celle-ci doit être effectuée avant la passe de signalement des erreurs. Ainsi, le projet adopte un mode de fonctionnement en quatre étapes:
+Une implication notable de l'algorithme décrit ci-dessus est que le parcours des règles dans un ordre déterminé par la topologie du graphe est inévitable. Cette contrainte est gênante car le projet Lidy a besoin de rapporter au développeur les erreurs dans l'ordre dans lequel elles apparaissent. La fonctionnalité qui sert à ne rapporter que la première erreur rencontrée, doit rapporter systématiquement la première erreur du document. En effet, ces deux contraintes obligent à rapporter l'ensemble des erreurs au cours d'une unique passe réalisée dans l'ordre du document. Puisque ces deux ordres sont incompatibles, une seconde passe doit être ajoutée et affectée à la détection des cycles. Comme cette passe est nécessaire à la détection de certaines erreurs, celle-ci doit être effectuée avant la passe de signalement des erreurs. Ainsi, le projet adopte un mode de fonctionnement en quatre étapes:
 
-A. Analyse des en-têtes de règle (nom, export et présence de builders)
-B. (Passe 1, ordre topologique) Recherche de cycles de dépendances directes
-C. (Passe 2, ordre du document) Analyse des règles avec signalement des erreurs du développeur
-D. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
+- A. Analyse des en-têtes de règle (nom, export et présence de builders)
+- B. (Passe 1, ordre topologique) Recherche de cycles de dépendances directes
+- C. (Passe 2, ordre du document) Analyse des règles avec signalement des erreurs du développeur
+- D. Validation des données utilisateurs, avec signalement des erreurs de l'utilisateur
 
 Ce mode de fonctionnement vient à bout du problème (A).
 
-Un examen du problème (B) montre que la contrainte d'ordre qui avait émergée est satisfaite par l'ordre topologique. L'ajout de la passe 1 nécessaire au problème (A) permet également de résoudre le problème (B).
+Un examen du problème (B) montre que la contrainte d'ordre qui avait émergée est satisfaite par l'ordre topologique. L'ajout de la passe 1 nécessaire à la réolution du problème (A) permet également de lever le problème (B).
 
 ## Règles Lidy prédéfinies
 
 Lidy fournit à l'utilisateur huit [règles prédéfinies](#lidy-predefined-rules). Il s'agit de règles acceptant chacun des 7 types du schéma de la version 2.1 de YAML, ainsi que le type `any` qui accepte toute donnée YAML, sans aucune validation.
 
-Les 5 types ci-dessous sont natifs à Go et sont fourni à l'utilisateur sous le type Go correspondant.
+Les 5 types ci-dessous sont natifs à Go et sont fournis à l'utilisateur sous le type Go correspondant.
 
 - `boolean`
 - `float`
@@ -686,7 +688,7 @@ ruleAny.expression = tOneOf{
 }
 ```
 
-Une telle implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contrainte, les vérifications imposées par la définition ci-dessus de `any` vont forcer une exploration récursive de la totalité du sous-arbre du nœud, alors que celui-ci aurait pu être purement ignoré. En d'autres termes, cette implémentation de `any` a un coût proportionnel à la taille du sous-arbre, alors qu'une implémentation spécifique qui ignore le nœuds aurait un coût constant.
+Une telle implémentation laisse peut-être le lecteur dubitatif vis-à-vis de son efficacité. En effet, il semble que puisque `any` n'impose aucune contrainte, les vérifications imposées par la définition ci-dessus de `any` vont forcer une exploration récursive de la totalité du sous-arbre du nœud, alors que celui-ci aurait pu être purement ignoré. En d'autres termes, cette implémentation de `any` a un coût proportionnel à la taille du sous-arbre, alors qu'une implémentation spécifique qui ignore le nœud aurait un coût constant.
 
 Il se trouve que l'exploration du contenu du nœud est en fait inévitable, puisque la règle doit produire un résultat synthétisant toutes les informations du document d'origine. C'est pourquoi le coût ne peut pas être constant et est au mieux proportionnel à la taille du sous-arbre, comme c'est le cas de cette solution.
 
@@ -707,9 +709,9 @@ Le premier enjeu est de parvenir à rapporter toutes les erreurs. Il se décompo
 
 - Les validateurs doivent être implémentés de manière à ne pas s'interrompre lors dès qu'une erreur est détectée, mais au contraire, à réaliser la totalité des vérifications qu'ils peuvent faire avant de rendre la main.
 
-- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à `_oneOf` : Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression à fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
+- Le système utilisé pour communiquer les erreurs doit être capable de transporter plusieurs erreurs. À ceci s'ajoute des contraintes spécifiques à `_oneOf` : Lidy doit être capable d'essayer d'appliquer une expression et de savoir si cette expression a fonctionné ou échoué, sans que Lidy n'échoue de manière globale à cause de cette expression. De plus, les erreurs générées par cette expression doivent pouvoir être collectées séparément, afin d'ignorer ces erreurs ou de les rapporter comme un supplément d'information.
 
-Ces contraintes que font peser `_oneOf` sur l'implémentation de Lidy m'ont amené à choisir de passer les erreurs comme une liste d'erreurs, en résultat des fonctions de vérification Lidy. Un exemple de méthode qui renvoie une liste d'erreur est la méthode `match()` de l'interface `tExpression`.
+Ces contraintes que font peser `_oneOf` sur l'implémentation de Lidy m'ont amené à choisir de passer les erreurs comme une liste d'erreurs, en résultat des fonctions de vérification Lidy. Un exemple de méthode qui renvoie une liste d'erreurs est la méthode `match()` de l'interface `tExpression`.
 Le fonctionnement de cette interface a été expliqué dans la section [Conception interne de Lidy](#conception-interne-de-lidy).
 
 ### Enjeu d'informativité des erreurs
@@ -723,7 +725,7 @@ Le second enjeu est de produire une information d'erreur riche. Voici les inform
 - (C) La situation trouvée
 - (D) La position de la situation trouvée dans le document ou schéma
 - (E) La distinction entre erreur et warning
-- (F) (_Dans le cas de la vérification des données utilisateur_) La position définissant la situation attendue. Cette position se dans le schema du développeur.
+- (F) (_Dans le cas de la vérification des données utilisateur_) La position définissant la situation attendue. Cette position se trouve dans le schéma du développeur.
 - (G) (_Dans le cas du spécificateur `_oneOf`_) La liste des sous-erreurs qui ensemble contribuent à l'échec de la validation du `_oneOf`.
 
 Actuellement, les informations A et B, sont compilées en un message d'erreur, puis ajoutées aux informations C et D en un second message d'erreur, plus long. Cette approche est cependant limitée : si un message d'erreur permet à un utilisateur de comprendre ce qui s'est produit, il ne permet pas à un programme de déterminer si l'erreur appartient à une catégorie spécifique. De même pour les autres informations : à l'intérieur d'un message d'erreur, elles peuvent être consommées par un humain, mais pas par une machine.
@@ -767,7 +769,7 @@ func (list tList) match(content yaml.Node, parser *tParser) (tResult, []error) {
 ```
 
 L'extrait ci-dessus montre comment un validateur procède pour ne pas s'arrêter à la première erreur et rapporter l'intégralité des erreurs. Les listes d'erreurs sont traitées comme des données et ajoutées à une _liste de liste d'erreurs_.
-Par exemple, l'instruction `errList.Push(list.sizing.check(content, parser))` fait appel à un vérificateur externe, `list.sizing.check()`. Cette fonction de vérification produit une liste d'erreurs, qui est ajoutée par la méthode `.Push()` à `errList`, la _liste de liste d'erreurs_. Enfin, la méthode `.ConcatError()` permet de rassembler ces listes de liste en une seul liste d'erreur. Notons que ces deux méthodes, `.Push()` et `.ConcatError()` appartiennent à un court _package_ écrit spécifiquement pour répondre aux besoins de rapport d'erreurs des fonctions de vérification de Lidy. Voir le packet [errorlist](https://github.com/ditrit/lidy/blob/go-2020-10/errorlist/errorlist.go) (32 lignes de code).
+Par exemple, l'instruction `errList.Push(list.sizing.check(content, parser))` fait appel à un vérificateur externe, `list.sizing.check()`. Cette fonction de vérification produit une liste d'erreurs, qui est ajoutée par la méthode `.Push()` à `errList`, la _liste de liste d'erreurs_. Enfin, la méthode `.ConcatError()` permet de rassembler ces listes de liste en une seul liste d'erreur. Notons que ces deux méthodes, `.Push()` et `.ConcatError()` appartiennent à un court _package_ écrit spécifiquement pour répondre aux besoins de rapport d'erreurs des fonctions de vérification de Lidy. Voir le paquet [errorlist](https://github.com/ditrit/lidy/blob/go-2020-10/errorlist/errorlist.go) (32 lignes de code).
 
 Dans l'extrait ci-dessus, on rencontre aussi la fonction `contentError`:
 
@@ -790,7 +792,7 @@ func (parser *tParser) contentError(content yaml.Node, expected string) []error 
 }
 ```
 
-Cette fonction a un analogue pour les erreurs survenant au moment de l'analyse du schema:
+Cette fonction a un analogue pour les erreurs survenant au moment de l'analyse du schéma :
 
 [_`lidySchemaParser.go:schemaError()`_](https://github.com/ditrit/lidy/blob/go-2020-10/lidySchemaParser.go#L238-L244)
 
@@ -809,7 +811,7 @@ func (sp tSchemaParser) schemaError(node yaml.Node, expected string) []error {
 }
 ```
 
-Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de contexte global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolete le packet `errorlist`.
+Une amélioration possible de l'implémentation du transport des erreurs serait de cesser de traiter les erreurs comme valeurs de retour des fonctions, et de faire que les fonctions écrivent les erreurs au fur et à mesure, dans une liste, propre à l'objet `tSchemaParser` pour la validation du schéma et propre à `tParser` pour la validation du document. En effet, ces deux objets font office "d'objet de contexte global" dans ces deux cas et peuvent donc accepter et stocker les erreurs, peu-importe où elles sont détectées. Ceci permettrait d'alléger les signatures de toutes les fonctions de validation de leur valeur de retour `[]error` et rendant obsolète le paquet `errorlist`.
 
 ## Conclusion du projet Lidy
 
@@ -817,6 +819,7 @@ Après 7 semaines et demie, ma mission au Crédit Agricole a commencé, interrom
 
 Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendants de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensemble des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la production d'extensions pour supporter les langages YAML précités dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ.
 
+\clearpage
 
 # Crédit Agricole
 
@@ -899,7 +902,7 @@ L'équipe comporte 7 membres, par ordre d'arrivé dans l'équipe:
 
 Au mois d'Octobre, Thomas et Abdelilah sont des employés internes du Crédit Agricole, Céline et Cécilia sont employées en alternance et Karima, Pierre-Éric et moi sommes prestataires.
 
-Les sujets sur lesquels travaille l'équipe sont répartis parmi les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outil Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parques de machines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travaille sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travaille sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
+Les sujets sur lesquels travaille l'équipe sont répartis parmi les membres. Ainsi, Pierre-Éric est l'expert de l'équipe en base de données Sybase, ainsi qu'en ksh. Il utilise en plus de cela l'outil Ansible pour faire de l'automatisation de déploiement de machine et automatisation des tâches de maintenance sur les parcs de machines, en particuliers les machines comportant des bases de données Sybase. Karima, elle, travaille sur les bases de données PostgreSQL et Sybase et est très familière avec l'écriture de commandes pour ces deux types de bases de données. Abdelilah travaille sur les bases de données PostgreSQL, et sur l'outils WebDBA. Céline et moi travaillons sur WebDBA, ainsi que sur la recherche et la mise en place de nouveaux outils. Enfin, Cécilia travaille aussi principalement sur WebDBA.
 
 #### Carte de prise en charge des sujets de l'équipe
 
@@ -912,7 +915,7 @@ Les sujets sur lesquels travaille l'équipe sont répartis parmi les membres. Ai
 |                Ansible |        |           |   +    |        |      +      |         |         |
 |        Nouveaux outils |        |           |        |   +    |             |    +    |         |
 
-Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relative au fonctionnement de Python et à l'utilisation de Git.
+Comme le montre la carte des sujets, j'ai été principalement amené à travailler avec Thomas, Abdelilah, Céline et Cécilia. J'ai aussi eu l'occasion d'interagir avec Pierre-Éric et Karima à plusieurs reprises pour apporter mon aide sur des questions relatives au fonctionnement de Python et à l'utilisation de Git.
 
 Durant la période de stage, les tâches que je reçois me sont principalement confiées par Thomas et Abdelilah et ne concernent que l'outils d'inventaire et APIs WebDBA.
 
@@ -950,7 +953,7 @@ Le Burst est une fonctionnalité disponible sur les machines **Oracle ExaCC**. E
 
 Le Burst peut être activé manuellement via un bouton dans l'interface web de commande fournie par Oracle. Elle peut aussi être activée automatiquement par l'envoi de plusieurs requêtes sur une API Oracle dédiée.
 
-Cependant, cette API Oracle est contraignante. En effet, avec cette API, la fabrication de la requête à envoyer pose des difficultés. Le burst doit être réalisé en deux étapes et chaque étape nécessite une période d'attente semi-active afin de vérifier que la requête a bien été prise en compte. L'équipe Oracle souhaiterait disposer d'une API simple sur laquelle il soit possible de réaliser une seul requête et que l'ensemble des étapes mentionnées précédemment soient gérées par WebDBA. L'API WebDBA produira un status de succès si l'ensemble des étapes se déroule bien et un status d'échec si l'une d'entre elles échoue.
+Cependant, cette API Oracle est contraignante. En effet, avec cette API, la fabrication de la requête à envoyer pose des difficultés. Le burst doit être réalisé en deux étapes et chaque étape nécessite une période d'attente semi-active afin de vérifier que la requête a bien été prise en compte. L'équipe Oracle souhaiterait disposer d'une API simple sur laquelle il soit possible de réaliser une seul requête et que l'ensemble des étapes mentionnées précédemment soient gérées par WebDBA. L'API WebDBA produira un statut de succès si l'ensemble des étapes se déroule bien et un statut d'échec si l'une d'entre elles échoue.
 
 ### Technologie ExaCC
 
@@ -958,7 +961,7 @@ Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique
 
 ![ExaCC schema\label{exacc-schema}](uml/webdba.burst.exacc.png){width=171px}
 
-Le schéma fait aussi figurer les arités et totaux. Ces nombres correspondent au cas des systèmes ExaCCs du Crédit Agricole. Parmi ces concepts, seul celui d'exasystem de cluster affecte l'usage de l'API d'Oracle. En effet, afin d'ajouter des CPUs à un cluster, il est nécessaire de commencer par en ajouter à l'exasystem auquel ce cluster appartient. C'est la raison pour laquelle l'opération d'ajout de CPUs doit être réalisé en deux opérations.
+Le schéma fait aussi figurer les arités et totaux. Ces nombres correspondent au cas des systèmes ExaCCs du Crédit Agricole. Parmi ces concepts, seul celui d'exasystem de cluster affecte l'usage de l'API d'Oracle. En effet, afin d'ajouter des CPUs à un cluster, il est nécessaire de commencer par en ajouter à l'exasystem auquel ce cluster appartient. C'est la raison pour laquelle l'ajout de CPUs doit être réalisé en deux opérations.
 
 ### Processus d'ajout des CPUs
 
@@ -988,7 +991,7 @@ Outre le confort que la classe client apporte vis-à-vis de l'authentification, 
 
 #### Requêtes invalides
 
-Lors de l'étape de préparation, il est possible que la requête soit rejetée ou abandonnée. La requête sera abandonnée si l'état demandé est déjà l'état du cluster. Ainsi, le module de commande du burst ne fait rien si une demande de deburst est faite alors que l'exasystème n'a pas de CPUs de burst. De même il ne fait rien et renvoie un status de succès si le cluster est déjà bursté avec le bon nombre de CPUs. Cependant, conformément aux contraintes données par l'équipe Oracle, la seule opération autorisée lorsque des CPUs de burst sont utilisés est de retirer tous les CPUs de burst.
+Lors de l'étape de préparation, il est possible que la requête soit rejetée ou abandonnée. La requête sera abandonnée si l'état demandé est déjà l'état du cluster. Ainsi, le module de commande du burst ne fait rien si une demande de deburst est faite alors que l'exasystème n'a pas de CPUs de burst. De même il ne fait rien et renvoie un statut de succès si le cluster est déjà bursté avec le bon nombre de CPUs. Cependant, conformément aux contraintes données par l'équipe Oracle, la seule opération autorisée lorsque des CPUs de burst sont utilisés est de retirer tous les CPUs de burst.
 
 #### Création des requêtes
 
