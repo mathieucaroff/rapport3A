@@ -59,6 +59,9 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
 - [Table des matières](#table-des-matières)
 - [Contexte du stage](#contexte-du-stage)
 - [Orness](#orness)
+  - [Culture d'entreprise](#culture-dentreprise)
+  - [Activité](#activité)
+  - [Expertise](#expertise)
 - [DitRit](#ditrit)
   - [Participation à DitRit](#participation-à-ditrit)
   - [Projets de DitRit](#projets-de-ditrit)
@@ -157,26 +160,54 @@ _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubus
 
 Compte tenu du contexte de la pandémie, le stage ne s'est pas déroulé dans les conditions initialement prévues. La date de début du stage, programmé pour débuter le 2 avril, s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
-  - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec pour difficulté, l'incertitude sur sa durée car la date de début au CA était indéterminée. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
-  - La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole, localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
+
+- La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec pour difficulté, l'incertitude sur sa durée car la date de début au CA était indéterminée. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
+- La seconde période a débuté fin juillet et s'est déroulée au Crédit Agricole, localisé à Guyancourt. Le projet portait cette fois majoritairement sur l'outil d'inventaire WebDBA. Le stage s'est déroulé essentiellement sur site, au sein d'une équipe, jusqu'au second confinement où le travail en distanciel était de rigueur.
 
 # Orness
 
-Orness est une entreprise de services du numérique (ESN), située à Paris, avec ses bureaux dans le 9ème arrondissement. Cette SARL a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui coprésident l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, les deux codirecteurs techniques, eux aussi membres fondateurs. [(orness-histoire)](#orness-histoire)
+Orness est une entreprise de services du numérique (ESN), située à Paris, avec ses bureaux dans le 9ème arrondissement. Cette SARL a été fondée en 2001 par Ghada AJAKA et Carole AMADO qui cogèrent l'entreprise, appuyées par Xavier TALON et Herve CHIBOIS, les deux codirecteurs techniques, eux aussi membres fondateurs. [(orness-histoire)](#orness-histoire)
 
 Elle compte aujourd'hui plus d'une centaine d'employés cadres. Avec un chiffre d'affaires de 12 millions d'euros, elle affiche un résultat de 650 mille euros. [(orness-societe)](#orness-societe)
 
-<!-- ## Culture d'entreprise -->
+## Culture d'entreprise
 
 Orness accorde une grande importance à l'humain. La qualité de la vie des employés au travail, l'entente et le sentiment de sécurité morale ont une grande importance chez les dirigeants de Orness. Leur maniement de ces valeurs, dans une entreprise à taille humaine, permet de créer une atmosphère relaxante chez Orness. Ainsi, les valeurs de transparence, d'audace et de partage se ressentent bien, tant chez les dirigeants qu'au sein des employés. [(orness-valeurs)](#orness-valeurs)
 
 Outre l'importance accordée au bien-être au travail, Orness s'engage sur les sujets de l'Open Source, de la souveraineté numérique et de l'inclusion des femmes dans le milieu professionnel, notamment au travers de partenariats. [(orness-engagements)](#orness-engagements)
 
-<!-- ## Activité -->
+## Activité
 
-<!-- TODO -->
+<!--
+- Préstations chez les banques
+  - Interventions
+  - Mise à disposition de moyens humains
+- 
+-->
 
-<!-- ## Expertise -->
+## Expertise
+
+<!--
+- DevOps & Agilité
+  - Stratégie/pilotage
+  - Mise en oeuvre cloud
+  - Mise en oeuvre agilité / DevOps
+  - Langages, OS
+    - Python
+    - Go
+    - Linux
+  - Outils
+    - Docker
+    - Kubernetes
+    - Ansible
+    - Terraform
+    - Prometheus
+    - Grafana
+- Infrastructure & Service
+  - Administration et expertise technique
+  - Architecture
+  - Projets transverses d’infrastructure
+-->
 
 # DitRit
 
@@ -782,9 +813,9 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 ## Conclusion du projet Lidy
 
-Après 7 semaines et demi, ma mission au Crédit Agricole a commencée, interrompant mon travail sur Lidy. Ce projet m'aura permis d'acquérir une expérience significative avec le langage Go, ainsi qu'une expérience de développement informatique dans le monde associatif.
+Après 7 semaines et demie, ma mission au Crédit Agricole a commencé, interrompant mon travail sur Lidy. Ce projet m'aura permis d'acquérir une expérience significative avec le langage Go, ainsi qu'une expérience de développement informatique dans le monde associatif.
 
-Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendant de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensembles des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la productions d'extensions pour supporter les langages YAML précités dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ.
+Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendants de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensemble des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la production d'extensions pour supporter les langages YAML précités dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ.
 
 
 # Crédit Agricole
@@ -994,7 +1025,7 @@ Golang est un langage de programmation statiquement typé, développé chez Goog
 <dd>
 </dd>
 
-<dt>TOSCA><dt>
+<dt>TOSCA<dt>
 <dd>
 OASIS TOSCA, "Topology Orchestration Specification for Cloud Applications" est un langage de spécification de topologie de machines pour le Cloud. Ce langage s'épargne l'effort de définir une syntaxe complète en réutilisant le format YAML. Ainsi, depuis la TOSCA 2.0, TOSCA est un sous-ensemble de YAML, au sens où tous les fichiers TOSCA sont des fichiers YAML.
 </dd>
