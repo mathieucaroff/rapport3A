@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="language-sets.svg"
+   inkscape:export-filename="C:\ox\self\rapport\misc\language-sets.png"
+   inkscape:export-xdpi="119.99028"
+   inkscape:export-ydpi="119.99028">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient9563">
+      <stop
+         style="stop-color:#217867;stop-opacity:1;"
+         offset="0"
+         id="stop9559" />
+      <stop
+         style="stop-color:#217867;stop-opacity:0;"
+         offset="1"
+         id="stop9561" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient9563"
+       id="linearGradient9565"
+       x1="221.99646"
+       y1="107.98059"
+       x2="246.50039"
+       y2="107.98059"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.5332452"
+     inkscape:cx="880.46607"
+     inkscape:cy="284.85353"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-87)">
+    <rect
+       style="fill:#f9f9f9;fill-opacity:0.81622913;stroke:none;stroke-width:0.36733532;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.47368421"
+       id="rect5091"
+       width="296.96399"
+       height="210.01041"
+       x="0.0087912083"
+       y="86.945892" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="175.14073"
+       y="127.18678"
+       id="text4800-65"><tspan
+         sodipodi:role="line"
+         id="tspan4798-2"
+         x="175.14073"
+         y="127.18678"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BLSS of</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4747"
+       cx="51.782738"
+       cy="136.5491"
+       rx="45.168152"
+       ry="45.546127" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4749"
+       cx="54.043217"
+       cy="157.51286"
+       rx="21.639137"
+       ry="21.26116" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#800080;stroke-width:0.35956728;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4751"
+       cx="206.36014"
+       cy="-249.24644"
+       rx="41.990089"
+       ry="43.118683"
+       transform="scale(1,-1)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#800080;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4753"
+       cx="220.17969"
+       cy="-244.47331"
+       rx="21.013449"
+       ry="21.578211"
+       transform="scale(1,-1)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.47085354;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4755"
+       cx="217.89932"
+       cy="-252.21312"
+       rx="11.176265"
+       ry="10.998917"
+       transform="scale(1,-1)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.37143344;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4757"
+       cx="180.11014"
+       cy="-240.03584"
+       rx="9.0776386"
+       ry="9.3975973"
+       transform="scale(1,-1)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4759"
+       cx="178.87592"
+       cy="-259.23575"
+       rx="8.115159"
+       ry="7.96978"
+       transform="scale(1,-1)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#800080;stroke-width:0.34094658;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4761"
+       cx="115.7922"
+       cy="244.54454"
+       rx="35.057838"
+       ry="34.886818" />
+    <ellipse
+       style="fill:#dae8fc;fill-opacity:1;stroke:#217867;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4763"
+       cx="202.82632"
+       cy="-269.30438"
+       rx="7.237844"
+       ry="7.0842495"
+       transform="scale(1,-1)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765"
+       cx="39.336609"
+       cy="225.99431"
+       rx="9.9557896"
+       ry="9.7553377" />
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4767"
+       cx="125.6822"
+       cy="264.08398"
+       r="9.4880686" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4759-5"
+       cx="138.06439"
+       cy="244.43637"
+       rx="6.9925594"
+       ry="6.8035712" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#800080;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4796"
+       cx="105.55237"
+       cy="237.37703"
+       rx="51.63158"
+       ry="50.453671" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="51.404762"
+       y="101.96429"
+       id="text4800"><tspan
+         sodipodi:role="line"
+         id="tspan4798"
+         x="51.404762"
+         y="101.96429"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">BLSS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="53.759731"
+       y="145.51213"
+       id="text4804"><tspan
+         sodipodi:role="line"
+         id="tspan4802"
+         x="53.759731"
+         y="145.51213"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">NLSS</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.27965584;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4747-4"
+       cx="260.61725"
+       cy="192.55626"
+       rx="30.419287"
+       ry="30.673845" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.50954729;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4749-9"
+       cx="261.72711"
+       cy="202.29805"
+       rx="16.902765"
+       ry="16.408796" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="261.57025"
+       y="176.09492"
+       id="text4800-9"><tspan
+         sodipodi:role="line"
+         id="tspan4798-6"
+         x="261.57025"
+         y="176.09492"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">TypeScript</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="261.79358"
+       y="192.64549"
+       id="text4804-7"><tspan
+         sodipodi:role="line"
+         id="tspan4802-5"
+         x="261.79358"
+         y="192.64549"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';stroke-width:0.26458332">JS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="106.54128"
+       y="195.98865"
+       id="text4838"><tspan
+         sodipodi:role="line"
+         id="tspan4836"
+         x="106.54128"
+         y="195.98865"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">SGML</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4840"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:'CMU Sans Serif';font-style:normal;font-weight:normal;font-size:26.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'CMU Sans Serif';font-stretch:normal;font-variant:normal;text-anchor:middle;text-align:center;"><flowRegion
+         id="flowRegion4842"
+         style="-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"><rect
+           id="rect4844"
+           width="50"
+           height="58.57143"
+           x="925.71429"
+           y="295.12936"
+           style="-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></flowRegion><flowPara
+         id="flowPara4846" /></flowRoot>    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-0"
+       cx="99.507523"
+       cy="243.08484"
+       rx="13.524145"
+       ry="13.251847" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.317;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-7"
+       cx="27.393099"
+       cy="205.51358"
+       rx="9.9557896"
+       ry="9.7553377" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.34999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-71"
+       cx="31.097277"
+       cy="249.05643"
+       rx="9.9557896"
+       ry="9.7553377" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="39.501968"
+       y="228.78331"
+       id="text4886"><tspan
+         sodipodi:role="line"
+         id="tspan4884"
+         x="39.501968"
+         y="228.78331"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">GML</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="27.393084"
+       y="207.85704"
+       id="text4890"><tspan
+         sodipodi:role="line"
+         id="tspan4888"
+         x="27.393084"
+         y="207.85704"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">Roff</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="30.940706"
+       y="251.16774"
+       id="text4894"><tspan
+         sodipodi:role="line"
+         id="tspan4892"
+         x="30.940706"
+         y="251.16774"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">.md</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.35882187;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-0-7"
+       cx="69.322113"
+       cy="241.29286"
+       rx="11.269259"
+       ry="11.042361" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="69.348434"
+       y="243.9915"
+       id="text4913"><tspan
+         sodipodi:role="line"
+         id="tspan4911"
+         x="69.348434"
+         y="243.9915"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">HTML</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="125.99036"
+       y="267.20477"
+       id="text4917"><tspan
+         sodipodi:role="line"
+         id="tspan4915"
+         x="125.99036"
+         y="267.20477"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">SVG</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="99.662094"
+       y="245.95711"
+       id="text4921"><tspan
+         sodipodi:role="line"
+         id="tspan4919"
+         x="99.662094"
+         y="245.95711"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">XHTML</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="138.05087"
+       y="247.77464"
+       id="text4925"><tspan
+         sodipodi:role="line"
+         id="tspan4923"
+         x="138.05087"
+         y="247.77464"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="116.50758"
+       y="224.86751"
+       id="text4921-1"><tspan
+         sodipodi:role="line"
+         id="tspan4919-8"
+         x="116.50758"
+         y="224.86751"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">XML (200+)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="219.8985"
+       y="232.23503"
+       id="text4974"><tspan
+         sodipodi:role="line"
+         id="tspan4972"
+         x="219.8985"
+         y="232.23503"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">JSON</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="204.40149"
+       y="214.47014"
+       id="text4978"><tspan
+         sodipodi:role="line"
+         id="tspan4976"
+         x="204.40149"
+         y="214.47014"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">YAML</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05546236px;line-height:0.89999998;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26457983;"
+       x="217.85461"
+       y="250.45699"
+       id="text4982"
+       transform="scale(1.0000131,0.9999869)"><tspan
+         sodipodi:role="line"
+         id="tspan4980"
+         x="217.85461"
+         y="250.45699"
+         style="font-style:normal;font-size:4.93888903px;line-height:0.89999998;stroke-width:0.26457983;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;">JSON</tspan><tspan
+         sodipodi:role="line"
+         x="217.85461"
+         y="256.80692"
+         style="font-style:normal;font-size:4.93888903px;line-height:0.89999998;stroke-width:0.26457983;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;"
+         id="tspan4984">schema</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="179.88876"
+       y="241.43636"
+       id="text4988"><tspan
+         sodipodi:role="line"
+         id="tspan4986"
+         x="179.88876"
+         y="241.43636"
+         style="font-size:4.23333311px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">Ansible</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="179.04947"
+       y="260.91086"
+       id="text4988-2"><tspan
+         sodipodi:role="line"
+         id="tspan4986-7"
+         x="179.04947"
+         y="260.91086"
+         style="font-size:4.23333311px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">TOSCA</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="202.76718"
+       y="271.12469"
+       id="text5010"><tspan
+         sodipodi:role="line"
+         id="tspan5008"
+         x="202.76718"
+         y="271.12469"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">Lidy</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="52.769505"
+       y="110.59801"
+       id="text4800-6"><tspan
+         sodipodi:role="line"
+         id="tspan4798-4"
+         x="52.769505"
+         y="110.59801"
+         style="font-style:italic;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal">Broader</tspan><tspan
+         sodipodi:role="line"
+         x="52.769505"
+         y="119.41746"
+         style="font-style:italic;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan5058">Language</tspan><tspan
+         sodipodi:role="line"
+         x="52.769505"
+         y="128.23689"
+         style="font-style:italic;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan5060">Super-Set</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="54.164249"
+       y="153.89221"
+       id="text4800-6-2"><tspan
+         sodipodi:role="line"
+         x="54.164249"
+         y="153.89221"
+         style="font-style:italic;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan5060-3">Narrower</tspan><tspan
+         sodipodi:role="line"
+         x="54.164249"
+         y="162.71165"
+         style="font-style:italic;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan5162">Language</tspan><tspan
+         sodipodi:role="line"
+         x="54.164249"
+         y="171.5311"
+         style="font-style:italic;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal"
+         id="tspan5164">Sub-Set</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.60000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-5"
+       cx="276.75015"
+       cy="107.86501"
+       rx="12.444959"
+       ry="12.194389" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="275.91382"
+       y="106.26556"
+       id="text4886-3"><tspan
+         sodipodi:role="line"
+         id="tspan4884-5"
+         x="275.91382"
+         y="106.26556"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">Bold</tspan><tspan
+         sodipodi:role="line"
+         x="275.91382"
+         y="115.085"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+         id="tspan5107"> =Old</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#800080;stroke-width:0.87490642;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-5-9"
+       cx="147.81544"
+       cy="109.24072"
+       rx="13.610219"
+       ry="13.336187" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#800080;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="146.83475"
+       y="107.77734"
+       id="text4886-3-8"><tspan
+         sodipodi:role="line"
+         id="tspan4884-5-8"
+         x="146.83475"
+         y="107.77734"
+         style="stroke:none;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;fill:#800080;fill-opacity:1;">Violet</tspan><tspan
+         sodipodi:role="line"
+         x="146.83475"
+         y="116.59678"
+         style="stroke:none;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;fill:#800080;fill-opacity:1;"
+         id="tspan5107-3"> =CRL</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#217867;stroke-width:0.87490642;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4765-5-9-3"
+       cx="205.12856"
+       cy="108.84225"
+       rx="13.610219"
+       ry="13.336187" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#217867;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="204.14784"
+       y="107.37887"
+       id="text4886-3-8-1"><tspan
+         sodipodi:role="line"
+         id="tspan4884-5-8-2"
+         x="204.14784"
+         y="107.37887"
+         style="stroke:none;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;fill:#217867;fill-opacity:1;">Green</tspan><tspan
+         sodipodi:role="line"
+         x="204.14784"
+         y="116.19831"
+         style="stroke:none;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;fill:#217867;fill-opacity:1;"
+         id="tspan5107-3-7"> =LPI</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#800080;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;"
+       x="119.25801"
+       y="102.55972"
+       id="text4800-6-2-1"><tspan
+         sodipodi:role="line"
+         x="119.25801"
+         y="102.55972"
+         style="font-style:normal;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;fill:#800080;stroke:none;stroke-opacity:1;fill-opacity:1;"
+         id="tspan5196">Canvas</tspan><tspan
+         sodipodi:role="line"
+         x="119.25801"
+         y="111.37916"
+         style="font-style:normal;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;fill:#800080;stroke:none;stroke-opacity:1;fill-opacity:1;"
+         id="tspan5164-1">Root</tspan><tspan
+         sodipodi:role="line"
+         x="119.25801"
+         y="120.1986"
+         style="font-style:normal;font-size:6.3499999px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;fill:#800080;stroke:none;stroke-opacity:1;fill-opacity:1;"
+         id="tspan5360">Language</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#217867;fill-opacity:1;stroke:none;stroke-width:0.265;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
+       x="234.04224"
+       y="101.32845"
+       id="text4800-6-2-1-6"><tspan
+         sodipodi:role="line"
+         x="234.04224"
+         y="101.32845"
+         style="font-style:normal;font-size:6.3499999px;stroke-width:0.265;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;fill:#217867;fill-opacity:1;stroke:none;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
+         id="tspan5164-1-3">Language</tspan><tspan
+         sodipodi:role="line"
+         x="234.04224"
+         y="110.1479"
+         style="font-style:normal;font-size:6.3499999px;stroke-width:0.265;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;fill:#217867;fill-opacity:1;stroke:none;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
+         id="tspan5223">Part</tspan><tspan
+         sodipodi:role="line"
+         x="234.04224"
+         y="118.96734"
+         style="font-style:normal;font-size:6.3499999px;stroke-width:0.265;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;fill:#217867;fill-opacity:1;stroke:none;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
+         id="tspan5362">Instance</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:0.8, 0.80000000000000004;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5225"
+       width="36.883198"
+       height="38.219543"
+       x="193.65317"
+       y="239.82198" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.78687835;stroke-miterlimit:4;stroke-dasharray:0.78687834, 0.78687834000000001;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5242"
+       width="37.735245"
+       height="70.385147"
+       x="14.007293"
+       y="192.04115" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.7169323;stroke-miterlimit:4;stroke-dasharray:0.71693229, 0.71693229000000003;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5250"
+       width="57.20224"
+       height="29.977034"
+       x="56.778133"
+       y="228.20692" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="211.806"
+       y="283.3923"
+       id="text5254"><tspan
+         sodipodi:role="line"
+         id="tspan5252"
+         x="211.806"
+         y="283.3923"
+         style="font-size:4.93888903px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">(data validation)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="32.998917"
+       y="267.74194"
+       id="text5254-7"><tspan
+         sodipodi:role="line"
+         id="tspan5252-9"
+         x="32.998917"
+         y="267.74194"
+         style="font-size:4.93888903px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">(rich text)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="86.671661"
+       y="263.20908"
+       id="text5254-7-2"><tspan
+         sodipodi:role="line"
+         id="tspan5252-9-7"
+         x="86.671661"
+         y="263.20908"
+         style="font-size:4.93888903px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">(rich document, web)</tspan></text>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5298"
+       sodipodi:type="arc"
+       sodipodi:cx="185.63132"
+       sodipodi:cy="-78.705658"
+       sodipodi:rx="18.667747"
+       sodipodi:ry="18.667747"
+       sodipodi:start="0"
+       sodipodi:end="1.4458999"
+       sodipodi:open="true"
+       d="M 204.29906,-78.705658 A 18.667747,18.667747 0 0 1 187.9568,-60.183321"
+       transform="rotate(53.268276)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5300"
+       sodipodi:sides="3"
+       sodipodi:cx="201.89833"
+       sodipodi:cy="176.72643"
+       sodipodi:r1="4.2894301"
+       sodipodi:r2="2.6860254"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.52359878"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 201.89833,172.437 3.71476,6.43414 -7.42951,0 z"
+       inkscape:transform-center-x="0.034489059"
+       inkscape:transform-center-y="0.68537013"
+       transform="rotate(53.268276,255.76508,131.8371)" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5298-1"
+       sodipodi:type="arc"
+       sodipodi:cx="-200.33739"
+       sodipodi:cy="73.626221"
+       sodipodi:rx="18.667747"
+       sodipodi:ry="18.667747"
+       sodipodi:start="0"
+       sodipodi:end="1.4458999"
+       sodipodi:open="true"
+       d="m -181.66964,73.626221 a 18.667747,18.667747 0 0 1 -16.34227,18.522336"
+       transform="rotate(-126.73172)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5300-7"
+       sodipodi:sides="3"
+       sodipodi:cx="201.89833"
+       sodipodi:cy="176.72643"
+       sodipodi:r1="4.2894301"
+       sodipodi:r2="2.6860254"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.52359878"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 201.89833,172.437 3.71476,6.43414 -7.42951,0 z"
+       inkscape:transform-center-x="-0.034492546"
+       inkscape:transform-center-y="-0.68536038"
+       transform="rotate(-126.73172,165.06472,148.88559)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="175.43011"
+       y="96.530258"
+       id="text4804-79"><tspan
+         sodipodi:role="line"
+         id="tspan4802-2"
+         x="175.43011"
+         y="96.530258"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">NLSS of</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.20000005;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5364"
+       width="194.80646"
+       height="65.19072"
+       x="101.03033"
+       y="87.922195" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="119.69342"
+       y="149.89107"
+       id="text5368"><tspan
+         sodipodi:role="line"
+         id="tspan5366"
+         x="119.69342"
+         y="149.89107"
+         style="font-style:normal;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-stretch:normal;font-variant:normal;">Captions</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80275464;stroke-miterlimit:4;stroke-dasharray:0.80275459, 0.80275459000000005;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5225-9"
+       width="40.379063"
+       height="15.817599"
+       x="231.96713"
+       y="127.06216" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="251.88449"
+       y="147.54913"
+       id="text5254-3"><tspan
+         sodipodi:role="line"
+         id="tspan5252-3"
+         x="251.88449"
+         y="147.54913"
+         style="font-size:4.93888903px;stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">(&lt;purpose&gt;)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="251.88327"
+       y="134.05449"
+       id="text5387"><tspan
+         sodipodi:role="line"
+         x="251.88327"
+         y="134.05449"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+         id="tspan5415">Languages of</tspan><tspan
+         sodipodi:role="line"
+         x="251.88327"
+         y="141.11005"
+         style="stroke-width:0.26458332;-inkscape-font-specification:'CMU Sans Serif';font-family:'CMU Sans Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+         id="tspan5419">similar use</tspan></text>
+  </g>
+</svg>

@@ -121,6 +121,19 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
       - [Création des requêtes](#création-des-requêtes)
       - [Deburst](#deburst)
 - [Glossaire](#glossaire)
+        - [API](#api)
+        - [JS, JavaScript](#js-javascript)
+        - [TS, TypeScript](#ts-typescript)
+        - [Go, Golang](#go-golang)
+        - [Python](#python)
+        - [TOSCA](#tosca)
+        - [YAML](#yaml-1)
+        - [Refactoring](#refactoring)
+        - [Parseur](#parseur)
+        - [Parser](#parser)
+        - [Sérialiser](#sérialiser)
+        - [Désérialiser](#désérialiser)
+        - [MVP](#mvp)
 - [Table des liens](#table-des-liens)
         - [benchemarksgame-team](#benchemarksgame-team)
         - [ca-histoire](#ca-histoire)
@@ -141,20 +154,22 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
         - [orness-engagements](#orness-engagements)
         - [tiobe](#tiobe)
         - [top](#top)
-        - [yaml](#yaml-1)
+        - [yaml](#yaml-2)
         - [yaml-json-schema](#yaml-json-schema)
         - [yaml-recommended-schema](#yaml-recommended-schema)
         - [yaml-timestamp](#yaml-timestamp)
 
 />
 
- \vspace{18mm}
+\vspace{18mm}
 
 <!-- cSpell:enable -->
 
 _Les liens de la table des matières sont cliquables. **Il est possible de revenir en arrière après avoir cliqué sur un lien en utilisant le raccourci clavier Alt+[flèche gauche]**. Alt+[flèche droite] permet de retourner en avant. Ces raccourcis peuvent ne pas être présents dans tous les visionneurs de document PDF, mais ils sont présents dans ceux des navigateurs web, ainsi que dans le visionneur Sumatra PDF._
 
 _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artéfacts dus aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
+
+_L'ensemble des figures du rapport ont été réalisé en Anglais afin de permettre un usage ultérieur au sein du projet Lidy._
 
 \clearpage
 
@@ -184,7 +199,7 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 - Préstations chez les banques
   - Interventions
   - Mise à disposition de moyens humains
-- 
+-
 -->
 
 ## Expertise
@@ -622,7 +637,7 @@ Une implication notable de l'algorithme décrit ci-dessus est que le parcours de
 
 Ce mode de fonctionnement vient à bout du problème (A).
 
-Un examen du problème (B) montre que la contrainte d'ordre qui avait émergée est satisfaite par l'ordre topologique. L'ajout de la passe 1 nécessaire à la réolution du problème (A) permet également de lever le problème (B).
+Un examen du problème (B) montre que la contrainte d'ordre qui avait émergée est satisfaite par l'ordre topologique. L'ajout de la passe 1 nécessaire à la résolution du problème (A) permet également de lever le problème (B).
 
 ## Règles Lidy prédéfinies
 
@@ -819,13 +834,17 @@ Après 7 semaines et demie, ma mission au Crédit Agricole a commencé, interrom
 
 Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendants de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensemble des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la production d'extensions pour supporter les langages YAML précités dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ.
 
+<!--
+- Écriture du rapport m'a amené à formaliser les concepts Lidy et a définir une terminologie plus complète et plus claire_
+-->
+
 \clearpage
 
 # Crédit Agricole
 
 ## Histoire du Crédit Agricole
 
-Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionales en une seule entité nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’Etat. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
+Les origines de la banque Crédit Agricole remontent à 1885. La création de la _Société de Crédit agricole_ à lieu en février, dans le Jura. Cette banque se développe à travers le territoire Français jusqu'au milieu du 20ème siècle, puis, à partir de 1945, commence à fédérer les banques régionales en une seule entité nationale. La loi de mutualisation de 1988 permet aux caisses régionales de crédit agricole de racheter la Caisse nationale. Transformée en société anonyme, celle-ci est désormais totalement indépendante de l’État. Elle est introduite en bourse en 2001 et prend le nom de Crédit Agricole SA.
 
 À partir de 1980, le Crédit Agricole commence à créer et racheter des filiales et des banques, avec par exemple, la création de l'assurance Predica en 1986, le rachat de LCL en 2002. Le Crédit Agricole développe aussi des activités bancaires dans les pays voisins de la France et à l'internationale. En 2004, le Crédit Agricole organise la fusion des filiales bancaires LCL et Indosuez sous le nom de Calyon, qui en 2010 sera renommée CACIB (Crédit Agricole Corporate and Investment Bank).
 
@@ -860,7 +879,7 @@ L'entité au sein de laquelle je travaille est le Cluster Grandes Clientèles. C
 Ainsi, le cluster Grandes Clientèles de CAGIP pourvoit l'infrastructure des plus grosses filiales du Crédit Agricole :
 
 - Crédit Agricole SA (CASA)
-- Crédit Agricole Corporate and Invetement Bank (CACIB)
+- Crédit Agricole Corporate and Investment Bank (CACIB)
   - CACEIS
   - Crédit Agricole Indosuez Wealth Management (CAIW)
   - Crédit Agricole Indosuez Private Banking
@@ -921,7 +940,7 @@ Durant la période de stage, les tâches que je reçois me sont principalement c
 
 # WebDBA
 
-Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé pour répondre au besoin d'inventaire des bases de données. En tant que tel, il gère des concepts systèmes tels que celui de machine, de cluster, de service et de système de fichers. Il gère aussi des concepts base de données tels que les instances de base de données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus important qu'il manipule.
+Au Crédit Agricole, mon travail s'est principalement axé sur WebDBA, un outil utilisé pour répondre au besoin d'inventaire des bases de données. En tant que tel, il gère des concepts systèmes tels que celui de machine, de cluster, de service et de système de fichiers. Il gère aussi des concepts base de données tels que les instances de base de données, les applications utilisant ces bases et même les schémas des bases de données. WebDBA dispose d'une interface pour chacun de ces concepts, permettant d'afficher les informations associées au-dit concept. WebDBA dispose aussi d'API qui permettent aux différentes équipes de DBA de transmettre leur informations d'inventaire à WebDBA afin de mettre à jour les données de WebDBA. Enfin, WebDBA supporte la pagination et la recherche par filtrage sur un ou plusieurs champs sur les concepts les plus important qu'il manipule.
 
 ## De PHP à Django et avenir
 
@@ -931,7 +950,7 @@ Initialement, WebDBA était développé en PHP vanilla (sans framework). En 2017
 - Django dispose d'un système de génération de page par template complet et très populaire.
 - Enfin, Django est un framework très utilisé et son écosystème est très développé.
 
-En effet, WebDBA utilise de nombreux composants de l'écosystème Django. On peut citer notemment:
+En effet, WebDBA utilise de nombreux composants de l'écosystème Django. On peut citer notamment:
 
 - Django Rest Framework, composant très important pour toutes les APIs d'alimentation en données de WebDBA
 - Django Tables (2), utilisé pour afficher les listes et le découpage en pages
@@ -957,7 +976,7 @@ Cependant, cette API Oracle est contraignante. En effet, avec cette API, la fabr
 
 ### Technologie ExaCC
 
-Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les concepts d'exasystem ExaCC de cluster ExaCC, de noeuds ExaCC et de VMs. Ces concepts se composent tels que présentés dans la figure \ref{exacc-schema}.
+Le Burst est une fonctionnalité spécifique à la technologie ExaCC et implique les concepts d'exasystem ExaCC de cluster ExaCC, de nœuds ExaCC et de VMs. Ces concepts se composent tels que présentés dans la figure \ref{exacc-schema}.
 
 ![ExaCC schema\label{exacc-schema}](uml/webdba.burst.exacc.png){width=171px}
 
@@ -967,7 +986,7 @@ Le schéma fait aussi figurer les arités et totaux. Ces nombres correspondent a
 
 ![Simplified burst sequence diagram\label{simple-burst}](uml/webdba.burst.simplified.png){width=279px}
 
-Les deux opérations d'ajouts de CPUs sont précédées d'une étape d'obtention d'informations sur les exasystems, de calcul des paramètres de la requête et d'assemblage de la requête. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin contient trois étapes. Le diagramme de séquences \ref{simple-burst} présente une les interactions entre le module de burst de WebDBA et l'API de Oracle. Ces interactions constituent une version simplifiée du processus. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet les possibilités d'échec de l'API.
+Les deux opérations d'ajouts de CPUs sont précédées d'une étape d'obtention d'informations sur les exasystèmes, de calcul des paramètres de la requête et d'assemblage de la requête. Ainsi le processus complet d'ajout de CPUs à un cluster tel qu'il m'a été décrit par Marcellin contient trois étapes. Le diagramme de séquences \ref{simple-burst} présente une les interactions entre le module de burst de WebDBA et l'API de Oracle. Ces interactions constituent une version simplifiée du processus. La requête reçue par le module et la réponse qu'il fournit sont transmis via l'API de WebDBA. Ce diagramme omet les possibilités d'échec de l'API.
 
 ### Attendre l'API Oracle
 
@@ -995,79 +1014,69 @@ Lors de l'étape de préparation, il est possible que la requête soit rejetée 
 
 #### Création des requêtes
 
-Le calcul des paramètres à utiliser pour les requêtes dépend du nombre de CPUs demandés pour le burst ainsi que du nombre de cpus standards présents sur l'exasystème et le cluster. Il se base sur un ensemble de formules données par Marcellin. Ces paramètres sont injectés dans une structure qui est convertie en JSON. Ce JSON est converti en base64 et injecté dans un autre JSON. Ce dernier JSON constitut le corps de la requête à envoyer à l'API Oracle. Ce format de requête inutilement complexe exigé par l'API Oracle est l'une des raisons pour lesquelles l'équipe Oracle a commandé la création de l'API WebDBA simplifiée.
+Le calcul des paramètres à utiliser pour les requêtes dépend du nombre de CPUs demandés pour le burst ainsi que du nombre de cpus standards présents sur l'exasystème et le cluster. Il se base sur un ensemble de formules données par Marcellin. Ces paramètres sont injectés dans une structure qui est convertie en JSON. Ce JSON est converti en base64 et injecté dans un autre JSON. Ce dernier JSON constitue le corps de la requête à envoyer à l'API Oracle. Ce format de requête inutilement complexe exigé par l'API Oracle est l'une des raisons pour lesquelles l'équipe Oracle a commandé la création de l'API WebDBA simplifiée.
 
 #### Deburst
 
 Le diagramme de séquences présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence près que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
 
+\clearpage
+
 # Glossaire
 
-<dt>API</dt>
-<dd>
+##### API
+
 Application Programmable Interface. Une API définit les interactions entre de multiples logicielles intermédiaires. Les API web sont souvent des API REST, utilisant les verbes http GET, POST, PUT et DELETE, accompagnés de données json, sur des urls qui représentent des unités de données.
-</dd>
 
-<dl>
-<dt>JS, JavaScript</dt>
-<dd>
-Langage de programmation utilisable sur les pages web ainsi que sur ordinateur. C'est un langage dynamiquement typé, faiblement typé et interprété. Les interpréteurs les plus communs de JavaScript sont les moteurs V8 (pour Chrome, Chromium et NodeJS) et SpiderMonkey (pour Firefox). JS a *très-peu* en commun avec Java, et se rapproche plus de Python, Ruby et particulièrement de Lua.
-</dd>
+##### JS, JavaScript
 
-<dt>TS, TypeScript</dt>
-<dd>
-TypeScript est une extension du  JavaScript permettant d'ajouter des annotations de types au sein de code JavaScript, puis ensuite de vérifier que le code respecte les indications de types données par les annotations. La vérification des types est réalisée de manière *statique*, c'est à dire avant l'exécution du code, ce qui permet d'éviter la majorité des bugs habituels de JavaScript, et rend plus facile les opérations de *refactoring*. TypeScript n'est pas le premier système d'annotation et de vérification des types pour langage dynamiquement typé, cependant, il se distingue par son extrême flexibilité, en particulier dans le scénario d'une transition de JavaScript vers TypeScript.
-</dd>
+Langage de programmation utilisable sur les pages web ainsi que sur ordinateur. C'est un langage dynamiquement typé, faiblement typé et interprété. Les interpréteurs les plus communs de JavaScript sont les moteurs V8 (pour Chrome, Chromium et NodeJS) et SpiderMonkey (pour Firefox). JS a _très-peu_ en commun avec Java, et se rapproche plus de Python, Ruby et particulièrement de Lua.
 
-<dt>Go, Golang</dt>
-<dd>
+##### TS, TypeScript
+
+TypeScript est une extension du JavaScript permettant d'ajouter des annotations de types au sein de code JavaScript, puis ensuite de vérifier que le code respecte les indications de types données par les annotations. La vérification des types est réalisée de manière _statique_, c'est à dire avant l'exécution du code, ce qui permet d'éviter la majorité des bugs habituels de JavaScript, et rend plus facile les opérations de _refactoring_. TypeScript n'est pas le premier système d'annotation et de vérification des types pour langage dynamiquement typé, cependant, il se distingue par son extrême flexibilité, en particulier dans le scénario d'une transition de JavaScript vers TypeScript.
+
+##### Go, Golang
+
 Golang est un langage de programmation statiquement typé, développé chez Google et dont la première version a été publiée en 2012. Il cherche à ressembler à C, mais en évitant les problèmes de mémoire et en facilitant la programmation concurrente, via des primitives appropriées à la communication inter-process. Golang me donne l'impression d'être un intermédiaire statiquement typé entre C et Python. Je trouve aussi que ce langage est déroutant dans la mesure où de nombreux problèmes ne peuvent pas être résolus en Go en utilisant l'approche habituelle, disponible dans l'ensemble des autres langages de programmation haut-niveau.
-</dd>
 
-<dt>Python</dt>
-<dd>
-</dd>
+##### Python
 
-<dt>TOSCA<dt>
-<dd>
+Python est un language de programmation haut-niveau interprété. Sa philosophy de conception met l'emphase sur la lisibilité du code. Ce langage supporte plusieurs paradigmes mais promeut la programmation procédurale structurée.
+
+##### TOSCA
+
 OASIS TOSCA, "Topology Orchestration Specification for Cloud Applications" est un langage de spécification de topologie de machines pour le Cloud. Ce langage s'épargne l'effort de définir une syntaxe complète en réutilisant le format YAML. Ainsi, depuis la TOSCA 2.0, TOSCA est un sous-ensemble de YAML, au sens où tous les fichiers TOSCA sont des fichiers YAML.
-</dd>
 
-<dt>YAML</dt>
-<dd>
-YAML est un format textuel pour les données structurées. C'est un sur-ensemble de JSON, dans le sens que tout fichier JSON valide est un fichier YAML valide. Cependant, contrairement à JSON, YAML est orienté développeur, dans le sens que le YAML idiomatique est facile à lire et à écrire pour les développeurs. YAML et JSON permettent de représenter les valeurs scalaires communes à la plupart des langages de programmation : nombres, booléens, chaînes de caractères et la valeur nulle. Ils permettent également de représenter des tableaux de valeurs, en utilisant la notation `[]`, et des objets ainsi que des hashs de chaînes et des hashmaps en utilisant la notation `{}`.
-</dd>
+##### YAML
 
-<dt>Refactoring</dt>
-<dd>
+YAML est un format textuel pour les données structurées. C'est un sur-ensemble de JSON, dans le sens que tout fichier JSON valide est un fichier YAML valide. Cependant, contrairement à JSON, YAML est orienté développeur, dans le sens que le YAML idiomatique est facile à lire et à écrire pour les développeurs. YAML et JSON permettent de représenter les valeurs scalaires communes à la plupart des langages de programmation : nombres, booléens, chaînes de caractères et la valeur nulle. Ils permettent également de représenter des tableaux de valeurs, en utilisant la notation `[]`, et des objets ainsi que des hachages de chaînes et des hashmaps en utilisant la notation `{}`.
+
+##### Refactoring
+
 Opération de modification du code source d'un programme ayant pour but d'améliorer les qualités internes du code, telles que la lisibilité et la réutilisabilité, sans changer le comportement du code. Certaines méthodes de programmation dépendent lourdement du refactoring (TDD, Extreme programming).
-</dd>
 
-<dt>Parseur</dt>
-<dd>
+##### Parseur
+
 (Anglicisme informatique) Analyseur syntaxique, interpréteur.
-</dd>
 
-<dt>Parser</dt>
-<dd>
+##### Parser
+
 (Anglicisme informatique) Action d'analyser un texte qui respecte une syntaxe afin de produire un arbre de syntaxe.
-</dd>
 
-<dt>Sérialiser</dt>
-<dd>
-Produire une représentation sous forme de suite de charactères d'une structure de données, afin de pouvoir l'extraire du processus en cours.
-</dd>
+##### Sérialiser
 
-<dt>Désérialiser</dt>
-<dd>
+Produire une représentation sous forme de suite de caractères d'une structure de données, afin de pouvoir l'extraire du processus en cours.
+
+##### Désérialiser
+
 Produire une représentation sous forme de structure de données, présente en mémoire vive et facilement utilisable à partir de données sérialisées.
-</dd>
 
-<dt>MVP</dt>
-<dd>
+##### MVP
+
 Minimum Viable Product, Produit Minimum Viable, en production logicielle, produit assurant l'ensemble des fonctionnalités centrales, et dont l'utilisation apporte une plus-value à l'utilisateur.
-</dd>
-</dl>
+
+\clearpage
 
 # Table des liens
 

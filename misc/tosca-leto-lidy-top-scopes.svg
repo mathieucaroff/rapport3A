@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="255mm"
+   height="120mm"
+   viewBox="0 0 255 120"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="tosca-leto-lidy-top-scopes.svg"
+   inkscape:export-filename="C:\ox\self\rapport\misc\tosca-leto-lidy-top-scopes.png"
+   inkscape:export-xdpi="300.28"
+   inkscape:export-ydpi="300.28">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="368.89171"
+     inkscape:cy="208.52985"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-177)">
+    <rect
+       style="fill:#f9f9f9;fill-opacity:0.81622913;stroke:none;stroke-width:0.25735494;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.47368421"
+       id="rect5091"
+       width="255.03404"
+       height="120.029"
+       x="-0.00015621608"
+       y="177.00006" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="154.00352"
+       y="271.57718"
+       id="text9938"><tspan
+         sodipodi:role="line"
+         id="tspan9936"
+         x="154.00352"
+         y="271.57718"
+         style="font-size:6.3499999px;stroke-width:0.26458332">Leto (internal, goal)</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4840"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none"><flowRegion
+         id="flowRegion4842"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none"><rect
+           id="rect4844"
+           width="50"
+           height="58.57143"
+           x="925.71429"
+           y="295.12936"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none" /></flowRegion><flowPara
+         id="flowPara4846" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="127.42954"
+       y="196.4142"
+       id="text9571"><tspan
+         sodipodi:role="line"
+         id="tspan9569"
+         x="127.42954"
+         y="196.4142"
+         style="stroke-width:0.26458332">OASIS TOSCA Standard</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.27;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-12"
+       width="235.83734"
+       height="12.570724"
+       x="8.9418821"
+       y="250.67674" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="207.07712"
+       y="182.76245"
+       id="text9829"><tspan
+         sodipodi:role="line"
+         id="tspan9827"
+         x="207.07712"
+         y="186.67746"
+         style="stroke-width:0.26458332" /></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.33077872;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-3-9-9"
+       width="176.98242"
+       height="12.570724"
+       x="67.796799"
+       y="263.24747" />
+    <rect
+       style="fill:#dae8fc;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.268;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-1-4-8"
+       width="58.870068"
+       height="12.515715"
+       x="8.9418898"
+       y="263.21655" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="38.266171"
+       y="271.59671"
+       id="text9938-8"><tspan
+         sodipodi:role="line"
+         id="tspan9936-0"
+         x="38.266171"
+         y="271.59671"
+         style="font-size:4.93888903px;stroke-width:0.26458332">Lidy schema for TOSCA</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-12-0"
+       width="235.83734"
+       height="12.570724"
+       x="8.9418821"
+       y="187.7919" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="126.48959"
+       y="259.02502"
+       id="text9938-0"><tspan
+         sodipodi:role="line"
+         id="tspan9936-2"
+         x="126.48959"
+         y="259.02502"
+         style="font-size:6.3499999px;stroke-width:0.26458332">Leto (goal)</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.2686407;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-5-8-2"
+       width="29.427385"
+       height="12.57087"
+       x="8.9418898"
+       y="275.73227" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.2686407;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-5-9-6-6"
+       width="29.427385"
+       height="12.57087"
+       x="38.369274"
+       y="275.73227" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="23.974148"
+       y="283.04745"
+       id="text9693-5-1"><tspan
+         sodipodi:role="line"
+         x="23.974148"
+         y="283.04745"
+         style="font-size:4.93888903px;stroke-width:0.26458332"
+         id="tspan9695-0-7">go-yaml</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="53.924488"
+       y="280.5166"
+       id="text9693-7-9-3"><tspan
+         sodipodi:role="line"
+         x="53.924488"
+         y="280.5166"
+         style="font-size:4.93888903px;stroke-width:0.26458332"
+         id="tspan9695-6-3-7">Lidy</tspan><tspan
+         sodipodi:role="line"
+         x="53.924488"
+         y="286.69022"
+         style="font-size:4.93888903px;stroke-width:0.26458332"
+         id="tspan10079">(internal)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="97.713432"
+       y="283.85886"
+       id="text9938-6"><tspan
+         sodipodi:role="line"
+         id="tspan9936-6"
+         x="97.713432"
+         y="283.85886"
+         style="font-size:4.93888903px;stroke-width:0.26458332">Leto (internal, achieved)</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.2684952;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-1-4-8-4"
+       width="58.870071"
+       height="12.515715"
+       x="67.796661"
+       y="275.78741" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567"
+       width="117.91866"
+       height="12.570723"
+       x="8.9418821"
+       y="200.36263" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-1"
+       width="117.91866"
+       height="12.570724"
+       x="126.86056"
+       y="200.36263" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="186.02956"
+       y="209.18285"
+       id="text9571-8"><tspan
+         sodipodi:role="line"
+         id="tspan9569-0"
+         x="186.02956"
+         y="209.18285"
+         style="stroke-width:0.26458332">TOSCA Orchestration Standard</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="70.085617"
+       y="208.8196"
+       id="text9571-2"><tspan
+         sodipodi:role="line"
+         id="tspan9569-3"
+         x="70.085617"
+         y="208.8196"
+         style="stroke-width:0.26458332">TOSCA Language Standard</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.26893187;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7"
+       width="59.063763"
+       height="12.515278"
+       x="67.796791"
+       y="212.98882" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.27021089;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-3"
+       width="117.90694"
+       height="37.511005"
+       x="126.87188"
+       y="213.0314" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.26952863;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-1"
+       width="59.063763"
+       height="12.570881"
+       x="67.796791"
+       y="225.50407" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.2686407;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-5-8"
+       width="29.427385"
+       height="12.57087"
+       x="8.9418821"
+       y="225.50423" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.2686407;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-5-9-6"
+       width="29.427385"
+       height="12.57087"
+       x="38.369267"
+       y="225.50423" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="23.825336"
+       y="230.21779"
+       id="text9693-5"><tspan
+         sodipodi:role="line"
+         id="tspan9691-0"
+         x="23.825336"
+         y="230.21779"
+         style="font-size:4.23333311px;stroke-width:0.26458332">First level</tspan><tspan
+         sodipodi:role="line"
+         x="23.825336"
+         y="235.50945"
+         style="font-size:4.23333311px;stroke-width:0.26458332"
+         id="tspan9695-0">(YAML)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="53.24651"
+       y="230.21074"
+       id="text9693-7-9"><tspan
+         sodipodi:role="line"
+         id="tspan9691-1-4"
+         x="53.24651"
+         y="230.21074"
+         style="font-size:4.23333311px;stroke-width:0.26458332">Second level</tspan><tspan
+         sodipodi:role="line"
+         x="53.24651"
+         y="235.5024"
+         style="font-size:4.23333311px;stroke-width:0.26458332"
+         id="tspan9695-6-3">(LPI)</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.2684952;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-1-4"
+       width="58.870068"
+       height="12.515715"
+       x="8.9416647"
+       y="212.93315" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="38.555599"
+       y="221.11229"
+       id="text9789"><tspan
+         sodipodi:role="line"
+         id="tspan9787"
+         x="38.555599"
+         y="221.11229"
+         style="font-size:5.64444447px;stroke-width:0.26458332">Syntax analysis</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="95.557617"
+       y="221.3098"
+       id="text9789-3"><tspan
+         sodipodi:role="line"
+         id="tspan9787-4"
+         x="95.557617"
+         y="221.3098"
+         style="font-size:5.64444447px;stroke-width:0.26458332">Lexical analysis</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="95.559532"
+       y="233.38109"
+       id="text9789-3-6"><tspan
+         sodipodi:role="line"
+         id="tspan9787-4-7"
+         x="95.559532"
+         y="233.38109"
+         style="font-size:5.64444447px;stroke-width:0.26458332">-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="185.6239"
+       y="234.31929"
+       id="text9789-3-6-6"><tspan
+         sodipodi:role="line"
+         id="tspan9787-4-7-5"
+         x="185.6239"
+         y="234.31929"
+         style="font-size:5.64444447px;stroke-width:0.26458332">-</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.27000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9567-7-3-9"
+       width="117.91866"
+       height="12.570724"
+       x="8.9418821"
+       y="238.07512" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="67.861481"
+       y="246.55098"
+       id="text9789-2"><tspan
+         sodipodi:role="line"
+         id="tspan9787-3"
+         x="67.861481"
+         y="246.55098"
+         style="font-size:5.64444447px;stroke-width:0.26458332">ToP</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4901"
+       width="70.367424"
+       height="1.4305583"
+       x="166.64178"
+       y="193.76109" />
+    <path
+       sodipodi:type="star"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4903"
+       sodipodi:sides="3"
+       sodipodi:cx="238.52735"
+       sodipodi:cy="194.4547"
+       sodipodi:r1="3.4529138"
+       sodipodi:r2="1.7264568"
+       sodipodi:arg1="2.0943951"
+       sodipodi:arg2="3.1415927"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 236.80089,197.44501 0,-5.98062 5.17937,2.99031 z"
+       inkscape:transform-center-x="-0.86322851" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4901-9"
+       width="70.367424"
+       height="1.4305583"
+       x="-87.690399"
+       y="-195.19165"
+       transform="scale(-1)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4903-0"
+       sodipodi:sides="3"
+       sodipodi:cx="-15.804877"
+       sodipodi:cy="-194.49803"
+       sodipodi:r1="3.4529138"
+       sodipodi:r2="1.7264566"
+       sodipodi:arg1="2.0943951"
+       sodipodi:arg2="3.1415927"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -17.531334,-191.50772 0,-5.98062 5.17937,2.99031 z"
+       inkscape:transform-center-x="0.86322836"
+       transform="scale(-1)" />
+  </g>
+</svg>
