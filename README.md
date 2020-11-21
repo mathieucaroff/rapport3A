@@ -169,7 +169,7 @@ _Les liens de la table des matières sont cliquables. **Il est possible de reven
 
 _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artéfacts dus aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
 
-_L'ensemble des figures du rapport ont été réalisé en Anglais afin de permettre un usage ultérieur au sein du projet Lidy._
+_L'ensemble des figures du rapport ont été réalisé en anglais afin de faciliter leur réutilisation au sein du projet Lidy._
 
 \clearpage
 
