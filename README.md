@@ -199,7 +199,7 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 L'activité d'Orness se divise en deux catégories. Il y a dans la première catégorie, le travail des employé en mission de prestation pour les banques et autres grande comptes. Il s'agit de l'activité lucrative de l'entreprise. On y adjoint les interventions qui peuvent être réalisé par les experts technique. Par exemple, Hervé CHIBOIS est amené à intervenir en salle des serveurs ou dans les datacenters. Dans la deuxième catégorie, on trouve toutes les fonctions de support. Il s'agit de la gestion des congés et des maladie, du recrutement ainsi que des activités de maintient des relations avec les employés en mission et de relation commerciales avec les entreprise.
 
-Il y a enfin le développement d'outils informatique internes : il s'agit d'outils de gestion, ainsi que d'outils DevOps visant à répondre à des besoins des entreprises sur les enjeux de la transition numérique. Ces outils ont notamment été développés par Xavier TALON et par Hervé CHIBOIS. Ils ont été rassemblés au sein des Labs Orness, avant de mener à la création d'une association de logiciel Open-Source et de réfléction sur la transition numérique : DitRit.
+Il y a enfin le développement d'outils informatique internes : il s'agit d'outils de gestion, ainsi que d'outils DevOps visant à répondre à des besoins des entreprises sur les enjeux de la transition numérique. Ces outils ont notamment été développés par Xavier TALON et par Hervé CHIBOIS.
 
 ## Expertise
 
@@ -209,13 +209,17 @@ Orness vends son expertise dans les domaines de l'ingénierie DevOps, les pratiq
 
 # DitRit
 
-DitRit est une association à but non-lucratif réalisant un travail de réflexion et de mise en pratique sur les sujets relatifs à la transition numérique. DitRit s'intéresse en particulier à cette transition pour les grandes entreprises. Les membres fondateurs de DitRit la définissent aussi comme un _Think and Do Tank_ de la transition numérique.
+DitRit, pour Design it Run It, est initialement une communauté d'experts DevOps créée au début de l'année 2018 par Xavier Talon. L'activité de DitRit consiste alors en la tenue de rencontre au sein desquels ces experts réfléchissent discutent.
 
-Les activités de l'association prennent donc deux formes : celle de réflexion et celle de création logiciel. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peut parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
+Suite à la création des Labs ORNESS, Xavier Talon a souhaité donner corps à sa vision basée sur l'intelligence collective en rassemblant DitRit et les Labs Orness sous la forme d'une entité unique autonome et indépendante : L'association DitRit
+
+DitRit est donc une association à but non lucratif réalisant un travail de réflexion et de production logiciel sur les sujets relatifs à la transition numérique. DitRit s'intéresse en particulier à cette transition pour les grandes entreprises. C'est un _Think and Do Tank_ de la transition numérique.
+
+Les activités de l'association prennent deux formes : celle de réflexion et celle de création logicielle. Le travail de recherche, d'analyse et de synthèse est mené par des _groupes de réflexion_. Ce travail peut parfois donner lieu à des réalisations plus concrètes sous forme de projets de logiciel Open-Source, librement accessibles en tant que repository Github de l'association.
 
 Les groupes de réflexion se tiennent régulièrement, avec une période de l'ordre quelques semaines. Ils traitent des sujets tels que la sécurité informatique en entreprise, l'application des bonnes pratique ITIL et aussi l'encadrement des activités et process de l'association. Par ailleurs, les avancées réalisées sur l'ensemble des projets et sujets de l'association sont rapportés lors d'une réunion hebdomadaire ouverte au publique, tenu entre midi et une heure.
 
-Ditrit utilise Zulipchat ainsi que les mails pour la communication écrite entre ses membres, Jitsi pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hébergement du code source. Le langage de programmation principalement utilisés était initialement Java, mais depuis 2019 DitRit réalise la plupart de ses développements en Golang.
+Ditrit utilise Zulipchat ainsi que les mails pour la communication écrite entre ses membres, Jitsi pour la communication orale et vidéo, Nextcloud pour le partage de fichiers et Github pour l'hébergement du code source. Le langage de programmation principalement utilisé était initialement Java, mais depuis 2019 DitRit réalise la plupart de ses développements en Golang.
 
 ## Participation à DitRit
 
@@ -229,7 +233,9 @@ La plupart des individus ayant apporté une contribution à DitRit sont inscrits
 - Cédric Vautrain
 - Hervé Chibois
 
-Jan, Joseph, Romain, Thierry et Xavier sont les cinq membres fondateurs de l'association. Joseph, Xavier et Romain assurent la tenue des réunions hebdomadaires. Xavier et Hervé sont les deux directeurs techniques de Orness. Ils réalisent respectivement le suivi des travaux de développement de Romain et Cédric sur les projets Gandalf et Ogree-3D. Romain et Cédric sont deux développeurs employés par Orness à temps plein pour travailler sur les projets de DitRit.
+Jan, Joseph, Romain, Thierry et Xavier sont les cinq membres fondateurs de l'association. Xavier Talon est président de l'association, Joseph Priou secrétaire et Thierry Cagnin trésorier.
+
+Xavier et Hervé sont les deux directeurs techniques de Orness. Ils réalisent respectivement le suivi des travaux de développement de Romain et Cédric sur les projets Gandalf et Ogree-3D. Romain et Cédric sont deux développeurs de Orness mis à disposition de l'association DitRit à temps plein pour travailler sur ses projets logiciels.
 
 Ma présence et mon travail au sein de DitRit m'ont donné l'occasion de discuter avec Joseph, Romain et Xavier.
 
