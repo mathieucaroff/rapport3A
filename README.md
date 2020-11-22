@@ -1,4 +1,4 @@
----
+
 title: |
   Mathieu CAROFF \
   Rapport de stage ingénieur DevOps
@@ -148,10 +148,12 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
         - [lidy-documentation](#lidy-documentation)
         - [lidy-predefined-rules](#lidy-predefined-rules)
         - [lidy-short-reference](#lidy-short-reference)
-        - [orness-valeurs](#orness-valeurs)
-        - [orness-histoire](#orness-histoire)
-        - [orness-societe](#orness-societe)
+        - [orness-devops](#orness-devops)
         - [orness-engagements](#orness-engagements)
+        - [orness-histoire](#orness-histoire)
+        - [orness-infrastructure](#orness-infrastructure)
+        - [orness-societe](#orness-societe)
+        - [orness-valeurs](#orness-valeurs)
         - [tiobe](#tiobe)
         - [top](#top)
         - [yaml](#yaml-2)
@@ -195,36 +197,15 @@ Outre l'importance accordée au bien-être au travail, Orness s'engage sur les s
 
 ## Activité
 
-<!--
-- Préstations chez les banques
-  - Interventions
-  - Mise à disposition de moyens humains
--
--->
+L'activité d'Orness se divise en deux catégories. Il y a dans la première catégorie, le travail des employé en mission de prestation pour les banques et autres grande comptes. Il s'agit de l'activité lucrative de l'entreprise. On y adjoint les interventions qui peuvent être réalisé par les experts technique. Par exemple, Hervé CHIBOIS est amené à intervenir en salle des serveurs ou dans les datacenters. Dans la deuxième catégorie, on trouve toutes les fonctions de support. Il s'agit de la gestion des congés et des maladie, du recrutement ainsi que des activités de maintient des relations avec les employés en mission et de relation commerciales avec les entreprise.
+
+Il y a enfin le développement d'outils informatique internes : il s'agit d'outils de gestion, ainsi que d'outils DevOps visant à répondre à des besoins des entreprises sur les enjeux de la transition numérique. Ces outils ont notamment été développés par Xavier TALON et par Hervé CHIBOIS. Ils ont été rassemblés au sein des Labs Orness, avant de mener à la création d'une association de logiciel Open-Source et de réfléction sur la transition numérique : DitRit.
 
 ## Expertise
 
-<!--
-- DevOps & Agilité
-  - Stratégie/pilotage
-  - Mise en oeuvre cloud
-  - Mise en oeuvre agilité / DevOps
-  - Langages, OS
-    - Python
-    - Go
-    - Linux
-  - Outils
-    - Docker
-    - Kubernetes
-    - Ansible
-    - Terraform
-    - Prometheus
-    - Grafana
-- Infrastructure & Service
-  - Administration et expertise technique
-  - Architecture
-  - Projets transverses d’infrastructure
--->
+Orness vends son expertise dans les domaines de l'ingénierie DevOps, les pratiques Agiles ainsi que les outils de support à l'infrastructure. Il s'agit d'aider les entreprises dans la mise en œuvre de l'utilisation de plateforme cloud et des décisions stratégiques qui y sont associés. Ce type de services dépends de la maîtrise des outils DevOps habituels : il s'agit des plateformes Python, Go et Linux et des librairies et applications Docker, Kubernetes, Ansible, Terraform, Prometheus et Grafana, pour ne citer que les plus importants.
+
+[(orness-devops)](#orness-devops), [(orness-infrastructure)](#orness-infrastructure)
 
 # DitRit
 
@@ -1134,21 +1115,29 @@ Minimum Viable Product, Produit Minimum Viable, en production logicielle, produi
 
 [https://github.com/ditrit/lidy#short-reference](https://github.com/ditrit/lidy#short-reference)
 
-##### orness-valeurs
+##### orness-devops
 
-[https://www.orness.com/nos-valeurs/](https://www.orness.com/nos-valeurs/)
+[https://www.orness.com/it-services/devops/](https://www.orness.com/it-services/devops/)
+
+##### orness-engagements
+
+[https://www.orness.com/nos-engagements/](https://www.orness.com/nos-engagements/)
 
 ##### orness-histoire
 
 [https://www.orness.com/histoire/](https://www.orness.com/histoire/)
 
+##### orness-infrastructure
+
+[https://www.orness.com/it-services/infrastructure/](https://www.orness.com/it-services/infrastructure/)
+
 ##### orness-societe
 
 [https://www.societe.com/societe/orness-434641072.html](https://www.societe.com/societe/orness-434641072.html)
 
-##### orness-engagements
+##### orness-valeurs
 
-[https://www.orness.com/nos-engagements/](https://www.orness.com/nos-engagements/)
+[https://www.orness.com/nos-valeurs/](https://www.orness.com/nos-valeurs/)
 
 ##### tiobe
 
