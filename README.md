@@ -43,7 +43,9 @@ include-before: |
 
   Suivi de versions :
 
-  - version 1, 2020-11
+  - version 1, 2020-11-11
+  - version 2, 2020-11-17
+  - version 3, 2020-11-22
 
   \clearpage
 ---
@@ -66,14 +68,17 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
   - [Participation à DitRit](#participation-à-ditrit)
   - [Projets de DitRit](#projets-de-ditrit)
 - [Projet Lidy](#projet-lidy)
+  - [Conventions et terminologie de Lidy](#conventions-et-terminologie-de-lidy)
   - [Contexte de Lidy](#contexte-de-lidy)
     - [Origine de Lidy : Leto](#origine-de-lidy--leto)
+      - [OASIS](#oasis)
+      - [TOSCA](#tosca)
+      - [Leto](#leto)
     - [Analyser les fichiers OASIS TOSCA](#analyser-les-fichiers-oasis-tosca)
       - [ToP : TOSCA Parser](#top--tosca-parser)
       - [ANTLR](#antlr)
       - [Json Schema](#json-schema)
     - [Lidy](#lidy)
-    - [Terminologie de Lidy](#terminologie-de-lidy)
     - [Développement initial de Lidy](#développement-initial-de-lidy)
     - [Reprise du travail sur Lidy](#reprise-du-travail-sur-lidy)
     - [YAML](#yaml)
@@ -126,7 +131,7 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
         - [TS, TypeScript](#ts-typescript)
         - [Go, Golang](#go-golang)
         - [Python](#python)
-        - [TOSCA](#tosca)
+        - [TOSCA](#tosca-1)
         - [YAML](#yaml-1)
         - [Refactoring](#refactoring)
         - [Parseur](#parseur)
@@ -148,6 +153,8 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
         - [lidy-documentation](#lidy-documentation)
         - [lidy-predefined-rules](#lidy-predefined-rules)
         - [lidy-short-reference](#lidy-short-reference)
+        - [oasis-wikipedia](#oasis-wikipedia)
+        - [oasis-open](#oasis-open)
         - [orness-devops](#orness-devops)
         - [orness-engagements](#orness-engagements)
         - [orness-histoire](#orness-histoire)
@@ -155,6 +162,8 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
         - [orness-societe](#orness-societe)
         - [orness-valeurs](#orness-valeurs)
         - [tiobe](#tiobe)
+        - [tosca-oasis](#tosca-oasis)
+        - [tosca-wikipedia](#tosca-wikipedia)
         - [top](#top)
         - [yaml](#yaml-2)
         - [yaml-json-schema](#yaml-json-schema)
@@ -203,9 +212,7 @@ Il y a enfin le développement d'outils informatique internes : il s'agit d'outi
 
 ## Expertise
 
-Orness vends son expertise dans les domaines de l'ingénierie DevOps, les pratiques Agiles ainsi que les outils de support à l'infrastructure. Il s'agit d'aider les entreprises dans la mise en œuvre de l'utilisation de plateforme cloud et des décisions stratégiques qui y sont associés. Ce type de services dépends de la maîtrise des outils DevOps habituels : il s'agit des plateformes Python, Go et Linux et des librairies et applications Docker, Kubernetes, Ansible, Terraform, Prometheus et Grafana, pour ne citer que les plus importants.
-
-[(orness-devops)](#orness-devops), [(orness-infrastructure)](#orness-infrastructure)
+Orness vends son expertise dans les domaines de l'ingénierie DevOps, les pratiques Agiles ainsi que les outils de support à l'infrastructure. Il s'agit d'aider les entreprises dans la mise en œuvre de l'utilisation de plateforme cloud et des décisions stratégiques qui y sont associés. Ce type de services dépends de la maîtrise des outils DevOps habituels : il s'agit des plateformes Python, Go et Linux et des librairies et applications Docker, Kubernetes, Ansible, Terraform, Prometheus et Grafana, pour ne citer que les plus importants. [(orness-devops)](#orness-devops), [(orness-infrastructure)](#orness-infrastructure)
 
 # DitRit
 
@@ -257,11 +264,57 @@ _Période juin-juillet : Projet Lidy_
 
 Lidy est une librairie qui permet à un développeur de lire et d'analyser un fichier YAML, afin de valider qu'il correspond bien à un format complexe décrit par le développeur.
 
+## Conventions et terminologie de Lidy
+
+Le projet Lidy impliquant un nombre important de concepts techniques, nous utiliseront les termes et conventions énoncée ci-après. Ces termes sont propres à Lidy et ont été inventés pour répondre aux besoins de spécification de Lidy.
+
+On conviendra d'utiliser le terme _développeur_ pour désigner la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF et les individus qui seront amenés à travailler sur Lidy dans le futur.
+
+* **Broader Language Super-Set** (BLSS) Relation de sur-ensemble pour les langages formels. Un langage A est un BLSS d'un langage B si tout text valide dans le langage B est valide dans le langage A. Par exemple, YAML est un BLSS de JSON.
+* **Narrower Language Sub-Set** (NLSS) Relation de sous-ensemble pour les langages. Cette relation binaire est le symétrique de la relation NLSS. Par exemple, XML est un NLSS de SGML.
+
+Lorsqu'on utilise les appellations broader language super-set et narrower language sub-set, il est préférable de tenir compte de l'ordre dans lequel les langages ont été créés. Ainsi il est possible de dire que JSON est un NLSS de YAML, mais il est préférable de dire que YAML est un BLSS de JSON car YAML a été créé _après_ JSON, c'est donc le langage YAML qui étends JSON. De mème, on peut dire que SGML est un BLSS de XML, mais il est préférable de dire que XML est un NLSS de SGML car XML est arrivé _après_ SGML et que c'est donc la spécification XML qui _étends_ la spécification SGML en _restreignant_ ce langage.
+
+* **Canvas Language**. Un _langage canvas_ est un langage qui formalise une syntax, sans lui associer une sémantique forte. Ainsi, ce langage se prête bien à la production de NLSS. Les langages SGML, XML, JSON et YAML sont des langages canvas.
+* **Language Part Instance** (LPI) Une _instance-part de langage_ est un NLSS de langage canvas. Il accèpte comme relations d'articulation, les constructions permises par le _langage racine canvas_ et il spécifie des mot-clés et des règles sur ces articulations pour définir un langage plus spécifique.
+* **Canvas Root Language** (CRL) Un langage A est un _langage racine canvas_ d'un langage B si et seulement si le langage B est une instance-part du langage A. CRL est une relation entre langages ; c'est la relation réciproque de LPI. 
+
+Les appellations _langage canvas_ et _langage racine canvas_ se distinguent l'une de l'autre en ce que l'appellation _langage canvas_ désigne la _capacité_ d'un langage à être utilisé pour produire des LPIs, tandis que l'appellation _langage racine_ canvas désigne un langage en tant que langage _qui a servie de base_ à la production de un ou plusieurs LPIs.
+
+Un exemple d'utilisation de ces termes est faite dans la figure \ref{language-set}.
+
+![BLSS, NLSS, CRL and LPI as language sets\label{language-set}](misc/language-sets.png)
+
+On utilisera de manière interchangeables les appellations suivantes:
+
+- une LPI de SGML, une LPI SGML, une SGMLPI
+- une LPI de XML, une LPI XML, une XMLPI
+- une LPI de YAML, une LPI YAML, une YAMLPI
+- une LPI de JSON, une LPI JSON, une JSONLPI
+
 ## Contexte de Lidy
 
 ### Origine de Lidy : Leto
 
-Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, standard produit par le groupe OASIS. Le standard TOSCA étant au format YAML, le projet Leto s'est rapidement retrouvé dans le besoin de pouvoir analyser un fichier YAML afin de déterminer s'il s'agit d'un fichier TOSCA valide ou non. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
+Le projet Lidy a émergé comme un outil nécessaire au développement d'un projet plus ambitieux : Leto. Leto est un projet d'orchestrateur de système multi-machines et cloud visant à implémenter le standard TOSCA, standard produit par le groupe OASIS.
+
+#### OASIS
+
+L'OASIS ou OASIS-Open, (Organization for the Advancement of Structured Information Standards) est un consortium mondial à but non lucratif qui travaille sur le développement, la convergence et l'adoption de normes ouvertes pour la sécurité, l'internet des objets, l'énergie, les technologies de contenu, la gestion des urgences et d'autres domaines. L'OASIS a été initialement fondée sous le nom "SGML Open" et visait alors à promouvoir l'utilisation du standard SGML à travers des activités éducatives ainsi que la production d'outils de manipulation des fichiers basés sur SGML.
+
+En 1998, le World Wide Web Consortium baptise le XML, une version plus stricte du SGML. OASIS, comme le reste de l'industrie technologique commence alors à promouvoir cette version stricte du standard. En 2020, OASIS a produit près de 200 standards. 66 d'entres eux sont encore en développement actifs. Le standard TOSCA en fait parti. [(oasis-open)](#oasis-open), [(oasis-wikipedia)](#oasis-wikipedia)
+
+#### TOSCA
+
+TOSCA (Topology and Orchestration Specification for Cloud Applications) est un standard dédié à la modélisation et à l'orchestration des applications Cloud de manière agnostique aux technologies sous-jacentes. TOSCA permet ainsi d'adresser les problématiques de portabilité, de réversibilité ou encore d'hybridation des applications dans le Cloud. Le standard TOSCA normalise d'une part le langage TOSCA et d'autre part le fonctionnement et les caractéristiques des orchestrateurs TOSCA qui consomment du code TOSCA. Le document normatif du langage TOSCA fournit les règles de grammaires du langage ainsi que les comportements attendus des clauses exprimées.
+
+La version 1.0 du langage TOSCA était une LPI XML. Elle a été produite et approuvé par l'OASIS en 2014. Devant le manque de popularité du standard, le comité OASIS dédié à TOSCA à commencé à travailler sur une seconde version du standard, en cherchant à le rendre plus léger, par un passage du langage canvas XML au langage canvas YAML. Le troisième draft de cette version 2.0 du standard peut être consulté sur le site de l'OASIS. [(tosca-oasis)](#tosca-oasis), [(tosca-wikipedia)](#tosca-wikipedia)
+
+#### Leto
+
+Leto est un projet d'orchestrateur d'application cloud. Il est né au sein des laboratoires ORNESS dans un premier temps, puis a été développé dans le cadre de la communauté DitRit. Il a pour but de répondre aux limitations observées sur les implémentations existantes d'orchestrateurs TOSCA. Il s'agit d'une part d'implémenter la fonctionnalité de workflow dynamique, tel que définie dans le standard TOSCA. D'autre part, il s'agit d'introduire la notion de projection. Cette notion vise à traiter élégamment la prise en charge des différents niveaux de modélisation d'une application, notamment la prise en charge des niveaux fonctionnels et techniques.
+
+L'un des premiers besoins de Leto a été celui de lire et d'interpréter les fichiers TOSCA. Comme nous allons le voir, ce besoin s'est trouvé difficile à satisfaire et a ultimement mené à la naissance du projet Lidy.
 
 ### Analyser les fichiers OASIS TOSCA
 
@@ -291,10 +344,6 @@ En l'absence d'outils similaires aux JSON Schema pour répondre à ces deux beso
 ### Lidy
 
 Lidy est un validateur de syntaxe de deuxième niveau et désérialiseur pour YAML. A l'instar des validateurs JSON Schema, Lidy n'opère pas pour un dialecte unique : il permet de définir des dialectes YAML grâce à un système de _règles_, définies avec des _spécificateurs_ qui consistent en une _expression_ contenant un ou plusieurs _mot-clés_. Ces définitions de dialectes du système de règles sont complexes et doivent suivre une syntaxe. Lidy a décidé d'utiliser une syntaxe existante pour son système de règles : il s'agit de la syntaxe YAML. Ainsi, le système de règles Lidy est lui-même un dialecte YAML. Plus de détails sur le fonctionnement extérieur de Lidy sont donnés dans la section [Aperçu de l'utilisation de Lidy](#aperçu-de-lutilisation-de-lidy).
-
-### Terminologie de Lidy
-
-On désignera par _développeur_, la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF et les individus qui seront amenés à travailler sur Lidy dans le futur.
 
 ### Développement initial de Lidy
 
@@ -1121,6 +1170,10 @@ Minimum Viable Product, Produit Minimum Viable, en production logicielle, produi
 
 [https://github.com/ditrit/lidy#short-reference](https://github.com/ditrit/lidy#short-reference)
 
+##### oasis-wikipedia
+
+##### oasis-open
+
 ##### orness-devops
 
 [https://www.orness.com/it-services/devops/](https://www.orness.com/it-services/devops/)
@@ -1148,6 +1201,10 @@ Minimum Viable Product, Produit Minimum Viable, en production logicielle, produi
 ##### tiobe
 
 [https://www.tiobe.com/tiobe-index/](https://www.tiobe.com/tiobe-index/)
+
+##### tosca-oasis
+
+##### tosca-wikipedia
 
 ##### top
 
