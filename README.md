@@ -180,13 +180,13 @@ _Les liens de la table des matières sont cliquables. **Il est possible de reven
 
 _Ce rapport est disponible au format PDF, [Markdown-source](https://raw.githubusercontent.com/mathieucaroff/rapport3A/master/README.md) et [Markdown-HTML](https://github.com/mathieucaroff/rapport3A), quoique la version HTML puisse contenir des artéfacts dus aux différences d'interprétation du Markdown entre le convertisseur PDF et le convertisseur HTML._
 
-_L'ensemble des figures du rapport ont été réalisé en anglais afin de faciliter leur réutilisation au sein du projet Lidy._
+_L'ensemble des figures du rapport a été réalisé en anglais afin de faciliter leur réutilisation au sein du projet Lidy._
 
 \clearpage
 
 # Contexte du stage
 
-Compte tenu du contexte de la pandémie, le stage ne s'est pas déroulé dans les conditions initialement prévues. La date de début du stage, programmé pour débuter le 2 avril, s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
+Compte tenu du contexte de la pandémie, le stage ne s'est pas déroulé dans les conditions initialement prévues. La date de début du stage, programmée pour débuter le 2 avril, s'est progressivement décalée au 2 juin, date d'embauche par l'entreprise Orness.
 Le stage devait être réalisé au profit du Crédit Agricole (CA). Or, en raison de difficultés à formaliser le contrat entre Orness et le CA dans ce contexte particulier, il s'est finalement déroulé en deux temps.
 
 - La première période a été réalisée au bénéfice de l'association DitRit, sponsorisée par Orness. Le projet portait sur la librairie de validation de données Lidy. Cette première mission s'est déroulée en distanciel avec pour difficulté, l'incertitude sur sa durée car la date de début au CA était indéterminée. Le périmètre de cette première tâche était donc susceptible d'être modifié en fonction du temps restant disponible.
@@ -212,11 +212,11 @@ Il y a enfin le développement d'outils informatique internes : il s'agit d'outi
 
 ## Expertise
 
-Orness vends son expertise dans les domaines de l'ingénierie DevOps, les pratiques Agiles ainsi que les outils de support à l'infrastructure. Il s'agit d'aider les entreprises dans la mise en œuvre de l'utilisation de plateforme cloud et des décisions stratégiques qui y sont associés. Ce type de services dépends de la maîtrise des outils DevOps habituels : il s'agit des plateformes Python, Go et Linux et des librairies et applications Docker, Kubernetes, Ansible, Terraform, Prometheus et Grafana, pour ne citer que les plus importants. [(orness-devops)](#orness-devops), [(orness-infrastructure)](#orness-infrastructure)
+Orness vend son expertise dans les domaines de l'ingénierie DevOps, les pratiques Agiles ainsi que les outils de support à l'infrastructure. Il s'agit d'aider les entreprises dans la mise en œuvre de l'utilisation de plateformes cloud et des décisions stratégiques qui y sont associées. Ce type de services dépend de la maîtrise des outils DevOps habituels : il s'agit des plateformes Python, Go et Linux et des librairies et applications Docker, Kubernetes, Ansible, Terraform, Prometheus et Grafana, pour ne citer que les plus importantes. [(orness-devops)](#orness-devops), [(orness-infrastructure)](#orness-infrastructure)
 
 # DitRit
 
-DitRit, pour Design it Run It, est initialement une communauté d'experts DevOps créée au début de l'année 2018 par Xavier Talon. L'activité de DitRit consiste alors en la tenue de rencontre au sein desquels ces experts réfléchissent discutent.
+DitRit, pour Design it Run It, est initialement une communauté d'experts DevOps créée au début de l'année 2018 par Xavier Talon. L'activité de DitRit consiste alors en la tenue de rencontres au sein desquelles ces experts réfléchissent discutent.
 
 Suite à la création des Labs ORNESS, Xavier Talon a souhaité donner corps à sa vision basée sur l'intelligence collective en rassemblant DitRit et les Labs Orness sous la forme d'une entité unique autonome et indépendante : L'association DitRit
 
@@ -266,26 +266,26 @@ Lidy est une librairie qui permet à un développeur de lire et d'analyser un fi
 
 ## Conventions et terminologie de Lidy
 
-Le projet Lidy impliquant un nombre important de concepts techniques, nous utiliseront les termes et conventions énoncée ci-après. Ces termes sont propres à Lidy et ont été inventés pour répondre aux besoins de spécification de Lidy.
+Le projet Lidy impliquant un nombre important de concepts techniques, nous utiliserons les termes et conventions énoncés ci-après. Ces termes sont propres à Lidy et ont été inventés pour répondre aux besoins de spécification de Lidy.
 
 On conviendra d'utiliser le terme _développeur_ pour désigner la ou les personnes qui _utilisent_ Lidy. Par contraste, le terme _utilisateur_ désignera les utilisateurs de ces développeurs. Enfin, on désignera par _développeurs de Lidy_ Xavier TALON, Mathieu CAROFF et les individus qui seront amenés à travailler sur Lidy dans le futur.
 
-* **Broader Language Super-Set** (BLSS) Relation de sur-ensemble pour les langages formels. Un langage A est un BLSS d'un langage B si tout text valide dans le langage B est valide dans le langage A. Par exemple, YAML est un BLSS de JSON.
+* **Broader Language Super-Set** (BLSS) Relation de sur-ensemble pour les langages formels. Un langage A est un BLSS d'un langage B si tout texte valide dans le langage B est valide dans le langage A. Par exemple, YAML est un BLSS de JSON.
 * **Narrower Language Sub-Set** (NLSS) Relation de sous-ensemble pour les langages. Cette relation binaire est le symétrique de la relation NLSS. Par exemple, XML est un NLSS de SGML.
 
-Lorsqu'on utilise les appellations broader language super-set et narrower language sub-set, il est préférable de tenir compte de l'ordre dans lequel les langages ont été créés. Ainsi il est possible de dire que JSON est un NLSS de YAML, mais il est préférable de dire que YAML est un BLSS de JSON car YAML a été créé _après_ JSON, c'est donc le langage YAML qui étends JSON. De mème, on peut dire que SGML est un BLSS de XML, mais il est préférable de dire que XML est un NLSS de SGML car XML est arrivé _après_ SGML et que c'est donc la spécification XML qui _étends_ la spécification SGML en _restreignant_ ce langage.
+Lorsqu'on utilise les appellations broader language super-set et narrower language sub-set, il est préférable de tenir compte de l'ordre dans lequel les langages ont été créés. Ainsi il est possible de dire que JSON est un NLSS de YAML, mais il est préférable de dire que YAML est un BLSS de JSON car YAML a été créé _après_ JSON, c'est donc le langage YAML qui étend JSON. De même, on peut dire que SGML est un BLSS de XML, mais il est préférable de dire que XML est un NLSS de SGML car XML est arrivé _après_ SGML et que c'est donc la spécification XML qui _étend_ la spécification SGML en _restreignant_ ce langage.
 
-* **Canvas Language**. Un _langage canvas_ est un langage qui formalise une syntax, sans lui associer une sémantique forte. Ainsi, ce langage se prête bien à la production de NLSS. Les langages SGML, XML, JSON et YAML sont des langages canvas.
-* **Language Part Instance** (LPI) Une _instance-part de langage_ est un NLSS de langage canvas. Il accèpte comme relations d'articulation, les constructions permises par le _langage racine canvas_ et il spécifie des mot-clés et des règles sur ces articulations pour définir un langage plus spécifique.
+* **Canvas Language**. Un _langage canvas_ est un langage qui formalise une syntaxe, sans lui associer une sémantique forte. Ainsi, ce langage se prête bien à la production de NLSS. Les langages SGML, XML, JSON et YAML sont des langages canvas.
+* **Language Part Instance** (LPI) Une _instance-part de langage_ est un NLSS de langage canvas. Il accepte comme relations d'articulation, les constructions permises par le _langage racine canvas_ et il spécifie des mot-clés et des règles sur ces articulations pour définir un langage plus spécifique.
 * **Canvas Root Language** (CRL) Un langage A est un _langage racine canvas_ d'un langage B si et seulement si le langage B est une instance-part du langage A. CRL est une relation entre langages ; c'est la relation réciproque de LPI. 
 
-Les appellations _langage canvas_ et _langage racine canvas_ se distinguent l'une de l'autre en ce que l'appellation _langage canvas_ désigne la _capacité_ d'un langage à être utilisé pour produire des LPIs, tandis que l'appellation _langage racine_ canvas désigne un langage en tant que langage _qui a servie de base_ à la production de un ou plusieurs LPIs.
+Les appellations _langage canvas_ et _langage racine canvas_ se distinguent l'une de l'autre en ce que l'appellation _langage canvas_ désigne la _capacité_ d'un langage à être utilisée pour produire des LPIs, tandis que l'appellation _langage racine_ canvas désigne un langage en tant que langage _qui a servie de base_ à la production de un ou plusieurs LPIs.
 
-Un exemple d'utilisation de ces termes est faite dans la figure \ref{language-set}.
+Voir un exemple d'utilisation de ces termes dans la figure \ref{language-set}.
 
 ![BLSS, NLSS, CRL and LPI as language sets\label{language-set}](misc/language-sets.png)
 
-On utilisera de manière interchangeables les appellations suivantes:
+On utilisera de manière interchangeable les appellations suivantes:
 
 - une LPI de SGML, une LPI SGML, une SGMLPI
 - une LPI de XML, une LPI XML, une XMLPI
@@ -302,13 +302,13 @@ Le projet Lidy a émergé comme un outil nécessaire au développement d'un proj
 
 L'OASIS ou OASIS-Open, (Organization for the Advancement of Structured Information Standards) est un consortium mondial à but non lucratif qui travaille sur le développement, la convergence et l'adoption de normes ouvertes pour la sécurité, l'internet des objets, l'énergie, les technologies de contenu, la gestion des urgences et d'autres domaines. L'OASIS a été initialement fondée sous le nom "SGML Open" et visait alors à promouvoir l'utilisation du standard SGML à travers des activités éducatives ainsi que la production d'outils de manipulation des fichiers basés sur SGML.
 
-En 1998, le World Wide Web Consortium baptise le XML, une version plus stricte du SGML. OASIS, comme le reste de l'industrie technologique commence alors à promouvoir cette version stricte du standard. En 2020, OASIS a produit près de 200 standards. 66 d'entres eux sont encore en développement actifs. Le standard TOSCA en fait parti. [(oasis-open)](#oasis-open), [(oasis-wikipedia)](#oasis-wikipedia)
+En 1998, le World Wide Web Consortium baptise le XML, une version plus stricte du SGML. OASIS, comme le reste de l'industrie technologique commence alors à promouvoir cette version stricte du standard. En 2020, OASIS a produit près de 200 standards. 66 d'entres eux sont encore en développement actif. Le standard TOSCA en fait parti. [(oasis-open)](#oasis-open), [(oasis-wikipedia)](#oasis-wikipedia)
 
 #### TOSCA
 
-TOSCA (Topology and Orchestration Specification for Cloud Applications) est un standard dédié à la modélisation et à l'orchestration des applications Cloud de manière agnostique aux technologies sous-jacentes. TOSCA permet ainsi d'adresser les problématiques de portabilité, de réversibilité ou encore d'hybridation des applications dans le Cloud. Le standard TOSCA normalise d'une part le langage TOSCA et d'autre part le fonctionnement et les caractéristiques des orchestrateurs TOSCA qui consomment du code TOSCA. Le document normatif du langage TOSCA fournit les règles de grammaires du langage ainsi que les comportements attendus des clauses exprimées.
+TOSCA (Topology and Orchestration Specification for Cloud Applications) est un standard dédié à la modélisation et à l'orchestration des applications Cloud de manière agnostique aux technologies sous-jacentes. TOSCA permet ainsi d'adresser les problématiques de portabilité, de réversibilité ou encore d'hybridation des applications dans le Cloud. Le standard TOSCA normalise d'une part le langage TOSCA et d'autre part le fonctionnement et les caractéristiques des orchestrateurs TOSCA qui consomment du code TOSCA. Le document normatif du langage TOSCA fournit les règles de grammaire du langage ainsi que les comportements attendus des clauses exprimées.
 
-La version 1.0 du langage TOSCA était une LPI XML. Elle a été produite et approuvé par l'OASIS en 2014. Devant le manque de popularité du standard, le comité OASIS dédié à TOSCA à commencé à travailler sur une seconde version du standard, en cherchant à le rendre plus léger, par un passage du langage canvas XML au langage canvas YAML. Le troisième draft de cette version 2.0 du standard peut être consulté sur le site de l'OASIS. [(tosca-oasis)](#tosca-oasis), [(tosca-wikipedia)](#tosca-wikipedia)
+La version 1.0 du langage TOSCA était une LPI XML. Elle a été produite et approuvée par l'OASIS en 2014. Devant le manque de popularité du standard, le comité OASIS dédié à TOSCA a commencé à travailler sur une seconde version du standard, en cherchant à le rendre plus léger, par un passage du langage canvas XML au langage canvas YAML. Le troisième draft de cette version 2.0 du standard peut être consulté sur le site de l'OASIS. [(tosca-oasis)](#tosca-oasis), [(tosca-wikipedia)](#tosca-wikipedia)
 
 #### Leto
 
@@ -1078,7 +1078,7 @@ Golang est un langage de programmation statiquement typé, développé chez Goog
 
 ##### Python
 
-Python est un language de programmation haut-niveau interprété. Sa philosophy de conception met l'emphase sur la lisibilité du code. Ce langage supporte plusieurs paradigmes mais promeut la programmation procédurale structurée.
+Python est un langage de programmation haut-niveau interprété. Sa philosophie de conception met l'accent sur la lisibilité du code. Ce langage supporte plusieurs paradigmes mais promeut la programmation procédurale structurée.
 
 ##### TOSCA
 
