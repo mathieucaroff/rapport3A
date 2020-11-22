@@ -125,6 +125,8 @@ Note: any balise name would work, I use "markdown-summary" for descriptiveness -
       - [Requêtes invalides](#requêtes-invalides)
       - [Création des requêtes](#création-des-requêtes)
       - [Deburst](#deburst)
+    - [Conclusion de l'automatisation du burst](#conclusion-de-lautomatisation-du-burst)
+- [Conclusion du stage](#conclusion-du-stage)
 - [Glossaire](#glossaire)
         - [API](#api)
         - [JS, JavaScript](#js-javascript)
@@ -866,13 +868,9 @@ Une amélioration possible de l'implémentation du transport des erreurs serait 
 
 ## Conclusion du projet Lidy
 
-Après 7 semaines et demie, ma mission au Crédit Agricole a commencé, interrompant mon travail sur Lidy. Ce projet m'aura permis d'acquérir une expérience significative avec le langage Go, ainsi qu'une expérience de développement informatique dans le monde associatif.
+Après 7 semaines et demie, ma mission au Crédit Agricole a commencé, interrompant mon travail sur Lidy. L'écriture du rapport m'a amené à formaliser les concepts Lidy et à définir une terminologie plus complète et plus claire pour le projet ainsi que pour les concepts voisins au projet. Je suis certain que ce travail de terminologie facilitera la suite du travail sur Lidy.
 
-Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendants de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensemble des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la production d'extensions pour supporter les langages YAML précités dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ.
-
-<!--
-- Écriture du rapport m'a amené à formaliser les concepts Lidy et a définir une terminologie plus complète et plus claire_
--->
+Lidy est un projet qui a de nombreuses applications potentielles pour faciliter le travail des développeurs qui utilisent des technologies dépendants de YAML tels que TOSCA, Ansible et Grav, ainsi que l'ensemble des langages de configuration basés sur YAML. Une des pistes les plus intéressantes pour valoriser ce projet serait la production d'extensions pour supporter ces LPIs YAML dans les IDEs populaires, tels que VSCode, Eclipse et IntelliJ. Je suis donc optimiste sur la capacité de Lidy à concurrencer les solutions existantes, mal-adaptées actuellement utilisées pour répondre aux besoins d'analyse des LPIs YAML et JSON et pour rivaliser voire dépasser la popularité de ces outils dans le monde de l'Open Source.
 
 \clearpage
 
@@ -1056,6 +1054,24 @@ Le calcul des paramètres à utiliser pour les requêtes dépend du nombre de CP
 
 Le diagramme de séquences présenté s'applique au cas de l'ajout de CPUs. Dans le cas du retrait des CPUs, le diagramme est très similaire, à la différence près que l'étape de configuration du Cluster a lieu avant l'étape de configuration de l'Exasystème.
 
+### Conclusion de l'automatisation du burst
+
+Après plusieurs échanges avec Thomas et changements apportés au code pour satisfaire les exigences de simplicité de l'implémentation, le code a été mis en production. La solution a été testée et validée par le client.
+
+L'implémentation de l'automatisation du burst utilise une astuce afin de maintenir le contact avec l'utilisateur. Cependant, une approche différente permettrait de se débarrasser de cette astuce. Cette approche alternative nécessite un système de gestion de tâches, système que j'aurais à mettre en place au mois de décembre afin de supporter l'ensemble des cas d'usage dans lesquels les APIs de WebDBA seront amenées à réaliser des opérations lentes. Ceci s'inscrit dans le projet d'automatisation des services fournis par le cluster Grande Clientèles et de modernisation de l'infrastructure informatique du Crédit Agricole.
+
+\clearpage
+
+# Conclusion du stage
+
+J'ai trouvé ce stage très satisfaisant et enrichissant. Faire partie d'équipes dynamiques et accueillantes, travailler dans d'aussi bonnes conditions et pouvoir mettre en pratique les connaissances acquises sont autant de choses positives que j'ai pu en retirer.
+
+Au sein de DitRit, j'ai pu acquérir une expérience significative avec le langage Go, ainsi qu'une expérience de développement informatique dans le monde associatif.
+
+Au Crédit Agricole, j'ai pu en apprendre davantage sur les actions menées par un service informatique au sein d'un grand compte, sur leur rôle, allant de la maintenance à l'extension des capacités des bases de données, ou encore sur le développement d'outils de travail tel que WebDBA. Plus spécifiquement, j'y ai appris non seulement l'utilisation de Django, mais aussi les détails du fonctionnement interne de cet outil, ainsi que de ceux d'autres outils de l'écosystème Django.
+
+Ce stage, par la diversité des difficultés auxquelles il m'a confronté me conforte dans mon choix de spécialisation DevOps et Web.
+
 \clearpage
 
 # Glossaire
@@ -1172,7 +1188,11 @@ Minimum Viable Product, Produit Minimum Viable, en production logicielle, produi
 
 ##### oasis-wikipedia
 
+[https://en.wikipedia.org/wiki/OASIS_(organization)](https://en.wikipedia.org/wiki/OASIS_(organization))
+
 ##### oasis-open
+
+[https://www.oasis-open.org](https://www.oasis-open.org)
 
 ##### orness-devops
 
@@ -1204,7 +1224,11 @@ Minimum Viable Product, Produit Minimum Viable, en production logicielle, produi
 
 ##### tosca-oasis
 
+[https://www.oasis-open.org/committees/tosca/](https://www.oasis-open.org/committees/tosca/)
+
 ##### tosca-wikipedia
+
+[https://en.wikipedia.org/wiki/OASIS_TOSCA](https://en.wikipedia.org/wiki/OASIS_TOSCA)
 
 ##### top
 
